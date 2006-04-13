@@ -17,6 +17,7 @@
 NSString* kAspellDictionarySetChangedNotification	= @"net.leuski.cocoaspell.AspellDictionarySetChangedNotification";
 
 static NSString*	kCocoAspellServiceName			= @"cocoAspell.service";
+static NSString*	kFiltersConfigFileName			= @"filters.conf";
 
 @interface DictionaryManager (Private)
 - (void)setPersistent:(BOOL)newPersistent;
@@ -60,11 +61,15 @@ static NSString*	kCocoAspellServiceName			= @"cocoAspell.service";
 
 - (AspellOptions*)createFilterOptionsWithClass:(Class)inClass
 {
+	NSString*		homeDir	= [AspellOptions cocoAspellHomeDir];
 	AspellOptions*	fltrs	= [[[inClass alloc] 
-								initWithContentOfFile:[[AspellOptions cocoAspellHomeDir] stringByAppendingPathComponent:@"filters.conf"]] autorelease];
+								initWithContentOfFile:[homeDir 
+								stringByAppendingPathComponent:kFiltersConfigFileName]] autorelease];
 	if (!fltrs) {
 		fltrs	= [[[inClass alloc] init] autorelease];
-		[fltrs setValue:@"filters.conf" forKey:@"per-conf"];
+		[fltrs setValue:kFiltersConfigFileName forKey:@"per-conf"];
+		[fltrs setValue:homeDir				forKey:@"home_dir"];
+		[fltrs setValue:@"ucs-2"				forKey:@"encoding"];
 	}
 	[fltrs setPersistent:[self isPersistent]];
 	return fltrs;
@@ -230,7 +235,9 @@ static NSString*	kCocoAspellServiceName			= @"cocoAspell.service";
 
 - (NSString*)serviceFilePath
 {
-	return [[[@"~/Library" stringByStandardizingPath] stringByAppendingPathComponent:@"Services"] stringByAppendingPathComponent:kCocoAspellServiceName];
+	return [[[@"~/Library" stringByStandardizingPath]
+				stringByAppendingPathComponent:@"Services"] 
+				stringByAppendingPathComponent:kCocoAspellServiceName];
 }
 
 // ----------------------------------------------------------------------------
@@ -239,7 +246,8 @@ static NSString*	kCocoAspellServiceName			= @"cocoAspell.service";
 
 - (NSString*)serviceInfoFilePath:(NSString*)serviceFilePath
 {
-	return [[serviceFilePath stringByAppendingPathComponent:@"Contents"] stringByAppendingPathComponent:@"Info.plist"];
+	return [[serviceFilePath stringByAppendingPathComponent:@"Contents"] 
+				stringByAppendingPathComponent:@"Info.plist"];
 }
 
 

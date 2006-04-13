@@ -17,7 +17,7 @@
 #import "cocoa_document_checker.h"
 #import "UserDefaults.h"
 
-#define __debug__
+//#define __debug__
 
 @interface cocoAspell : NSObject {
 	DictionaryManager*	dictionaryManager;
