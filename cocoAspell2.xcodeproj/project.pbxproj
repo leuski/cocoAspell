@@ -1,0 +1,1079 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		62186FA607B1F70900843823 /* cocoAspell.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 62186FA407B1F70900843823 /* cocoAspell.tiff */; };
+		6236A3F7081E227A00EBE3B3 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E653AC07B47345006ADDEF /* UserDefaults.m */; };
+		6236A3FA081E237100EBE3B3 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6236A3F9081E237100EBE3B3 /* Utilities.m */; };
+		6236A3FC081E237100EBE3B3 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6236A3F9081E237100EBE3B3 /* Utilities.m */; };
+		6236A3FD081E237100EBE3B3 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6236A3F9081E237100EBE3B3 /* Utilities.m */; };
+		6236A414081E2D7300EBE3B3 /* LanguageListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6236A413081E2D7300EBE3B3 /* LanguageListing.m */; };
+		6256B643081EC6350035BE7E /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6256B642081EC6350035BE7E /* libcurl.dylib */; };
+		62658D52081E01D80085D69E /* DictionaryInstaller.nib in Resources */ = {isa = PBXBuildFile; fileRef = 62658D51081E01D80085D69E /* DictionaryInstaller.nib */; };
+		62658D5A081E02390085D69E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62658D59081E02390085D69E /* main.m */; };
+		62658D77081E042C0085D69E /* DictionaryInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62658D76081E042C0085D69E /* DictionaryInstaller.m */; };
+		626D070207F9074200D306FB /* Remove.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 62C3BEE507B1F62C009FD657 /* Remove.tiff */; };
+		626D070307F9074900D306FB /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 62C3BEE207B1F62C009FD657 /* Add.tiff */; };
+		626D070407F9075100D306FB /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 62C3BEE307B1F62C009FD657 /* credits.html */; };
+		626D070B07F9077A00D306FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B225B007B1F38600D69682 /* Localizable.strings */; };
+		626D071107F9079600D306FB /* libaspell.15.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B2259307B1F15F00D69682 /* libaspell.15.dylib */; };
+		626D071607F907B400D306FB /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E653AC07B47345006ADDEF /* UserDefaults.m */; };
+		626D071707F907B700D306FB /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E6522107B363C4006ADDEF /* Dictionary.m */; };
+		626D071807F907BB00D306FB /* AspellOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6218701C07B1FDB900843823 /* AspellOptions.m */; };
+		626D071907F907BF00D306FB /* DictionaryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 629F291F07BEC5AF00AD441B /* DictionaryManager.m */; };
+		626D071A07F907C200D306FB /* aspell_extras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 629F2A0107BF384800AD441B /* aspell_extras.cpp */; };
+		626D071C07F907DC00D306FB /* MutableAspellList.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8C85407B69ED200F6A61B /* MutableAspellList.m */; };
+		626D071D07F907E000D306FB /* AspellOptionsWithLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 629F2BE507C0361000AD441B /* AspellOptionsWithLists.m */; };
+		626D072107F9089500D306FB /* NSTextViewWithLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 62186FD007B1F7D100843823 /* NSTextViewWithLinks.m */; };
+		62783F0207E6B6040019175E /* libaspell.15.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B2259307B1F15F00D69682 /* libaspell.15.dylib */; };
+		62783F0307E6B6040019175E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		62783F0407E6B60A0019175E /* cocoAspell.m in Sources */ = {isa = PBXBuildFile; fileRef = 629F2CCE07C0462F00AD441B /* cocoAspell.m */; };
+		62783F0507E6B60A0019175E /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E653AC07B47345006ADDEF /* UserDefaults.m */; };
+		62783F0607E6B60A0019175E /* DictionaryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 629F291F07BEC5AF00AD441B /* DictionaryManager.m */; };
+		62783F0707E6B60A0019175E /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E6522107B363C4006ADDEF /* Dictionary.m */; };
+		62783F0807E6B60A0019175E /* AspellOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6218701C07B1FDB900843823 /* AspellOptions.m */; };
+		62783F0907E6B60A0019175E /* aspell_extras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 629F2A0107BF384800AD441B /* aspell_extras.cpp */; };
+		62783F0A07E6B60A0019175E /* cocoa_document_checker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6279AFF307C3246C00072747 /* cocoa_document_checker.cpp */; };
+		6287F33907FA89AA0004EB03 /* cocoAspell.service in CopyFiles */ = {isa = PBXBuildFile; fileRef = 62783EFB07E6B5B40019175E /* cocoAspell.service */; };
+		62B2255407B1ED6D00D69682 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62B2254C07B1ED6D00D69682 /* Info.plist */; };
+		62B2255507B1ED6D00D69682 /* Spelling.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 62B2254D07B1ED6D00D69682 /* Spelling.tiff */; };
+		62B2255707B1ED6D00D69682 /* Spelling.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B2255007B1ED6D00D69682 /* Spelling.m */; };
+		62B225B307B1F38600D69682 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B225AE07B1F38600D69682 /* InfoPlist.strings */; };
+		62C3BEF907B1F6AA009FD657 /* Spelling.nib in Resources */ = {isa = PBXBuildFile; fileRef = 62C3BEF707B1F6AA009FD657 /* Spelling.nib */; };
+		8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F506C035013D953901CA16C8 /* PreferencePanes.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		06F27B30FFEEEFEF11CA0E56 /* Development */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = __debug__;
+				OPTIMIZATION_CFLAGS = "-O0";
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		06F27B31FFEEEFEF11CA0E56 /* Deployment */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				VERSIONING_SYSTEM = "";
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		6287F32907FA89990004EB03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 62783EFA07E6B5B40019175E;
+			remoteInfo = service;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6287F33007FA89A10004EB03 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				6287F33907FA89AA0004EB03 /* cocoAspell.service in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		62186FA407B1F70900843823 /* cocoAspell.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = cocoAspell.tiff; sourceTree = "<group>"; };
+		62186FCF07B1F7D100843823 /* NSTextViewWithLinks.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTextViewWithLinks.h; sourceTree = "<group>"; };
+		62186FD007B1F7D100843823 /* NSTextViewWithLinks.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSTextViewWithLinks.m; sourceTree = "<group>"; };
+		6218701B07B1FDB900843823 /* AspellOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AspellOptions.h; sourceTree = "<group>"; };
+		6218701C07B1FDB900843823 /* AspellOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AspellOptions.m; sourceTree = "<group>"; };
+		6236A3F8081E237100EBE3B3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		6236A3F9081E237100EBE3B3 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		6236A412081E2D7300EBE3B3 /* LanguageListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageListing.h; sourceTree = "<group>"; };
+		6236A413081E2D7300EBE3B3 /* LanguageListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageListing.m; sourceTree = "<group>"; };
+		6256B642081EC6350035BE7E /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = /usr/lib/libcurl.dylib; sourceTree = "<absolute>"; };
+		62658D48081E01600085D69E /* Dictionary Installer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dictionary Installer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		62658D4A081E01600085D69E /* Dictionary Installer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Dictionary Installer-Info.plist"; sourceTree = "<group>"; };
+		62658D51081E01D80085D69E /* DictionaryInstaller.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = DictionaryInstaller.nib; sourceTree = "<group>"; };
+		62658D59081E02390085D69E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		62658D75081E042C0085D69E /* DictionaryInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryInstaller.h; sourceTree = "<group>"; };
+		62658D76081E042C0085D69E /* DictionaryInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryInstaller.m; sourceTree = "<group>"; };
+		62783EFB07E6B5B40019175E /* cocoAspell.service */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cocoAspell.service; sourceTree = BUILT_PRODUCTS_DIR; };
+		62783EFD07E6B5B40019175E /* service-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "service-Info.plist"; sourceTree = "<group>"; };
+		6279AFF207C3246C00072747 /* cocoa_document_checker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocoa_document_checker.h; sourceTree = "<group>"; };
+		6279AFF307C3246C00072747 /* cocoa_document_checker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocoa_document_checker.cpp; sourceTree = "<group>"; };
+		629F291E07BEC5AF00AD441B /* DictionaryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryManager.h; sourceTree = "<group>"; };
+		629F291F07BEC5AF00AD441B /* DictionaryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryManager.m; sourceTree = "<group>"; };
+		629F2A0007BF384800AD441B /* aspell_extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aspell_extras.h; sourceTree = "<group>"; };
+		629F2A0107BF384800AD441B /* aspell_extras.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aspell_extras.cpp; sourceTree = "<group>"; };
+		629F2BE407C0361000AD441B /* AspellOptionsWithLists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AspellOptionsWithLists.h; sourceTree = "<group>"; };
+		629F2BE507C0361000AD441B /* AspellOptionsWithLists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AspellOptionsWithLists.m; sourceTree = "<group>"; };
+		629F2CCE07C0462F00AD441B /* cocoAspell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoAspell.m; sourceTree = "<group>"; };
+		62A8C85307B69ED200F6A61B /* MutableAspellList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableAspellList.h; sourceTree = "<group>"; };
+		62A8C85407B69ED200F6A61B /* MutableAspellList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableAspellList.m; sourceTree = "<group>"; };
+		62B2254C07B1ED6D00D69682 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		62B2254D07B1ED6D00D69682 /* Spelling.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Spelling.tiff; sourceTree = "<group>"; };
+		62B2254F07B1ED6D00D69682 /* Spelling.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Spelling.h; sourceTree = "<group>"; };
+		62B2255007B1ED6D00D69682 /* Spelling.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Spelling.m; sourceTree = "<group>"; };
+		62B2255107B1ED6D00D69682 /* Spelling_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Spelling_Prefix.pch; sourceTree = "<group>"; };
+		62B2259307B1F15F00D69682 /* libaspell.15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaspell.15.dylib; path = /usr/local/lib/libaspell.15.dylib; sourceTree = "<absolute>"; };
+		62B2259507B1F17500D69682 /* aspell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = aspell.h; path = /usr/local/include/aspell.h; sourceTree = "<absolute>"; };
+		62B225AF07B1F38600D69682 /* en */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		62B225B107B1F38600D69682 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		62C3BEB207B1F5A8009FD657 /* Spelling.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Spelling.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C3BEE207B1F62C009FD657 /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
+		62C3BEE307B1F62C009FD657 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
+		62C3BEE507B1F62C009FD657 /* Remove.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Remove.tiff; sourceTree = "<group>"; };
+		62C3BEF807B1F6AA009FD657 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Spelling.nib; sourceTree = "<group>"; };
+		62E6522007B363C4006ADDEF /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
+		62E6522107B363C4006ADDEF /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
+		62E653AB07B47345006ADDEF /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
+		62E653AC07B47345006ADDEF /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		F506C035013D953901CA16C8 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		62658D46081E01600085D69E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6256B643081EC6350035BE7E /* libcurl.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62783EF907E6B5B40019175E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62783F0207E6B6040019175E /* libaspell.15.dylib in Frameworks */,
+				62783F0307E6B6040019175E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D202CF20486D31800D8A456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				626D071107F9079600D306FB /* libaspell.15.dylib in Frameworks */,
+				8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */,
+				8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* cocoAspell2 */ = {
+			isa = PBXGroup;
+			children = (
+				62B2254707B1ED6D00D69682 /* Resources */,
+				62B2254E07B1ED6D00D69682 /* Sources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+			);
+			name = cocoAspell2;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				6256B642081EC6350035BE7E /* libcurl.dylib */,
+				62B2259307B1F15F00D69682 /* libaspell.15.dylib */,
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+				F506C035013D953901CA16C8 /* PreferencePanes.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7AEFEA557BF11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				62C3BEB207B1F5A8009FD657 /* Spelling.prefPane */,
+				62783EFB07E6B5B40019175E /* cocoAspell.service */,
+				62658D48081E01600085D69E /* Dictionary Installer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6236A411081E2D2600EBE3B3 /* Dictionary Installer */ = {
+			isa = PBXGroup;
+			children = (
+				62658D75081E042C0085D69E /* DictionaryInstaller.h */,
+				62658D76081E042C0085D69E /* DictionaryInstaller.m */,
+				62658D59081E02390085D69E /* main.m */,
+				6236A412081E2D7300EBE3B3 /* LanguageListing.h */,
+				6236A413081E2D7300EBE3B3 /* LanguageListing.m */,
+			);
+			name = "Dictionary Installer";
+			sourceTree = "<group>";
+		};
+		629F2BCC07C0348400AD441B /* common */ = {
+			isa = PBXGroup;
+			children = (
+				629F2A0007BF384800AD441B /* aspell_extras.h */,
+				629F2A0107BF384800AD441B /* aspell_extras.cpp */,
+				629F291E07BEC5AF00AD441B /* DictionaryManager.h */,
+				629F291F07BEC5AF00AD441B /* DictionaryManager.m */,
+				62B2259507B1F17500D69682 /* aspell.h */,
+				6218701B07B1FDB900843823 /* AspellOptions.h */,
+				6218701C07B1FDB900843823 /* AspellOptions.m */,
+				62E6522007B363C4006ADDEF /* Dictionary.h */,
+				62E6522107B363C4006ADDEF /* Dictionary.m */,
+				62E653AB07B47345006ADDEF /* UserDefaults.h */,
+				62E653AC07B47345006ADDEF /* UserDefaults.m */,
+				6236A3F8081E237100EBE3B3 /* Utilities.h */,
+				6236A3F9081E237100EBE3B3 /* Utilities.m */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		629F2BCD07C034A200AD441B /* PrefPane */ = {
+			isa = PBXGroup;
+			children = (
+				629F2BE407C0361000AD441B /* AspellOptionsWithLists.h */,
+				629F2BE507C0361000AD441B /* AspellOptionsWithLists.m */,
+				62A8C85307B69ED200F6A61B /* MutableAspellList.h */,
+				62A8C85407B69ED200F6A61B /* MutableAspellList.m */,
+				62186FCF07B1F7D100843823 /* NSTextViewWithLinks.h */,
+				62186FD007B1F7D100843823 /* NSTextViewWithLinks.m */,
+				62B2254F07B1ED6D00D69682 /* Spelling.h */,
+				62B2255007B1ED6D00D69682 /* Spelling.m */,
+			);
+			name = PrefPane;
+			sourceTree = "<group>";
+		};
+		629F2CBD07C0453A00AD441B /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				6279AFF207C3246C00072747 /* cocoa_document_checker.h */,
+				6279AFF307C3246C00072747 /* cocoa_document_checker.cpp */,
+				629F2CCE07C0462F00AD441B /* cocoAspell.m */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
+		62B2254707B1ED6D00D69682 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				62658D51081E01D80085D69E /* DictionaryInstaller.nib */,
+				62C3BEF707B1F6AA009FD657 /* Spelling.nib */,
+				62B225AE07B1F38600D69682 /* InfoPlist.strings */,
+				62B225B007B1F38600D69682 /* Localizable.strings */,
+				62B2254C07B1ED6D00D69682 /* Info.plist */,
+				62B2254D07B1ED6D00D69682 /* Spelling.tiff */,
+				62C3BEE207B1F62C009FD657 /* Add.tiff */,
+				62C3BEE307B1F62C009FD657 /* credits.html */,
+				62C3BEE507B1F62C009FD657 /* Remove.tiff */,
+				62186FA407B1F70900843823 /* cocoAspell.tiff */,
+				62783EFD07E6B5B40019175E /* service-Info.plist */,
+				62658D4A081E01600085D69E /* Dictionary Installer-Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		62B2254E07B1ED6D00D69682 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				6236A411081E2D2600EBE3B3 /* Dictionary Installer */,
+				629F2CBD07C0453A00AD441B /* Server */,
+				629F2BCD07C034A200AD441B /* PrefPane */,
+				629F2BCC07C0348400AD441B /* common */,
+				62B2255107B1ED6D00D69682 /* Spelling_Prefix.pch */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		62658D47081E01600085D69E /* Dictionary Installer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6289E63A08A1D39B0062091E /* Build configuration list for PBXNativeTarget "Dictionary Installer" */;
+			buildPhases = (
+				62658D44081E01600085D69E /* Resources */,
+				62658D45081E01600085D69E /* Sources */,
+				62658D46081E01600085D69E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Resources/Dictionary Installer-Info.plist";
+				INSTALL_PATH = "$(USER_APPS_DIR)";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Dictionary Installer";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			dependencies = (
+			);
+			name = "Dictionary Installer";
+			productName = "Dictionary Installer";
+			productReference = 62658D48081E01600085D69E /* Dictionary Installer.app */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Dictionary Installer</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.Dictionary_Installer</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.application";
+		};
+		62783EFA07E6B5B40019175E /* service */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6289E62E08A1D39B0062091E /* Build configuration list for PBXNativeTarget "service" */;
+			buildPhases = (
+				62783EF707E6B5B40019175E /* Resources */,
+				62783EF807E6B5B40019175E /* Sources */,
+				62783EF907E6B5B40019175E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/common",
+					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/modules/speller/default",
+				);
+				INFOPLIST_FILE = "Resources/service-Info.plist";
+				INSTALL_PATH = "$(USER_APPS_DIR)";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = YES;
+				PRODUCT_NAME = cocoAspell;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = service;
+			};
+			dependencies = (
+			);
+			name = service;
+			productName = service;
+			productReference = 62783EFB07E6B5B40019175E /* cocoAspell.service */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>service</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.service</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.application";
+		};
+		8D202CE80486D31800D8A456 /* cocoAspell2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6289E63208A1D39B0062091E /* Build configuration list for PBXNativeTarget "cocoAspell2" */;
+			buildPhases = (
+				8D202CEC0486D31800D8A456 /* Resources */,
+				8D202CF00486D31800D8A456 /* Sources */,
+				8D202CF20486D31800D8A456 /* Frameworks */,
+				8D202CF50486D31800D8A456 /* Rez */,
+				62B225CC07B1F40A00D69682 /* ShellScript */,
+				6287F33007FA89A10004EB03 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/common";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_STYLE = Bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle",
+					"-twolevel_namespace",
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Spelling;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = prefPane;
+			};
+			dependencies = (
+				6287F32A07FA89990004EB03 /* PBXTargetDependency */,
+			);
+			name = cocoAspell2;
+			productInstallPath = "$(HOME)/Library/PreferencePanes";
+			productName = cocoAspell2;
+			productReference = 62C3BEB207B1F5A8009FD657 /* Spelling.prefPane */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 6289E63E08A1D39B0062091E /* Build configuration list for PBXProject "cocoAspell2" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				06F27B30FFEEEFEF11CA0E56 /* Development */,
+				06F27B31FFEEEFEF11CA0E56 /* Deployment */,
+			);
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+				da,
+			);
+			mainGroup = 089C166AFE841209C02AAC07 /* cocoAspell2 */;
+			projectDirPath = "";
+			targets = (
+				8D202CE80486D31800D8A456 /* cocoAspell2 */,
+				62783EFA07E6B5B40019175E /* service */,
+				62658D47081E01600085D69E /* Dictionary Installer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		62658D44081E01600085D69E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62658D52081E01D80085D69E /* DictionaryInstaller.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62783EF707E6B5B40019175E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D202CEC0486D31800D8A456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				626D070B07F9077A00D306FB /* Localizable.strings in Resources */,
+				62B2255407B1ED6D00D69682 /* Info.plist in Resources */,
+				62B2255507B1ED6D00D69682 /* Spelling.tiff in Resources */,
+				62B225B307B1F38600D69682 /* InfoPlist.strings in Resources */,
+				62C3BEF907B1F6AA009FD657 /* Spelling.nib in Resources */,
+				62186FA607B1F70900843823 /* cocoAspell.tiff in Resources */,
+				626D070207F9074200D306FB /* Remove.tiff in Resources */,
+				626D070307F9074900D306FB /* Add.tiff in Resources */,
+				626D070407F9075100D306FB /* credits.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		8D202CF50486D31800D8A456 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		62B225CC07B1F40A00D69682 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/perl;
+			shellScript = "open(INFO, \"< $ENV{TARGET_BUILD_DIR}/$ENV{INFOPLIST_PATH}\") || die \"no info.plist\";\n$info = \"\";\nwhile (<INFO>) {\n\tchomp;\n\t$info .= \" \" . $_;\n}\nclose(INFO);\n\n@info=split(/<key>/, $info);\nshift(@info);\n\nfor($i = 0; $i <= $#info; ++$i) {\n\t$info[$i] =~ /<\\/key>[^<]*<[^>]+>/;\n\t$key\t= $`;\n\t$value = $';\n\t$value =~ /<[^>]+>/;\n\t$value  = $`;\n\t$info{$key}=$value;\n\tprint \"$key=$value\\n\";\n}\n$info{\"YEAR\"} = `date +\"%Y\"`;\n$info{\"YEAR\"} =~ s/\\s+$//;\n\n$files=`ls \"$ENV{TARGET_BUILD_DIR}/$ENV{UNLOCALIZED_RESOURCES_FOLDER_PATH}\"/*.lproj/InfoPlist.strings`;\n@files=split(/\\n/, $files);\npush(@files, \"$ENV{TARGET_BUILD_DIR}/$ENV{UNLOCALIZED_RESOURCES_FOLDER_PATH}/credits.html\");\n\nfor($i = 0; $i <= $#files; ++$i) {\n\topen(INP, \"< $files[$i]\") || die \"no file $files[$i]\";\n\topen(OUT, \">/tmp/anton.tmp\");\n\twhile (<INP>) {\n\t\t@s = split(/##/, $_);\n\t\t$s = $s[0];\n\t\tfor($j = 1; $j <= $#s; $j+=2) {\n\t\t\tif ($j == $#s) {\n\t\t\t\t$s .= \"##\" . $s[$j];\n\t\t\t} elsif (defined($info{$s[$j]})) {\n\t\t\t\t$s .= $info{$s[$j]} . $s[$j+1];\n#\t\t\t\tprint \"$s[$j] --> $info{$s[$j]}\\n\";\n\t\t\t} else {\n\t\t\t\t$s .= \"##\" . $s[$j] . \"##\" . $s[$j+1];\n\t\t\t}\n\t\t}\n\t\tprint OUT $s;\n\t}\n\tclose(INP);\n\tclose(OUT);\n\trename \"/tmp/anton.tmp\", \"$files[$i]\";\n}";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		62658D45081E01600085D69E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62658D5A081E02390085D69E /* main.m in Sources */,
+				62658D77081E042C0085D69E /* DictionaryInstaller.m in Sources */,
+				6236A3F7081E227A00EBE3B3 /* UserDefaults.m in Sources */,
+				6236A3FA081E237100EBE3B3 /* Utilities.m in Sources */,
+				6236A414081E2D7300EBE3B3 /* LanguageListing.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62783EF807E6B5B40019175E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62783F0407E6B60A0019175E /* cocoAspell.m in Sources */,
+				62783F0507E6B60A0019175E /* UserDefaults.m in Sources */,
+				62783F0607E6B60A0019175E /* DictionaryManager.m in Sources */,
+				62783F0707E6B60A0019175E /* Dictionary.m in Sources */,
+				62783F0807E6B60A0019175E /* AspellOptions.m in Sources */,
+				62783F0907E6B60A0019175E /* aspell_extras.cpp in Sources */,
+				62783F0A07E6B60A0019175E /* cocoa_document_checker.cpp in Sources */,
+				6236A3FD081E237100EBE3B3 /* Utilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D202CF00486D31800D8A456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B2255707B1ED6D00D69682 /* Spelling.m in Sources */,
+				626D071607F907B400D306FB /* UserDefaults.m in Sources */,
+				626D071707F907B700D306FB /* Dictionary.m in Sources */,
+				626D071807F907BB00D306FB /* AspellOptions.m in Sources */,
+				626D071907F907BF00D306FB /* DictionaryManager.m in Sources */,
+				626D071A07F907C200D306FB /* aspell_extras.cpp in Sources */,
+				626D071C07F907DC00D306FB /* MutableAspellList.m in Sources */,
+				626D071D07F907E000D306FB /* AspellOptionsWithLists.m in Sources */,
+				626D072107F9089500D306FB /* NSTextViewWithLinks.m in Sources */,
+				6236A3FC081E237100EBE3B3 /* Utilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6287F32A07FA89990004EB03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 62783EFA07E6B5B40019175E /* service */;
+			targetProxy = 6287F32907FA89990004EB03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		62B225AE07B1F38600D69682 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62B225AF07B1F38600D69682 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		62B225B007B1F38600D69682 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62B225B107B1F38600D69682 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		62C3BEF707B1F6AA009FD657 /* Spelling.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62C3BEF807B1F6AA009FD657 /* en */,
+			);
+			name = Spelling.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6289E62F08A1D39B0062091E /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = __debug__;
+				HEADER_SEARCH_PATHS = (
+					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/common",
+					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/modules/speller/default",
+				);
+				INFOPLIST_FILE = "Resources/service-Info.plist";
+				INSTALL_PATH = "$(USER_APPS_DIR)";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = YES;
+				PRODUCT_NAME = cocoAspell;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = service;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		6289E63008A1D39B0062091E /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/common",
+					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/modules/speller/default",
+				);
+				INFOPLIST_FILE = "Resources/service-Info.plist";
+				INSTALL_PATH = "$(USER_APPS_DIR)";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = YES;
+				PRODUCT_NAME = cocoAspell;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = service;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		6289E63108A1D39B0062091E /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/common",
+					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/modules/speller/default",
+				);
+				INFOPLIST_FILE = "Resources/service-Info.plist";
+				INSTALL_PATH = "$(USER_APPS_DIR)";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = YES;
+				PRODUCT_NAME = cocoAspell;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = service;
+			};
+			name = Default;
+		};
+		6289E63308A1D39B0062091E /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = __debug__;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/common";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_STYLE = Bundle;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle",
+					"-twolevel_namespace",
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Spelling;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = prefPane;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		6289E63408A1D39B0062091E /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/common";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_STYLE = Bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle",
+					"-twolevel_namespace",
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Spelling;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = prefPane;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		6289E63508A1D39B0062091E /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.2/common";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_STYLE = Bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle",
+					"-twolevel_namespace",
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Spelling;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Default;
+		};
+		6289E63B08A1D39B0062091E /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREPROCESSOR_DEFINITIONS = __debug__;
+				INFOPLIST_FILE = "Resources/Dictionary Installer-Info.plist";
+				INSTALL_PATH = "$(USER_APPS_DIR)";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Dictionary Installer";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		6289E63C08A1D39B0062091E /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Resources/Dictionary Installer-Info.plist";
+				INSTALL_PATH = "$(USER_APPS_DIR)";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Dictionary Installer";
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		6289E63D08A1D39B0062091E /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Resources/Dictionary Installer-Info.plist";
+				INSTALL_PATH = "$(USER_APPS_DIR)";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Dictionary Installer";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		6289E63F08A1D39B0062091E /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		6289E64008A1D39B0062091E /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Deployment;
+		};
+		6289E64108A1D39B0062091E /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6289E62E08A1D39B0062091E /* Build configuration list for PBXNativeTarget "service" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6289E62F08A1D39B0062091E /* Development */,
+				6289E63008A1D39B0062091E /* Deployment */,
+				6289E63108A1D39B0062091E /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		6289E63208A1D39B0062091E /* Build configuration list for PBXNativeTarget "cocoAspell2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6289E63308A1D39B0062091E /* Development */,
+				6289E63408A1D39B0062091E /* Deployment */,
+				6289E63508A1D39B0062091E /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		6289E63A08A1D39B0062091E /* Build configuration list for PBXNativeTarget "Dictionary Installer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6289E63B08A1D39B0062091E /* Development */,
+				6289E63C08A1D39B0062091E /* Deployment */,
+				6289E63D08A1D39B0062091E /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		6289E63E08A1D39B0062091E /* Build configuration list for PBXProject "cocoAspell2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6289E63F08A1D39B0062091E /* Development */,
+				6289E64008A1D39B0062091E /* Deployment */,
+				6289E64108A1D39B0062091E /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
