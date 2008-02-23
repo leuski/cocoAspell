@@ -1,0 +1,77 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                addDictionary = id; 
+                addDictionaryDone = id; 
+                addTexCommand = id; 
+                emailOptionsChanged = id; 
+                hideDictionaryInfo = id; 
+                loadEditArea = id; 
+                removeTexCommand = id; 
+                runTogetherChanged = id; 
+                saveEditArea = id; 
+                showDictionaryInfo = id; 
+                toggleCheckForService = id; 
+                toggleCheckTexComments = id; 
+                toggleDictionaryStatus = id; 
+            }; 
+            CLASS = CAPPBase; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                mAccentsMode = NSPopUpButton; 
+                mAddDictionary = NSButton; 
+                mAddDictionaryMessage = NSTextField; 
+                mAddTexCommand = NSButton; 
+                mCheckForService = NSButton; 
+                mCheckTexComments = NSButton; 
+                mCredits = NSTextView; 
+                mEmailMargin = NSFormCell; 
+                mEmailQuote = NSFormCell; 
+                mFilterEmail = NSButtonCell; 
+                mFilterSgml = NSButtonCell; 
+                mFilterTex = NSButtonCell; 
+                mFilterURL = NSButtonCell; 
+                mIgnoreCase = NSButton; 
+                mInfoButton = NSButton; 
+                mInfoDoneButton = NSButton; 
+                mInfoLanguage = NSTextField; 
+                mInfoText = NSTextView; 
+                mInfoWindow = NSPanel; 
+                mNote = NSBox; 
+                mOpenPanelAuxView = NSView; 
+                mOpenPanelAuxViewMessage = NSTextField; 
+                mProgressBar = NSProgressIndicator; 
+                mProgressDoneButton = NSButton; 
+                mProgressMessage = NSTextField; 
+                mProgressWindow = NSPanel; 
+                mRemoveTexCommand = NSButton; 
+                mRunTogether = NSButton; 
+                mRunTogetherLimit = NSFormCell; 
+                mRunTogetherMin = NSFormCell; 
+                mSuggestionMode = NSPopUpButton; 
+                mTexCommands = NSTableView; 
+            }; 
+            SUPERCLASS = NSPreferencePane; 
+        }, 
+        {
+            CLASS = CAPPMenu; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {mDictionaryEnabled = NSButton; mDictionaryMenu = NSPopUpButton; }; 
+            SUPERCLASS = CAPPBase; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = NSPreferencePane; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                "_firstKeyView" = id; 
+                "_initialKeyView" = id; 
+                "_lastKeyView" = id; 
+                "_window" = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

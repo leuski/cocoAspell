@@ -1,0 +1,60 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                addDictionary = id; 
+                addTexCommand = id; 
+                emailOptionsChanged = id; 
+                loadEditArea = id; 
+                removeTexCommand = id; 
+                runTogetherChanged = id; 
+                saveEditArea = id; 
+                toggleCheckTexComments = id; 
+                toggleDictionaryStatus = id; 
+            }; 
+            CLASS = CAPPBase; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                mAccentsMode = id; 
+                mAddDictionary = id; 
+                mAddTexCommand = id; 
+                mCheckTexComments = id; 
+                mCredits = id; 
+                mEmailMargin = id; 
+                mEmailQuote = id; 
+                mFilterEmail = id; 
+                mFilterSgml = id; 
+                mFilterTex = id; 
+                mFilterURL = id; 
+                mIgnoreCase = id; 
+                mNote = id; 
+                mOpenPanelAuxView = id; 
+                mOpenPanelAuxViewMessage = id; 
+                mProgressBar = id; 
+                mProgressMessage = id; 
+                mRemoveTexCommand = id; 
+                mRunTogether = id; 
+                mRunTogetherLimit = id; 
+                mRunTogetherMin = id; 
+                mSuggestionMode = id; 
+                mTexCommands = id; 
+                mTexParameterMenu = id; 
+            }; 
+            SUPERCLASS = NSPreferencePane; 
+        }, 
+        {
+            CLASS = CAPPMenu; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {mDictionaryEnabled = id; mDictionaryMenu = id; }; 
+            SUPERCLASS = CAPPBase; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = NSPreferencePane; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {_firstKeyView = id; _initialKeyView = id; _lastKeyView = id; _window = id; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

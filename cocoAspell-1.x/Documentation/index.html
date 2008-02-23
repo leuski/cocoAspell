@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html" />
+	<title>cocoAspell</title>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" alink="#00FF00" vlink="#FF00FF">
+
+<table>
+<tr>
+<td width="500">
+
+<p align="center">
+<img src="images/cocoAspell.jpg" alt="cocoAspell" width="256" height="64" /><br />
+Mac OS X interface for Aspell.
+</p>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>News Flash!</h2>
+
+<p>The cocoAspell <a href="faq.html">FAQ</a> is now online.</p>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Introduction</h2>
+
+<p>
+<b>cocoAspell</b> is Mac OS X implementation of <a href="http://aspell.sourceforge.net/">Aspell</a> -- "A more intelligent Ispell" -- that is being developed by Kevin Atkinson. Here is a brief snippet of how Kevin describes Aspell on his web site:
+</p>
+
+<cite>Aspell is an Open Source spell checker designed to eventually replace Ispell. Its main feature is that it does a much better job of coming up with possible suggestions than Ispell does. In fact recent tests shows that it even does better than Microsoft Word 97's spell checker or just about any other spell checker I have seen. It also has support for checking (La)TeX and Html files, and run time support for other non English languages.</cite>
+
+
+<p>I have compiled Kevin's code for the Mac OS X platform. There are two major improvements over the original UNIX project:</p>
+
+<ol>
+	<li><p><b>cocoAspell</b> is created as a service provider for the system-wide spelling services on Mac OS X. It means that any Mac OS X application that uses system's spell checking APIs can take advantage of Aspell's features. For example, Mail, OmniWeb, Project Builder, and TextEdit can use Aspell's ability to check spelling in different languages.
+	</p></li>
+	
+	<li><p>A preference panel named "Spelling" is provided with <b>cocoAspell</b> as an interface for dictionary selection and setup. Multiple Aspell options are available through this panel and allow the user to tune up the dictionary properties to his or her needs. 
+	</p></li>
+</ol>
+	
+	
+	
+<p>Now, if only BBEdit would support the spelling services...</p>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Disclaimer</h2>
+
+This software is supplied free of charge and AS-IS. Under no circumstances whatsoever will I be held responsible for anything that is the result of using this software.
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Installing the software</h2>
+
+
+<ol>
+	<li><p><a href="cocoAspell.tar.gz">Download</a> and expand <b>cocoAspell</b> folder. You will need <a href="http://www.stuffit.com/">StuffIt Expander</a> to decompress the files.</p></li>
+
+	<li>Choose the  "Library" folder where you are going to install the software. Use
+
+	<dl>
+	<dt>/Network/Library</dt>
+		<dd>If you want <b>cocoAspell</b> to be available to all users on the local network.</dd>
+	<dt>/Library</dt>
+		<dd>If you want <b>cocoAspell</b> to be available to all users on the local machine.</dd>
+	<dt>~/Library</dt>
+		<dd>If you want <b>cocoAspell</b> to be available only to you. Here "~" stands for your home folder.</dd>
+	</dl>
+	
+	</li>
+	
+	<li><p>Put <b>cocoAspell</b> into the "Services" subfolder of the selected "Library" folder. If that subfolder does not exist, create it first.</p></li>
+
+	<li><p>Put <b>Spelling.prefPane</b> into the "PreferencePanes" subfolder of the selected "Library" folder. If that subfolder does not exist, create it first.</p></li>
+
+	<li><p>If the System Preferences application is open, quit it.</p></li>
+
+	<li><p>Open the System Preferences application, select the Spelling preference panel and enable the dictionaries you need.</p></li>
+
+	<li><p>Select the Login preference panel and add the <b>cocoAspell</b> application to Login Items.</p></li> 
+
+	<li><p>Logout and login back into your system.</p></li>
+</ol>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Installing additional dictionaries</h2>
+
+<p><b>Note</b> You need to have Apple's Developer Tools  (specifically you need make) installed to add other dictionaries. I'm investigating a possibility of having compiled dictionaries available on this site. Check back in a few days.</p>
+
+<p>By default the <b>cocoAspell</b> package comes only with the English dictionary that contains American, British, and Canadian variations. To spell check a document in another language you will have to download and install the corresponding spelling dictionary.</p>
+
+<ol>
+	<li><p>Download a dictionary package file from the <a href="http://aspell.sourceforge.net/">Aspell main site</a>. As of today they have dictionaries for Breton, Catalan, Czech, Danish, Dutch, German, Esperanto, Faroese, French, Italian, Norwegian, Polish, Portuguese, Russian, Spanish, and Swedish. You will need <a href="http://www.stuffit.com/">StuffIt Expander</a> to decompress the file.</p></li>
+
+	<li>Choose the  "Library" folder where you are going to install the dictionary. Use
+
+	<dl>
+	<dt>/Network/Library</dt>
+		<dd>If you want the dictionary to be available to all users on the local network.</dd>
+	<dt>/Library</dt>
+		<dd>If you want the dictionary to be available to all users on the local machine.</dd>
+	<dt>~/Library</dt>
+		<dd>If you want the dictionary to be available only to you. Here "~" stands for your home folder.</dd>
+	</dl>
+	
+	</li>
+	
+	<li><p>Create a subfolder "Aspell" in the "Application Support" subfolder of the "Library" folder you have selected.</p></li>
+
+	<li><p>Move the dictionary folder into the "Application Support/Aspell" subfolder of the "Library" folder you have selected.</p></li>
+
+	<li><p>Open the System Preferences application and select the Spelling panel. Select "Advanced" tab in the Spelling panel and click on the "Build dictionary" button. It will prompt you for the dictionary folder you have just moved into the "Application Support" folder. Find that folder and click "Select". Now you may need to wait a few minutes while <b>cocoAspell</b> builds the dictionary.</p></li>
+
+	<li><p>You are done. You may now enable the dictionary in the "Dictionaries" tab.</p></li>
+</ol>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Removing a dictionary</h2>
+
+<p>Before removing a dictionary from your system make sure it is disabled by unchecking the "Enable" button in the "Spelling" preference pane.</p>
+
+<p>Alternatively, you may trash the "aspell.service" file from you "Services" folder. You will have to re-enable the rest of the dictionaries in the "Spelling" preference pane. Note that you have to remove "aspell.service" and not the "cocoAspell.service" file.</p>
+
+<p>If the dictionary was enabled before you removed it, you will need to logout and login back into the system.</p>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Options</h2>
+
+Here is the list of options that can be controlled using the <b>Spelling</b> preference panel:
+
+<dl>
+	<dt><b>Suggestion Mode</b></dt>
+		<dd>There are four suggestions mode: Ultra Fast, Fast, Normal, and Bad Spellers. Here are the descriptions of each mode copied from Aspell manual:
+		
+		<dl>
+		<dt><b>Ultra Fast</b></dt>
+			<dd>This method will use the fastest method available to come up with decent suggestions. This currently means that it will look for soundslikes within one edit distance apart without doing any typo analysis. It is slower than Ispell by a factor of 1.5 to 2 when a single dictionary is used. Its speed is only minor affected by the size of the dictionary, if at all, but it is strongly affected by the number of dictionary in use. In this mode Aspell gets about 87% of the words from a small test kernel of misspelled words. (Go to <a href="http://aspell.sourceforge.net/test">http://aspell.sourceforge.net/test</a> for more info on the test kernel as well as comparisons of this version of Aspell with previous versions and other spell checkers.)</dd>
+
+		<dt><b>Fast</b></dt>
+			<dd>This method is like Ultra Fast except that it also performs typo analysis. The typo analysis brings words which are likely to be due to typos to the beginning of the list but slows things down by a factor of about two. This mode should get around the same number of words that the Ultra Fast method does.</dd>
+
+		<dt><b>Normal</b></dt>
+			<dd>This method looks for soundslikes within two edit distance apart and perform typo-analysis. Is is around 10 times slower than the Fast mode with the English dictionary but returns better suggestions. Its speed is directly proportional to the size of the word list. This mode gets 93% of the words.</dd>
+
+		<dt><b>Bad Spellers</b></dt>
+			<dd>This method also looks for soundslikes within two edit distances apart but is more tailored for the bad speller where as fast or normal are more tailed to strike a good balance between typos and true misspellings. This mode never performs typo-analysis and returns a huge number of words for the really bad spellers who can't seam to get the spelling anything close to what it should be. If the misspelled word looks anything like the correct spelling it is bound to be found <i>somewhere</i> on the list of 100 or more suggestions. This mode gets 98% of the words.</dd>
+		</dl>
+
+		</dd>
+		
+	<dt><b>Accent Processing</b></dt>
+		<dd><p>
+		For languages that have accented characters this option defines how Aspell handles such characters:</p>
+
+		<dl>
+			<dt><b>None</b></dt>
+				<dd>Do not do anything with accents, i.e., <i>cafe</i> is different from <i>caf&eacute;</i> and only the variant from the dictionary is accepted.</dd>
+			<dt><b>Strip accents</b></dt>
+				<dd>Remove the accents from all words, i.e., <i>cafe</i> is different from <i>caf&eacute;</i> and only the variant without the accents is accepted.</dd>
+			<dt><b>Ignore accents</b></dt>
+				<dd>Ignore accents while checking the words, i.e., <i>cafe</i> is the same as <i>caf&eacute;</i></dd>
+		
+		</dl>
+
+
+		</dd>
+
+	<dt><b>Ignore case</b></dt>
+		<dd><p>Ignore case while checking the words</p></dd>
+
+	<dt><b>Allow run-together words</b></dt>
+		<dd><p>
+		Description forthcoming
+		</p>
+		<dl>
+			<dt>Maximum number of words</dt>
+				<dd>		
+				Description forthcoming
+				</dd>
+			<dt>Minimum word length</dt>
+				<dd>		
+				Description forthcoming
+				</dd>
+		</dl>
+		</dd>
+		
+	<dt><b>Filters</b></dt>
+		<dd><p>
+		Description forthcoming
+		</p>
+		<dl>
+			<dt>e-mail</dt>
+				<dd>skips over quoted text in email messages</dd>
+			<dt>HTML</dt>
+				<dd>skips over HTML tags</dd>
+			<dt>TeX</dt>
+				<dd>skips over TeX commands, parameters, options, and comments. Not all parameters are skipped. For example, Aspell will check parameters of the "\section" command.</dd>
+			<dt>URL</dt>
+				<dd>skips over URLs, email addresses, and host names</dd>
+		</dl>
+
+		
+		</dd>
+</dl>
+
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Known Problems</h2>
+
+These are some known problems with <b>cocoAspell</b> in no particular order.
+
+<ul>
+
+	<li><p>Enabling/disabling spelling dictionaries requires a re-login: you have to logout and login back into the system for the changes to take effect. It seems that the spelling services cannot be registered with the system dynamically (the menu in the "Spelling" window will not update). I am not sure whether it is a bug or a feature. I hope it is a bug and Apple will fix that soon.</p></li>
+
+	<li><p>Teaching the system about unknown words (pressing "Learn" button in the "Spelling" window) does not work for languages that cannot be encoded using the default system encoding. For example, learning a Russian word will fail. I suppose that the most of the Latin alphabet-based languages should be OK. It is a system bug and I did file a report with Apple. I hope they will fix it soon.</p></li>
+
+	<li><p>Combining multiple filters is strongly discouraged. A combination of the URL filter and any other filter should be OK. However, <b>cocoAspell</b> <b>may</b> get very confused if you enable both HTML and TeX filters. This situation may change in the next release.</p></li>
+
+ 	<li><p><b>cocoAspell</b> will not start automatically when you login (as a service provider application is supposed to do). This is yet another system bug. You must add cocoAspell to your "Login Items" in the "Login" system preferences.</p></li>
+
+	<li><p>In some rare case the first time you spell check a document, <b>cocoAspell</b> may fail to come up with a list of suggestions. It happens because the spell server needs some time to load the dictionary and initialize itself. The client application simply times out on the spell checking request and behaves as there were no suggestions. This may not happen at all if you have a fast machine.</p></li>
+ 
+	<li><p>Building a dictionary may fail if the full path to <b>cocoAspell</b> contains space characters. That will happen only if <b>cocoAspell</b> is installed in your own "~/Library/Services/" and the name of your home folder contains a space. </p></li>
+
+	<li><p>There will be some problems with German and Portuguese dictionaries installed on a UFS partition. If you put one of these dictionaries on a UFS partition you have to manually create soft links to all de_CH, de_DE, pt_BR, pt_PT files. Each link must have the same file name as the original file in lower case. For example, you have to create de_ch.multi that points to de_CH.multi. This is a problem with the current version Aspell: it requires all dictionaries have names in lower case. This is not a problem for an HFS partition because HFS is a case-preserving system. UFS on the other hand is case-sensitive, so Aspell will fail to locate the files. Adding the links will allow Aspell to handle this on a UFS partition. This problem should be fixed in the next version of Aspell.</p>
+</ul>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>For you command line junkies!</h2>
+
+<p><b>cocoAspell</b> is an honest port of the "aspell" application. Started without arguments it becomes a Cocoa spell server. If you supply command line arguments as described in <a href="http://aspell.sourceforge.net/">the Aspell manual</a> it will execute in command line mode and it will not register itself as a spell server.</p>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Source code</h2>
+
+<p>Aspell is free and it is distributed under LGPL. You may find the source code for both Aspell and Pspell at their <a href="http://aspell.sourceforge.net/">web site</a>. To compile the libraries under Mac OS X you will need to make a few changes to the source code: here are the patches for <a href="http://homepage.mac.com/leuski/cocoaspell/aspell.diff.txt">Aspell</a> and <a href="http://homepage.mac.com/leuski/cocoaspell/pspell.diff.txt">Pspell</a>. Do not forget to define "-Ddarwin" while compiling the source or the patches will not be used.</p>
+
+<p>The source code for <b>cocoAspell</b> is not available. I will post it at some point in time when I clean it up. If you  really want to look at it, drop me an email and I'll send you a tarball.</p>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<h2>Version history</h2>
+
+
+<dl>
+	<dt>1.01</dt>
+		<dd>
+		<ul>
+		<li><p>Fixed misspelled "dictionary" in the "Advanced" tab.</p>
+		<li><p>Fixed the dictionary installation description, so it reads that the dictionaries have to be installed into "Library/Application Support/Aspell" instead of simply "Library/Application Support" as in the previous version.</p>
+		<li><p>Preference Pane now saves the path to the application, so it does not need to ask (annoy) the user all the time any more.</p>
+		</ul></dd>
+	<dt>1.0b</dt>
+		<dd>Initial release</dd>
+</dl>
+
+<!-- --------------------------------------------------------------------- 
+//
+--------------------------------------------------------------------- -->
+
+<hr align="center" />
+
+<p align="right">Copyright (c) 2001-2002 by Anton Leuski<br />
+leuski at mac dot com<br /></p>
+
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

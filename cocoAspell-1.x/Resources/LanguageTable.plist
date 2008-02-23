@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Dutch</key>
+	<string>Nederlands</string>
+	<key>English</key>
+	<string>English</string>
+	<key>French</key>
+	<string>Français</string>
+	<key>German</key>
+	<string>Deutsch</string>
+	<key>Italian</key>
+	<string>Italiano</string>
+	<key>Japanese</key>
+	<string>日本語</string>
+	<key>Spanish</key>
+	<string>Español</string>
+	<key>bg</key>
+	<string>Български</string>
+	<key>cs</key>
+	<string>Český</string>
+	<key>da</key>
+	<string>Dansk</string>
+	<key>de</key>
+	<string>Deutsch</string>
+	<key>de_AT</key>
+	<string>Österreichisches Deutsch</string>
+	<key>de_CH</key>
+	<string>Schweizer Deutsch</string>
+	<key>el_GR</key>
+	<string>Ελληνικά</string>
+	<key>en</key>
+	<string>English</string>
+	<key>en_AU</key>
+	<string>Australian English</string>
+	<key>en_CA</key>
+	<string>Canadian English</string>
+	<key>en_GB</key>
+	<string>British English</string>
+	<key>en_US</key>
+	<string>U.S. English</string>
+	<key>es</key>
+	<string>Español</string>
+	<key>fi</key>
+	<string>Suomi</string>
+	<key>fr</key>
+	<string>Français</string>
+	<key>fr_CA</key>
+	<string>Français Canadien</string>
+	<key>fr_CH</key>
+	<string>Français Suisse</string>
+	<key>hr_HR</key>
+	<string>Hrvatski</string>
+	<key>hu</key>
+	<string>Magyarul</string>
+	<key>is</key>
+	<string>Íslenska</string>
+	<key>it</key>
+	<string>Italiano</string>
+	<key>jp</key>
+	<string>日本語</string>
+	<key>ko</key>
+	<string>한글</string>
+	<key>nl</key>
+	<string>Nederlands</string>
+	<key>no</key>
+	<string>Norsk</string>
+	<key>pl</key>
+	<string>Polsku</string>
+	<key>pt</key>
+	<string>Português</string>
+	<key>pt_BR</key>
+	<string>Português do Brasil</string>
+	<key>ro_RO</key>
+	<string>Româneşte</string>
+	<key>ru</key>
+	<string>Русский</string>
+	<key>sk</key>
+	<string>Slovenský</string>
+	<key>sv</key>
+	<string>Svenska</string>
+	<key>tr_TR</key>
+	<string>Türkçe</string>
+	<key>uk</key>
+	<string>Український</string>
+	<key>zh_CN</key>
+	<string>简体中文</string>
+	<key>zh_TW</key>
+	<string>繁體中文</string>
+</dict>
+</plist>

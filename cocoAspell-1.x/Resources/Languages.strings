@@ -1,0 +1,68 @@
+/*
+//  Copyright (c) 2002-2004 Anton Leuski.
+//
+//	This file is part of cocoAspell package.
+//
+//	Redistribution and use of cocoAspell in source and binary forms, with or without 
+//	modification, are permitted provided that the following conditions are met:
+//
+//	1. Redistributions of source code must retain the above copyright notice, this 
+//		list of conditions and the following disclaimer.
+//	2. Redistributions in binary form must reproduce the above copyright notice, 
+//		this list of conditions and the following disclaimer in the documentation 
+//		and/or other materials provided with the distribution.
+//	3. The name of the author may not be used to endorse or promote products derived 
+//		from this software without specific prior written permission.
+//
+//	THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED 
+//	WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+//	MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
+//	SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+//	EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+//	OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+//	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+//	STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY 
+//	OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+
+/*
+Standard Aspell languages
+
+It is not required but encouraged to localize these languages and regions.
+cocoAspell will handle most of the naming by default. It will use system-wide names
+for the languages in the current locale and the "(RG)" abbreviation for the region code. 
+For example, fr_FR will be shown as "French (FR)" under English language.
+
+However, some of the localizations are missing from OS X and it is unknown when they 
+will be available. In case of such localizations your languages will be named in English.
+*/
+
+en_CA = "Canadian English";
+en_GB = "British English";
+en_US = "American English";
+en = "English";
+br = "Breton";
+ca = "Catalan";
+cs = "Czech";
+da = "Dansk";
+nl = "Nederlands";
+de = "Deutsch";
+de_DE = "Deutsch (Deutschland)";
+de_CH = "Schweitzer Deutsch";
+eo = "Esperanto";
+es = "Español";
+fo = "Faroese"; 
+fr = "Français"; 
+fr_FR = "Français (France)";
+fr_CH = "Suisse français";
+it = "Italiano"; 
+no = "Norsk"; 
+pl = "Polski"; 
+pt = "Portuguese"; 
+pt_PT = "Portuguese (Portugal)";
+pt_BR = "Brazilian Portuguese";
+ru = "Русский"; 
+sv = "Svenska";
+uk = "Український";
+

@@ -1,0 +1,5 @@
+keyNetworkDir		= "/Network";
+keyLibraryDir		= "Library";
+keyAppSupportDir	= "Application Support";
+keySpellingDir		= "Spelling";
+keyAspellDir		= "Aspell";

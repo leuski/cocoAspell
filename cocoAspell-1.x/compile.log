@@ -1,0 +1,105 @@
+making dictionary aspell-br-0.0-3 ...
+file(s) br.rws exist(s). I'll not run make again.
+making dictionary aspell-ca-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < ca.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=ca create master ./ca.rws
+making dictionary aspell-cs-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < cs.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=cs create master ./cs.rws
+making dictionary aspell-da-0.1-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < da.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=da create master ./da.rws
+making dictionary aspell-de-0.1-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < de-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=de create master ./de-only.rws
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < de_CH-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=de create master ./de_CH-only.rws
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < de_DE-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=de create master ./de_DE-only.rws
+making dictionary aspell-eo-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < eo.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=eo create master ./eo.rws
+making dictionary aspell-es-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < es.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=es create master ./es.rws
+making dictionary aspell-fo-0.1-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < fo.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=fo create master ./fo.rws
+making dictionary aspell-fr-0.1-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < fr-40-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=fr create master ./fr-40-only.rws
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < fr-60-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=fr create master ./fr-60-only.rws
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < fr-80-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=fr create master ./fr-80-only.rws
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < fr_CH-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=fr create master ./fr_CH-only.rws
+making dictionary aspell-it-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < it.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=it create master ./it.rws
+making dictionary aspell-nl-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < nl.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=nl create master ./nl.rws
+making dictionary aspell-no-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < no.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=no create master ./no.rws
+making dictionary aspell-pl-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < pl.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=pl create master ./pl.rws
+making dictionary aspell-pt-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < pt-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=pt create master ./pt-only.rws
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < pt_BR-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=pt create master ./pt_BR-only.rws
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < pt_PT-only.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=pt create master ./pt_PT-only.rws
+making dictionary aspell-ro-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < ro.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=ro create master ./ro.rws
+making dictionary aspell-ru-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < ru.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=ru create master ./ru.rws
+making dictionary aspell-sv-0.0-3 ...
+ls: *.rws: No such file or directory
+Finding PWLI file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/PspellData
+Finding Dictionary file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+Finding Data file location ... /Volumes/Moonglade/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/AspellData
+/Users/leuski/Library/Services/cocoAspell.service/Contents/Resources/word-list-compress d < sv.cwl | /Users/leuski/Library/Services/cocoAspell.service/Contents/MacOS/cocoAspell  --lang=sv create master ./sv.rws

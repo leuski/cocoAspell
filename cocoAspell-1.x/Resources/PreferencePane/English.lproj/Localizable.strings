@@ -1,0 +1,25 @@
+
+keyApplicationName		= "cocoAspell.service";
+
+keyAddDictButton 		= "Select";
+keyAddDictTitle			= "Select directory with Aspell dictionary files";
+keyFindApplButton		= "Select";
+keyFindApplTitle		= "Where is cocoAspell.service?";
+keyInfoConfiguring		= "Configuring %@...";
+keyInfoFailConfig		= "Failed to configre %@ installation";
+keyInfoMake				= "Making %@... It may take a few minutes...";
+keyInfoFailMake			= "Failed to make %@ dictionary";
+keyInfoDone				= "The dictionary %@ is installed successfully";
+keyDictionaryNone		= "None installed";
+
+keyTeXNewCommand		= "command";
+keyTeXNewCommandIndexed	= "command%d";
+
+keyErrorTeXParamUnexpected1 	= "Error parsing TeX parameters in position %d. Found '%c' while expecting '%c'.";
+keyErrorTeXParamUnexpected2 	= "Error parsing TeX parameters in position %d. Found '%c' while expecting '%c' or '%c'";
+keyErrorTeXParamUnexpectedEOL1 	= "Error parsing TeX parameters in position %d. Found the end of text while expecting '%c'.";
+keyErrorTeXParamUnexpectedEOL2	= "Error parsing TeX parameters in position %d. Found the end of text while expecting '%c' or '%c'";
+
+keyErrorEmptyTexCommand			= "Empty TeX command name is not allowed";
+keyErrorExistsTexCommand		= "Command \"%@\" already exists. Choose another name.";
+
