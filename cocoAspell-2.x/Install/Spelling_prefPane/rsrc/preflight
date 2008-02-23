@@ -1,0 +1,53 @@
+#!/bin/bash -f
+
+#	Copyright (c) 2005-2008 Anton Leuski.
+#
+#	This file is part of cocoAspell package.
+#
+#	THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED 
+#	WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+#	MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
+#	SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+#	EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+#	OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+#	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+#	STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY 
+#	OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#	This script removes old cocoAspell settings from all users of this machine
+
+cd /Users
+
+for u in `ls`
+do
+	if [ -d "$u/Library/Services/aspell.service" ]
+	then
+		rm -r "$u/Library/Services/aspell.service"
+	fi
+	if [ -d "$u/Library/Services/cocoAspell.service" ]
+	then
+		rm -r "$u/Library/Services/cocoAspell.service"
+	fi
+	if [ -d "$u/Library/PreferencePanes/Spelling.prefPane" ]
+	then
+		rm -r "$u/Library/PreferencePanes/Spelling.prefPane"
+	fi
+done
+
+if [ -f "/Library/PreferencePanes/Spelling.prefPane/Contents/Resources/gnumake" ]
+then
+	rm -r "/Library/PreferencePanes/Spelling.prefPane"
+fi
+
+aspell_pid=`ps -ax | grep -- 'cocoAspell -psn' | awk '{ if ($5 != "grep") { print $1; }} '`
+if [ x != x$aspell_pid ]
+then
+	for x in $aspell_pid
+	do
+		echo "killing cocoAspell process $x"
+		kill -9 $x
+	done
+fi
+
+exit 0
+

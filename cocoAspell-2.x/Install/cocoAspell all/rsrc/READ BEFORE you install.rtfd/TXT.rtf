@@ -1,0 +1,91 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf350
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;\f1\fnil\fcharset77 LucidaGrande;\f2\fnil\fcharset77 LucidaGrande-Bold;
+\f3\fmodern\fcharset77 Courier;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww13280\viewh16920\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+
+\f0\fs24 \cf0 {{\NeXTGraphic cocoAspell.tiff \width5120 \height1280
+}¬}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+
+\f1 \cf0 \
+Mac OS X interface for Aspell.\
+Version 2.0.4\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2\b \cf0 Introduction\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+This is a beta release of the new cocoAspell package. This version supports Mac OS 10.3.9 and higher. If you are using any previous version of Mac OS X, you cannot use this software.\
+\
+This release supports both Mac OS X PowerPC and Mac OS X Intel. You have to select the appropriate installation package to download.\
+\
+Old cocoAspell dictionaries are not compatible with this version. You will need to download and install new dictionaries. See "Installing a dictionary" section.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2\b \cf0 Installing the software\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+The Installer should do all the work. You will need an Administrator user name and password to install the software. \
+\
+The distribution contains three pieces:\
+\
+1. full installation of the compiled version of the GNU Aspell package (version 0.60.4). It will also install the make utility if it's not available on the machine.\
+2. cocoAspell preference pane\
+3. aspell dictionary for English (optional installation)\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li560\fi-560\ql\qnatural
+\cf0 Once the installation is complete open 
+\f2\b System Preferences
+\f1\b0 , select 
+\f2\b Spelling
+\f1\b0 , and enable the dictionaries\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2\b \cf0 Installing a dictionary\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+Additional dictionaries can be downloaded from {\field{\*\fldinst{HYPERLINK "ftp://ftp.gnu.org/gnu/aspell/dict"}}{\fldrslt ftp://ftp.gnu.org/gnu/aspell/dict}}. The site contains dictionaries for 74 languages. They are organized in folders by the two-letter language codes. Each folder contains a file with a name that looks like this (this is the German dictionary)\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 	
+\f3 aspell-de-0.50-2.tar.bz2
+\f1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+Download the file, uncompress it (e.g., you may use StuffIt Expander to do that), and place the resulting folder into 
+\f3 /Library/Application Support/cocoAspell/
+\f1 . Alternatively, you may install the dictionary into your own Library folder: ~
+\f3 /Library/Application Support/cocoAspell/. 
+\f1 Here "~" stands for your home folder.\
+\
+In our example, the installed dictionary will be:\
+\
+	
+\f3 /Library/Application Support/cocoAspell/aspell-de-0.50-2
+\f1 \
+\
+Some of the languages have multiple dictionaries (i.e., multiple files on the ftp site), any of them should work with this version of cocoAspell. For example, suppose the German dictionary folder has three versions\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f3 \cf0 	aspell-de-0.50-2.tar.bz2\
+	aspell5-de-20030222-1.tar.bz2\
+	aspell6-de-alt-2.1-1.tar.bz2\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1 \cf0 \
+I would suggest you choose the dictionary using the following rule: prefer files that start with "aspell6" over files that start with "aspell5" over files that start with simply "aspell". If you are interested in more details about the differences, see the README file at the ftp site.\
+\
+Unfortunately, I do not have any information about the quality of individual dictionaries. If you have any questions, please contact the author of the particular dictionary. Generally, you may find the contact information in the ReadMe file in the dictionary folder.\
+\
+}
