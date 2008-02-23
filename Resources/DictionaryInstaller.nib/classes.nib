@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {install = id; toggleDetailsVisible = id; }; 
+            CLASS = DictionaryInstaller; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {message = NSTextField; progress = NSProgressIndicator; window = NSWindow; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}

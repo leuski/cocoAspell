@@ -1,0 +1,72 @@
+/*
+//  Copyright (c) 2002-2005 Anton Leuski.
+//
+//	This file is part of cocoAspell package.
+//
+//	THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED 
+//	WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+//	MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
+//	SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+//	EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+//	OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+//	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+//	STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY 
+//	OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+keyErrorTeXParamUnexpected1 	= "Error parsing TeX parameters in position %d. Found '%C' while expecting '%C'.";
+keyErrorTeXParamUnexpected2 	= "Error parsing TeX parameters in position %d. Found '%C' while expecting '%C' or '%C'";
+keyErrorTeXParamUnexpectedEOL1 	= "Error parsing TeX parameters in position %d. Found the end of text while expecting '%C'.";
+keyErrorTeXParamUnexpectedEOL2	= "Error parsing TeX parameters in position %d. Found the end of text while expecting '%C' or '%C'";
+
+keyInfoFailConfig				= "Failed to configure “%@” dictionary";
+keyInfoMake						= "Compiling %@... It may take a few minutes...";
+keyInfoFailMake					= "Failed to compile “%@” dictionary. Please see console log for details.";
+keyInfoDone						= "The dictionary “%@” was compiled successfully";
+
+keyNoDictInfo					= "There is no information or copyright data for this dictionary";
+
+keyCantCompile					= "Failed to compile “%@”";
+keyHasToCompile					= "The dictionary for “%@” has to be compiled before it can be used.";
+keyCantCompileNoAccess			= "The dictionary cannot be compiled because you do not have sufficient access priviliges to the directory “%@”.";
+keyCantCompileNoSpace			= "The dictionary cannot be compiled because you do not have enough disk space in the directory “%@”. Additional %ld bytes required.";
+keyCantCompileNoMake			= "The compilation requires /usr/bin/make which is not present on this system. Please reinstall cocoAspell package.";
+
+/* this string shows up when one edits a filter list and enters an empty string. (empty strings are not allowed for filter options) */
+keyUnknownString				= "unknown";
+keyCopyString					= "%@ copy %d";
+keyErrorEmptyEntry				= "List entry must not be an empty string";
+keyErrorDuplicateEntry			= "Entry with this value already exists in the list. Choose another value.";
+
+keyPleaseRegister				= "This copy of cocoAspell is not registered. Please register it at http://cocoaspell.leuski.net/";
+keyWillExpire					= "This is a limited time version of cocoAspell. It will expire on %@.";
+keyExpired						= "This is a limited time version of cocoAspell. It has expired. Please download a new version from http://cocoaspell.leuski.net/";
+keyWillExpireTitle				= "cocoAspell will expire";
+keyExpiredTitle					= "cocoAspell has expired";
+keyThankyou						= "Thank you for registering cocoAspell.";
+
+keyVersion						= "Version %@";
+keyRegistered					= "This copy is registered to %@";
+keyUnregistered					= "This copy is UNREGISTERED";
+
+/* dictionary installer messages */
+"Accessing ftp site %@..."		= "Accessing ftp site %@...";
+"Failed to access the dictionary ftp site %@. Try again later." = "Failed to access the dictionary ftp site %@. Try again later.";
+"Loading dictionary listing for %@..."	= "Loading dictionary listing for %@...";
+"%.1f MB"						= "%.1f MB";
+"%.1f KB"						= "%.1f KB";
+"%f Bytes"						= "%f Bytes";
+
+/* status strings */
+"Recommended"					= "Recommended";
+"Installed"						= "Installed";
+"Not Installed"					= "Not Installed";
+
+"Downloading %@..."				= "Downloading %@...";
+
+"Install"						= "Install";
+"Install 1 Item"				= "Install 1 Item";
+"Install %d Items"				= "Install %d Items";
+
+"Show Dictionary Details"		= "Show Dictionary Details";
+"Hide Dictionary Details"		= "Hide Dictionary Details";
