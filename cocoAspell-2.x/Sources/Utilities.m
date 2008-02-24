@@ -5,7 +5,7 @@
 //	cocoAspell2
 //
 //  Created by Anton Leuski on 4/26/05.
-//  Copyright (c) 2005 Anton Leuski. All rights reserved.
+//  Copyright (c) 2005-2008 Anton Leuski. All rights reserved.
 // ============================================================================
 
 #import "Utilities.h"
@@ -132,11 +132,8 @@ NSDictionary*
 infoForDirectoryPath(NSString* inPath)
 {
 	NSString*				content	= [NSString stringWithContentsOfFile:[inPath stringByAppendingPathComponent:@"info"]];
-	NSArray*				lines	= [content componentsSeparatedByString:@"\n"];
 	NSMutableDictionary*	dict	= [NSMutableDictionary dictionary];
-	NSEnumerator*			iter	= [lines objectEnumerator];
-	NSString*				line;
-	while (line = [iter nextObject]) {
+	for (NSString* line in [content componentsSeparatedByString:@"\n"]) {
 		if ([line hasPrefix:@" "] || [line hasPrefix:@"\t"]) 
 			continue;
 		line		= [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

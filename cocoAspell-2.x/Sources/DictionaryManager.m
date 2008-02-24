@@ -5,7 +5,7 @@
 //	cocoAspell2
 //
 //  Created by Anton Leuski on 2/12/05.
-//  Copyright (c) 2005 Anton Leuski. All rights reserved.
+//  Copyright (c) 2005-2008 Anton Leuski. All rights reserved.
 // ============================================================================
 
 #import "DictionaryManager.h"
@@ -13,18 +13,23 @@
 #import "Dictionary.h"
 #import "AspellOptions.h"
 #import "Utilities.h"
+#import "AspellDictionary.h"
 
 NSString* kAspellDictionarySetChangedNotification	= @"net.leuski.cocoaspell.AspellDictionarySetChangedNotification";
 
 static NSString*	kCocoAspellServiceName			= @"cocoAspell.service";
 static NSString*	kFiltersConfigFileName			= @"filters.conf";
 
+NSString*	kMultilingualDictionaryName		= @"Multilingual";
+
 @interface DictionaryManager (Private)
-- (void)setPersistent:(BOOL)newPersistent;
 - (void)notifyDictionarySetChanged;
 @end
 
 @implementation DictionaryManager
+@synthesize dictionaries	= _dictionaries;
+@synthesize filters			= _filters;
+@synthesize persistent		= _persistent;
 
 - (AspellOptions*)createFilterOptions
 {
@@ -39,9 +44,9 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 - (id)initPersistent:(BOOL)inPersistent
 {
 	if (self = [super init]) {
-		[self setPersistent:inPersistent];
-		[self setFilters:[self createFilterOptions]];
-		[self setDictionaries:[NSArray array]];
+		self.persistent		= inPersistent;
+		self.filters		= [self createFilterOptions];
+		self.dictionaries	= [NSArray array];
 	}
 	return self;
 }
@@ -67,11 +72,11 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 								stringByAppendingPathComponent:kFiltersConfigFileName]] autorelease];
 	if (!fltrs) {
 		fltrs	= [[[inClass alloc] init] autorelease];
-		[fltrs setValue:kFiltersConfigFileName forKey:@"per-conf"];
-		[fltrs setValue:homeDir				forKey:@"home_dir"];
+		[fltrs setValue:kFiltersConfigFileName	forKey:@"per-conf"];
+		[fltrs setValue:homeDir					forKey:@"home_dir"];
 		[fltrs setValue:@"ucs-2"				forKey:@"encoding"];
 	}
-	[fltrs setPersistent:[self isPersistent]];
+	[fltrs setPersistent:self.persistent];
 	return fltrs;
 }
 
@@ -81,29 +86,9 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 
 - (void)dealloc
 {
-	[self setDictionaries:nil];
-	[self setFilters:nil];
+	self.dictionaries	= nil;
+	self.filters		= nil;
 	[super dealloc];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (BOOL)isPersistent
-{
-	return persistent;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setPersistent:(BOOL)newPersistent
-{
-    if (persistent != newPersistent) {
-		persistent = newPersistent;
-    }
 }
 
 // ----------------------------------------------------------------------------
@@ -152,8 +137,6 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 // ----------------------------------------------------------------------------
 // 
 // ----------------------------------------------------------------------------
-
-#define NEW_APPKIT  (NSAppKitVersionNumber > NSAppKitVersionNumber10_2_3)
 
 - (BOOL)canCompileDictionaryAt:(NSString*)dictionaryPath error:(NSString**)errorMessage
 {
@@ -364,6 +347,12 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 		return NO;
 	}
 	
+	if ([inArray count] > 1) {
+		NSMutableArray*	a	= [NSMutableArray arrayWithArray:inArray];
+		[a addObject:kMultilingualDictionaryName];
+		inArray	= a;
+	}
+	
 	[languagesDict setObject:inArray forKey:@"NSLanguages"];
 
 //	execPath	= [[[thisBundle executablePath] 
@@ -401,40 +390,29 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 {
 	NSMutableArray*	dicts					= [NSMutableArray array];
 	NSArray*		dirs					= allDictionaryDirectories(kCompiledDictionary);
-	unsigned		i;
 	NSArray*		enabledDictionaryNames	= [self loadEnabledDictionaryNames];
 	NSDictionary*	nameMap					= [[UserDefaults userDefaults] objectForKey:@"names"];
-	for(i = 0; i < [dirs count]; ++i) {
-		NSString*				dictDir		= [dirs objectAtIndex:i];
+	for(NSString* dictDir in dirs) {
 		NSDirectoryEnumerator*	enumerator	= [[NSFileManager defaultManager] enumeratorAtPath:dictDir];
 		NSString*				file;
 		while (file = [enumerator nextObject]) {
 			if ([[file pathExtension] isEqualToString:@"multi"]) {
-				Dictionary*	d	= [[[Dictionary alloc] initWithFilePath:[dictDir stringByAppendingPathComponent:file]] autorelease];
+				Dictionary*	d	= [[[AspellDictionary alloc] initWithFilePath:[dictDir stringByAppendingPathComponent:file] persistent:self.persistent] autorelease];
 				if (d) {
-					NSString*	n	= [nameMap objectForKey:[d identifier]];
+					NSString*	n	= [nameMap objectForKey:d.identifier];
 					if (n) {
-						[d setName:n];
+						d.name = n;
 					}
-					if ([enabledDictionaryNames containsObject:[d name]]) {
-						[d setEnabled:YES];
+					if ([enabledDictionaryNames containsObject:d.name]) {
+						d.enabled	= YES;
 					}
-					[[d options] setPersistent:[self isPersistent]];
 					[dicts addObject:d];
 				}
 			}
 		}
 	}
+	
 	return dicts;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (NSArray *)dictionaries
-{
-	return [[dictionaries retain] autorelease];
 }
 
 // ----------------------------------------------------------------------------
@@ -443,22 +421,36 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 
 - (void)setDictionaries:(NSArray *)newDictionaries
 {
-    if (dictionaries != newDictionaries) {
-		if (dictionaries) {
-			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [dictionaries count])];
-			[dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"enabled"];
-			[dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"name"];
+    if (self.dictionaries != newDictionaries) {
+		if (self.dictionaries) {
+			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.dictionaries count])];
+			[self.dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"enabled"];
+			[self.dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"name"];
 		}
 		
-		[dictionaries release];
-		dictionaries = [newDictionaries retain];
+		[self->_dictionaries release];
+		self->_dictionaries = [newDictionaries retain];
 
-		if (dictionaries) {
-			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [dictionaries count])];
-			[dictionaries addObserver:self toObjectsAtIndexes:idxs forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:nil];
-			[dictionaries addObserver:self toObjectsAtIndexes:idxs forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+		if (self.dictionaries) {
+			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.dictionaries count])];
+			[self.dictionaries addObserver:self toObjectsAtIndexes:idxs forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:nil];
+			[self.dictionaries addObserver:self toObjectsAtIndexes:idxs forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
 		}
     }
+}
+
+// ----------------------------------------------------------------------------
+//	
+// ----------------------------------------------------------------------------
+
+- (NSArray*)enabledDictionaries
+{
+	NSMutableArray*	result	= [NSMutableArray array];
+	for(Dictionary* d in self.dictionaries) {
+		if (d.enabled)
+			[result addObject:d];
+	}
+	return result;
 }
 
 // ----------------------------------------------------------------------------
@@ -480,15 +472,13 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if ([self isPersistent]) {
+	if (self.persistent) {
 
 		if ([keyPath isEqualToString:@"enabled"] || [keyPath isEqualToString:@"name"]) {
 			NSMutableArray*	enabledDictionaryNames	= [[NSMutableArray alloc] init];
-			NSEnumerator*	i						= [[self dictionaries] objectEnumerator];
-			Dictionary*		d;
-			while (d = [i nextObject]) {
-				if ([d isEnabled]) {
-					[enabledDictionaryNames addObject:[d name]];
+			for (Dictionary* d in self.dictionaries) {
+				if (d.enabled) {
+					[enabledDictionaryNames addObject:d.name];
 				}
 			}
 			[self storeEnabledDictionaryNames:enabledDictionaryNames];
@@ -498,11 +488,9 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 		
 		if ([keyPath isEqualToString:@"name"]) {
 			NSMutableDictionary*	nameMap			= [[NSMutableDictionary alloc] init];
-			NSEnumerator*	i						= [[self dictionaries] objectEnumerator];
-			Dictionary*		d;
-			while (d = [i nextObject]) {
-				if ([d name] != [d identifier]) {
-					[nameMap setObject:[d name] forKey:[d identifier]];
+			for (Dictionary* d in self.dictionaries) {
+				if (d.name != d.identifier) {
+					[nameMap setObject:d.name forKey:d.identifier];
 				}
 			}
 			[UserDefaults setObject:nameMap forKey:@"names"];
@@ -512,31 +500,5 @@ static NSString*	kFiltersConfigFileName			= @"filters.conf";
 		
 	}
 }
-
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (AspellOptions *)filters
-{
-	if (!filters) {
-		[self setFilters:[self createFilterOptions]];
-	}
-	return [[filters retain] autorelease];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setFilters:(AspellOptions *)newFilters
-{
-    if (filters != newFilters) {
-		[filters release];
-		filters = [newFilters retain];
-    }
-}
-
 
 @end

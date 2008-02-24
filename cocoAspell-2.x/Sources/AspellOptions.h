@@ -5,7 +5,7 @@
 //	cocoAspell2
 //
 //  Created by Anton Leuski on 2/2/05.
-//  Copyright (c) 2005 Anton Leuski. All rights reserved.
+//  Copyright (c) 2005-2008 Anton Leuski. All rights reserved.
 // ============================================================================
 
 #import <Foundation/Foundation.h>
@@ -18,9 +18,11 @@ extern NSString* kAspellOptionsChangedNotification;
 //								the filter is included into the filter set.
 
 @interface AspellOptions : NSObject {
-	AspellConfig*			aspellConfig;
-	BOOL					persistent;
+	AspellConfig*			_aspellConfig;
+	BOOL					_persistent;
 }
+@property(assign,readonly)	AspellConfig*		aspellConfig;
+@property(assign)			BOOL				persistent;
 
 + (NSString*)cocoAspellHomeDir;
 
@@ -31,17 +33,12 @@ extern NSString* kAspellOptionsChangedNotification;
 - (id)initWithAspellConfig:(AspellConfig*)inConfig;
 - (id)initWithAspellConfigNoCopy:(AspellConfig*)inConfig;
 
-- (AspellConfig*)aspellConfig;
-
 - (NSArray*)allKeys;
 
 - (int)suggestionModeAsInt;
 - (void)setSuggestionModeAsInt:(int)inValue;
 
 - (BOOL)writeToFile:(NSString*)inPath;
-
-- (BOOL)isPersistent;
-- (void)setPersistent:(BOOL)newPersistent;
 
 - (NSDictionary*)dictionaryWithAllNondefaultValues;
 

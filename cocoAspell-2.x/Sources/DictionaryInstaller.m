@@ -107,11 +107,9 @@ static NSString* curl_NSString(CURL* curl, NSString* inURL)
 - (NSArray*)languagesAsPlist
 {
 	NSMutableArray*		arr		= [NSMutableArray array];
-	NSEnumerator*		iter	= [[self languages] objectEnumerator];
-	LanguageListing*	ll;
 	NSArray*			keys	= [NSArray arrayWithObjects:@"langCode", @"dictionaries", nil];
 	
-	while (ll = [iter nextObject]) {
+	for (LanguageListing* ll in [self languages]) {
 		[arr addObject:[ll dictionaryWithValuesForKeys:keys]];
 	}
 	return arr;
@@ -124,16 +122,11 @@ static NSString* curl_NSString(CURL* curl, NSString* inURL)
 - (NSMutableArray*)languagesFromPlist:(NSArray*)plist
 {
 	NSMutableArray*		arr		= [NSMutableArray array];
-
-	NSEnumerator*		iter	= [plist objectEnumerator];
-	NSDictionary*		ll;
-
-	while (ll = [iter nextObject]) {
+	for (NSDictionary* ll in plist) {
 		[arr addObject:[[[LanguageListing alloc] 
 							initWithLanguageCode:[ll objectForKey:@"langCode"] 
 							dictionaries:[ll objectForKey:@"dictionaries"]] autorelease]];
 	}
-	
 	return arr;
 }
 
@@ -166,12 +159,9 @@ static NSString* curl_NSString(CURL* curl, NSString* inURL)
 		return;
 	}
 	
-	NSArray*			dirs		= [str componentsSeparatedByString:@"\n"];
 	NSMutableArray*		langs		= [NSMutableArray array];
-	NSEnumerator*		iter		= [dirs objectEnumerator];
-	NSString*			dir_line;
 
-	while (dir_line = [iter nextObject]) {
+	for (NSString* dir_line in [str componentsSeparatedByString:@"\n"]) {
 		dir_line	= [dir_line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		if ([dir_line hasPrefix:@"d"]) {
 			NSArray*	tmp			= [dir_line componentsSeparatedByString:@" "];
@@ -182,20 +172,15 @@ static NSString* curl_NSString(CURL* curl, NSString* inURL)
 
 	[self performSelectorOnMainThread:@selector(setLanguageCodes:) withObject:langs waitUntilDone:YES];
 
-	iter						= [langs objectEnumerator];
-	NSString*			langCode;
 	int					count	= 0;
-	while (langCode = [iter nextObject]) {
+	for (NSString* langCode in langs) {
 		
 		[self performSelectorOnMainThread:@selector(progressShow:) withObject:[NSArray arrayWithObjects:langCode, [NSNumber numberWithInt:count], nil] waitUntilDone:YES];
 		++count;
 					
 		NSString*		langDir	= curl_NSString(curl, [base_url stringByAppendingFormat:@"%@/", langCode]);
-		NSArray*		tmp		= [langDir componentsSeparatedByString:@"\n"];
 		NSMutableArray*	buff	= [NSMutableArray array];
-		NSEnumerator*	j		= [tmp objectEnumerator];
-		NSString*	file_line;
-		while (file_line = [j nextObject]) {
+		for (NSString* file_line in [langDir componentsSeparatedByString:@"\n"]) {
 			file_line	= [file_line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 			if ([file_line length] && ![file_line hasSuffix:@".sig"]) {
 				[buff addObject:file_line];
@@ -242,14 +227,9 @@ static NSString* curl_NSString(CURL* curl, NSString* inURL)
 
 - (void)updateDictionaryStatus
 {
-	NSArray*		dirs	= allDictionaryDirectories(kCompiledDictionary | kUncompiledDictionary);
-	NSEnumerator*	iter	= [dirs objectEnumerator];
-	NSString*		dir;
-	while (dir = [iter nextObject]) {
+	for (NSString* dir in allDictionaryDirectories(kCompiledDictionary | kUncompiledDictionary)) {
 		InstalledDictionary*	dict	= [[[InstalledDictionary alloc] initWithDirectoryPath:dir] autorelease];
-		NSEnumerator*			j		= [[self languages] objectEnumerator];
-		LanguageListing*		ll;
-		while (ll = [j nextObject]) {
+		for (LanguageListing* ll in [self languages]) {
 			if ([[ll langCode] isEqual:[dict langCode]]) {
 				[ll setInstalledDictionary:dict];
 				break;
@@ -271,9 +251,7 @@ static NSString* curl_NSString(CURL* curl, NSString* inURL)
 	[progress setDoubleValue:0];
 	
 	NSMutableArray*	langs	= [NSMutableArray array];
-	NSEnumerator*	iter	= [inLanguageCodes objectEnumerator];
-	NSString*		code;
-	while (code = [iter nextObject]) {
+	for (NSString* code in inLanguageCodes) {
 		[langs addObject:[[[LanguageListing alloc] initWithLanguageCode:code] autorelease]];
 	}
 	[self setLanguages:langs];
@@ -302,9 +280,7 @@ static NSString* curl_NSString(CURL* curl, NSString* inURL)
 	NSString*	langCode	= [args objectAtIndex:0];
 	NSArray*	dictList	= [args objectAtIndex:1];
 	
-	NSEnumerator*		iter	= [[self languages] objectEnumerator];
-	LanguageListing*	ll;
-	while (ll = [iter nextObject]) {
+	for (LanguageListing* ll in [self languages]) {
 		if ([langCode isEqual:[ll langCode]]) {
 			[ll setDictionaries:dictList];
 			break;
@@ -441,10 +417,8 @@ static NSString* curl_NSString(CURL* curl, NSString* inURL)
 
 - (int)countEnabledLanguages
 {
-	NSEnumerator*		iter	= [[self languages] objectEnumerator];
-	LanguageListing*	ll;
 	int					count	= 0;
-	while (ll = [iter nextObject]) {
+	for (LanguageListing* ll in [self languages]) {
 		if ([ll isSelected])
 			++count;
 	}

@@ -5,7 +5,7 @@
 //	cocoAspell2
 //
 //  Created by Anton Leuski on 4/26/05.
-//  Copyright (c) 2005 Anton Leuski. All rights reserved.
+//  Copyright (c) 2005-2008 Anton Leuski. All rights reserved.
 // ============================================================================
 
 #import <Foundation/Foundation.h>

@@ -5,16 +5,14 @@
 //	cocoAspell2
 //
 //  Created by Anton Leuski on 2/13/05.
-//  Copyright (c) 2005 Anton Leuski. All rights reserved.
+//  Copyright (c) 2005-2008 Anton Leuski. All rights reserved.
 // ============================================================================
 
 #import <Foundation/Foundation.h>
 #import "DictionaryManager.h"
-#import "Dictionary.h"
+#import "AspellDictionary.h"
+#import "MultilingualDictionary.h"
 #import "AspellOptions.h"
-#import "aspell.h"
-#import "aspell_extras.h"
-#import "cocoa_document_checker.h"
 #import "UserDefaults.h"
 
 //#define __debug__
@@ -91,13 +89,20 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 
 - (Dictionary*)dictionaryForName:(NSString*)inName
 {
-	NSEnumerator*	i	= [[[self dictionaryManager] dictionaries] objectEnumerator];
-	Dictionary*		d;
-	while (d = [i nextObject]) {
-		if ([inName isEqualToString:[d name]])
-			return d;
+	Dictionary*		d	= nil;
+
+	if ([kMultilingualDictionaryName isEqualToString:inName]) {
+		d	= [[[MultilingualDictionary alloc] initWithDictionaries:[[self dictionaryManager] enabledDictionaries]] autorelease];
+	} else {
+		for (Dictionary* dd in [[self dictionaryManager] dictionaries]) {
+			if ([inName isEqualToString:dd.name]) {
+				d	= dd;
+				break;
+			}
+		}
 	}
-	return nil;
+	[d setFilterConfig:[[[self dictionaryManager] filters] aspellConfig]];
+	return d;
 }
 
 // ----------------------------------------------------------------------------
@@ -122,93 +127,15 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 // 
 // ----------------------------------------------------------------------------
 
-- (AspellConfig*)configForLanguage:(NSString*)inLanguage caseSensitive:(BOOL*)cs
-{
-	if (cs)	
-		*cs	= YES;
-
-	Dictionary*		theDict		= [self dictionaryForName:inLanguage];
-	if (!theDict) {
-		NSLog(@"no dictionary for language %@", inLanguage);
-		return nil;
-	}
-
-	AspellConfig*	filterConfig	= [[[self dictionaryManager] filters] aspellConfig];
-	AspellConfig*	dictConfig		= [[theDict options] aspellConfig];
-	
-	if (cs)
-		*cs	= ![[theDict options] valueForKey:@"ignore-case"];
-		
-//		NSLog(@"%@", [AspellOptions aspellOptionsWithAspellConfig:filterConfig]); 
-//		NSLog(@"%@", [AspellOptions aspellOptionsWithAspellConfig:dictConfig]); 
-
-	AspellConfig*	config			= aspell_config_clone(filterConfig);
-
-//		NSLog(@"%@", [AspellOptions aspellOptionsWithAspellConfig:config]); 
-
-	if (!aspell_config_merge(config, dictConfig)) {
-		NSLog(@"failed to merge dictionary for language %@ and filter descriptions", inLanguage);
-		return nil;
-	}
-
-//		NSLog(@"%@", [AspellOptions aspellOptionsWithAspellConfig:config]); 
-	
-	return config;
-}
-
-// ----------------------------------------------------------------------------
-// 
-// ----------------------------------------------------------------------------
-
-- (AspellSpeller*)spellerForLanguage:(NSString*)inLanguage caseSensitive:(BOOL*)cs
-{	
-	AspellConfig*		config			= [self configForLanguage:inLanguage caseSensitive:cs];
-	if (!config) return nil;
-	
-//		NSLog(@"%@", [AspellOptions aspellOptionsWithAspellConfig:config]); 	
-
-	AspellCanHaveError*	possible_err	= new_aspell_speller(config);
-	delete_aspell_config(config);
-
-	if (aspell_error_number(possible_err) != 0) {
-		NSLog(@"failed to initialize speller for language %@: %s", inLanguage, aspell_error_message(possible_err));
-		delete_aspell_can_have_error(possible_err);
-		return nil;
-	}
-
-	return to_aspell_speller(possible_err);
-}
-	   
-// ----------------------------------------------------------------------------
-// 
-// ----------------------------------------------------------------------------
-
 - (void)spellServer:(NSSpellServer *)sender 
 	didForgetWord:				(NSString *)word 
 	inLanguage:					(NSString *)language
 {
 #ifdef __debug__
-	NSLog(@"forget |%@| for %@", word, language);
+	NSLog(@"forget |%@| for language %@", word, language);
 #endif
 
-	AspellSpeller*	speller	= [self spellerForLanguage:language caseSensitive:nil];
-	if (speller) {
-		unsigned	textSize	= sizeof(unichar) * [word length];
-		unichar*	textData	= (unichar*)malloc(textSize);
-		if (textData) {
-			[word getCharacters:textData];
-#ifdef __debug__
-			int		x = 
-#endif
-			aspell_speller_remove_from_personal(speller, (const char*)textData, textSize);
-#ifdef __debug__
-			NSLog(@"%d %s", x, aspell_speller_error_message(speller));
-#endif
-			free(textData);
-			aspell_speller_save_all_word_lists(speller);
-		}
-		delete_aspell_speller(speller);
-	} 
+	[[self dictionaryForName:language] forgetWord:word];
 }
 
 // ----------------------------------------------------------------------------
@@ -220,27 +147,10 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 	inLanguage:					(NSString *)language
 {
 #ifdef __debug__
-	NSLog(@"learn |%@| for %@", word, language);
+	NSLog(@"learn |%@| for language %@", word, language);
 #endif
 
-	AspellSpeller*	speller	= [self spellerForLanguage:language caseSensitive:nil];
-	if (speller) {
-		unsigned	textSize	= sizeof(unichar) * [word length];
-		unichar*	textData	= (unichar*)malloc(textSize);
-		if (textData) {
-			[word getCharacters:textData];
-#ifdef __debug__
-			int		x = 
-#endif
-			aspell_speller_add_to_personal(speller, (const char*)textData, textSize);
-#ifdef __debug__
-			NSLog(@"%d %s", x, aspell_speller_error_message(speller));
-#endif
-			free(textData);
-			aspell_speller_save_all_word_lists(speller);
-		}
-		delete_aspell_speller(speller);
-	} 
+	[[self dictionaryForName:language] learnWord:word];
 }
 
 // ----------------------------------------------------------------------------
@@ -254,44 +164,42 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 	countOnly:					(BOOL)countOnly
 {
 #ifdef __debug__
-	NSLog(@"check |%@| for %@, %d", stringToCheck, language, (int)countOnly);
+	NSLog(@"check |%@| for language %@, count only: %d", stringToCheck, language, (int)countOnly);
 #endif
 
+	Dictionary*		dict	= [self dictionaryForName:language];
 	NSRange			result	= NSMakeRange(NSNotFound, 0);
-	BOOL			caseSensitive;
-	AspellSpeller*	speller	= [self spellerForLanguage:language caseSensitive:&caseSensitive];
-	if (speller) {
-		unsigned				textSize	= sizeof(unichar) * [stringToCheck length];
-		unichar*				textData	= (unichar*)malloc(textSize);
-		if (textData) {
-			unsigned	start	= 0;
-			unsigned	offset;
-			unsigned	length;
-			[stringToCheck getCharacters:textData];
-			while (1) {
-				int		wc;
-				aspell_speller_check_spelling(speller, (const char*)(textData+start), textSize-start*sizeof(unichar), &wc, countOnly, &offset, &length);
-				*wordCount += wc;
-				if (length) {
-	//				result	= NSMakeRange(offset / sizeof(unichar), length / sizeof(unichar));
-					result	= NSMakeRange(offset+start, length);
-					NSString*	word	= [stringToCheck substringWithRange:result];
-					if (![sender isWordInUserDictionaries:word caseSensitive:caseSensitive])
-						break;
-					start += offset + length;
-					*wordCount += 1;
-				} else {
-					result	= NSMakeRange(NSNotFound, 0);
-					break;
-				}
-			}
-			free(textData);
-		}
-		delete_aspell_speller(speller);
-	}
+	BOOL			cs		= dict.caseSensitive;
+
+	unsigned				textSize	= sizeof(unichar) * [stringToCheck length];
+	unichar*				textData	= (unichar*)malloc(textSize);
+	if (textData) {
+		unsigned	start	= 0;
+		[stringToCheck getCharacters:textData];
+		while (1) {
+			int			wc;
+			result		= [dict findMisspelledWordInBuffer:textData+start size:textSize-start*sizeof(unichar) wordCount:&wc countOnly:countOnly];
+			*wordCount += wc;
+			if (result.location == NSNotFound) 
+				break;
+
+			result				= NSMakeRange(result.location+start, result.length);
+			NSString*	word	= [stringToCheck substringWithRange:result];
+			if (![sender isWordInUserDictionaries:word caseSensitive:cs])
+				break;
 
 #ifdef __debug__
-	NSLog(@"found |%@| at %d : |%@|", NSStringFromRange(result), *wordCount, ((result.location == NSNotFound) ? @"" : [stringToCheck substringWithRange:result]));
+			NSLog(@"word |%@| is in user's dictionary", word);
+#endif
+
+			start = result.location + result.length;
+			*wordCount += 1;
+		}
+		free(textData);
+	}
+	
+#ifdef __debug__
+	NSLog(@"found misspeling at %@ and word count %d : |%@|", NSStringFromRange(result), *wordCount, ((result.location == NSNotFound) ? @"" : [stringToCheck substringWithRange:result]));
 #endif
 
 	return result;
@@ -306,7 +214,7 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 	inLanguage:					(NSString *)language
 {
 #ifdef __debug__
-	NSLog(@"suggestions |%@| for %@", word, language);
+	NSLog(@"suggestions for word |%@| for language %@", word, language);
 #endif
 
 	NSMutableArray*	result	= [NSMutableArray array];
@@ -314,28 +222,11 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 	if (![UserDefaults cocoAspellIsRegistered]) {
 		[result addObject:kPleaseRegister];
 	}
-	
-	AspellSpeller*	speller	= [self spellerForLanguage:language caseSensitive:nil];
-	if (speller) {
-		unsigned	textSize	= sizeof(unichar) * [word length];
-		unichar*	textData	= (unichar*)malloc(textSize);
-		if (textData) {
-			[word getCharacters:textData];
-			const AspellWordList*		suggestions = aspell_speller_suggest(speller, (const char*)textData, textSize);
-			AspellStringEnumeration*	elements	= aspell_word_list_elements(suggestions);
-			const char * word;
-			while ( (word = aspell_string_enumeration_next(elements)) != NULL ) {
-				const unichar*	w	= (const unichar*)word;
-				for(; *w; ++w);
-				[result addObject:[NSString stringWithCharacters:(const unichar*)word length:(w - (const unichar*)word)]];
-			}
-			delete_aspell_string_enumeration(elements);
-			free(textData);
-		}
-		delete_aspell_speller(speller);
-	} 
+
+	[result addObjectsFromArray:[[self dictionaryForName:language] suggestGuessesForWord:word]];
+
 #ifdef __debug__
-	NSLog(@"suggestions |%@|", result);
+	NSLog(@"suggestions: %@", result);
 #endif
 	return result;
 }
@@ -350,7 +241,7 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 	language:					(NSString*)language
 {
 #ifdef __debug__
-	NSLog(@"completions |%@| in |%@| for %@", [str substringWithRange:inRange], str, language);
+	NSLog(@"completions for word |%@| in string |%@| for language %@", [str substringWithRange:inRange], str, language);
 #endif
 
 	NSMutableArray*	result	= [NSMutableArray array];
@@ -359,32 +250,10 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 		[result addObject:kPleaseRegister];
 	}
 
-	AspellSpeller*	speller	= [self spellerForLanguage:language caseSensitive:nil];
-	if (speller) {
-		NSString*	prefix		= [str substringWithRange:inRange];
-		NSString*	word		= prefix;
-		unsigned	textSize	= sizeof(unichar) * [word length];
-		unichar*	textData	= (unichar*)malloc(textSize);
-		if (textData) {
-			[word getCharacters:textData];
-			const AspellWordList*		suggestions = aspell_speller_suggest(speller, (const char*)textData, textSize);
-			AspellStringEnumeration*	elements	= aspell_word_list_elements(suggestions);
-			const char*					word;
-			while ( (word = aspell_string_enumeration_next(elements)) != NULL ) {
-				const unichar*	w	= (const unichar*)word;
-				for(; *w; ++w);
-				NSString*		tw	= [NSString stringWithCharacters:(const unichar*)word length:(w - (const unichar*)word)];
-				if ([tw hasPrefix:prefix]) {
-					[result addObject:tw];
-				}
-			}
-			delete_aspell_string_enumeration(elements);
-			free(textData);
-		}
-		delete_aspell_speller(speller);
-	} 
+	[result addObjectsFromArray:[[self dictionaryForName:language] suggestCompletionsForPartialWordRange:inRange inString:str]];
+
 #ifdef __debug__
-	NSLog(@"completions |%@|", result);
+	NSLog(@"completions: %@", result);
 #endif
 	return result;
 }
@@ -410,16 +279,15 @@ int main(int argc, char** argv)
 		
 		NSLog(@"Attempting to regirster %d dictionaries", [[dm dictionaries] count]);
 		
-		NSEnumerator*		i		= [[dm dictionaries] objectEnumerator];
-		Dictionary*			d;
-		while (d = [i nextObject]) {
-			if ([d isEnabled]) {
-				NSString*	name = [d name];
+		for (Dictionary* d in [dm dictionaries]) {
+			if (d.enabled) {
+				NSString*	name	= d.name;
+				NSString*	path	= [d isKindOfClass:[AspellDictionary class]] ? [((AspellDictionary*)d).options valueForKey:@"dict-dir"] : nil;
 				if (![aServer registerLanguage:name byVendor:@"Aspell"]) {
-					NSLog(@"cocoAspell failed to register %@ from %@/%@\n", name, [[d options] valueForKey:@"dict-dir"], [d identifier]); 
+					NSLog(@"cocoAspell failed to register %@ from %@/%@\n", name, path, d.identifier); 
 				} else {
 					++nregistered;
-					NSLog(@"cocoAspell registered %@ from %@/%@\n", name, [[d options] valueForKey:@"dict-dir"], [d identifier]); 		
+					NSLog(@"cocoAspell registered %@ from %@/%@\n", name, path, d.identifier); 		
 				}
 			}
 		}

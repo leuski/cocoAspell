@@ -5,7 +5,7 @@
 //	cocoAspell2
 //
 //  Created by Anton Leuski on 2/15/05.
-//  Copyright (c) 2005 Anton Leuski. All rights reserved.
+//  Copyright (c) 2005-2008 Anton Leuski. All rights reserved.
 // ============================================================================
 
 #include "cocoa_document_checker.h"

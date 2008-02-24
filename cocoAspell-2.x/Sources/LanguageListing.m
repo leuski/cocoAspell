@@ -119,9 +119,7 @@
 		[dictionaries release];
 		if (newDictionaries) {
 			dictionaries = [[NSMutableArray alloc] init];
-			NSEnumerator*	iter	= [newDictionaries objectEnumerator];
-			NSString*		line;
-			while (line = [iter nextObject]) {
+			for (NSString* line in newDictionaries) {
 				[(NSMutableArray*)dictionaries addObject:[[[DictionaryListing alloc] initWithListEntry:line] autorelease]];
 			}
 			NSArray*	sorted	= [dictionaries sortedArrayUsingSelector:@selector(compare:)];

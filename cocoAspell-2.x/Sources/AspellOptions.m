@@ -5,7 +5,7 @@
 //	cocoAspell2
 //
 //  Created by Anton Leuski on 2/2/05.
-//  Copyright (c) 2005 Anton Leuski. All rights reserved.
+//  Copyright (c) 2005-2008 Anton Leuski. All rights reserved.
 // ============================================================================
 
 #import "AspellOptions.h"
@@ -47,6 +47,8 @@ static NSString*	makeAltKey(NSString* inKey)
 static NSString*	kHomeDir	= nil;
 
 @implementation AspellOptions
+@synthesize persistent		= _persistent;
+@synthesize aspellConfig	= _aspellConfig;
 
 // ----------------------------------------------------------------------------
 //	
@@ -124,8 +126,8 @@ static NSString*	kHomeDir	= nil;
 
 - (id)initWithAspellConfigNoCopy:(AspellConfig*)inConfig
 {
-	aspellConfig				= inConfig;		
-	persistent					= NO;
+	self->_aspellConfig			= inConfig;		
+	self.persistent				= NO;
 	[self addObserver:self forKeyPath:@"filter" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	return self;
 }
@@ -137,7 +139,8 @@ static NSString*	kHomeDir	= nil;
 - (void)dealloc
 {
 	[self removeObserver:self forKeyPath:@"filter"];
-	delete_aspell_config(aspellConfig);
+	delete_aspell_config(self->_aspellConfig);
+	self->_aspellConfig	= nil;
 	[super dealloc];
 }
 
@@ -154,37 +157,23 @@ static NSString*	kHomeDir	= nil;
 		if (chFlag == NSKeyValueChangeSetting) {
 			NSArray*		oldValue	= [change objectForKey:NSKeyValueChangeOldKey];
 			NSArray*		newValue	= [change objectForKey:NSKeyValueChangeNewKey];
-			NSEnumerator*	values;
-			NSString*		v;
-			values						= [oldValue objectEnumerator];
-			while (v = [values nextObject]) {
+			for (NSString* v in oldValue) {
 				if (![newValue containsObject:v]) {
-					v	= [kFilterSetPrefix stringByAppendingString:v];
-					[self willChangeValueForKey:v];
-					[self didChangeValueForKey:v];
+					NSString* s	= [kFilterSetPrefix stringByAppendingString:v];
+					[self willChangeValueForKey:s];
+					[self didChangeValueForKey:s];
 				}
 			}
-			values						= [newValue objectEnumerator];
-			while (v = [values nextObject]) {
+			for (NSString* v in newValue) {
 				if (![oldValue containsObject:v]) {
-					v	= [kFilterSetPrefix stringByAppendingString:v];
-					[self willChangeValueForKey:v];
-					[self didChangeValueForKey:v];
+					NSString* s	= [kFilterSetPrefix stringByAppendingString:v];
+					[self willChangeValueForKey:s];
+					[self didChangeValueForKey:s];
 				}
 			}
 		}
 	}
 }
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (AspellConfig*)aspellConfig
-{
-	return aspellConfig;
-}
-
 
 // ----------------------------------------------------------------------------
 //	
@@ -197,10 +186,10 @@ static NSString*	kHomeDir	= nil;
 		return [NSNumber numberWithBool:[self usingFilter:[inKey substringFromIndex:[kFilterSetPrefix length]]]];
 	} else {
 		const struct AspellKeyInfo*	ki;
-		ki	= aspell_config_keyinfo([self aspellConfig], [inKey UTF8String]);
+		ki	= aspell_config_keyinfo(self.aspellConfig, [inKey UTF8String]);
 		if (!ki) {
 			inKey	= [[inKey componentsSeparatedByString:@"_"] componentsJoinedByString:@"-"];
-			ki	= aspell_config_keyinfo([self aspellConfig], [inKey UTF8String]);
+			ki	= aspell_config_keyinfo(self.aspellConfig, [inKey UTF8String]);
 		}
 		if (ki) { 
 			switch (ki->type) {
@@ -237,10 +226,10 @@ static NSString*	kHomeDir	= nil;
 		[self setUsing:[inValue boolValue] filter:[inKey substringFromIndex:[kFilterSetPrefix length]]];
 	} else {
 		const struct AspellKeyInfo*	ki;
-		ki	= aspell_config_keyinfo([self aspellConfig], [inKey UTF8String]);
+		ki	= aspell_config_keyinfo(self.aspellConfig, [inKey UTF8String]);
 		if (!ki) {
 			inKey	= [[inKey componentsSeparatedByString:@"_"] componentsJoinedByString:@"-"];
-			ki	= aspell_config_keyinfo([self aspellConfig], [inKey UTF8String]);
+			ki	= aspell_config_keyinfo(self.aspellConfig, [inKey UTF8String]);
 		}
 		if (ki) { 
 			switch (ki->type) {
@@ -249,7 +238,7 @@ static NSString*	kHomeDir	= nil;
 				case AspellKeyInfoList:		[self setArray:inValue forKey:inKey]; break;
 				case AspellKeyInfoString:	[self setString:inValue forKey:inKey]; break;
 			}
-			if ([self isPersistent]) {
+			if (self.persistent) {
 				NSString*	to	= [self valueForKey:@"per-conf-path"];
 				[self writeToFile:to];
 				[self notifyOptionsChanged:to];
@@ -268,7 +257,7 @@ static NSString*	kHomeDir	= nil;
 - (NSArray*)allKeys
 {
 	NSMutableArray*				res		= [NSMutableArray array];
-	AspellKeyInfoEnumeration*	keys	= aspell_config_possible_elements([self aspellConfig], 1);
+	AspellKeyInfoEnumeration*	keys	= aspell_config_possible_elements(self.aspellConfig, 1);
 	const AspellKeyInfo*		ki;
 	while (ki = aspell_key_info_enumeration_next(keys)) {
 		[res addObject:[NSString stringWithUTF8String:ki->name]];
@@ -304,28 +293,8 @@ static NSString*	kHomeDir	= nil;
 
 - (BOOL)writeToFile:(NSString*)inPath
 {
-	return aspell_config_write_out_file([self aspellConfig],[inPath UTF8String]);
+	return aspell_config_write_out_file(self.aspellConfig,[inPath UTF8String]);
 //	return [self dumpToFile:inPath];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (BOOL)isPersistent
-{
-	return persistent;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setPersistent:(BOOL)newPersistent
-{
-    if (persistent != newPersistent) {
-		persistent = newPersistent;
-    }
 }
 
 // ----------------------------------------------------------------------------
@@ -335,7 +304,7 @@ static NSString*	kHomeDir	= nil;
 - (NSDictionary*)dictionaryWithAllNondefaultValues
 {
 	NSMutableDictionary*			result	= [NSMutableDictionary dictionary];
-	AspellStringPairEnumeration*	e		= aspell_config_elements([self aspellConfig]);
+	AspellStringPairEnumeration*	e		= aspell_config_elements(self.aspellConfig);
 	if (!e) return result;
 	AspellStringPair				p;
 	while (!aspell_string_pair_enumeration_at_end(e)) {
@@ -422,7 +391,7 @@ static NSString*	kHomeDir	= nil;
 	NSString*	altKey	= makeAltKey(inKey);
 	if (altKey) [self willChangeValueForKey:altKey];
 	[self willChangeValueForKey:inKey];
-	aspell_config_replace([self aspellConfig], [inKey UTF8String], [inValue UTF8String]);
+	aspell_config_replace(self.aspellConfig, [inKey UTF8String], [inValue UTF8String]);
 	[self didChangeValueForKey:inKey];
 	if (altKey) [self didChangeValueForKey:altKey];
 }
@@ -436,7 +405,7 @@ static NSString*	kHomeDir	= nil;
 	NSString*	altKey	= makeAltKey(inKey);
 	if (altKey) [self willChangeValueForKey:altKey];
 	[self willChangeValueForKey:inKey];
-	aspell_config_replace([self aspellConfig], [inKey UTF8String], inValue ? "true" : "false");
+	aspell_config_replace(self.aspellConfig, [inKey UTF8String], inValue ? "true" : "false");
 	[self didChangeValueForKey:inKey];
 	if (altKey) [self didChangeValueForKey:altKey];
 }
@@ -452,7 +421,7 @@ static NSString*	kHomeDir	= nil;
 	NSString*	altKey	= makeAltKey(inKey);
 	if (altKey) [self willChangeValueForKey:altKey];
 	[self willChangeValueForKey:inKey];
-	aspell_config_replace([self aspellConfig], [inKey UTF8String], buff);
+	aspell_config_replace(self.aspellConfig, [inKey UTF8String], buff);
 	[self didChangeValueForKey:inKey];
 	if (altKey) [self didChangeValueForKey:altKey];
 }
@@ -475,12 +444,12 @@ static NSString*	kHomeDir	= nil;
 	if (altKey) [self willChangeValueForKey:altKey];
 	[self willChangeValueForKey:inKey];
 
-	aspell_config_replace([self aspellConfig], [[@"clear-" stringByAppendingString:inKey] UTF8String], "");
+	aspell_config_replace(self.aspellConfig, [[@"clear-" stringByAppendingString:inKey] UTF8String], "");
 
 	unsigned	i;
 	const char*	add_key	= [[@"add-" stringByAppendingString:inKey] UTF8String];
 	for(i = 0; i < [inValue count]; ++i) {
-		aspell_config_replace([self aspellConfig], add_key, [[inValue objectAtIndex:i] UTF8String]);
+		aspell_config_replace(self.aspellConfig, add_key, [[inValue objectAtIndex:i] UTF8String]);
 	}
 
 	[self didChangeValueForKey:inKey];
@@ -493,7 +462,7 @@ static NSString*	kHomeDir	= nil;
 
 - (NSString*)stringForKey:(NSString*)inKey
 {
-	return [NSString stringWithUTF8String:aspell_config_retrieve([self aspellConfig],[inKey UTF8String])];
+	return [NSString stringWithUTF8String:aspell_config_retrieve(self.aspellConfig,[inKey UTF8String])];
 }
 
 // ----------------------------------------------------------------------------
@@ -502,7 +471,7 @@ static NSString*	kHomeDir	= nil;
 
 - (BOOL)boolForKey:(NSString*)inKey
 {
-	return aspell_config_retrieve_bool([self aspellConfig],[inKey UTF8String]) != 0;
+	return aspell_config_retrieve_bool(self.aspellConfig,[inKey UTF8String]) != 0;
 }
 
 // ----------------------------------------------------------------------------
@@ -511,7 +480,7 @@ static NSString*	kHomeDir	= nil;
 
 - (int)intForKey:(NSString*)inKey
 {
-	return aspell_config_retrieve_int([self aspellConfig],[inKey UTF8String]);
+	return aspell_config_retrieve_int(self.aspellConfig,[inKey UTF8String]);
 }
 
 // ----------------------------------------------------------------------------
@@ -523,7 +492,7 @@ static NSString*	kHomeDir	= nil;
 
 	NSMutableArray*		arr		= [NSMutableArray array];
 	AspellStringList*	lst		= new_aspell_string_list();
-	aspell_config_retrieve_list(aspellConfig,[inKey UTF8String],(AspellMutableContainer*)lst);
+	aspell_config_retrieve_list(self.aspellConfig,[inKey UTF8String],(AspellMutableContainer*)lst);
 
 	const char* el;
 	AspellStringEnumeration * en = aspell_string_list_elements(lst);

@@ -5,37 +5,35 @@
 //	cocoAspell2
 //
 //  Created by Anton Leuski on 2/4/05.
-//  Copyright (c) 2005 Anton Leuski. All rights reserved.
+//  Copyright (c) 2005-2008 Anton Leuski. All rights reserved.
 // ============================================================================
 
 #import <Foundation/Foundation.h>
 #import "aspell.h"
-#import "DictionaryDescription.h"
 
 @class AspellOptions;
 
 @interface Dictionary : NSObject {
-	AspellOptions*			options;
-	NSString*				name;
-	NSString*				identifier;
-	BOOL					enabled;
+	NSString*				_name;
+	NSString*				_identifier;
+	BOOL					_enabled;
 }
 
-- (id)initWithFilePath:(NSString*)inPath;
+@property(retain)	NSString*				name;
+@property(retain)	NSString*				readableName;
+@property(assign)	BOOL					enabled;
 
-- (NSString *)name;
-- (void)setName:(NSString *)newName;
+@property(retain)	NSString*				identifier;
+@property(retain, readonly)	NSString*		copyright;
 
-- (NSString *)readableName;
-- (void)setReadableName:(NSString *)newReadableName;
+@property(assign, readonly)	BOOL			caseSensitive;
 
-- (NSString *)identifier;
+- (void)setFilterConfig:(AspellConfig*)filterConfig;
+- (void)forgetWord:(NSString *)word;
+- (void)learnWord:(NSString *)word;
+- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly;
+- (NSArray*)suggestGuessesForWord:(NSString*)word;
+- (NSArray*)suggestCompletionsForPartialWordRange:(NSRange)inRange inString:(NSString*)str;
 
-- (BOOL)isEnabled;
-- (void)setEnabled:(BOOL)newEnabled;
 
-- (AspellOptions *)options;
-- (void)setOptions:(AspellOptions *)newOptions;
-
-- (NSString*)copyright;
 @end

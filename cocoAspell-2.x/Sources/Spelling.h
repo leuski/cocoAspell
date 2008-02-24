@@ -4,7 +4,7 @@
 //  cocoAspell2
 //
 //  Created by Anton Leuski on 2/2/05.
-//  Copyright (c) 2002-2005 Anton Leuski.
+//  Copyright (c) 2005-2008 Anton Leuski.
 //
 // ================================================================================
 
