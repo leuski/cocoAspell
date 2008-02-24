@@ -1,9 +1,9 @@
 #!/bin/sh
 
 vers=`sw_vers | grep "ProductVersion" | awk '{ print $2; }'`
-if [ "$vers" \< "10.3.9" ]
+if [ "$vers" \< "10.4" ]
 then
-	echo "cocoAspell requires version Mac OS 10.3.9 or higher"
+	echo "cocoAspell requires version Mac OS 10.4 or higher"
 	exit 112
 else
 	echo "OK"
