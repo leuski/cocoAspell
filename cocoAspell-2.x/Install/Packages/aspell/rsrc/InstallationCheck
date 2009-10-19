@@ -1,0 +1,11 @@
+#!/bin/sh
+
+vers=`sw_vers | grep "ProductVersion" | awk '{ print $2; }'`
+if [ "$vers" \< "10.5" ]
+then
+	echo "cocoAspell requires version Mac OS 10.5 or higher"
+	exit 112
+else
+	echo "OK"
+	exit 0
+fi
