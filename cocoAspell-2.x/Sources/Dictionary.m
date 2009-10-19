@@ -109,7 +109,7 @@ static NSArray*	kStorableKeys		= nil;
 {
 }
 
-- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly
+- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned int)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly
 {
 	return NSMakeRange(NSNotFound, 0);
 }

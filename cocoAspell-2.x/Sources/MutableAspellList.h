@@ -28,11 +28,11 @@ extern NSString*	kMutableListPrefix;
 - (NSString *)key;
 - (NSString *)dataKey;
 
-- (unsigned int)countOfObjects;
-- (id)objectInObjectsAtIndex:(unsigned int)inIndex;
-- (void)insertObject:(id)inObject inObjectsAtIndex:(unsigned int)inIndex;
-- (void)removeObjectFromObjectsAtIndex:(unsigned int)inIndex;
-- (void)replaceObjectInObjectsAtIndex:(unsigned int)inIndex withObject:(id)inObject;
+- (NSUInteger)countOfObjects;
+- (id)objectInObjectsAtIndex:(NSUInteger)inIndex;
+- (void)insertObject:(id)inObject inObjectsAtIndex:(NSUInteger)inIndex;
+- (void)removeObjectFromObjectsAtIndex:(NSUInteger)inIndex;
+- (void)replaceObjectInObjectsAtIndex:(NSUInteger)inIndex withObject:(id)inObject;
 
 @end
 

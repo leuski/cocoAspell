@@ -31,7 +31,7 @@
 - (void)setFilterConfig:(AspellConfig*)filterConfig;
 - (void)forgetWord:(NSString *)word;
 - (void)learnWord:(NSString *)word;
-- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly;
+- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned int)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly;
 - (NSArray*)suggestGuessesForWord:(NSString*)word;
 - (NSArray*)suggestCompletionsForPartialWordRange:(NSRange)inRange inString:(NSString*)str;
 

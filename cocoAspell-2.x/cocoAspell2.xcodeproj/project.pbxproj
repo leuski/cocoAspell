@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -44,7 +44,6 @@
 		62783F0907E6B60A0019175E /* aspell_extras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 629F2A0107BF384800AD441B /* aspell_extras.cpp */; };
 		62783F0A07E6B60A0019175E /* cocoa_document_checker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6279AFF307C3246C00072747 /* cocoa_document_checker.cpp */; };
 		6287F33907FA89AA0004EB03 /* cocoAspell.service in CopyFiles */ = {isa = PBXBuildFile; fileRef = 62783EFB07E6B5B40019175E /* cocoAspell.service */; };
-		62B2255407B1ED6D00D69682 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62B2254C07B1ED6D00D69682 /* Info.plist */; };
 		62B2255507B1ED6D00D69682 /* Spelling.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 62B2254D07B1ED6D00D69682 /* Spelling.tiff */; };
 		62B2255707B1ED6D00D69682 /* Spelling.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B2255007B1ED6D00D69682 /* Spelling.m */; };
 		62B225B307B1F38600D69682 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B225AE07B1F38600D69682 /* InfoPlist.strings */; };
@@ -96,13 +95,13 @@
 		6259E04E0D71536700B047C0 /* MultilingualDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultilingualDictionary.h; sourceTree = "<group>"; };
 		6259E04F0D71536700B047C0 /* MultilingualDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultilingualDictionary.m; sourceTree = "<group>"; };
 		62658D48081E01600085D69E /* Dictionary Installer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dictionary Installer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		62658D4A081E01600085D69E /* Dictionary Installer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Dictionary Installer-Info.plist"; sourceTree = "<group>"; };
+		62658D4A081E01600085D69E /* Dictionary Installer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dictionary Installer-Info.plist"; sourceTree = "<group>"; };
 		62658D51081E01D80085D69E /* DictionaryInstaller.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = DictionaryInstaller.nib; sourceTree = "<group>"; };
 		62658D59081E02390085D69E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		62658D75081E042C0085D69E /* DictionaryInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryInstaller.h; sourceTree = "<group>"; };
 		62658D76081E042C0085D69E /* DictionaryInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryInstaller.m; sourceTree = "<group>"; };
 		62783EFB07E6B5B40019175E /* cocoAspell.service */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cocoAspell.service; sourceTree = BUILT_PRODUCTS_DIR; };
-		62783EFD07E6B5B40019175E /* service-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "service-Info.plist"; sourceTree = "<group>"; };
+		62783EFD07E6B5B40019175E /* service-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "service-Info.plist"; sourceTree = "<group>"; };
 		6279AFF207C3246C00072747 /* cocoa_document_checker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocoa_document_checker.h; sourceTree = "<group>"; };
 		6279AFF307C3246C00072747 /* cocoa_document_checker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocoa_document_checker.cpp; sourceTree = "<group>"; };
 		629F291E07BEC5AF00AD441B /* DictionaryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryManager.h; sourceTree = "<group>"; };
@@ -114,7 +113,7 @@
 		629F2CCE07C0462F00AD441B /* cocoAspell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoAspell.m; sourceTree = "<group>"; };
 		62A8C85307B69ED200F6A61B /* MutableAspellList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableAspellList.h; sourceTree = "<group>"; };
 		62A8C85407B69ED200F6A61B /* MutableAspellList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableAspellList.m; sourceTree = "<group>"; };
-		62B2254C07B1ED6D00D69682 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		62B2254C07B1ED6D00D69682 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62B2254D07B1ED6D00D69682 /* Spelling.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Spelling.tiff; sourceTree = "<group>"; };
 		62B2254F07B1ED6D00D69682 /* Spelling.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Spelling.h; sourceTree = "<group>"; };
 		62B2255007B1ED6D00D69682 /* Spelling.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Spelling.m; sourceTree = "<group>"; };
@@ -373,7 +372,7 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 6289E63E08A1D39B0062091E /* Build configuration list for PBXProject "cocoAspell2" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -415,7 +414,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				626D070B07F9077A00D306FB /* Localizable.strings in Resources */,
-				62B2255407B1ED6D00D69682 /* Info.plist in Resources */,
 				62B2255507B1ED6D00D69682 /* Spelling.tiff in Resources */,
 				62B225B307B1F38600D69682 /* InfoPlist.strings in Resources */,
 				62C3BEF907B1F6AA009FD657 /* Spelling.nib in Resources */,
@@ -554,14 +552,16 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = __debug__;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__debug__,
+					__multilingual__,
+				);
 				HEADER_SEARCH_PATHS = (
 					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.5/common",
 					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.5/modules/speller/default",
 				);
 				INFOPLIST_FILE = "Resources/service-Info.plist";
 				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -586,6 +586,7 @@
 		6289E63008A1D39B0062091E /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -680,7 +681,6 @@
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Bundle;
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-bundle",
@@ -702,8 +702,11 @@
 		6289E63408A1D39B0062091E /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = Install;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -719,7 +722,7 @@
 					"/Users/leuski/Documents/Projects/cocoaspell/aspell-0.60.5/modules/speller/default",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				INSTALL_PATH = /Packages/Spelling/root/Library/PreferencePanes;
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Bundle;
 				OTHER_CFLAGS = "";
@@ -794,7 +797,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = __debug__;
 				INFOPLIST_FILE = "Resources/Dictionary Installer-Info.plist";
 				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -879,6 +881,7 @@
 		6289E63F08A1D39B0062091E /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = macosx10.5;
 			};
 			name = Development;
 		};
@@ -891,12 +894,14 @@
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				SDKROOT = macosx10.5;
 			};
 			name = Deployment;
 		};
 		6289E64108A1D39B0062091E /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = macosx10.5;
 			};
 			name = Default;
 		};

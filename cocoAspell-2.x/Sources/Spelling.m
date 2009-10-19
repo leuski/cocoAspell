@@ -286,7 +286,7 @@
 
 	[self performSelectorOnMainThread:@selector(beginCompilation:) withObject:dirs waitUntilDone:YES];
 
-	unsigned			i;
+	NSUInteger			i;
 	DictionaryManager*	dm	= [self dictionaryManager];
 	
 	for(i = 0; i < [dirs count]; ++i) {

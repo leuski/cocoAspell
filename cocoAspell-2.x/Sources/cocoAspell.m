@@ -91,14 +91,18 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 {
 	Dictionary*		d	= nil;
 
+#ifdef __multilingual__	
 	if ([kMultilingualDictionaryName isEqualToString:inName]) {
 		d	= [[[MultilingualDictionary alloc] initWithDictionaries:[[self dictionaryManager] enabledDictionaries]] autorelease];
-	} else {
-		for (Dictionary* dd in [[self dictionaryManager] dictionaries]) {
-			if ([inName isEqualToString:dd.name]) {
-				d	= dd;
-				break;
-			}
+		[d setFilterConfig:[[[self dictionaryManager] filters] aspellConfig]];
+		return d;
+	} 
+#endif // __multilingual__
+
+	for (Dictionary* dd in [[self dictionaryManager] dictionaries]) {
+		if ([inName isEqualToString:dd.name]) {
+			d	= dd;
+			break;
 		}
 	}
 	[d setFilterConfig:[[[self dictionaryManager] filters] aspellConfig]];
@@ -171,10 +175,10 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 	NSRange			result	= NSMakeRange(NSNotFound, 0);
 	BOOL			cs		= dict.caseSensitive;
 
-	unsigned				textSize	= sizeof(unichar) * [stringToCheck length];
+	NSUInteger				textSize	= sizeof(unichar) * [stringToCheck length];
 	unichar*				textData	= (unichar*)malloc(textSize);
 	if (textData) {
-		unsigned	start	= 0;
+		NSUInteger	start	= 0;
 		[stringToCheck getCharacters:textData];
 		while (1) {
 			int			wc;
@@ -275,7 +279,7 @@ int main(int argc, char** argv)
 		DictionaryManager*	dm		= [[[DictionaryManager alloc] init] autorelease];
 		[dm setDictionaries:[dm allDictionaries]];
 		
-		unsigned			nregistered = 0;
+		NSUInteger			nregistered = 0;
 		
 		NSLog(@"Attempting to regirster %d dictionaries", [[dm dictionaries] count]);
 		

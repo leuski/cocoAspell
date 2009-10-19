@@ -20,7 +20,9 @@ NSString* kAspellDictionarySetChangedNotification	= @"net.leuski.cocoaspell.Aspe
 static NSString*	kCocoAspellServiceName			= @"cocoAspell.service";
 static NSString*	kFiltersConfigFileName			= @"filters.conf";
 
+#ifdef __multilingual__
 NSString*	kMultilingualDictionaryName		= @"Multilingual";
+#endif // __multilingual__
 
 @interface DictionaryManager (Private)
 - (void)notifyDictionarySetChanged;
@@ -347,11 +349,13 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		return NO;
 	}
 	
+#ifdef __multilingual__
 	if ([inArray count] > 1) {
 		NSMutableArray*	a	= [NSMutableArray arrayWithArray:inArray];
 		[a addObject:kMultilingualDictionaryName];
 		inArray	= a;
 	}
+#endif // __multilingual__
 	
 	[languagesDict setObject:inArray forKey:@"NSLanguages"];
 

@@ -130,7 +130,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (unsigned int)countOfObjects
+- (NSUInteger)countOfObjects
 {
 	return [objects count];
 }
@@ -139,7 +139,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (id)objectInObjectsAtIndex:(unsigned int)inIndex
+- (id)objectInObjectsAtIndex:(NSUInteger)inIndex
 {
 	return [objects objectAtIndex:inIndex];
 }
@@ -157,7 +157,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (void)insertObject:(id)inObject inObjectsAtIndex:(unsigned int)inIndex
+- (void)insertObject:(id)inObject inObjectsAtIndex:(NSUInteger)inIndex
 {
 	if ([inObject array] != nil) {
 		NSLog(@"attemptng to insert the same object into multiple lists");
@@ -173,7 +173,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (void)removeObjectFromObjectsAtIndex:(unsigned int)inIndex
+- (void)removeObjectFromObjectsAtIndex:(NSUInteger)inIndex
 {
 	[(StringController*)[self objectInObjectsAtIndex:inIndex] setArray:nil]; 
 	[objects removeObjectAtIndex:inIndex];
@@ -184,7 +184,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (void)replaceObjectInObjectsAtIndex:(unsigned int)inIndex withObject:(id)inObject
+- (void)replaceObjectInObjectsAtIndex:(NSUInteger)inIndex withObject:(id)inObject
 {
 	if ([inObject array] != nil) {
 		NSLog(@"attemptng to insert the same object into multiple lists");

@@ -38,7 +38,7 @@
 //	Informal protocol for extending NSTextView's delegate
 @interface NSObject (NSTextViewWithLinks_Delegate)
 - (NSCursor *) cursorForLink: (NSObject *) linkObject
-    atIndex: (unsigned) charIndex
+    atIndex: (NSUInteger) charIndex
     ofTextView: (NSTextView *) aTextView;
 @end
 
@@ -80,7 +80,7 @@
 #pragma mark PRIVATE INSTANCE METHODS
 
 - (NSCursor *) cursorForLink: (NSObject *) linkObject
-    atIndex: (unsigned) charIndex
+    atIndex: (NSUInteger) charIndex
 {
     NSCursor 	*result = nil;
 
@@ -134,7 +134,7 @@
         {
             NSCursor		*cursor;
             NSRectArray		rects;
-            unsigned int	rectCount, rectIndex;
+            NSUInteger		rectCount, rectIndex;
             NSRect			oneRect;
 
             //	Figure what cursor to show over this link.

@@ -203,7 +203,7 @@
 {
 	if (!self.speller) return;
 	
-	unsigned	textSize	= sizeof(unichar) * [word length];
+	NSUInteger	textSize	= sizeof(unichar) * [word length];
 	unichar*	textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		[word getCharacters:textData];
@@ -227,7 +227,7 @@
 {
 	if (!self.speller) return;
 	
-	unsigned	textSize	= sizeof(unichar) * [word length];
+	NSUInteger	textSize	= sizeof(unichar) * [word length];
 	unichar*	textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		[word getCharacters:textData];
@@ -247,14 +247,14 @@
 // 
 // ----------------------------------------------------------------------------
 
-- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly
+- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned int)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly
 {
 	*wordCount	= 0;
 	NSRange		result	= NSMakeRange(NSNotFound, 0);
 	if (!self.speller) return result;
 
-	unsigned	offset;
-	unsigned	length;
+	unsigned int	offset;
+	unsigned int	length;
 	aspell_speller_check_spelling(self.speller, (const char*)buffer, size, wordCount, countOnly, &offset, &length);
 	return length ? NSMakeRange(offset, length) : NSMakeRange(NSNotFound, 0);
 }
@@ -268,7 +268,7 @@
 	NSMutableArray*	result	= [NSMutableArray array];
 	if (!self.speller) return result;
 	
-	unsigned	textSize	= sizeof(unichar) * [word length];
+	NSUInteger	textSize	= sizeof(unichar) * [word length];
 	unichar*	textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		[word getCharacters:textData];
@@ -297,7 +297,7 @@
 
 	NSString*	prefix		= [str substringWithRange:inRange];
 	NSString*	word		= prefix;
-	unsigned	textSize	= sizeof(unichar) * [word length];
+	NSUInteger	textSize	= sizeof(unichar) * [word length];
 	unichar*	textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		[word getCharacters:textData];

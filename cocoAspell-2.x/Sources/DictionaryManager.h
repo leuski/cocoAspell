@@ -13,7 +13,10 @@
 @class AspellOptions;
 
 extern NSString*	kAspellDictionarySetChangedNotification;
+
+#ifdef __multilingual__
 extern NSString*	kMultilingualDictionaryName;
+#endif // __multilingual__
 
 @interface DictionaryManager : NSObject {
 	NSArray*						_dictionaries;

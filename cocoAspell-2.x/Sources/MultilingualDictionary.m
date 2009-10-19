@@ -1,3 +1,5 @@
+#ifdef __multilingual__
+
 // ============================================================================
 //  MultilingualDictionary.m
 // ============================================================================
@@ -49,13 +51,13 @@
 	}
 }
 
-- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly
+- (NSRange)findMisspelledWordInBuffer:(unichar*)buffer size:(unsigned int)size wordCount:(int*)wordCount countOnly:(BOOL)countOnly
 {
 	NSRange		result	= NSMakeRange(NSNotFound, 0);
-	unsigned	offset	= 0;
-	unsigned	n		= [self.dictionaries count];
-	unsigned	i		= 0;
-	unsigned	bestDictionaryIndex	= NSNotFound;
+	NSUInteger	offset	= 0;
+	NSUInteger	n		= [self.dictionaries count];
+	NSUInteger	i		= 0;
+	NSUInteger	bestDictionaryIndex	= NSNotFound;
 		
 	*wordCount			= 0;
 	while (1) {
@@ -118,7 +120,7 @@
 
 
 
-
+#endif //__multilingual__
 
 
 

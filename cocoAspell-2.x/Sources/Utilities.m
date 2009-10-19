@@ -53,7 +53,7 @@ NSArray* allDictionaryDirectories(DictionaryDirectoryFlag flag)
 {
 	NSArray*			paths		= NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, 
 		NSUserDomainMask | NSLocalDomainMask, true);
-	unsigned			i;
+	NSUInteger			i;
 	NSMutableArray*		a			= [NSMutableArray array];
 	NSFileManager*		manager		= [NSFileManager defaultManager];
 	BOOL				isDir;
@@ -70,7 +70,7 @@ NSArray* allDictionaryDirectories(DictionaryDirectoryFlag flag)
 			continue;
 			
 		NSArray*		subPaths	= [manager directoryContentsAtPath:dirPath];
-		unsigned		j;
+		NSUInteger		j;
 
 		for(j = 0; j < [subPaths count]; ++j) {
 			NSString*	subPath		= [dirPath stringByAppendingPathComponent:[subPaths objectAtIndex:j]];

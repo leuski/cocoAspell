@@ -273,7 +273,7 @@ static NSString*	kHomeDir	= nil;
 - (int)suggestionModeAsInt
 {
 	NSString*	mode	= [self stringForKey:@"sug-mode"];
-	unsigned	idx		= [[AspellOptions suggestionModes] indexOfObject:mode];
+	NSUInteger	idx		= [[AspellOptions suggestionModes] indexOfObject:mode];
 	if (idx == NSNotFound) idx	= 2;
 	return idx;
 }
@@ -446,7 +446,7 @@ static NSString*	kHomeDir	= nil;
 
 	aspell_config_replace(self.aspellConfig, [[@"clear-" stringByAppendingString:inKey] UTF8String], "");
 
-	unsigned	i;
+	NSUInteger	i;
 	const char*	add_key	= [[@"add-" stringByAppendingString:inKey] UTF8String];
 	for(i = 0; i < [inValue count]; ++i) {
 		aspell_config_replace(self.aspellConfig, add_key, [[inValue objectAtIndex:i] UTF8String]);
