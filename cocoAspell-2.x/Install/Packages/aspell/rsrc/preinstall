@@ -20,7 +20,9 @@ cd /usr/bin
 
 echo "checking if make is here..." >> /tmp/cocoAspell.install.log
 echo "receipt path: ${INSTALLER_TEMP}"  >> /tmp/cocoAspell.install.log
+echo "---"  >> /tmp/cocoAspell.install.log
 ls ${INSTALLER_TEMP} >> /tmp/cocoAspell.install.log
+echo "---"  >> /tmp/cocoAspell.install.log
 
 if [ -f make ]
 then
