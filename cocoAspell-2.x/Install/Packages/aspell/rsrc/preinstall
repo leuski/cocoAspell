@@ -19,8 +19,8 @@
 cd /usr/bin 
 
 echo "checking if make is here..." >> /tmp/cocoAspell.install.log
-echo "receipt path: ${RECEIPT_PATH}"  >> /tmp/cocoAspell.install.log
-ls $RECEIPT_PATH >> /tmp/cocoAspell.install.log
+echo "receipt path: ${INSTALLER_TEMP}"  >> /tmp/cocoAspell.install.log
+ls ${INSTALLER_TEMP} >> /tmp/cocoAspell.install.log
 
 if [ -f make ]
 then
@@ -42,9 +42,9 @@ echo "Installing make" >> /tmp/cocoAspell.install.log
 osVers=`sw_vers -productVersion`
 if [ "$osVers" \< "10.6" ] 
 then  
-	tar -xpf "${RECEIPT_PATH}/make-5.tar" -C /usr/bin
+	tar -xpf "${INSTALLER_TEMP}/make-5.tar" -C /usr/bin
 else
-	tar -xpf "${RECEIPT_PATH}/make-6.tar" -C /usr/bin
+	tar -xpf "${INSTALLER_TEMP}/make-6.tar" -C /usr/bin
 fi
 
 
