@@ -36,6 +36,7 @@ done
 
 if [ -f "/Library/PreferencePanes/Spelling.prefPane/Contents/Resources/gnumake" ]
 then
+	echo "we got a very old version of the preference pane, removing it..."  >> /tmp/cocoAspell.install.log
 	rm -r "/Library/PreferencePanes/Spelling.prefPane"
 fi
 
@@ -44,7 +45,7 @@ if [ x != x$aspell_pid ]
 then
 	for x in $aspell_pid
 	do
-		echo "killing cocoAspell process $x"
+		echo "killing cocoAspell process $x"  >> /tmp/cocoAspell.install.log
 		kill -9 $x
 	done
 fi

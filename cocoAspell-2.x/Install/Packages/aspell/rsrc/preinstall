@@ -1,6 +1,6 @@
 #!/bin/bash -f
 
-#	Copyright (c) 2005 Anton Leuski.
+#	Copyright (c) 2005-2009 Anton Leuski.
 #
 #	This file is part of cocoAspell package.
 #
@@ -16,21 +16,37 @@
 #
 #	This script checks and installs the make utility
 
-echo "running postflight..."
+cd /usr/bin 
 
-dir="$2/Application Support/cocoAspell/aspell6-en-6.0-0";
+echo "checking if make is here..." >> /tmp/cocoAspell.install.log
+echo "receipt path: ${RECEIPT_PATH}"  >> /tmp/cocoAspell.install.log
+ls $RECEIPT_PATH >> /tmp/cocoAspell.install.log
 
-export PATH="/bin:/usr/bin:/usr/local/bin:.";
-
-if [ -d "$dir" ]
+if [ -f make ]
 then
-	echo "$dir found, installing"
-	cd "$dir"
-	./configure
-	make
-else
-	echo "$dir not found"
+	echo "yes, we have make. quitting..." >> /tmp/cocoAspell.install.log
+	exit 0
 fi
+
+echo "no, no make. Do we have gnumake?" >> /tmp/cocoAspell.install.log
+
+if [ -f gnumake ]
+then
+	echo "yes, we have gnumake. Archiving it..." >> /tmp/cocoAspell.install.log
+	current_time=`date "+gnumake-%Y-%m-%d-%H-%M-%S"`
+	mv gnumake "$current_time"
+fi
+
+echo "Installing make" >> /tmp/cocoAspell.install.log
+
+osVers=`sw_vers -productVersion`
+if [ "$osVers" \< "10.6" ] 
+then  
+	tar -xpf "${RECEIPT_PATH}/make-5.tar" -C /usr/bin
+else
+	tar -xpf "${RECEIPT_PATH}/make-6.tar" -C /usr/bin
+fi
+
 
 exit 0
 

@@ -1,6 +1,6 @@
 #!/bin/bash -f
 
-#	Copyright (c) 2005-2009 Anton Leuski.
+#	Copyright (c) 2005 Anton Leuski.
 #
 #	This file is part of cocoAspell package.
 #
@@ -16,20 +16,21 @@
 #
 #	This script checks and installs the make utility
 
-cd /usr/bin 
+echo "running postinsatll for English..."  >> /tmp/cocoAspell.install.log
 
-if [ -f make ]
+dir="$2/Application Support/cocoAspell/aspell6-en-6.0-0";
+
+export PATH="/bin:/usr/bin:/usr/local/bin:.";
+
+if [ -d "$dir" ]
 then
-	exit 0
+	echo "$dir found, installing"  >> /tmp/cocoAspell.install.log
+	cd "$dir"
+	./configure
+	make
+else
+	echo "$dir not found"  >> /tmp/cocoAspell.install.log
 fi
-
-if [ -f gnumake ]
-then
-	current_time=`date "+gnumake-%Y-%m-%d-%H-%M-%S"`
-	mv gnumake "$current_time"
-fi
-
-tar -xpf "$1/Contents/Resources/make.tar"
 
 exit 0
 
