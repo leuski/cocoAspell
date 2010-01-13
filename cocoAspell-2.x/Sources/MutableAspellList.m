@@ -321,11 +321,13 @@ NSString*	kMutableListPrefix	= @"mutable_";
 	if (![self array]) return YES;
 	NSString*	val		= [*ioValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	if ([val length] == 0) {
-		*outError	= [self makeErrorRecord:@"keyErrorEmptyEntry"];
+		if (outError)
+			*outError	= [self makeErrorRecord:@"keyErrorEmptyEntry"];
 		return NO;
 	}
 	if ([self list:[self array] hasObject:val]) {
-		*outError	= [self makeErrorRecord:@"keyErrorDuplicateEntry"];
+		if (outError)
+			*outError	= [self makeErrorRecord:@"keyErrorDuplicateEntry"];
 		return NO;
 	}
 	
@@ -531,11 +533,13 @@ static NSArray*		kCheckFSA;
 	if (![self array]) return YES;
 	NSString*	val		= [*ioValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	if ([val length] == 0) {
-		*outError	= [self makeErrorRecord:@"keyErrorEmptyEntry"];
+		if (outError)
+			*outError	= [self makeErrorRecord:@"keyErrorEmptyEntry"];
 		return NO;
 	}
 	if ([self list:[self array] hasObject:val]) {
-		*outError	= [self makeErrorRecord:@"keyErrorDuplicateEntry"];
+		if (outError)
+			*outError	= [self makeErrorRecord:@"keyErrorDuplicateEntry"];
 		return NO;
 	}
 	
@@ -555,7 +559,8 @@ static NSArray*		kCheckFSA;
 		return YES;
 	}
 	
-	*outError		= [[[NSError alloc] initWithDomain:kDefaultsDomain
+	if (outError)
+		*outError		= [[[NSError alloc] initWithDomain:kDefaultsDomain
 						code:0
 						userInfo:[NSDictionary dictionaryWithObject:errMessage forKey:NSLocalizedDescriptionKey]] autorelease];
 	

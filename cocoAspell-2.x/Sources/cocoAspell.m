@@ -164,7 +164,7 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 - (NSRange)spellServer:(NSSpellServer *)sender 
 	findMisspelledWordInString:	(NSString *)stringToCheck 
 	language:					(NSString *)language 
-	wordCount:					(int *)wordCount 
+	wordCount:					(NSInteger *)wordCount 
 	countOnly:					(BOOL)countOnly
 {
 #ifdef __debug__
@@ -300,7 +300,7 @@ int main(int argc, char** argv)
 
 			NSLog(@"Starting Aspell SpellChecker.\n");
 
-			cocoAspell*	server	= [[cocoAspell alloc] initWithDictionaryManager:dm];
+			cocoAspell*	server	= [[[cocoAspell alloc] initWithDictionaryManager:dm] autorelease];
 	//		@try {
 				[aServer setDelegate:server];
 				[aServer run];

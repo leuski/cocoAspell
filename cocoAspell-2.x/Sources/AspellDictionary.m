@@ -89,7 +89,8 @@
 
 - (void)addDataFileContent:(NSString*)fileName inDir:(NSString*)dir intoArray:(NSMutableArray*)array
 {
-	NSString*		content	= [NSString stringWithContentsOfFile:[dir stringByAppendingPathComponent:fileName]];
+	NSStringEncoding	encoding;
+	NSString*			content	= [NSString stringWithContentsOfFile:[dir stringByAppendingPathComponent:fileName] usedEncoding:&encoding error:nil];
 	if (!content) return;
 	for (NSString* line in [content componentsSeparatedByString:@"\n"]) {
 		line	= [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -149,7 +150,8 @@
 	BOOL			isDir;
 	path					= [path stringByAppendingPathComponent:@"Copyright"];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir) {
-		return [NSString stringWithContentsOfFile:path];
+		NSStringEncoding	encoding;
+		return [NSString stringWithContentsOfFile:path usedEncoding:&encoding error:nil];
 	}
 	return [super copyright];
 }

@@ -127,23 +127,3 @@ getSystemLanguageName(
 
 	return [NSString stringWithCharacters:buffer length:actualNameLen];
 }
-
-NSDictionary*	
-infoForDirectoryPath(NSString* inPath)
-{
-	NSString*				content	= [NSString stringWithContentsOfFile:[inPath stringByAppendingPathComponent:@"info"]];
-	NSMutableDictionary*	dict	= [NSMutableDictionary dictionary];
-	for (NSString* line in [content componentsSeparatedByString:@"\n"]) {
-		if ([line hasPrefix:@" "] || [line hasPrefix:@"\t"]) 
-			continue;
-		line		= [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-		if ([line hasSuffix:@":"])
-			continue;
-		NSArray*	tmp	= [line componentsSeparatedByString:@" "];
-		NSString*	key	= [tmp count] > 0 ? [tmp objectAtIndex:0] : nil;
-		NSString*	val	= [tmp count] > 1 ? [[tmp subarrayWithRange:NSMakeRange(1,[tmp count]-1)] componentsJoinedByString:@" "] : @"";
-		if (key)
-			[dict setObject:val forKey:key];
-	}
-	return dict;
-}

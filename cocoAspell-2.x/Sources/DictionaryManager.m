@@ -118,7 +118,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		if (err == 0) {
 			success = YES;
 		} else {
-			NSLog(execMake);
+			NSLog(@"%@", execMake);
 			NSLog(@"make failed");
 			if (errorMessage) {
 				*errorMessage	= [NSString stringWithFormat:LocalizedString(@"keyInfoFailMake",nil), dict];
@@ -126,7 +126,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		}
 		
 	} else {
-		NSLog(execConfig);
+		NSLog(@"%@", execConfig);
 		NSLog(@"configure failed");
 		if (errorMessage) {
 			*errorMessage	= [NSString stringWithFormat:LocalizedString(@"keyInfoFailConfig",nil), dict];

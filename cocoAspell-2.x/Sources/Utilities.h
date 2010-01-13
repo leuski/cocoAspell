@@ -20,4 +20,3 @@ DictionaryDirectoryFlag dictionaryDirectoryType(NSString* inPath);
 NSArray*		allDictionaryDirectories(DictionaryDirectoryFlag flag);
 NSString*		getSystemLanguageName(NSString* inName, BOOL inEnglish);
 NSString*		cocoAspellFolderForLibraryFolder(NSString* libPath);
-NSDictionary*	infoForDirectoryPath(NSString* inPath);

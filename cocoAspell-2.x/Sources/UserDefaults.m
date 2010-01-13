@@ -24,7 +24,7 @@ NSString*	kDefaultsDomain	= @"net.leuski.cocoaspell";
 	NSDictionary*			curDefaults	= [UserDefaults userDefaults];
 	NSMutableDictionary*	newDefaults	= nil;
 	if (curDefaults) {
-		newDefaults	= [curDefaults mutableCopy];
+		newDefaults	= [[curDefaults mutableCopy] autorelease];
 	} else {
 		newDefaults	= [NSMutableDictionary dictionary];
 	}
