@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+<title>Authors - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="ChangeLog.html#ChangeLog" title="ChangeLog">
+<link rel="next" href="Copying.html#Copying" title="Copying">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Authors"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Copying.html#Copying">Copying</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="ChangeLog.html#ChangeLog">ChangeLog</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="appendix">Appendix G Authors</h2>
+
+<p>The following people or companies have contributed a non-trival amount of
+code to Aspell and thus own the Copyright to part of Aspell.
+
+     <dl>
+<dt>Jose Da Silva<dd>Bug fixes and enhancements to <samp><span class="command">word-list-compress</span></samp>.
+
+     <br><dt>Sergey Poznyakoff<dd>Wrote the Nroff filter.
+
+     <br><dt>Tom Snyder<dd>Enhanced the SGML filter to also support skipping sgml tags such as
+"script" blocks.
+
+     <br><dt>Kevin B. Hendricks (and Contributers)<dd>Wrote MySpell which is a simple spell checker library that supports
+affix compression.  Aspell affix compression code is based on his code.
+
+     <br><dt>Christoph Hinterm&uuml;ller<dd>Added support for loadable filters.
+
+     <br><dt>Melvin Hadasht<dd>Wrote a locale independent version of strtol and strtod. 
+Wrote the original loadable filter support however his code has been
+completely rewritten by Christoph Hinterm&uuml;ller and Kevin Atkinson.
+
+     <br><dt>Bj&ouml;rn Jacke<dd>Wrote the generic soundslike algorithm which gets all of its data from a
+file, thus eliminating almost all need for language specific code from
+Aspell.
+
+     <br><dt>Silicon Graphics Computer Systems, Inc.<dt>Hewlett-Packard Company<dd>Parts of the SGI STL code were used in various places throughout the
+Aspell source.
+
+   </dl>
+
+   <p>In addition the authors of some of translated messages did not release
+their work into the Public Domain, and thus own the copyright to the
+translated text.  See the files <samp><span class="file">*.po</span></samp> in the <samp><span class="file">po</span></samp> directory
+for more details.
+
+   <p>The folowing people also contributed to the development of Aspell but do
+not own the Copyright to part of Aspell.
+
+     <dl>
+<dt>Sergey Poznyakoff<dd>Added gettext support.
+
+     <br><dt>Chris Martin<dd>Converted the manual to texinfo.
+
+     <br><dt>Lawrence Philips<dd>Wrote the original metaphone algorithm; however, he released his work
+into the Public Domain.
+
+     <br><dt>Michael Kuhn<dd>Converted the metaphone algorithm into C code and made some enhancements
+to the original algorithm.  He also released his work into the Public
+Domain.
+
+     <br><dt>Geoff Kuenning (and contributers)<dd>The authors of Ispell.  Many of the ideas used in Aspell, especially with
+the affix code, were taken from Ispell.  However none of the original
+Ispell code is used in Aspell.
+
+   </dl>
+
+   </body></html>
+

@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>Format of the Personal and Replacement Dictionaries - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Working-With-Dictionaries.html#Working-With-Dictionaries" title="Working With Dictionaries">
+<link rel="prev" href="Working-With-Affix-Info-in-Word-Lists.html#Working-With-Affix-Info-in-Word-Lists" title="Working With Affix Info in Word Lists">
+<link rel="next" href="Using-Multi-Dictionaries.html#Using-Multi-Dictionaries" title="Using Multi Dictionaries">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Format-of-the-Personal-and-Replacement-Dictionaries"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Using-Multi-Dictionaries.html#Using-Multi-Dictionaries">Using Multi Dictionaries</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Working-With-Affix-Info-in-Word-Lists.html#Working-With-Affix-Info-in-Word-Lists">Working With Affix Info in Word Lists</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Working-With-Dictionaries.html#Working-With-Dictionaries">Working With Dictionaries</a>
+<hr>
+</div>
+
+<h3 class="section">5.7 Format of the Personal and Replacement Dictionaries</h3>
+
+<p><a name="Format-of-the-Personal-Dictionary"></a>
+
+<h4 class="subsection">5.7.1 Format of the Personal Dictionary</h4>
+
+<p>The personal dictionary generally has a filename of the form:
+
+<pre class="example">     .aspell.<var>lang</var>.pws
+</pre>
+   <p class="noindent">And the file itself contains two parts.  The first part is a
+header line of the form:
+
+<pre class="example">     personal_ws-1.1 <var>lang</var> <var>num</var> <i>[</i><var>encoding</var><i>]</i>
+</pre>
+   <p class="noindent">where <var>num</var> is the number of words in the list.  This number is
+only used as a hint, and thus does not have to be accurate.  When
+creating a new dictionary it is perfectly acceptable for <var>num</var> to
+be 0.  The <var>encoding</var> is optional and specifies the encoding of
+the word list.  If it is left out the encoding is expected to be in
+the default encoding for the language as specified by the
+<samp><span class="option">data-encoding</span></samp> option.  See <a href="data_002dencoding.html#data_002dencoding">data-encoding</a>.
+
+   <p>The second part of simply a word list with one word per line.
+
+<h4 class="subsection">5.7.2 Format of the Personal Replacement Dictionary</h4>
+
+<p>The personal replacement dictionary generally has a filename of the form:
+
+<pre class="example">     .aspell.<var>lang</var>.prepl
+</pre>
+   <p class="noindent">And the file itself contains two parts.  The first part is a
+header line of the form:
+
+<pre class="example">     personal_repl-1.1 <var>lang</var> <var>num</var> <i>[</i><var>encoding</var><i>]</i>
+</pre>
+   <p class="noindent">where <var>num</var> is currently unused and thus always 0.  As with the
+personal dictionary the <var>encoding</var> is optional.
+
+   <p>The second part simply a list of replacements with one replacement
+per line with each replacement pair has the following format:
+
+<pre class="example">     <var>misspelled_word</var> <var>correction</var>
+</pre>
+   </body></html>
+

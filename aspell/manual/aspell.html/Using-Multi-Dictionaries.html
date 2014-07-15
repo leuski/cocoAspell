@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+<title>Using Multi Dictionaries - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Working-With-Dictionaries.html#Working-With-Dictionaries" title="Working With Dictionaries">
+<link rel="prev" href="Format-of-the-Personal-and-Replacement-Dictionaries.html#Format-of-the-Personal-and-Replacement-Dictionaries" title="Format of the Personal and Replacement Dictionaries">
+<link rel="next" href="Dictionary-Naming.html#Dictionary-Naming" title="Dictionary Naming">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Using-Multi-Dictionaries"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Dictionary-Naming.html#Dictionary-Naming">Dictionary Naming</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Format-of-the-Personal-and-Replacement-Dictionaries.html#Format-of-the-Personal-and-Replacement-Dictionaries">Format of the Personal and Replacement Dictionaries</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Working-With-Dictionaries.html#Working-With-Dictionaries">Working With Dictionaries</a>
+<hr>
+</div>
+
+<h3 class="section">5.8 Using Multi Dictionaries</h3>
+
+<p>As with previous versions of Aspell you can specify the main
+dictionary to use via the <samp><span class="option">-d</span></samp> or <samp><span class="option">--master</span></samp> option. 
+However as of <acronym>Aspell .32</acronym> you can now also:
+
+     <ol type=1 start=1>
+<li>Specify more than word list to use with the
+<samp><span class="option">extra-dicts</span></samp> option.
+
+     <li>Specify special <em>multi</em> dictionaries.
+        </ol>
+
+   <p>The <samp><span class="option">extra-dicts</span></samp> is a list option.  To add a dictionary use
+<samp><span class="option">add-extra-dicts</span></samp> or to remove a dictionary from the list
+use <samp><span class="option">rem-extra-dicts</span></samp>.
+
+   <p>A <em>multi</em> dictionary is a special file which is basically a list
+of dictionary files to use.  A <em>multi</em> dictionary must end in
+<samp><span class="file">.multi</span></samp> and has roughly the same format as a configuration file
+with the only accepted key being <samp><span class="option">add</span></samp>.
+
+   </body></html>
+

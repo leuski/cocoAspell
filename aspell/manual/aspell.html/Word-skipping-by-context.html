@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>Word skipping by context - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Notes-on-Various-Items.html#Notes-on-Various-Items" title="Notes on Various Items">
+<link rel="next" href="Hidden-Markov-Model.html#Hidden-Markov-Model" title="Hidden Markov Model">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Word-skipping-by-context"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Hidden-Markov-Model.html#Hidden-Markov-Model">Hidden Markov Model</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Notes-on-Various-Items.html#Notes-on-Various-Items">Notes on Various Items</a>
+<hr>
+</div>
+
+<h4 class="appendixsubsec">D.3.1 Word skipping by context</h4>
+
+<p>This was posted on the Aspell mailing list on January 1, 1999:
+
+   <p>I had an idea on a great general way to determine if a word should be
+skipped.  Determine the words to skip based on the symbols that
+(almost) always surround the word.
+
+   <p>For example when asked to check the following C++ code:
+<pre class="example">     cout &lt;&lt; "My age is: " &lt;&lt; num &lt;&lt; endl;
+     cout &lt;&lt; "Next year I will be " &lt;&lt; num + 1 &lt;&lt; endl;
+</pre>
+   <p><code>cout</code>, <code>num</code>, and <code>endl</code> will all be skipped. 
+<code>cout</code> will be skipped because it is always preceded by a
+`<samp><span class="samp">&lt;&lt;</span></samp>'.  <code>num</code> will be skipped because it is always preceded
+by a `<samp><span class="samp">&lt;&lt;</span></samp>'.  And <code>endl</code> will be skipped because it is always
+between a `<samp><span class="samp">&lt;&lt;</span></samp>' and a `<samp><span class="samp">;</span></samp>'.
+
+   <p>Given the following HTML code.
+<pre class="example">     &lt;table width=50% cellspacing=0 cellpadding=1&gt;
+     &lt;tr&gt;&lt;td&gt;One&lt;td&gt;Two&lt;td&gt;Three
+     &lt;tr&gt;&lt;td&gt;1&lt;td&gt;2&lt;td&gt;3
+     &lt;/table&gt;
+     
+     &lt;table cellspacing=0 cellpadding=1&gt;
+     &lt;/table&gt;
+</pre>
+   <p><code>table</code>, <code>width</code> <code>cellspacing</code>, <code>cellpadding</code>,
+<code>tr</code>, <code>td</code> will all be skipped because they are always
+enclosed in `<samp><span class="samp">&lt;&gt;</span></samp>'.  Now of course <code>table</code> and
+<code>width</code> would be marked as correct anyway however there is no
+harm in skipping them.
+
+   <p>So I was wondering if anyone on this list has any experience in
+writing this sort of context recognition code or could give me some
+pointers in the right direction.
+
+   <p>This sort of word skipping will be very powerful if done right.  I
+imagine that it could replace specific spell checker modes for TeX,
+Nroff, SGML etc because it will automatically be able to figure out
+where it should skip words.  It could also probably do a very good job
+on programming languages code.
+
+   <p>If you are interested in helping me out with this or just have general
+comments about the idea please let me know.
+
+   </body></html>
+

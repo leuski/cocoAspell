@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+<title>Words With Symbols in Them - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Language-Related-Issues.html#Language-Related-Issues" title="Language Related Issues">
+<link rel="prev" href="Compound-Words.html#Compound-Words" title="Compound Words">
+<link rel="next" href="Unicode-Normalization.html#Unicode-Normalization" title="Unicode Normalization">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Words-With-Symbols-in-Them"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Unicode-Normalization.html#Unicode-Normalization">Unicode Normalization</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Compound-Words.html#Compound-Words">Compound Words</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Language-Related-Issues.html#Language-Related-Issues">Language Related Issues</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">C.2 Words With Spaces or Other Symbols in Them</h3>
+
+<p>Many languages, including English, have words with non-letter symbols in
+them.  For example the apostrophe.  These symbols generally appear in
+the middle of a word, but they can also appear at the end, such as in an
+abbreviation.  If a symbol can <em>only</em> appear as part of a word then
+Aspell can treat it as if it were a letter.
+
+   <p>However, the problem is most of these symbols have other uses.  For
+example, the apostrophe is often used as a single quote and the
+abbreviations marker is also used as a period.  Thus, Aspell cannot
+blindly treat them as if they were letters.
+
+   <p>Aspell currently handles the case where the symbol can only appear in
+the middle of the word fairly well.  It simply assumes that if there is
+a letter both before and after the symbol than it is part of the word. 
+This works most of the time but it is not fool proof.  For example,
+suppose the user forgot to leave a space after the period:
+
+<pre class="display">       <small class="dots">...</small> and the dog went up the tree.Then the cat <small class="dots">...</small>
+</pre>
+   <p class="noindent">Aspell would think &ldquo;tree.Then&rdquo; is one word.  A better solution
+might be to then try to check &ldquo;tree&rdquo; and &ldquo;Then&rdquo; separately. 
+But what if one of them is not in the dictionary?  Should Aspell assume
+&ldquo;tree.Then&rdquo; is one word?
+
+   <p>The case where the symbol can appear at the beginning or end of the word
+is more difficult to deal with.  The symbol may or may not actually be
+part of the word.  Aspell currently handles this case by first trying to
+spell check the word with the symbol and if that fails, try it without. 
+The problem is, if the word is misspelled, should Aspell assume the
+symbol belongs with the word or not?  Currently Aspell assumes it does,
+which is not always the correct thing to do.
+
+   <p>Numbers in words present a different challenge to Aspell.  If Aspell
+treats numbers as letters then every possible number a user might write
+in a document must be specified in the dictionary.  This could easily
+be solved by having special code to assume all numbers are correctly
+spelled.  Yet, what about something like &ldquo;4th&rdquo;.  Since the &ldquo;th&rdquo;
+suffix can appear after any number we are left with the same
+problem.  The solution would be to have a special symbol for &ldquo;any
+number&rdquo;.
+
+   <p>Words with spaces in them, such as foreign phrases, are even more
+trouble to deal with.  The basic problem is that when tokenizing a
+string there is no good way to keep phrases together. One solution is to
+use trial and error.  If a word is not in the dictionary try grouping it
+with the previous or next word and see if the combined word is in the
+dictionary.  But what if the combined word is not, should the misspelled
+word be grouped when looking for suggestions?  One solution is to also
+store each part of the phrase in the dictionary, but tag it as part of a
+phrase and not an independent word.
+
+   <p>To further complicate things, most applications that use spell checkers
+are accustom to parsing the document themselves and sending it to the
+spell checker a word at a time.  In order to support words with spaces in
+them a more complicated interface will be required.
+
+   </body></html>
+

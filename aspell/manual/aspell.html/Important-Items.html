@@ -1,0 +1,131 @@
+<html lang="en">
+<head>
+<title>Important Items - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="To-Do.html#To-Do" title="To Do">
+<link rel="next" href="Other-Items.html#Other-Items" title="Other Items">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Important-Items"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Other-Items.html#Other-Items">Other Items</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="To-Do.html#To-Do">To Do</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">D.1 Important Items</h3>
+
+<p>Words in bold indicate how you should refer to the item when
+discussing it with me or others.
+
+<h4 class="appendixsubsec">D.1.1 Things that need to be done</h4>
+
+<p>These items need to be done before I consider Aspell finished. If you
+are interested in helping me with one of these tasks please email
+me. Good C++ skills are needed for most of these tasks involving
+coding.
+
+     <ul>
+<li>Create a generic filter to handle multi-character letters such as
+`<samp><span class="samp">"a</span></samp>' or `<samp><span class="samp">\"a</span></samp>' for &auml;.  This filter should make use of the
+already exiting normalization code if possible. 
+<li>Make Aspell <strong>Thread safe</strong>. Even though Aspell itself is not
+multi-threaded I would like it to be thread safe so that it can be
+used by multi-threaded programs. There are several areas of Aspell
+that are potentially thread unsafe (such as accessing a global pool)
+and several classes which have the potential of being used by more
+than one thread (such as the personal dictionary). <em>[In
+Progress]</em>. 
+<li>Enhance <strong>ispell.el</strong> so that it will work better with GNU
+Aspell.  <em>[In Progress]</em>. 
+<li>Clean up copyright notices and bring the Aspell package up to
+<strong>GNU Standards</strong>. <em>[In Progress]</em>. 
+</ul>
+
+<h4 class="appendixsubsec">D.1.2 Things I would like to get done</h4>
+
+<p>I would like to get these done. However, I may still consider Aspell
+finished without. They will probably eventually get
+implemented. However, I could still use help with them.
+
+     <ul>
+<li>Better support for <strong>compound words</strong>. The support for
+<em>conditional</em> compound words found in Aspell versions 0.50
+and earlier is no longer available since no one seems to be using
+it. Support for <em>unconditional</em> compound words is still
+available. See <a href="Compound-Words.html#Compound-Words">Compound Words</a>. 
+<li>Be able to accept <strong>words with spaces in them</strong> as many languages
+have words, such as a word in a foreign phrase, which only makes sense
+when followed by other words. See <a href="Words-With-Symbols-in-Them.html#Words-With-Symbols-in-Them">Words With Symbols in Them</a>. 
+<li>Reorganize manual to make it easier to understand and to make it
+possible to break out useful man pages. 
+<li>Support <strong>soundslike lookup with affix compression</strong>.  I think it
+is possible, although I don't know how effective it will be.  The basic
+idea is to affix compress the soundslike codes and then match the
+codes up with affix compressed words.  If you are interested,
+email <a href="mailto:aspell-devel@gnu.org">aspell-devel@gnu.org</a>, and I will explain it in more
+detail. 
+<li>Use Lawrence Philips' new <strong>Double Metaphone algorithm</strong>. See
+<a href="http://aspell.net/metaphone/">http://aspell.net/metaphone/</a>. The main task involved
+here is converting the algorithm into table form. This will take some
+time but there is no real programming experience required. If you want
+to help with Aspell but don't have any real programming experience,
+this would be a great place to start. 
+<li>Rank suggestions based on <strong>frequency information</strong>.  Both global
+frequency and document specific frequency can be used.  The latter will
+require that the whole document be made available to the spell checker. 
+Also use frequency information to flag words which are found in the
+dictionary but not in common usage, and thus might not be what was
+intended. 
+<li>Support a <strong>"dual-script" mode</strong> where Aspell can use a separate
+dictionary depending on which script it detects the current word in, the
+two dictionaries can have nothing in common, ie an English one and a
+Russian one for example.  This will <em>not</em> support two languages that
+use the same script as that is a lot more complicated.  For example if
+the word is misspelled which dictionary should it use for the
+suggestions? 
+<li>Write a <strong>GUI</strong> for the Aspell utility. Ideally it should be able to do
+everything the Aspell utility can do and not just be able spell check
+a document. 
+<li>Develop a <strong>more powerful C API</strong> for Aspell.  Ideally this API should
+allow one to perform all the tasks the Aspell utility can do.  This
+included the ability to check whole documents, and create
+dictionaries, among other things. 
+<li>Create a <strong>C++ interface</strong> for Aspell, possibly on top of the C one.
+
+   </ul>
+
+   </body></html>
+

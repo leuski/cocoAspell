@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+<title>Upgrading from Aspell 0.50 - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installing.html#Installing" title="Installing">
+<link rel="prev" href="Loadable-Filter-Notes.html#Loadable-Filter-Notes" title="Loadable Filter Notes">
+<link rel="next" href="Upgrading-from-Aspell-_002e33_002fPspell-_002e12.html#Upgrading-from-Aspell-_002e33_002fPspell-_002e12" title="Upgrading from Aspell .33/Pspell .12">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Upgrading-from-Aspell-0.50"></a>
+<a name="Upgrading-from-Aspell-0_002e50"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Upgrading-from-Aspell-_002e33_002fPspell-_002e12.html#Upgrading-from-Aspell-_002e33_002fPspell-_002e12">Upgrading from Aspell .33/Pspell .12</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Loadable-Filter-Notes.html#Loadable-Filter-Notes">Loadable Filter Notes</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installing.html#Installing">Installing</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">E.5 Upgrading from Aspell 0.50</h3>
+
+<p>The dictionary format has changed so dictionaries will need to be
+recompiled.
+
+   <p>All data, by default, is now included in <samp><var>libdir</var><span class="file">/aspell-0.60</span></samp> so
+that multiple versions of Aspell can more peacefully coexist.  This
+included both the dictionaries and the language data files which were
+stored in <samp><var>sharedir</var><span class="file">/aspell</span></samp> before Aspell 0.60.
+
+   <p>The format of the character data files has changed.  The new character
+data files are installed with Aspell so you should not have to worry
+about it unless you made a custom one.
+
+   <p>The dictionary option <samp><span class="option">strip-accents</span></samp> has been removed.  For
+this reason the old English dictionary (up to 0.51) will no longer
+work.  A new English dictionary is now available which avoids using
+this option.  In addition the <samp><span class="option">ignore-accents</span></samp> option is
+currently unimplemented.
+
+   <p>The flag <samp><span class="option">-l</span></samp> is now a shortcut for <samp><span class="option">--lang</span></samp>, instead of
+<samp><span class="option">--list</span></samp> as it was with Aspell 0.50.
+
+   <p><a name="Binary-Compatibility"></a>
+
+<h4 class="appendixsubsec">E.5.1 Binary Compatibility</h4>
+
+<p>The Aspell 0.60 library is binary compatible with the Aspell 0.50
+library.  For this reason I chose <em>not</em> to increment the major
+version number (so-name) of the shared library by default which means
+programs that were compiled for Aspell 0.50 will also work for Aspell
+0.60.  However, this means that having both Aspell 0.50 and Aspell 0.60
+installed at the same time can be pragmatic.  If you wish to allow both
+Aspell 0.50 and 0.60 to be installed at the same time then you can use
+the configure option <samp><span class="option">--incremented-soname</span></samp> which will increment
+so-name.  You should only use this option if you know what you are
+doing.  It is up to you to somehow ensure that both the Aspell 0.50 and
+0.60 executables can coexist.
+
+   <p>If after incrementing the so-name you wish to allow programs compiled
+for Aspell 0.50 to use Aspell 0.60 instead (thus implying that Aspell
+0.50 is not installed) then you can use a special compatibility library
+which can be found in the <samp><span class="file">lib5</span></samp> directory.  This directory will
+not be entered when building or installing Aspell so you must manually
+build and install this library.  You should build it after the rest of
+Aspell is built.  The order in which this library is installed, with
+relation to the rest of Aspell, is also important.  If it is installed
+<em>after</em> the rest of Aspell then new programs will link to the old
+library (which will work for Aspell 0.50 or 0.60) when built, if
+installed <em>before</em>, new programs will link with the new library
+(Aspell 0.60 only).
+
+   </body></html>
+

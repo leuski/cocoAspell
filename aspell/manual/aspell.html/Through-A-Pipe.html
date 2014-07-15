@@ -1,0 +1,168 @@
+<html lang="en">
+<head>
+<title>Through A Pipe - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Writing-programs-to-use-Aspell.html#Writing-programs-to-use-Aspell" title="Writing programs to use Aspell">
+<link rel="prev" href="Through-the-C-API.html#Through-the-C-API" title="Through the C API">
+<link rel="next" href="Notes-on-Storing-Replacement-Pairs.html#Notes-on-Storing-Replacement-Pairs" title="Notes on Storing Replacement Pairs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Through-A-Pipe"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Notes-on-Storing-Replacement-Pairs.html#Notes-on-Storing-Replacement-Pairs">Notes on Storing Replacement Pairs</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Through-the-C-API.html#Through-the-C-API">Through the C API</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Writing-programs-to-use-Aspell.html#Writing-programs-to-use-Aspell">Writing programs to use Aspell</a>
+<hr>
+</div>
+
+<h3 class="section">6.2 Through A Pipe</h3>
+
+<p>When given the <samp><span class="command">pipe</span></samp> or <samp><span class="command">-a</span></samp> command, Aspell goes
+into a pipe mode that is compatible with <samp><span class="command">ispell -a</span></samp>.  Aspell
+also defines its own set of extensions to Ispell pipe mode.
+
+<h4 class="subsection">6.2.1 Format of the Data Stream</h4>
+
+<p>In this mode, Aspell prints a one-line version identification message,
+and then begins reading lines of input.  For each input line, a single
+line is written to the standard output for each word checked for
+spelling on the line.  If the word was found in the main dictionary,
+or your personal dictionary, then the line contains only a `<samp><span class="samp">*</span></samp>'.
+
+   <p>If the word is not in the dictionary, but there are suggestions, then
+the line contains an `<samp><span class="samp">&amp;</span></samp>', a space, the misspelled word, a space,
+the number of near misses, the number of characters between the
+beginning of the line and the beginning of the misspelled word, a
+colon, another space, and a list of the suggestions separated by
+commas and spaces.
+
+   <p>If you set the option <samp><span class="command">run-together</span></samp> and Aspell thinks this word
+is a combination of two words in the dictionary, then it prints a single
+`<samp><span class="samp">-</span></samp>' in one line.
+
+   <p>Finally, if the word does not appear in the dictionary, and there are
+no suggestions, then the line contains a `<samp><span class="samp">#</span></samp>', a space, the
+misspelled word, a space, and the character offset from the beginning
+of the line.  Each sentence of text input is terminated with an
+additional blank line, indicating that Aspell has completed processing
+the input line.
+
+   <p>These output lines can be summarized as follows:
+
+<pre class="example">     <strong>OK</strong>: *
+     <strong>Suggestions</strong>: &amp; <i>original</i> <i>count</i> <i>offset</i>: <i>miss</i>, <i>miss</i>, ...
+     <strong>None</strong>: # <i>original</i> <i>offset</i>
+</pre>
+   <p>When in the <samp><span class="option">-a</span></samp> mode, Aspell will also accept lines of single
+words prefixed with any of `<samp><span class="samp">*</span></samp>', `<samp><span class="samp">&amp;</span></samp>', `<samp><span class="samp">@</span></samp>',
+`<samp><span class="samp">+</span></samp>', `<samp><span class="samp">-</span></samp>', `<samp><span class="samp">~</span></samp>', `<samp><span class="samp">#</span></samp>', `<samp><span class="samp">!</span></samp>', `<samp><span class="samp">%</span></samp>', or
+`<samp><span class="samp">^</span></samp>'.  A line starting with `<samp><span class="samp">*</span></samp>' tells Aspell to insert the
+word into the user's dictionary.  A line starting with `<samp><span class="samp">&amp;</span></samp>' tells
+Aspell to insert an all-lowercase version of the word into the user's
+dictionary.  A line starting with `<samp><span class="samp">@</span></samp>' causes Aspell to accept
+this word in the future.  A line starting with `<samp><span class="samp">+</span></samp>', followed
+immediately by a valid mode will cause Aspell to parse future input
+according the syntax of that formatter.  A line consisting solely of a
+`<samp><span class="samp">+</span></samp>' will place Aspell in TeX/LaTeX mode (similar to the
+<samp><span class="option">-t</span></samp> option) and `<samp><span class="samp">-</span></samp>' returns Aspell to its default mode
+(which is Nroff unless otherwise specified). 
+(but these commands are obsolete).  A line `<samp><span class="samp">~</span></samp>', is ignored for
+Ispell compatibility.  A line prefixed with `<samp><span class="samp">#</span></samp>' will cause the
+personal dictionaries to be saved.  A line prefixed with `<samp><span class="samp">!</span></samp>'
+will turn on terse mode (see below), and a line prefixed with
+`<samp><span class="samp">%</span></samp>' will return Aspell to normal (non-terse) mode.  Any input
+following the prefix characters `<samp><span class="samp">+</span></samp>', `<samp><span class="samp">-</span></samp>', `<samp><span class="samp">#</span></samp>',
+`<samp><span class="samp">!</span></samp>', `<samp><span class="samp">~</span></samp>', or `<samp><span class="samp">%</span></samp>' is ignored, as is any input
+following.  To allow spell-checking of lines beginning with these
+characters, a line starting with `<samp><span class="samp">^</span></samp>' has that character removed
+before it is passed to the spell-checking code.  It is recommended
+that programmatic interfaces prefix every data line with an uparrow to
+protect themselves against future changes in Aspell.
+
+   <p>To summarize these:
+
+   <p><table summary=""><tr align="left"><td valign="top" width="10%"><kbd>*</kbd><var>word</var>
+ </td><td valign="top" width="90%">Add a word to the personal dictionary
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>&amp;</kbd><var>word</var>
+ </td><td valign="top" width="90%">Insert the all-lowercase version of the word in the personal dictionary
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>@</kbd><var>word</var>
+ </td><td valign="top" width="90%">Accept the word, but leave it out of the dictionary
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>#</kbd>
+ </td><td valign="top" width="90%">Save the current personal dictionary
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>~</kbd> </td><td valign="top" width="90%">Ignored for Ispell compatibility. 
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>+</kbd> </td><td valign="top" width="90%">Enter TeX mode. 
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>+</kbd><var>mode</var> </td><td valign="top" width="90%">Enter the mode specified by <var>mode</var>. 
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>-</kbd> </td><td valign="top" width="90%">Enter the default mode. 
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>!</kbd> </td><td valign="top" width="90%">Enter terse mode
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>%</kbd> </td><td valign="top" width="90%">Exit terse mode
+<br></td></tr><tr align="left"><td valign="top" width="10%"><kbd>^</kbd> </td><td valign="top" width="90%">Spell-check the rest of the line
+   <br></td></tr></table>
+
+   <p>In terse mode, Aspell will not print lines beginning with `<samp><span class="samp">*</span></samp>',
+which indicate correct words.  This significantly improves running
+speed when the driving program is going to ignore correct words
+anyway.
+
+   <p>In addition to the above commands which are designed for Ispell
+compatibility Aspell also supports its own extensions.  All Aspell
+extensions follow the following format.
+
+<pre class="example">     $$<var>command</var> [<var>data</var>]
+</pre>
+   <p>Where <var>data</var> may or may not be required depending on the
+particular command.  Aspell currently supports the following commands:
+
+   <p><table summary=""><tr align="left"><td valign="top" width="33%"><code>cs </code><var>option</var><code>,</code><var>value</var> </td><td valign="top" width="67%">Change a configuration option. 
+<br></td></tr><tr align="left"><td valign="top" width="33%"><code>cr </code><var>option</var> </td><td valign="top" width="67%">Prints the value of a configuration option. 
+<br></td></tr><tr align="left"><td valign="top" width="33%"><code>pp</code>
+ </td><td valign="top" width="67%">Returns a list of all words in the current personal wordlist. 
+<br></td></tr><tr align="left"><td valign="top" width="33%"><code>ps</code>
+ </td><td valign="top" width="67%">Returns a list of all words in the current session dictionary. 
+<br></td></tr><tr align="left"><td valign="top" width="33%"><code>l</code> </td><td valign="top" width="67%">Returns the current language name. 
+<br></td></tr><tr align="left"><td valign="top" width="33%"><code>ra </code><var>mis</var><code>,</code><var>cor</var> </td><td valign="top" width="67%">Add the word pair to the
+ replacement dictionary for later use. Returns nothing.
+   <br></td></tr></table>
+
+   <p>Anything returned is returned on its own line.  All lists returned
+have the following format
+
+<pre class="example">     <i>num of items</i>: <i>item1</i>, <i>item2</i>, <i>etc</i>
+</pre>
+   <!-- FIXME: Add note about byte-offset option. -->
+<p><em>(Part of the preceding section was directly copied out of the
+Ispell manual)</em>
+
+   </body></html>
+

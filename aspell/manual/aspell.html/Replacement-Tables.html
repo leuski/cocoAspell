@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+<title>Replacement Tables - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Adding-Support-For-Other-Languages.html#Adding-Support-For-Other-Languages" title="Adding Support For Other Languages">
+<link rel="prev" href="The-Simple-Soundslike.html#The-Simple-Soundslike" title="The Simple Soundslike">
+<link rel="next" href="Affix-Compression.html#Affix-Compression" title="Affix Compression">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Replacement-Tables"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Affix-Compression.html#Affix-Compression">Affix Compression</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="The-Simple-Soundslike.html#The-Simple-Soundslike">The Simple Soundslike</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Adding-Support-For-Other-Languages.html#Adding-Support-For-Other-Languages">Adding Support For Other Languages</a>
+<hr>
+</div>
+
+<h3 class="section">7.5 Replacement Tables</h3>
+
+<p>When phonetic code is not used a replacement table can be used instead. 
+To enable the use of a replacement table add the line <code>repl-table
+</code><var>lang</var>, in which case the replacement table is excepted to be in
+the file <samp><var>lang</var><span class="file">_repl.dat</span></samp>.  A complete file name can also be
+specified in place of <var>lang</var>.  For compatibility with MySpell the
+replacement table can also be part of the affix file, in which case
+<samp><span class="option">repl-table</span></samp> will be <samp><var>lang</var><span class="file">_affix.dat"</span></samp>.
+
+   <p>Replacement table syntax:
+
+<pre class="example">     REP [number_of_replacement_definitions]
+     REP [what] [replacement]
+     REP [what] [replacement]
+</pre>
+   <p>For example a possible English replacement table definition
+to handle misspelled consonants:
+
+<pre class="example">     REP 8
+     REP f ph
+     REP ph f
+     REP f gh
+     REP gh f
+     REP j dg
+     REP dg j
+     REP k ch
+     REP ch k
+</pre>
+   </body></html>
+

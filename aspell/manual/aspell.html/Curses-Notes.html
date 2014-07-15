@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+<title>Curses Notes - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installing.html#Installing" title="Installing">
+<link rel="prev" href="HTML-Manuals-and-_0022make-clean_0022.html#HTML-Manuals-and-_0022make-clean_0022" title="HTML Manuals and "make clean"">
+<link rel="next" href="Loadable-Filter-Notes.html#Loadable-Filter-Notes" title="Loadable Filter Notes">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Curses-Notes"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Loadable-Filter-Notes.html#Loadable-Filter-Notes">Loadable Filter Notes</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="HTML-Manuals-and-_0022make-clean_0022.html#HTML-Manuals-and-_0022make-clean_0022">HTML Manuals and &quot;make clean&quot;</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installing.html#Installing">Installing</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">E.3 Curses Notes</h3>
+
+<p>If you are having problems compiling <samp><span class="file">check_funs.cpp</span></samp> then the
+most likely reason is due to incompatibilities with the curses
+implementation on your system.  You should first try disabling the
+&ldquo;wide&rdquo; curses library by with the <samp><span class="option">--disable-wide-curses</span></samp>
+configure option..  By doing so you will lose support for properly
+displaying UTF-8 characters but you may still be able to get the full
+screen interface.  If this fails than you can disable curses support
+altogether with the <samp><span class="option">--disable-curses</span></samp> configure option.  By
+doing this you will lose the nice full screen interface but hopefully
+you will be able to at least get Aspell to compile correctly.
+
+   <p>If the curses library is installed in a non-standard location than you
+can specify the library and include directory with
+<samp><span class="option">--enable-curses=</span><var>lib</var></samp> and
+<samp><span class="option">--enable-curses-include=</span><var>dir</var></samp>.
+
+   <p><samp><var>lib</var></samp> can either be the complete path of the library&mdash;for
+example
+<pre class="example">     /usr/local/curses/libcurses.a
+</pre>
+   <p>or the name of the library (for example
+<samp><span class="file">ncurses</span></samp>) or a combined location and library in the form
+<samp><span class="option">-L</span><var>libdir</var><span class="option"> -l</span><var>lib</var></samp> (for example
+<samp><span class="option">-L/usr/local/ncurses/lib -lncurses</span></samp>).
+
+   <p><var>dir</var> is the location of the curses header files (for example
+<samp><span class="file">/usr/local/ncurses/include</span></samp>).
+
+<h4 class="appendixsubsec">E.3.1 Unicode Support</h4>
+
+<p>In order for Aspell to correctly spell check UTF-8 documents in full
+screen mode the "wide" version of the curses library must be
+installed.  This is different from the normal version of curses
+library, and is normally named <samp><span class="file">libcursesw</span></samp> (with a `<samp><span class="samp">w</span></samp>' at
+the end) or <samp><span class="file">libncursesw</span></samp>.  UTF-8 documents will not display
+correctly without the right curses version installed.
+
+   <p>In addition your system must also support the <code>mblen</code> function. 
+Although this function was defined in the ISO C89 standard (ANSI
+X3.159-1989), not all systems have it.
+
+   </body></html>
+

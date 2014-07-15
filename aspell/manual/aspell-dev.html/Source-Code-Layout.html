@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+<title>Source Code Layout - Aspell Developer's Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell spell checker developer's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Error-Handling.html#Error-Handling" title="Error Handling">
+<link rel="next" href="Strings.html#Strings" title="Strings">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the developer's manual for Aspell.
+
+Copyright (C) 2002, 2003, 2004, 2006 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Source-Code-Layout"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Strings.html#Strings">Strings</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Error-Handling.html#Error-Handling">Error Handling</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">6 Source Code Layout</h2>
+
+     <dl>
+<dt><samp><span class="file">common/</span></samp><dd> Common code used by all parts of Aspell.
+
+     <br><dt><samp><span class="file">lib/</span></samp><dd> Library code used only by the actual Aspell library.
+
+     <br><dt><samp><span class="file">data/</span></samp><dd> Data files used by Aspell.
+
+     <br><dt><samp><span class="file">modules/</span></samp><dd> Aspell modules which are eventually meant to be pluggable.
+
+          <dl>
+  <dt><samp><span class="file">speller/</span></samp><dd>
+               <dl>
+    <dt><samp><span class="file">default/</span></samp><dd>      Main speller Module. 
+  </dl>
+
+          <br><dt><samp><span class="file">filter/</span></samp>
+  <br><dt><samp><span class="file">tokenizer/</span></samp><dd></dl>
+
+     <br><dt><samp><span class="file">auto/</span></samp><dd>Scripts and data files to automatically generate code used by Aspell.
+
+     <br><dt><samp><span class="file">interface/</span></samp><dd>Header files and such that external programs should use when in order
+to use the Aspell library.
+          <dl>
+<dt><samp><span class="file">cc/</span></samp><dd>The external C interface that programs should be using when they wish
+to use Aspell. 
+</dl>
+
+     <br><dt><samp><span class="file">prog/</span></samp><dd>Actual programs based on the Aspell library. The main Aspell utility
+is included here.
+
+     <br><dt><samp><span class="file">scripts/</span></samp><dd>Miscellaneous scripts used by Aspell.
+
+     <br><dt><samp><span class="file">manual/</span></samp>
+<br><dt><samp><span class="file">examples/</span></samp><dd>Example programs demonstrating the use of the Aspell library. 
+</dl>
+
+   </body></html>
+

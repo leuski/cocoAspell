@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<title>Controlling the Behavior of Run-together Words - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Adding-Support-For-Other-Languages.html#Adding-Support-For-Other-Languages" title="Adding Support For Other Languages">
+<link rel="prev" href="Affix-Compression.html#Affix-Compression" title="Affix Compression">
+<link rel="next" href="Creating-A-New-Character-Set.html#Creating-A-New-Character-Set" title="Creating A New Character Set">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Controlling-the-Behavior-of-Run-together-Words"></a>
+<a name="Controlling-the-Behavior-of-Run_002dtogether-Words"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Creating-A-New-Character-Set.html#Creating-A-New-Character-Set">Creating A New Character Set</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Affix-Compression.html#Affix-Compression">Affix Compression</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Adding-Support-For-Other-Languages.html#Adding-Support-For-Other-Languages">Adding Support For Other Languages</a>
+<hr>
+</div>
+
+<h3 class="section">7.7 Controlling the Behavior of Run-together Words</h3>
+
+<p>Aspell currently has support for unconditionally accepting run-together
+words.
+
+   <p>Support for unconditionally accepting run-together words can either be
+turned on in the language data file or as a normal option via the
+<samp><span class="option">run-together</span></samp> option.  The <samp><span class="option">run-together-limit</span></samp> options
+controls the maximum number of words that can be strung together, the
+default is normally 2.  The <samp><span class="option">run-together-min</span></samp> options
+controls the minimum length of the individual components of the run
+together word, the default is normally 3.  Both the
+<samp><span class="option">run-together-limit</span></samp> and <samp><span class="option">run-together-min</span></samp> option may
+be specified in both the language data file or as a normal option.
+
+<!-- FIXME: Add note about compound word support when suggesting. -->
+</body></html>
+

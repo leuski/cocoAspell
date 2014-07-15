@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+<title>Unsupported - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Languages-Which-Aspell-can-Support.html#Languages-Which-Aspell-can-Support" title="Languages Which Aspell can Support">
+<link rel="prev" href="Supported.html#Supported" title="Supported">
+<link rel="next" href="Multiple-Scripts.html#Multiple-Scripts" title="Multiple Scripts">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Unsupported"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Multiple-Scripts.html#Multiple-Scripts">Multiple Scripts</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Supported.html#Supported">Supported</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Languages-Which-Aspell-can-Support.html#Languages-Which-Aspell-can-Support">Languages Which Aspell can Support</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">B.2 Unsupported</h3>
+
+<p>These languages, when written in the given script, are currently
+unsupported by Aspell for one reason or another.
+
+   <p><table summary=""><tr align="left"><td valign="top"><b>Code</b> </td><td valign="top"><b>Language Name</b> </td><td valign="top"><b>Script</b>
+<br></td></tr><tr align="left"><td valign="top">ja </td><td valign="top">Japanese </td><td valign="top">Japanese
+<br></td></tr><tr align="left"><td valign="top">km </td><td valign="top">Khmer </td><td valign="top">Khmer
+<br></td></tr><tr align="left"><td valign="top">ko </td><td valign="top">Korean </td><td valign="top">Han, Hangul
+<br></td></tr><tr align="left"><td valign="top">lo </td><td valign="top">Lao </td><td valign="top">Lao
+<br></td></tr><tr align="left"><td valign="top">th </td><td valign="top">Thai </td><td valign="top">Thai
+<br></td></tr><tr align="left"><td valign="top">zh </td><td valign="top">Chinese </td><td valign="top">Han
+
+   <br></td></tr></table>
+
+<h4 class="appendixsubsec">B.2.1 The Thai, Khmer, and Lao Scripts</h4>
+
+<p>The Thai, Khmer, and Lao scripts presents a different problem for
+Aspell.  The problem is not that there are more than 210 unique symbols,
+but that there are no spaces between words.  This means that there is no
+easy way to split a sentence into individual words.  However, it is
+still possible to spell check these scripts, it is just a lot more
+difficult.  I will be happy to work with someone who is interested in
+adding Thai, Khmer, or Lao support to Aspell, but it is not likely
+something I will do on my own in the foreseeable future.
+
+<h4 class="appendixsubsec">B.2.2 Languages which use H&agrave;nzi Characters</h4>
+
+<p>H&agrave;nzi Characters are used to write Chinese, Japanese, Korean, and were
+once used to write Vietnamese.  Each h&agrave;nzi character represents a
+syllable of a spoken word and also has a meaning.  Since there are
+around 3,000 of them in common usage it is unlikely that Aspell will
+ever be able to support spell checking languages written using h&agrave;nzi
+until full Unicode support is implemented.  However, I am not even sure
+if these languages need spell checking since h&agrave;nzi characters are
+generally not entered in directly.  Furthermore even if Aspell could
+spell check h&agrave;nzi the existing suggestion strategy will not work well
+at all, and thus a completely new strategy will need to be developed. 
+However, if it is the case that h&agrave;nzi needs to be spell checked and
+you know something about the issues involved please fell free to contact
+me.
+
+<h4 class="appendixsubsec">B.2.3 Japanese</h4>
+
+<p>Modern Japanese is written in a mixture of <dfn>hiragana</dfn>,
+<dfn>katakana</dfn>, <dfn>kanji</dfn>, and sometimes <dfn>romaji</dfn>.  <dfn>Hiragana</dfn>
+and <dfn>katakana</dfn> are both syllabaries unique to Japan, <dfn>kanji</dfn> is
+a modified form of h&agrave;nzi, and <dfn>romaji</dfn> uses the Latin alphabet. 
+With some work, Aspell should be able to check the non-kanji part of
+Japanese text.  However, based on my limited understanding of Japanese
+hiragana is often used at the end of kanji.  Thus if Aspell was to
+simply separate out the hiragana from kanji it would end up with a lot
+of word endings which are not proper words and will thus be flagged as
+misspellings.  However, this can be fairly easily rectified as text is
+tokenized into words before it is converted into Aspell's internal
+encoding.  In fact, some Japanese text is written in entirely in one
+script.  For example books for children and foreigners are sometimes
+written entirely in hiragana.  Thus, Aspell, in its current state, could
+prove at least somewhat useful for spell checking Japanese.
+
+<h4 class="appendixsubsec">B.2.4 Hangul</h4>
+
+<p>Korean is generally written in hangul or a mixture of han and hangul.  In
+Hangul letters individual letters, known as jamo, are grouped together
+in syllable blocks.  Unicode allows Hangul to be stored in one of three
+ways, (A) Individual jamo letters (Hangul Compatibility Jamo, U+3130 -
+U+318F), (D) decomposed jamo (Hangul Jamo, U+1100 - U+11FF), and (C)
+precoposed sylable blocks (Hangul Syllables, U+AC00 - U+D7AF).  In order
+for Aspell to work with Hangul it needs to be form A.  Unfortunately the
+existing Normalization code in Aspell will not be able to adequately
+deal with converting Hangul from form D and C to form A and back again. 
+However, once this code is written, Aspell should be able to spell check
+Hangul without any problem.
+
+   </body></html>
+

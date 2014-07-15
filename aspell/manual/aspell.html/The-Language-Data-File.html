@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+<title>The Language Data File - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Adding-Support-For-Other-Languages.html#Adding-Support-For-Other-Languages" title="Adding Support For Other Languages">
+<link rel="next" href="Compiling-the-Word-List.html#Compiling-the-Word-List" title="Compiling the Word List">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="The-Language-Data-File"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Compiling-the-Word-List.html#Compiling-the-Word-List">Compiling the Word List</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Adding-Support-For-Other-Languages.html#Adding-Support-For-Other-Languages">Adding Support For Other Languages</a>
+<hr>
+</div>
+
+<h3 class="section">7.1 The Language Data File</h3>
+
+<p>The basic format of the language data file is the same as it is for the
+Aspell configuration file.  It is named <samp><var>lang</var><span class="file">.dat</span></samp> and is
+located in the architecture independent data dir for Aspell (option
+<samp><span class="option">data-dir</span></samp>) which is usually <samp><var>prefix</var><span class="file">/share/aspell</span></samp>. 
+Use <samp><span class="command">aspell config</span></samp> to find out where it is in your
+installation.  By convention the language name should be the two letter
+ISO 639 language code if it exists, if not use the three letter code.
+
+   <p>The language data file has several mandatory fields, and several
+optional ones.  All fields are case sensitive and should be in all
+lower case.
+
+   <p>The two mandatory fields are <samp><span class="option">name</span></samp> and <samp><span class="option">charset</span></samp>.
+
+   <p><samp><span class="option">name</span></samp> is the name of the language and should be the same as the
+file name (without the <samp><span class="file">.dat</span></samp>).
+
+   <p><samp><span class="option">charset</span></samp> is the 8-bit character set Aspell will expect the
+word lists to be formatted in.  If possible choose from one of the
+standard ones provided with Aspell.  These are `<samp><span class="samp">iso-8859-*</span></samp>',
+`<samp><span class="samp">koi8-*</span></samp>', or `<samp><span class="samp">viscii</span></samp>'.  If your language does not require
+any non-ascii characters choose `<samp><span class="samp">iso-8859-1</span></samp>'.  If one of these
+standard character sets is not suitable for your language then you can
+create a new one.  See <a href="Creating-A-New-Character-Set.html#Creating-A-New-Character-Set">Creating A New Character Set</a>.
+
+   <p>The optional fields are as follows:
+
+     <dl>
+<a name="data_002dencoding"></a>
+<dt><samp><span class="option">data-encoding</span></samp><dd>
+The encoding the language data files are expected to be in as well as
+the default encoding to use when saving the personal dictionaries.  It
+can be either `<samp><span class="samp">utf-8</span></samp>' or any of the 8-bit encoding that Aspell
+supports.  If not set, then it defaults to <samp><span class="option">charset</span></samp>.
+
+     <br><dt><samp><span class="option">special</span></samp><dd>
+Non-letter characters that can appear in your language such as the
+`<samp><span class="samp">'</span></samp>' and `<samp><span class="samp">-</span></samp>'. The format for the value is a list separated by
+spaces.  Each item of the list has the following format.
+
+     <pre class="example">          &lt;char&gt; &lt;begin&gt;&lt;middle&gt;&lt;end&gt;
+     </pre>
+     <p><var>char</var> is the non-letter character in question. 
+<var>begin</var>, <var>middle</var>, <var>end</var> are either a
+`<samp><span class="samp">-</span></samp>' or a `<samp><span class="samp">*</span></samp>'.  A star for <var>begin</var> means that the
+character can begin a word, a `<samp><span class="samp">-</span></samp>' means it can't.  The same is
+true for <var>middle</var> and <var>end</var>. For example, the entry
+for the `<samp><span class="samp">'</span></samp>' in English is:
+
+     <pre class="example">          ' -*-
+     </pre>
+     <p>To include more than one middle character just list them one after
+another on the same line.  For example, to make both the `<samp><span class="samp">'</span></samp>'
+and the `<samp><span class="samp">-</span></samp>' a middle character, use the following line in the
+language data file:
+
+     <pre class="example">          special ' -*- - -*-
+     </pre>
+     <p>However, please be aware that adding special characters can have
+unintended consequences due to limitations of Aspell.  For example if
+the `<samp><span class="samp">-</span></samp>' was accepted as a middle character, then <em>every</em>
+word with a `<samp><span class="samp">-</span></samp>' in it would be flagged as a spelling error unless
+that exact word is in the dictionary, even if both parts are in the
+dictionary.  Also, having a `<samp><span class="samp">.</span></samp>' as an end character will cause
+the `<samp><span class="samp">.</span></samp>' to be part of any misspelled words.  Which can get very
+annoying if you misspell a word at the end of a sentence.
+
+     <br><dt><samp><span class="option">soundslike</span></samp><dd>
+The name of the soundslike data for the language.  The data is
+expected to be in the file <samp><var>name</var><span class="file">_phonet.dat</span></samp>.
+
+     <p>If <var>name</var> is `<samp><span class="samp">simpile</span></samp>' then a very simple soundslike is
+used.  This is not as powerful as full phonetic soundslike but it
+can be computed a lot faster.  (see <a href="The-Simple-Soundslike.html#The-Simple-Soundslike">The Simple Soundslike</a>)
+
+     <p>If the soundslike name is `<samp><span class="samp">none</span></samp>', or this option is not specified,
+then no soundslike will be used.  The effective soundslike is the word
+converted to all lowercase and possibly with accents stripped
+depending on the <samp><span class="option">store-as</span></samp> option.  For languages with
+phonetic spelling the difference will not be very noticeable. 
+However, for languages with non-phonetic spelling there will be a
+noticeable difference.  The difference you notice will depend on the
+quality of the soundslike data file.  If you do not notice much of a
+difference for a language with non-phonetic spelling that is a good
+indication that the soundslike data is not rough enough&mdash;or the words
+you are trying are not that badly misspelled.
+
+     <br><dt><samp><span class="option">invisible-soundslike</span></samp><dd>
+Avoid storing the soundslike information with the word.  Instead it is
+computed as needed.  This option defaults to true if the soundslike is
+`<samp><span class="samp">none</span></samp>' or `<samp><span class="samp">simpile</span></samp>', and false when a phonetic soundslike is
+used.
+
+     <br><dt><samp><span class="option">repl-table</span></samp><dd>
+See <a href="Replacement-Tables.html#Replacement-Tables">Replacement Tables</a>.
+
+     <br><dt><samp><span class="option">keyboard</span></samp><dd>
+The base name of the keyboard definition file to use.  For more
+information see <a href="Notes-on-Typo_002dAnalysis.html#Notes-on-Typo_002dAnalysis">Notes on Typo-Analysis</a>.
+
+     <br><dt><samp><span class="option">sug-split-char</span></samp><dd>
+A list of characters which specifies which characters to insert between
+two words when a word is split.  This is a list option.
+
+     <br><dt><samp><span class="option">affix</span></samp><dt><samp><span class="option">affix-compress</span></samp><dt><samp><span class="option">partially-expand</span></samp><dd>
+See <a href="Affix-Compression.html#Affix-Compression">Affix Compression</a>.
+
+     <br><dt><samp><span class="option">store-as</span></samp><dd>
+How the words are indexed in the dictionary.  If "stripped" then the
+word is indexed in a lower case and de-accented form.  If "lower", then
+the word is indexed in a lower case form but with accent info still
+intact.  This just controls how the word is indexed, not how it is
+stored.  The default is "stripped" unless affix compression is used.
+
+     <!-- @item ignore-accents -->
+<!-- @item affix-char -->
+<!-- Unimplemented -->
+<!-- @item flag-char -->
+<!-- Unimplemented -->
+<br><dt><samp><span class="option">norm-required</span></samp><dd>
+Should be set to true if your language makes use of private use
+characters or when Normalization Form C is not the same as
+full composition.
+
+     <br><dt><samp><span class="option">normalize</span></samp>
+<br><dt><samp><span class="option">norm-form</span></samp><dd>
+</dl>
+
+   <p>Additional options includes options to control how run-together words
+are handled the same way as they are in the normal configuration
+files.  for more information, please <a href="Controlling-the-Behavior-of-Run_002dtogether-Words.html#Controlling-the-Behavior-of-Run_002dtogether-Words">Controlling the Behavior of Run-together Words</a>.
+
+   </body></html>
+

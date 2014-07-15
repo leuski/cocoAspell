@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+<title>Notes on Typo-Analysis - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Notes-on-Various-Options.html#Notes-on-Various-Options" title="Notes on Various Options">
+<link rel="prev" href="Notes-on-the-Prefix-Option.html#Notes-on-the-Prefix-Option" title="Notes on the Prefix Option">
+<link rel="next" href="Notes-on-the-Different-Suggestion-Modes.html#Notes-on-the-Different-Suggestion-Modes" title="Notes on the Different Suggestion Modes">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Notes-on-Typo-Analysis"></a>
+<a name="Notes-on-Typo_002dAnalysis"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Notes-on-the-Different-Suggestion-Modes.html#Notes-on-the-Different-Suggestion-Modes">Notes on the Different Suggestion Modes</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Notes-on-the-Prefix-Option.html#Notes-on-the-Prefix-Option">Notes on the Prefix Option</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Notes-on-Various-Options.html#Notes-on-Various-Options">Notes on Various Options</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.4.3 Notes on Typo-Analysis and the Keyboard Definition File</h4>
+
+<p>Aspell .33 and better will, in general, give a higher priority to
+certain misspellings which are likely to be due to typos such as
+<code>teh</code> instead of <code>the</code> or <code>hapoy</code> instead of
+<code>happy</code>.  However in order to do this well Aspell needs to know the
+layout of the keyboard via the keyboard definition file.  The keyboard
+definition file simply identifies the keys on the keyboard and which of
+them are right next to each other.  It has an extension of <samp><span class="file">.kbd</span></samp>
+and all non-ASCII characters are expected to be in UTF-8.
+
+   <p>To identify a key use:
+
+<pre class="example">     key <var>base</var> <var>other</var> ...
+</pre>
+   <p class="noindent">where <var>base</var> is the base character that the key types, and
+<var>other</var> are other keys that the key can produce.  For example
+
+<pre class="example">     key a A &aacute; &Aacute;
+</pre>
+   <p>It generally is only necessary to list keys which type more than one
+distinct letter as Aspell can derive the rest from the language data
+file.  For example, it is not necessary to include the previously
+mentioned key.
+
+   <p>To identify two keys as being right next to each other simply list the
+type keys right after each other.  For example the line:
+
+<pre class="example">     as
+</pre>
+   <p class="noindent">will indicate that `<samp><span class="samp">a</span></samp>' and `<samp><span class="samp">s</span></samp>' are right next to each other. 
+If `<samp><span class="samp">as</span></samp>' is listed as an entry it is not necessary to list `<samp><span class="samp">sa</span></samp>'
+as an entry as that will be done automatically.  Also by <dfn>right
+next to each other</dfn> I mean two keys that are close enough together that
+it is easy to type one instead of the other.  On most keyboards this
+means keys that are to the left or to the right of each other and
+<em>not</em> keys that are below or above it.
+
+   <p>The default for this option is normally <samp><span class="option">standard</span></samp>.  However
+the default can be changed via the language data file.  The normal
+default, <samp><span class="option">standard</span></samp>, should work well for most QWERTY like
+keyboard layouts.  It may need minor adjusting for foreign keyboards. 
+The <samp><span class="option">dvorak</span></samp> option can be used for a Dvorak layout.
+
+   </body></html>
+

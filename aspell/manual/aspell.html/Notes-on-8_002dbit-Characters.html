@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+<title>Notes on 8-bit Characters - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Implementation-Notes.html#Implementation-Notes" title="Implementation Notes">
+<link rel="prev" href="Aspell-Suggestion-Strategy.html#Aspell-Suggestion-Strategy" title="Aspell Suggestion Strategy">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Notes-on-8-bit-Characters"></a>
+<a name="Notes-on-8_002dbit-Characters"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Aspell-Suggestion-Strategy.html#Aspell-Suggestion-Strategy">Aspell Suggestion Strategy</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Implementation-Notes.html#Implementation-Notes">Implementation Notes</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">A.2 Notes on 8-bit Characters</h3>
+
+<p>There is a very good reason I use 8-bit characters in Aspell. Speed
+and simplicity. While many parts of my code can fairly easily be
+converted to some sort of wide character as my code is clean. Other
+parts cannot be.
+
+   <p>One of the reasons why is because in many, many places I use a direct
+lookup to find out various information about characters. With 8-bit
+characters this is very feasible because there is only 256 of
+them. With 16-bit wide characters this will waste a LOT of space. With
+32-bit characters this is just plain impossible. Converting the lookup
+tables to another form is certainly possible but degrades performance
+significantly.
+
+   <p>Furthermore, some of my algorithms rely on words consisting only on a
+small number of distinct characters (often around 30 when case and
+accents are not considered). When the possible character can consist
+of any Unicode character this number becomes several thousand, if
+that. In order for these algorithms to still be used, some sort of
+limit will need to be placed on the possible characters the word can
+contain. If I impose that limit, I might as well use some sort of
+8-bit characters set which will automatically place the limit on what
+the characters can be.
+
+   <p>There is also the issue of how I should store the word lists in
+memory? As a string of 32 bit wide characters. Now that is using up 4
+times more memory than characters would and for languages that can fit
+within an 8-bit character that is, in my view, a gross waste of
+memory. So maybe I should store them is some variable width format
+such as UTF-8. Unfortunately, way, way too many of the algorithms will
+simply not work with variable width characters without significant
+modification which will very likely degrade performance. So the
+solution is to work with the characters as 32-bit wide characters and
+then convert it to a shorter representation when storing them in the
+lookup tables. Now that can lead to an inefficiency. I could also use
+16 bit wide characters, however that may not be good enough to hold all
+future versions of Unicode and therefore has the same problems.
+
+   <p>As a response to the space waste used by storing word lists in some
+sort of wide format some one asked:
+
+   <blockquote>
+Since hard drives are cheaper and cheaper, you could store a dictionary
+in a usable (uncompressed) form and use it directly with memory
+mapping. Then the efficiency would directly depend on the disk caching
+method, and only the used part of the dictionaries would really be
+loaded into memory. You would no more have to load plain dictionaries
+into main memory, you'll just want to compute some indexes (or
+something like that) after mapping. 
+</blockquote>
+
+   <p>However, the fact of the matter is that most of the dictionary will be
+read into memory anyway if it is available. If it is not available
+then there would be a good deal of disk swaps. Making characters
+32-bit wide will increase the chance that there are more disk swaps. 
+So the bottom line is that it is more efficient to convert characters
+from something like UTF-8 into some sort of 8-bit character. I could
+also use some sort of disk space lookup table such as the Berkeley
+Database. However this will <strong>definitely</strong> degrade performance.
+
+   <p>The bottom line is that keeping Aspell 8-bit internally is a very well
+though out decision that is not likely to change any time soon. Feel
+free to challenge me on it, but, don't expect me to change my mind
+unless you can bring up some point that I have not thought of before
+and quite possibly a patch to solve cleanly convert Aspell to Unicode
+internally without a serious performance lost OR serious memory usage
+increase.
+
+   </body></html>
+

@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>German Sharp S - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Language-Related-Issues.html#Language-Related-Issues" title="Language Related Issues">
+<link rel="prev" href="Unicode-Normalization.html#Unicode-Normalization" title="Unicode Normalization">
+<link rel="next" href="Context-Sensitive-Spelling.html#Context-Sensitive-Spelling" title="Context Sensitive Spelling">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="German-Sharp-S"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Context-Sensitive-Spelling.html#Context-Sensitive-Spelling">Context Sensitive Spelling</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Unicode-Normalization.html#Unicode-Normalization">Unicode Normalization</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Language-Related-Issues.html#Language-Related-Issues">Language Related Issues</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">C.4 German Sharp S</h3>
+
+<p>The German Sharp S or Eszett does not have an uppercase equivalent. 
+Instead when `<samp><span class="samp">&szlig;</span></samp>' is converted to `<samp><span class="samp">SS</span></samp>'.  The conversion of
+`<samp><span class="samp">&szlig;</span></samp>' to `<samp><span class="samp">SS</span></samp>' requires a special rule, and increases the
+length of a word, thus disallowing inplace case conversion. 
+Furthermore, my general rule of converting all words to lowercase before
+looking them up in the dictionary won't work because the conversion of
+`<samp><span class="samp">SS</span></samp>' to lowercase is ambiguous; it can be `<samp><span class="samp">ss</span></samp>' or
+`<samp><span class="samp">&szlig;</span></samp>'.  I do plan on dealing with this eventually.
+
+   </body></html>
+

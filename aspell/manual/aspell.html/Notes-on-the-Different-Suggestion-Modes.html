@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>Notes on the Different Suggestion Modes - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Notes-on-Various-Options.html#Notes-on-Various-Options" title="Notes on Various Options">
+<link rel="prev" href="Notes-on-Typo_002dAnalysis.html#Notes-on-Typo_002dAnalysis" title="Notes on Typo-Analysis">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Notes-on-the-Different-Suggestion-Modes"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Notes-on-Typo_002dAnalysis.html#Notes-on-Typo_002dAnalysis">Notes on Typo-Analysis</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Notes-on-Various-Options.html#Notes-on-Various-Options">Notes on Various Options</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.4.4 Notes on the Different Suggestion Modes</h4>
+
+<p>In order to understand what these suggestion modes do, a basic
+understanding of how Aspell works is required.  For that, see
+<a href="Aspell-Suggestion-Strategy.html#Aspell-Suggestion-Strategy">Aspell Suggestion Strategy</a>.
+
+   <p>The suggestion modes are as follows.
+
+     <dl>
+<dt><b>ultra</b><dd>This method will use the fastest method available to come up with
+decent suggestions.  This currently means that it will look for
+soundslikes within one edit distance.  This method will also use the
+replacement table if one is available.  In this mode Aspell gets about
+87% of the words from my small test kernel of misspelled words.  (Go
+to <a href="http://aspell.net/test">http://aspell.net/test</a> for more info on the test kernel as
+well as comparisons of this version of Aspell with previous versions
+and other spell checkers.)
+
+     <br><dt><b>fast</b><dd>This method is currently identical to <samp><span class="option">ultra</span></samp>.
+
+     <br><dt><b>normal</b><dd>This mode will use what ever method is necessary to return good
+suggestions in most cases in a reasonable amount of time.  This
+currently means it will looks for soundslikes within two edit distance
+apart.  This mode gets 93% of the words.
+
+     <br><dt><b>slow</b><dd>Like <samp><span class="option">normal</span></samp> except that &ldquo;reasonable amount of time&rdquo; is not
+a consideration.  In most cases it will return the same results as
+<samp><span class="option">normal</span></samp>.  The biggest difference is that it will try an ngram
+scan if the normal methods of finding a suggestion fail. 
+<!-- FIXME: Explain what this means. -->
+
+     <br><dt><b>bad-spellers</b><dd>This method is like <samp><span class="option">slow</span></samp> but is tailored more for the bad
+speller, where as the other modes are tailored more
+to strike a good balance between typos and true misspellings.  This
+mode never performs typo-analysis and returns a <em>huge</em> number of
+words for the really bad spellers who can't seem to get the spelling
+anything close to what it should be.  If the misspelled word looks
+anything like the correct spelling it is bound to be found
+<em>somewhere</em> on the list of 100 or more suggestions.  This mode
+gets 98% of the words. 
+</dl>
+
+   <p>If jump tables were not used then the <samp><span class="option">normal</span></samp> option is
+identical to <samp><span class="option">fast</span></samp> and the <samp><span class="option">slow</span></samp> option is identical
+to the <samp><span class="option">normal</span></samp> if jump tables were used.
+
+   </body></html>
+

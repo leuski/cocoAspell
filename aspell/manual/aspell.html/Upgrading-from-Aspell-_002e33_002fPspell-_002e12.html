@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+<title>Upgrading from Aspell .33/Pspell .12 - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installing.html#Installing" title="Installing">
+<link rel="prev" href="Upgrading-from-Aspell-0_002e50.html#Upgrading-from-Aspell-0_002e50" title="Upgrading from Aspell 0.50">
+<link rel="next" href="Upgrading-from-a-Pre_002d0_002e50-snapshot.html#Upgrading-from-a-Pre_002d0_002e50-snapshot" title="Upgrading from a Pre-0.50 snapshot">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Upgrading-from-Aspell-.33%2fPspell-.12"></a>
+<a name="Upgrading-from-Aspell-_002e33_002fPspell-_002e12"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Upgrading-from-a-Pre_002d0_002e50-snapshot.html#Upgrading-from-a-Pre_002d0_002e50-snapshot">Upgrading from a Pre-0.50 snapshot</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Upgrading-from-Aspell-0_002e50.html#Upgrading-from-Aspell-0_002e50">Upgrading from Aspell 0.50</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installing.html#Installing">Installing</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">E.6 Upgrading from Aspell .33/Pspell .12</h3>
+
+<p>Aspell has undergone an extremely large number of changes since the
+previous Aspell/Pspell release.  For one thing Pspell has been merged
+with Aspell so there in no longer two separate libraries you have to
+worry about.
+
+   <p>Because of the massive changes between Aspell/Pspell and Aspell 0.50
+you may want to clean out the old files before installing the the new
+Aspell.  To do so do a `<samp><span class="samp">make uninstall</span></samp>' in the original Aspell
+and Pspell source directories.
+
+   <p>The way dictionaries are handled has also changed.  This includes a
+change in the naming conventions of both language names and
+dictionaries.  Due to the language name change, your old personal
+dictionaries will not be recognized.  However, you can import the old
+dictionaries by running the <samp><span class="command">aspell-import</span></samp> script.  This also
+means that dictionaries designed to work with older versions of Aspell
+are not likely to function correctly.  Fortunately new dictionary
+packages are available for most languages.  You can find them off of
+the Aspell home page at <a href="http://aspell.net">http://aspell.net</a>.
+
+   <p>The Pspell ABI is now part of Aspell except that the name of
+everything has changed due to the renaming of Pspell to Aspell.  In
+particular please note the following name changes:
+
+<pre class="example">     pspell -&gt; aspell
+     manager -&gt; speller
+     emulation -&gt; enumeration
+     master_word_list -&gt; main_word_list
+</pre>
+   <p>Please also note that the name of the <samp><span class="option">language-tag</span></samp> option has
+changed to <samp><span class="option">lang</span></samp>.  However, for backward compatibility the
+<samp><span class="option">language-tag</span></samp> option will still work.
+
+   <p>However, you should also be able to build applications that require
+Pspell with the new Aspell as a backward compatibility header file is
+provided.
+
+   <p>Due to a change in the way dictionaries are handled, scanning for
+<samp><span class="file">.pwli</span></samp> files in order to find out which dictionaries are
+available will no longer work.  This means that programs that relied
+on this technique may have problems finding dictionaries. 
+Fortunately, GNU Aspell now provided a uniform way to list all
+installed dictionaries via the c API.  See the file
+<samp><span class="file">list-dicts.c</span></samp> in the <samp><span class="file">examples/</span></samp> directory for an example
+of how to do this.  Unfortunately there isn't any simple way to find
+out which dictionaries are installed which will work with both the old
+Aspell/Pspell and the new GNU Aspell.
+
+   </body></html>
+
