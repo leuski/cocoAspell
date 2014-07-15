@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+<title>AWLI files - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Working-With-Dictionaries.html#Working-With-Dictionaries" title="Working With Dictionaries">
+<link rel="prev" href="Dictionary-Naming.html#Dictionary-Naming" title="Dictionary Naming">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="AWLI-files"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Dictionary-Naming.html#Dictionary-Naming">Dictionary Naming</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Working-With-Dictionaries.html#Working-With-Dictionaries">Working With Dictionaries</a>
+<hr>
+</div>
+
+<h3 class="section">5.10 AWLI files</h3>
+
+<p>In order for Aspell to find dictionaries that are located in odd
+places or not named according to <a href="Dictionary-Naming.html#Dictionary-Naming">Dictionary Naming</a>, an AWLI file
+needs to be created for the dictionary and located in some place where
+Aspell can find it.
+
+   <p>Each AWLI file has a name in the following format:
+
+<pre class="example">     <var>language</var>[<var>region</var>][-<var>variety</var>][-<var>size</var>]-<var>module</var>.awli
+</pre>
+   <p class="noindent">where the names have the same meaning as in <a href="Dictionary-Naming.html#Dictionary-Naming">Dictionary Naming</a>,
+and <var>module</var> is the speller module to use, which should be set
+to <var>default</var> for now since there is only one speller module.
+
+   <p>Each <samp><span class="file">awli</span></samp> file for an Aspell word list should then contain
+exactly one line which contains the full path of the main word list.
+
+   </body></html>
+

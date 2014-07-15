@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+<title>Notes on the Prefix Option - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Notes-on-Various-Options.html#Notes-on-Various-Options" title="Notes on Various Options">
+<link rel="prev" href="Notes-on-Various-Filters-and-Filter-Modes.html#Notes-on-Various-Filters-and-Filter-Modes" title="Notes on Various Filters and Filter Modes">
+<link rel="next" href="Notes-on-Typo_002dAnalysis.html#Notes-on-Typo_002dAnalysis" title="Notes on Typo-Analysis">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Notes-on-the-Prefix-Option"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Notes-on-Typo_002dAnalysis.html#Notes-on-Typo_002dAnalysis">Notes on Typo-Analysis</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Notes-on-Various-Filters-and-Filter-Modes.html#Notes-on-Various-Filters-and-Filter-Modes">Notes on Various Filters and Filter Modes</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Notes-on-Various-Options.html#Notes-on-Various-Options">Notes on Various Options</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.4.2 Notes on the Prefix Option</h4>
+
+<p>The <samp><span class="option">prefix</span></samp> option is there to allow Aspell to easily be
+relocated.  Changing <samp><span class="option">prefix</span></samp> will change all directory names
+relative to the new prefix that are not explicitly set.  For example
+if <samp><span class="option">prefix</span></samp> was <samp><span class="file">/usr/local/aspell</span></samp> and <samp><span class="option">dict-dir</span></samp>
+has a default value of <samp><span class="file">/usr/local/aspell/dict</span></samp> than changing
+<samp><span class="option">prefix</span></samp> to <samp><span class="file">/opt/aspell</span></samp> will also change the default
+value of <samp><span class="option">dict-dir</span></samp> to <samp><span class="file">/opt/aspell/dict</span></samp>.  Note that
+modifying <samp><span class="option">prefix</span></samp> will only affect the default compiled in
+values of directories.  If a directory option is explicitly given a
+value then changing the value of <samp><span class="option">prefix</span></samp> has no effect on that
+directory option.
+
+   </body></html>
+

@@ -1,0 +1,160 @@
+<html lang="en">
+<head>
+<title>Aspell Developer's Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell spell checker developer's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="#Top">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the developer's manual for Aspell.
+
+Copyright (C) 2002, 2003, 2004, 2006 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<h1 class="settitle">Aspell Developer's Manual</h1>
+   <div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="index.html#Top">Notes</a>
+<li><a name="toc_Style-Guidelines" href="Style-Guidelines.html#Style-Guidelines">1 Style Guidelines</a>
+<li><a name="toc_How-to-Submit-a-Patch" href="How-to-Submit-a-Patch.html#How-to-Submit-a-Patch">2 How to Submit a Patch</a>
+<li><a name="toc_C_002b_002b-Standard-Library" href="C_002b_002b-Standard-Library.html#C_002b_002b-Standard-Library">3 C++ Standard Library</a>
+<li><a name="toc_Templates" href="Templates.html#Templates">4 Templates</a>
+<li><a name="toc_Error-Handling" href="Error-Handling.html#Error-Handling">5 Error Handling</a>
+<li><a name="toc_Source-Code-Layout" href="Source-Code-Layout.html#Source-Code-Layout">6 Source Code Layout</a>
+<li><a name="toc_Strings" href="Strings.html#Strings">7 Strings</a>
+<ul>
+<li><a href="Strings.html#Strings">7.1 String</a>
+<li><a href="Strings.html#Strings">7.2 ParmString</a>
+<li><a href="Strings.html#Strings">7.3 CharVector</a>
+</li></ul>
+<li><a name="toc_Smart-Pointers" href="Smart-Pointers.html#Smart-Pointers">8 Smart Pointers</a>
+<ul>
+<li><a href="Smart-Pointers.html#Smart-Pointers">8.1 CopyPtr</a>
+<li><a href="Smart-Pointers.html#Smart-Pointers">8.2 ClonePtr</a>
+<li><a href="Smart-Pointers.html#Smart-Pointers">8.3 StackPtr</a>
+<li><a href="Smart-Pointers.html#Smart-Pointers">8.4 GenericCopyPtr</a>
+</li></ul>
+<li><a name="toc_I_002fO" href="I_002fO.html#I_002fO">9 I/O</a>
+<ul>
+<li><a href="I_002fO.html#I_002fO">9.1 IStream/OStream</a>
+<li><a href="I_002fO.html#I_002fO">9.2 FStream</a>
+<li><a href="I_002fO.html#I_002fO">9.3 Standard Streams</a>
+</li></ul>
+<li><a name="toc_Config-Class" href="Config-Class.html#Config-Class">10 Config Class</a>
+<li><a name="toc_Filter-Interface" href="Filter-Interface.html#Filter-Interface">11 Filter Interface</a>
+<ul>
+<li><a href="Filter-Interface.html#Filter-Interface">11.1 Overview</a>
+<li><a href="Filter-Interface.html#Filter-Interface">11.2 Adding a New Filter</a>
+<li><a href="Filter-Interface.html#Filter-Interface">11.3 IndividualFilter class</a>
+<li><a href="Filter-Interface.html#Filter-Interface">11.4 Constructor Function</a>
+<li><a href="Filter-Interface.html#Filter-Interface">11.5 Filter Description File</a>
+<li><a href="Filter-Interface.html#Filter-Interface">11.6 Retrieve Options by a Filter</a>
+<li><a href="Filter-Interface.html#Filter-Interface">11.7 Compiling and Linking</a>
+<li><a href="Filter-Interface.html#Filter-Interface">11.8 Programmer's Interface</a>
+<li><a href="Filter-Interface.html#Filter-Interface">11.9 Adding a filter to Aspell standard distribution</a>
+</li></ul>
+<li><a name="toc_Filter-Modes" href="Filter-Modes.html#Filter-Modes">12 Filter Modes</a>
+<ul>
+<li><a href="Filter-Modes.html#Filter-Modes">12.1 Aspell Mode File</a>
+<ul>
+<li><a href="Filter-Modes.html#Filter-Modes">12.1.1 Version Line</a>
+<li><a href="Filter-Modes.html#Filter-Modes">12.1.2 Magic Line</a>
+<li><a href="Filter-Modes.html#Filter-Modes">12.1.3 Description Line</a>
+<li><a href="Filter-Modes.html#Filter-Modes">12.1.4 Filter and Option Lines</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Data-Structures" href="Data-Structures.html#Data-Structures">13 Data Structures</a>
+<ul>
+<li><a href="Data-Structures.html#Data-Structures">13.1 Vector</a>
+<li><a href="Data-Structures.html#Data-Structures">13.2 BasicList</a>
+<li><a href="Data-Structures.html#Data-Structures">13.3 StringMap</a>
+<li><a href="Data-Structures.html#Data-Structures">13.4 Hash Tables</a>
+<li><a href="Data-Structures.html#Data-Structures">13.5 BlockSList</a>
+</li></ul>
+<li><a name="toc_Mk_002dSrc-Script" href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">14 Mk-Src Script</a>
+<ul>
+<li><a href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">14.1 mk-src.in</a>
+<li><a href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">14.2 MkSrc::Info</a>
+<li><a href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">14.3 MkSrc::Util</a>
+<li><a href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">14.4 MkSrc::Read</a>
+<li><a href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">14.5 MKSrc::Create</a>
+<li><a href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">14.6 Code Generation Modes</a>
+<li><a href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">14.7 MkSrc::CcHelper</a>
+</li></ul>
+<li><a name="toc_How-It-All-Works" href="How-It-All-Works.html#How-It-All-Works">15 How It All Works</a>
+<ul>
+<li><a href="Part-1-_002d-Compiled-Dictionary-Format.html#Part-1-_002d-Compiled-Dictionary-Format">15.1 Part 1 - The Compiled Dictionary Format</a>
+<li><a href="Part-2-_002d-Quickly-Finding-Similar-Soundslike.html#Part-2-_002d-Quickly-Finding-Similar-Soundslike">15.2 Part 2 - Quickly Finding Similar Soundslike</a>
+<li><a href="Part-3.html#Part-3">15.3 Part 3</a>
+</li></ul>
+<li><a name="toc_Copying" href="Copying.html#Copying">Appendix A Copying</a>
+<ul>
+<li><a href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License">A.1 GNU Free Documentation License</a>
+<ul>
+<li><a href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License">A.1.1 ADDENDUM: How to use this License for your documents</a>
+</li></ul>
+</li></ul>
+</li></ul>
+</div>
+
+
+
+<div class="node">
+<p>
+<a name="Top"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Style-Guidelines.html#Style-Guidelines">Style Guidelines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="../index.html#dir">(dir)</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
+<hr>
+</div>
+
+<h2 class="unnumbered">Notes</h2>
+
+<p>This manual is designed for those who wish to develop Aspell.  It is
+currently very sketchy.  However, it should improve over time.  The
+latest version of this document can be found at
+<a href="http://savannah.gnu.org/download/aspell/manual/devel/devel.html">http://savannah.gnu.org/download/aspell/manual/devel/devel.html</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="Style-Guidelines.html#Style-Guidelines">Style Guidelines</a>
+<li><a accesskey="2" href="How-to-Submit-a-Patch.html#How-to-Submit-a-Patch">How to Submit a Patch</a>
+<li><a accesskey="3" href="C_002b_002b-Standard-Library.html#C_002b_002b-Standard-Library">C++ Standard Library</a>
+<li><a accesskey="4" href="Templates.html#Templates">Templates</a>
+<li><a accesskey="5" href="Error-Handling.html#Error-Handling">Error Handling</a>
+<li><a accesskey="6" href="Source-Code-Layout.html#Source-Code-Layout">Source Code Layout </a>
+<li><a accesskey="7" href="Strings.html#Strings">Strings</a>
+<li><a accesskey="8" href="Smart-Pointers.html#Smart-Pointers">Smart Pointers</a>
+<li><a accesskey="9" href="I_002fO.html#I_002fO">I/O</a>
+<li><a href="Config-Class.html#Config-Class">Config Class</a>
+<li><a href="Filter-Interface.html#Filter-Interface">Filter Interface</a>
+<li><a href="Filter-Modes.html#Filter-Modes">Filter Modes</a>
+<li><a href="Data-Structures.html#Data-Structures">Data Structures</a>
+<li><a href="Mk_002dSrc-Script.html#Mk_002dSrc-Script">Mk-Src Script</a>
+<li><a href="How-It-All-Works.html#How-It-All-Works">How It All Works</a>
+<li><a href="Copying.html#Copying">Copying</a>
+</ul>
+
+   </body></html>
+

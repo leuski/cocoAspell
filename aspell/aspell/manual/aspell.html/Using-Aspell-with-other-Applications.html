@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+<title>Using Aspell with other Applications - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Basic-Usage.html#Basic-Usage" title="Basic Usage">
+<link rel="prev" href="Using-Aspell-as-a-Replacement-for-Ispell.html#Using-Aspell-as-a-Replacement-for-Ispell" title="Using Aspell as a Replacement for Ispell">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Using-Aspell-with-other-Applications"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Using-Aspell-as-a-Replacement-for-Ispell.html#Using-Aspell-as-a-Replacement-for-Ispell">Using Aspell as a Replacement for Ispell</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Basic-Usage.html#Basic-Usage">Basic Usage</a>
+<hr>
+</div>
+
+<h3 class="section">3.3 Using Aspell with other Applications</h3>
+
+<h4 class="subsection">3.3.1 With Emacs and XEmacs</h4>
+
+<p>The easiest way to use Aspell with Emacs or XEmacs is to add this
+line:
+
+<pre class="verbatim">
+(setq-default ispell-program-name "aspell")
+</pre>
+
+   <p>to the end of your <samp><span class="file">.emacs</span></samp> file.
+
+   <p>For some reason version 3.0 of ispell.el (the lisp program that
+(x)emacs uses) wants to reverse the suggestion list.  To fix this add
+this line:
+
+<pre class="verbatim">
+(setq-default ispell-extra-args '("--reverse"))
+</pre>
+
+   <p>after the previous line in your .emacs file and it should solve the problem.
+
+   <p>Ispell.el, version 3.1 (December 1, 1998) and better, has the list
+reversing problem fixed.  You can find it at
+<a href="http://www.kdstevens.com/~stevens/ispell-page.html">http://www.kdstevens.com/~stevens/ispell-page.html</a>.
+
+<h4 class="subsection">3.3.2 With LyX</h4>
+
+<p>Version 1.0 of LyX provides support for Aspell's learning from user's
+mistakes feature.
+
+   <p>To use Aspell with LyX 1.0 either change the <samp><span class="option">spell_command</span></samp>
+option in the <samp><span class="file">.lyxrc</span></samp> file or use the <samp><span class="command">run-with-aspell</span></samp>
+utility.
+
+<h4 class="subsection">3.3.3 With VIM</h4>
+
+<!-- @emph{(The following section was written by ``R.  Marc'', rmarc at -->
+<!-- copacetic net.)} -->
+<p>To use Aspell in VIM you simply need to add the following line to your
+<samp><span class="file">.vimrc</span></samp> file:
+
+<pre class="verbatim">
+map ^T :w!&lt;CR>:!aspell check %&lt;CR>:e! %&lt;CR>
+</pre>
+
+   <p>I use <kbd>Ctrl-T</kbd> since that's the way you spell check in
+<samp><span class="command">pico</span></samp>.  In order to add a control character to your
+<code>.vimrc</code> you must type <kbd>Ctrl-v</kbd> first.  In this case
+<kbd>Ctrl-v Ctrl-t</kbd>.
+
+   <p>A more useful way to use Aspell, IMHO, is in combination with Newsbody
+(<a href="http://www.image.dk/~byrial/newsbody/">http://www.image.dk/~byrial/newsbody/</a>) which is how I use it
+since VIM is my editor for my mailer and my news reader.
+<pre class="verbatim">
+map ^T\\1\\2&lt;CR>:e! %&lt;CR>
+map \\1 :w!&lt;CR>
+map \\2 :!newsbody -qs -n % -p aspell check \\%f&lt;CR>
+</pre>
+
+<h4 class="subsection">3.3.4 With Pine</h4>
+
+<p>To use Aspell in Pine simply change the option <samp><span class="option">speller</span></samp> to
+
+<pre class="example">     aspell --mode=email check
+</pre>
+   <p>To change the <samp><span class="option">speller</span></samp> option go to the main menu.  Type
+<kbd>S</kbd> for <em>setup</em>, <kbd>C</kbd> for <em>config</em>, then <kbd>W</kbd> for
+<em>where is</em>.  Type in <kbd>speller</kbd> as the word to find.  The
+speller option should be highlighted now.  Hit enter, type in the
+above line, and hit enter again.  Then type <kbd>E</kbd> for <em>exit
+setup</em> and <kbd>Y</kbd> to save the change.
+
+   <p>If you have a strong desire to check other people's comments change
+<samp><span class="option">speller</span></samp> to
+
+<pre class="example">     aspell check
+</pre>
+   <p class="noindent">instead which will avoid switching Aspell into email mode.
+
+   </body></html>
+

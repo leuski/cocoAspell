@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+<title>Part 1 - Compiled Dictionary Format - Aspell Developer's Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell spell checker developer's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="How-It-All-Works.html#How-It-All-Works" title="How It All Works">
+<link rel="prev" href="How-It-All-Works.html#How-It-All-Works" title="How It All Works">
+<link rel="next" href="Part-2-_002d-Quickly-Finding-Similar-Soundslike.html#Part-2-_002d-Quickly-Finding-Similar-Soundslike" title="Part 2 - Quickly Finding Similar Soundslike">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the developer's manual for Aspell.
+
+Copyright (C) 2002, 2003, 2004, 2006 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Part-1---Compiled-Dictionary-Format"></a>
+<a name="Part-1-_002d-Compiled-Dictionary-Format"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Part-2-_002d-Quickly-Finding-Similar-Soundslike.html#Part-2-_002d-Quickly-Finding-Similar-Soundslike">Part 2 - Quickly Finding Similar Soundslike</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="How-It-All-Works.html#How-It-All-Works">How It All Works</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="How-It-All-Works.html#How-It-All-Works">How It All Works</a>
+<hr>
+</div>
+
+<h3 class="section">15.1 Part 1 - The Compiled Dictionary Format</h3>
+
+<p>In this part you will see how the data is laid out in the compiled
+dictionary for Aspell 0.60.  See source file <samp><span class="file">readonly_ws.cpp</span></samp>.
+
+   <p>Aspell's main compiled wordlist dictionary file is made as follows:
+
+     <ul>
+<li>header
+<li>jump table for editdist 1
+<li>jump table for editdist 2
+<li>data block
+<li>hash table
+</ul>
+
+   <p>There is nothing particularly interesting about the header.  Just a
+bunch of meta information.
+
+   <p>The jump tables are described in the next section <small class="dots">...</small>
+
+   <p>Words in the data block are grouped based on the soundslike.  Each
+group is as follows:
+
+<pre class="example">     &lt;8 bit: offset to next item&gt;&lt;8 bit: soundslike size&gt;&lt;soundslike&gt;
+     &lt;null&gt;&lt;words&gt;
+</pre>
+   <p class="noindent">Each word group is as follows:
+
+<pre class="example">     &lt;8 bit: flags&gt;&lt;8 bit: offset to next word&gt;&lt;8 bit: word size&gt;&lt;word&gt;&lt;null&gt;
+     [&lt;affix info&gt;&lt;null&gt;]
+</pre>
+   <p>The offset for the final word in each group points to the next word in
+the following group.  The offset for the final word and soundslike
+group in the dictionary is 0.
+
+   <p>There is some provisions for additional info to be stored with the word
+but for simplicity, it's left out here.  If soundslike data is not used
+then the soundslike block it not used.
+
+   <p>This format makes it easy to iterate over the data without using the
+hash table.
+
+   <p>Each soundslike group can be a maximum of about 256 bytes.  If this
+limit is reached then the soundslike group is split. Using 2 bytes for
+the soundslike offset would of solved this problem however 256 bytes
+is normally sufficient, thus I would of wasted some space by using an
+extra byte.  More importantly, Using 2 bytes means I would of had to
+worry about alignment issues.
+
+   <p>The soundslike groups are sorted in more or less alphabetic order.
+
+   <p>The hash table is a simple open address hash table.  The key is the
+dictionary word in all lowercase form with all accents removed (what is
+known as the "clean" form of the word).  The value stored in the table
+is a 32-bit offset to the beginning of the word.  A 32-bit integer
+offset is used rather than a pointer so that the compiled dictionary
+can be mmaped to make loading the dictionary very fast and so that the
+memory can be shared between processed, and on 64 bit platforms using
+pointers would have doubled the size of the hash table.
+
+   <p>Additional information for each word can be derived from each offset:
+
+<pre class="example">     word size: offset - 1
+     offset to next word: offset - 2
+     flags: offset - 3
+</pre>
+   <p>I use helper functions for getting this information.  Doing it this way
+rather than having a data structure is slightly evil, but admittedly,
+I have my reasons.
+
+   <p>In the next section, you will see how Aspell uses the jump tables to
+search the list for <em>soundslike</em> with <em>edit-distance</em> of 1 or 2.
+
+   </body></html>
+

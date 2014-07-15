@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+<title>Other Items - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="To-Do.html#To-Do" title="To Do">
+<link rel="prev" href="Important-Items.html#Important-Items" title="Important Items">
+<link rel="next" href="Notes-on-Various-Items.html#Notes-on-Various-Items" title="Notes on Various Items">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Other-Items"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Notes-on-Various-Items.html#Notes-on-Various-Items">Notes on Various Items</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Important-Items.html#Important-Items">Important Items</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="To-Do.html#To-Do">To Do</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">D.2 Other Items</h3>
+
+<p>These items all sound like good ideas however I am not sure when I
+will get to implementing them if ever.  Words in bold indicate how you
+should refer to the item when discussing it with me or others.
+
+     <ul>
+<li>Come up with a plug-in for <samp><span class="command">gEdit</span></samp> the gnome text editor.
+
+     <li>Change languages (and thus dictionaries) based on the information in
+the actual document.
+
+     <li>Come up with a mode that will skip words based on the symbols that
+(almost) always surround the word.  See <a href="Word-skipping-by-context.html#Word-skipping-by-context">Word skipping by context</a>.
+
+     <li>Create two <strong>server modes</strong> for Aspell.  One that uses the DICT
+protocol and one that uses <samp><span class="command">ispell -a</span></samp> method of communication
+via some arbitrary port.
+
+     <li>Come up with <strong>thread safe personal dictionaries</strong>.
+
+     <li>Use the <strong>Hidden Markov Model</strong> to base the suggestions on not
+only the word itself but on the context around the word. See <a href="Hidden-Markov-Model.html#Hidden-Markov-Model">Hidden Markov Model</a>.
+
+     <li>Having a way to <strong>email the personal dictionary</strong> and/or
+replacement list to a particular address either periodically or when
+it grows to a certain size. See <a href="Email-the-Personal-Dictionary.html#Email-the-Personal-Dictionary">Email the Personal Dictionary</a>. 
+</ul>
+
+   <p>The following good ideas were found in the Ispell <samp><span class="file">WISHES</span></samp> file
+so I thought I would pass them on.
+
+     <ul>
+<li>Ispell should be smart enough to ignore hyphenation signs, such as the
+TeX `<samp><span class="samp">\-</span></samp>' hyphenation indicator.
+
+     <li>(Jeff Edmonds) The personal dictionary should be able to remove
+certain words from the master dictionary, so that obscure words like
+"wether" wouldn't mask favorite typos.
+
+     <li>(Jeff Edmonds) It would be wonderful if Ispell could correct inserted
+spaces such as "th e" for "the" or even "can not" for "cannot".
+
+     <li>Since Ispell has dictionaries available to it, it is conceivable that
+it could automatically determine the language of a particular file by
+choosing the dictionary that produced the fewest spelling errors on
+the first few lines. 
+</ul>
+
+   </body></html>
+

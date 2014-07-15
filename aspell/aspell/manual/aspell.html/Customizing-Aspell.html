@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+<title>Customizing Aspell - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Basic-Usage.html#Basic-Usage" title="Basic Usage">
+<link rel="next" href="Working-With-Dictionaries.html#Working-With-Dictionaries" title="Working With Dictionaries">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Customizing-Aspell"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Working-With-Dictionaries.html#Working-With-Dictionaries">Working With Dictionaries</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Basic-Usage.html#Basic-Usage">Basic Usage</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">4 Customizing Aspell</h2>
+
+<p>The behavior of Aspell can be changed by any number of options which
+can be specified at either the command line, the environment variable
+<samp><span class="env">ASPELL_CONF</span></samp>, a personal configuration file, or a global
+configuration file.  Options specified on the command line override
+options specified by the environment variable.  Options specified by
+the environment variable override options specified by either of the
+configuration files.  Finally options specified by the personal
+configuration file override options specified in the global
+configuration file.  Options specified in the environment variable
+<samp><span class="env">ASPELL_CONF</span></samp>, a personal configuration file, or a global
+configuration file will take effect no matter how Aspell is used which
+includes being used by other applications.
+
+   <p>Aspell has three basic types of options: <dfn>boolean</dfn>, <dfn>value</dfn>,
+and <dfn>list</dfn>.
+
+   <p><dfn>Boolean</dfn> options are either enabled or disabled, <dfn>value</dfn>
+options take a specific value, and <dfn>list</dfn> options can either have
+entries added or removed from the list.
+
+<ul class="menu">
+<li><a accesskey="1" href="Specifying-Options.html#Specifying-Options">Specifying Options</a>
+<li><a accesskey="2" href="The-Options.html#The-Options">The Options</a>
+<li><a accesskey="3" href="Dumping-Configuration-Values.html#Dumping-Configuration-Values">Dumping Configuration Values</a>
+<li><a accesskey="4" href="Notes-on-Various-Options.html#Notes-on-Various-Options">Notes on Various Options</a>
+</ul>
+
+   </body></html>
+

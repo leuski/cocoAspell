@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+<title>Notes on Storing Replacement Pairs - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Writing-programs-to-use-Aspell.html#Writing-programs-to-use-Aspell" title="Writing programs to use Aspell">
+<link rel="prev" href="Through-A-Pipe.html#Through-A-Pipe" title="Through A Pipe">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Notes-on-Storing-Replacement-Pairs"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Through-A-Pipe.html#Through-A-Pipe">Through A Pipe</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Writing-programs-to-use-Aspell.html#Writing-programs-to-use-Aspell">Writing programs to use Aspell</a>
+<hr>
+</div>
+
+<h3 class="section">6.3 Notes on Storing Replacement Pairs</h3>
+
+<p>The <code>store_repl</code> method and the <code>$$ra</code> should be used
+because Aspell is able to learn from users misspellings.  For example
+on the first pass a user misspells <em>beginning</em> as <em>beging</em>
+so Aspell suggests:
+
+<pre class="example">     begging, begin, being, Beijing, bagging, ....
+</pre>
+   <p class="noindent">However the user then tries <em>begning</em> and Aspell suggests
+
+<pre class="example">     beginning, beaning, begging, ...
+</pre>
+   <p class="noindent">so the user selects <em>beginning</em>.  However, later on in the
+document the user misspells it as <em>begng</em> (<strong>not</strong>
+<em>beging</em>).  Normally Aspell will suggest.
+
+<pre class="example">     began, begging, begin, begun, ...
+</pre>
+   <p class="noindent">However because it knows the user misspelled <em>beginning</em> as
+<em>beging</em> it will instead suggest:
+
+<pre class="example">     beginning, began, begging, begin, begun ...
+</pre>
+   <p>I myself often misspelled beginning (and still do) as something close
+to begging and too many times wind up writing sentences such as
+"begging with <small class="dots">...</small>".
+
+   <p>Please also note that replacements commands have a memory.  Which means
+if you first store the replacement pair:
+
+<pre class="example">     sicolagest -&gt; psycolagest
+</pre>
+   <p class="noindent">then store the replacement pair
+
+<pre class="example">     psycolagest -&gt; psychologist
+</pre>
+   <p class="noindent">The replacement pair
+
+<pre class="example">     sicolagest -&gt; psychologist
+</pre>
+   <p class="noindent">will also get stored so that you don't have to worry about it.
+
+   </body></html>
+

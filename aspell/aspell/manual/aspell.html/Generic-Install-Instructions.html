@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+<title>Generic Install Instructions - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installing.html#Installing" title="Installing">
+<link rel="next" href="HTML-Manuals-and-_0022make-clean_0022.html#HTML-Manuals-and-_0022make-clean_0022" title="HTML Manuals and "make clean"">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Generic-Install-Instructions"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="HTML-Manuals-and-_0022make-clean_0022.html#HTML-Manuals-and-_0022make-clean_0022">HTML Manuals and &quot;make clean&quot;</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installing.html#Installing">Installing</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">E.1 Generic Install Instructions</h3>
+
+<pre class="example">     ./configure &amp;&amp; make
+</pre>
+   <p>For additional <samp><span class="command">configure</span></samp> options type `<samp><span class="samp">./configure
+--help</span></samp>'.  You can control what C++ compiler is used by setting the
+environment variable <samp><span class="env">CXX</span></samp> before running configure and you can
+control what flags are passed to the C++ compile via the environment
+variable <samp><span class="env">CXXFLAGS</span></samp>.  Static libraries are disabled by default
+since static libraries will not work right due to the mixing of C and
+C++.  When a C program links with the static libraries in Aspell it is
+likely to crash because Aspell's C++ objects are not getting
+initialized correctly.  However, if for some reason you want them, you
+can enable them via <samp><span class="option">--enable-static</span></samp>.
+
+   <p>Aspell should then compile without any additional user intervention. 
+If you run into problems please first check the sections below as that
+might solve your problem.
+
+   <p>To install the program simply type
+
+<pre class="example">     make install
+</pre>
+   <p>After Aspell is installed at least one dictionary needs to be
+installed.  You can find them at <a href="http://aspell.net/">http://aspell.net/</a>.  The
+<samp><span class="command">aspell</span></samp> program must be in your path in order for the
+dictionaries to install correctly.
+
+   <p>If you do not have Ispell or the traditional Unix <samp><span class="command">spell</span></samp> utility
+installed on your system then you should also copy the compatibility
+scripts <samp><span class="command">ispell</span></samp> and <samp><span class="command">spell</span></samp> located in the <samp><span class="file">scripts/</span></samp>
+directory into your binary directory which is usually
+<samp><span class="file">/usr/local/bin</span></samp> so that programs that expect the
+<samp><span class="command">ispell</span></samp> or <samp><span class="command">spell</span></samp> command will work correctly.
+
+   </body></html>
+

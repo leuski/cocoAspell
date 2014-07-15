@@ -1,0 +1,301 @@
+<html lang="en">
+<head>
+<title>Notes on Various Filters and Filter Modes - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Notes-on-Various-Options.html#Notes-on-Various-Options" title="Notes on Various Options">
+<link rel="next" href="Notes-on-the-Prefix-Option.html#Notes-on-the-Prefix-Option" title="Notes on the Prefix Option">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Notes-on-Various-Filters-and-Filter-Modes"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Notes-on-the-Prefix-Option.html#Notes-on-the-Prefix-Option">Notes on the Prefix Option</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Notes-on-Various-Options.html#Notes-on-Various-Options">Notes on Various Options</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.4.1 Notes on Various Filters and Filter Modes</h4>
+
+<p>Aspell now has filter support.  You can either select from individual
+filters or choose a filter mode.  To select a filter mode use the
+<samp><span class="option">mode</span></samp> option.  You may choose from `<samp><span class="samp">none</span></samp>', `<samp><span class="samp">url</span></samp>',
+`<samp><span class="samp">email</span></samp>', `<samp><span class="samp">sgml</span></samp>', `<samp><span class="samp">ccpp</span></samp>', `<samp><span class="samp">tex</span></samp>' and any other
+available on your system.  The default mode is `<samp><span class="samp">url</span></samp>'.  Individual
+filters can be added with the option <samp><span class="option">add-filter</span></samp> and removed
+with the <samp><span class="option">rem-filter</span></samp> option.  The currently available filters
+are `<samp><span class="samp">url</span></samp>', `<samp><span class="samp">email</span></samp>', `<samp><span class="samp">sgml</span></samp>' and `<samp><span class="samp">tex</span></samp>', `<samp><span class="samp">latex</span></samp>'
+(alias for `<samp><span class="samp">tex</span></samp>'), `<samp><span class="samp">nroff</span></samp>', `<samp><span class="samp">context</span></samp>', as well as a
+bunch of filters which translate the text from one format to another.
+
+   <p>To check which filters are available use <samp><span class="command">aspell dump filters</span></samp>. 
+To check which filter modes are available use <samp><span class="command">aspell dump
+modes</span></samp>.  The <samp><span class="command">aspell help</span></samp> command will also list all available
+filter and filter modes.
+
+<h5 class="subsubsection">4.4.1.1 None Filter Mode</h5>
+
+<p>The <samp><span class="option">none</span></samp> mode is exactly what it says.  It turns off all filters.
+
+<h5 class="subsubsection">4.4.1.2 URL Filter</h5>
+
+<p>The <samp><span class="option">url</span></samp> filter/mode skips over URLs, host names, and email
+addresses.  Because this filter is almost always useful and rarely
+does any harm it is enabled in all modes except <samp><span class="option">none</span></samp>.  To
+turn it off either select the <samp><span class="option">none</span></samp> mode or use
+<samp><span class="option">rem-filter</span></samp> option <em>after</em> the desired mode is selected.
+
+<h5 class="subsubsection">4.4.1.3 Email Filter</h5>
+
+<p>The <samp><span class="option">email</span></samp> filter mode skips over quoted text.  It currently
+does not support skipping over headers however a future version
+should.  In the meantime I suggest you use Aspell with Newsbody which
+can be found at <a href="http://home.worldonline.dk/~byrial/newsbody/">http://home.worldonline.dk/~byrial/newsbody/</a>. 
+The option <samp><span class="option">email-skip</span></samp> controls the number of characters that
+can appear before the email quote character, the default is 10.  The
+option <samp><span class="option">add|rem-email-quote</span></samp> controls the characters that are
+considered quote characters, the defaults are `<samp><span class="samp">&gt;</span></samp>' and `<samp><span class="samp">|</span></samp>'.
+
+<h5 class="subsubsection">4.4.1.4 SGML Filter</h5>
+
+<p>The SGML filter allows you to spell check SGML, HTML, XHTML, and XML
+files. In most cases everything within a tag `<samp><span class="samp">&lt;tag attrib=value
+attrib2="a whole sentence"&gt;</span></samp>' will be skipped by the spell checker. The
+SGML/HTML/XML that Aspell supports is a slight superset of most DTDs
+(Document Type Definitions) and can spell check the often non-conforming
+HTML found on the web.
+
+   <p>Two configuration options, <samp><span class="option">sgml-skip</span></samp> and <samp><span class="option">sgml-check</span></samp>,
+allow you to control what is spell checked. The tag and attribute names
+specified are case insensitive.
+
+     <dl>
+<dt><b>sgml-skip</b><dd>This is a list of tags whose contents will also be skipped by the spell
+checker.  For example, if you wish to leave a misspelling in a document
+and not have them flagged as misspellings, you could surround them with
+a &lt;nospellcheck&gt; tag:
+     <pre class="example">            &lt;TD&gt;&lt;FONT size=2&gt;&lt;NOSPELLCHECK&gt;leviosa&lt;/NOSPELLCHECK&gt;
+            is what Mr. Potter said&lt;/FONT&gt;&lt;/TD&gt;
+     </pre>
+     <p class="noindent">And put that word in the skip config directive:
+     <pre class="example">          add-sgml-skip nospellcheck
+     </pre>
+     <br><dt><b>sgml-check</b><dd>
+This is a list of attributes whose values you do want spell checked. By
+default, 'alt' (&lt;img&gt; alternate text) is a member of the check list
+since it is text that is seen by a web page viewer. You may also want
+'value' to be on the check list since that is the text put on buttons:
+     <pre class="example">          add-sgml-check value
+     </pre>
+     <p class="noindent">In this case `<samp><span class="samp">&lt;input type=button value="Donr"&gt;</span></samp>' will be flagged as a
+misspelling. 
+</dl>
+
+   <p>This filter will also translate SGML characters of the form
+`<samp><span class="samp">&amp;#num;</span></samp>'.  Other SGML characters such as `<samp><span class="samp">&amp;amp;</span></samp>' will simply
+be skipped over so that the word `<samp><span class="samp">amp</span></samp>', for example, will not be
+spell checked.  Eventually full support for properly translating SGML
+characters will be added.
+
+<h5 class="subsubsection">4.4.1.5 HTML Filter</h5>
+
+<p>The <samp><span class="option">html</span></samp> filter is like the SGML Filter Mode but specialized for
+HTML.  By default, 'script' and 'style' are members of the skip list in
+HTML mode.
+
+<h5 class="subsubsection">4.4.1.6 TeX/LaTeX Filter</h5>
+
+<p>The <samp><span class="option">tex</span></samp> (all lowercase) filter mode skips over TeX
+commands and parameters and/or options to certain commands.  It also
+skips over TeX comments by default.  The option
+<samp><span class="option">[dont-]tex-check-comments</span></samp> controls whether or not Aspell will
+skip over TeX comments.  The option <samp><span class="option">add|rem-tex-command</span></samp>
+controls which TeX commands should have certain parameters and/or
+options also skipped over.  Commands that are not specified will have
+all their parameters and/or options checked.  The format for each item
+is
+
+<pre class="example">     &lt;command&gt; &lt;a list of p,P,o and Os&gt;
+</pre>
+   <p>The first item is simply the command name.  The second item controls
+which parameters to skip over.  A 'p' skips over a parameter while a
+'P' doesn't.  Similarly an 'o' will skip over an optional parameter
+while an 'O' doesn't.  The first letter on the list will apply to the
+first parameter, the second letter will apply to the second parameter
+etc.  If there are more parameters than letters Aspell will simply
+check them as normal.  For example the option
+
+<pre class="example">     add-tex-command rule pp
+</pre>
+   <p class="noindent">will skip over the first two parameters of the <code>rule</code> command
+while the option
+
+<pre class="example">     add-tex-command foo Pop
+</pre>
+   <p class="noindent">will <em>check</em> the first parameter of the <code>foo</code> command, skip
+over the next optional parameter, if it is present, and will skip over
+the second parameter &mdash; even if the optional parameter is not present
+&mdash; and will check any additional parameters.
+
+   <p>A `<samp><span class="samp">*</span></samp>' at the end of the command is simply ignored.  For example
+the option
+
+<pre class="example">     enlargethispage p
+</pre>
+   <p class="noindent">will ignore the first parameter in both <samp><span class="option">enlargethispage</span></samp> and
+<samp><span class="option">enlargethispage*</span></samp>.
+
+   <p>To remove a command simply use the <samp><span class="option">rem-tex-command</span></samp> option. 
+For example
+
+<pre class="example">     rem-tex-command foo
+</pre>
+   <p class="noindent">will remove the command foo, if present, from the list of TeX
+commands.
+
+   <p>The TeX filter mode is also available via <samp><span class="option">latex</span></samp> alias name.
+
+<!-- The TeXfilter mode also contains a decoding and a encoding filter for -->
+<!-- @emph{babel} character codes like the German Umlauts: -->
+<!-- @itemize @bullet -->
+<!-- @item -->
+<!-- @code{@"a} -> @code{\"a} -> @code{"a} -->
+<!-- @item -->
+<!-- @code{@"o} -> @code{\"o} -> @code{"o} -->
+<!-- @item -->
+<!-- @code{@"u} -> @code{\"u} -> @code{"u} -->
+<!-- @item -->
+<!-- @code{@"s} -> @code{\"s} -> @code{"s} -->
+<!-- @end itemize -->
+<!-- @end quotation -->
+<!-- @quotation -->
+<!-- @option{add|rem-tex-multi-byte} conversion -->
+<!-- Changes list of multi character coded TeX(babel) characters recognized -->
+<!-- by Aspell.  In case of German umlauts mentioned above this would mean -->
+<!-- that Aspell would decode from their multi character representation to -->
+<!-- their proper single char representation.  Given the German word -->
+<!-- @code{St@"arke} (strength) which within TeX/LaTeXdocument has to be -->
+<!-- written as @code{St"arke} or as @code{St\"arke} would split it into -->
+<!-- the two words @code{St} and @code{arke} if it does not know anything -->
+<!-- about the multi character encoding @code{"a} or @code{\"a} of -->
+<!-- @code{@"a}.  On the other hand if it knows about it than Aspell will -->
+<!-- recognize the word properly and will not try to make any strange -->
+<!-- suggestion. -->
+<!-- Each multi character coding conversion has to be specified the -->
+<!-- following way: -->
+<!-- @example -->
+<!-- @i{char}:@i{rep}[:@i{rep}[@dots{}]] -->
+<!-- @end example -->
+<!-- where @code{@i{char}} is the character encoded by multiple characters -->
+<!-- and rep stands for a specific representation of that character.  For -->
+<!-- each character may be specified as many representations as available -->
+<!-- for it. -->
+<!-- @end quotation -->
+<h5 class="subsubsection">4.4.1.7 Texinfo Filter</h5>
+
+<p>The <samp><span class="option">texinfo</span></samp> filter allows you to spell check Texinfo files. 
+It will skip over any Texinfo commands and their parameters when
+appropriate.  It will also skip over some Texinfo environments such as
+<samp><span class="command">example</span></samp>.  The list option <samp><span class="option">texinfo-ignore</span></samp>
+controls which commands to ignore the parameters of and the list option
+<samp><span class="option">texinfo-ignore-env</span></samp> controls which Texinfo
+environments to ignore.
+
+   <p>The Texinfo filter has special code to deal with the <samp><span class="command">@table</span></samp>
+and related commands.  It will apply the formatting command to each of
+the <samp><span class="command">@item</span></samp> or <samp><span class="command">@itemx</span></samp> commands just like Texinfo
+will.  This means that if the formatting command is <samp><span class="command">@code</span></samp>
+and and the <samp><span class="command">@code</span></samp> command is a member of the
+<samp><span class="option">texinfo-ignore</span></samp> option than the Texinfo filter will ignore the
+parameter of the <samp><span class="command">@item</span></samp> command as if the parameter was also
+the parameter of the <samp><span class="command">@code</span></samp> command.
+
+   <p>The Texinfo filter will also skip over the `<samp><span class="samp">\input texinfo</span></samp>' line.
+
+<h5 class="subsubsection">4.4.1.8 Nroff Filter</h5>
+
+<p>The <samp><span class="option">nroff</span></samp> filter mode allows you to check the spelling of
+Nroff documents. The mode is enabled by giving
+<samp><span class="option">--add-filter=nroff</span></samp> or <samp><span class="option">-n</span></samp> command line option to
+<samp><span class="command">aspell</span></samp>. It is also automatically enabled if the first three
+characters of the file being checked are <code>.\"</code> (a <samp><span class="command">nroff</span></samp> comment
+marker) or the file name ends in a one of the following suffixes:
+
+     <ul>
+<li>single decimal digit from `<samp><span class="samp">0</span></samp>' to `<samp><span class="samp">9</span></samp>'
+<li>letter `<samp><span class="samp">n</span></samp>'
+<li>`<samp><span class="samp">tmac</span></samp>'
+</ul>
+
+<p class="noindent">This filter mode skips following <samp><span class="command">nroff</span></samp> language
+elements:
+
+     <ul>
+<li>Comments
+<li>Requests
+<li>Names of <samp><span class="command">nroff</span></samp> registers (both traditional two-letter
+names and GNU nroff long names)
+<li>Arguments to the following requests: <code>ds</code>, <code>de</code>, <code>nr</code>,
+<code>do</code>, <code>so</code>. 
+<li>Arguments to font switch (<code>\f</code>) and size switch (<code>\s</code>)
+escapes
+<li>Arguments to extended charset escape in both traditional
+(<code>\(</code>) and extended (<code>\[comp1 comp2 ...]</code>) form. 
+</ul>
+
+<h5 class="subsubsection">4.4.1.9 Context Filter</h5>
+
+<p>The <em>context</em> filter allows Aspell to distinguish between visible
+and invisible contexts.  The visible ones will be spell checked and
+the invisible ones will be ignored.  The contexts are distinguished by
+the fact that the visible/invisible ones are delimited by specific and
+unique delimiter characters or character sequences.  Whether the
+delimited contexts should be visible or invisible only stated by the
+value of the <samp><span class="option">[dont-]context-visible-first</span></samp> option and not by
+the delimiters.
+
+   <p>The context delimiters are specified as pairs of delimiters via the
+<samp><span class="option">add|rem-context-delimiters</span></samp> option.  The delimiters enclosing
+a specific context are specified as a space separated pair.  If more
+than one delimiter pair is specified by one call of
+<samp><span class="option">add|rem-context-delimiters</span></samp> they have to be combined to a
+comma separated list.  To indicate that a context is always closed by
+end of line use <code>\0</code> sequence as closing delimiter.
+
+<h5 class="subsubsection">4.4.1.10 Ccpp Filter Mode</h5>
+
+<p>The <samp><span class="option">ccpp</span></samp> filter mode will limit spell checking to C/C++ comments
+and string literals. Any code in between will be left alone.
+
+   </body></html>
+

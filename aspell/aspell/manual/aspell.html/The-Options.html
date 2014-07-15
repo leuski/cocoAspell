@@ -1,0 +1,405 @@
+<html lang="en">
+<head>
+<title>The Options - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Customizing-Aspell.html#Customizing-Aspell" title="Customizing Aspell">
+<link rel="prev" href="Specifying-Options.html#Specifying-Options" title="Specifying Options">
+<link rel="next" href="Dumping-Configuration-Values.html#Dumping-Configuration-Values" title="Dumping Configuration Values">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="The-Options"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Dumping-Configuration-Values.html#Dumping-Configuration-Values">Dumping Configuration Values</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Specifying-Options.html#Specifying-Options">Specifying Options</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Customizing-Aspell.html#Customizing-Aspell">Customizing Aspell</a>
+<hr>
+</div>
+
+<h3 class="section">4.2 The Options</h3>
+
+<p>The following is a list of available options broken down by category. 
+Each entry has the following format:
+
+   <blockquote>
+          <dl>
+<dt><var>option</var><b>[,</b><var>single-letter-abbreviation</var><b>]</b><dd><i>(</i><var>type</var><i>)</i> <var>description</var>
+</dl>
+   </blockquote>
+
+   <p>Where single letter options are specified as they would appear at the
+command line, ie with the preceding dash.  Boolean single letter
+options are specified in the following format:
+
+   <blockquote>
+-&lt;abbreviation to enable&gt;|-&lt;abbreviation to disable&gt;
+</blockquote>
+
+   <p><var>option</var> is one of the following: <em>boolean</em>, <em>string</em>,
+<em>file</em>, <em>dir</em>, <em>integer</em>, or <em>list</em>.
+
+   <p><em>String</em>, <em>file</em>, <em>dir</em>, and <em>integer</em> types are all
+value options which can only take a specific type of value.
+
+<h4 class="subsection">4.2.1 Dictionary Options</h4>
+
+<p>The following options may be used to control which dictionaries to use
+and how they behave (for more information see <a href="How-Aspell-Selects-an-Appropriate-Dictionary.html#How-Aspell-Selects-an-Appropriate-Dictionary">How Aspell Selects an Appropriate Dictionary</a>):
+
+     <dl>
+<dt><b>master,-d</b><dd><i>(string)</i>
+Base name of the dictionary to use.  If this option is specified then
+Aspell will either use this dictionary or die.
+
+     <br><dt><b>dict-dir</b><dd><i>(dir)</i>
+Location of the main word list.
+
+     <br><dt><b>lang</b><dd><i>(string)</i>
+Language to use.  It follows the same format of the <samp><span class="env">LANG</span></samp>
+environment variable on most systems.  It consists of the two letter
+<acronym>ISO 639</acronym> language code and an optional two letter
+<acronym>ISO 3166</acronym> country code after a dash or underscore.  The
+default value is based on the value of the <samp><span class="env">LC_MESSAGES</span></samp> locale.
+
+     <br><dt><b>size</b><dd><i>(string)</i>
+The preferred size of the word list.  This consists of a
+two char digit code describing the size of the list, with typical
+values of: 10=tiny, 20=really small, 30=small, 40=med-small, 50=med,
+60=med-large, 70=large, 80=huge, 90=insane.
+
+     <br><dt><b>variety</b><dd><i>(list)</i>
+Any extra information to distinguish two different words lists that
+have the same lang and size.
+
+     <br><dt><b>word-list-path</b><dd><i>(list)</i>
+Search path for word list information files.
+
+     <!-- @item module-search-order (@i{list}) -->
+<!-- list of available modules, modules that come first on this list have a -->
+<!-- higher priority. Currently there is only one speller module. -->
+<br><dt><b>personal,-p</b><dd><i>(file)</i>
+Personal word list file name.
+
+     <br><dt><b>repl</b><dd><i>(file)</i>
+Replacements list file name.
+
+     <br><dt><b>extra-dicts</b><dd><i>(list)</i>
+Extra dictionaries to use.
+
+     <br><dt><b>dict-alias</b><dd><i>(list)</i>
+create dictionary aliases.  Each entry has the form `<samp><var>from</var>
+<var>to</var></samp>'.  Will override any system dictionaries that are present.
+
+   </dl>
+
+<h4 class="subsection">4.2.2 Encoding Options</h4>
+
+<p>These options control the encoding the document is expected to be in and
+how it is displayed.
+
+     <dl>
+<dt><b>encoding</b><dd><i>(string)</i>
+The encoding the input text is in.  Valid values include, but not
+limited to, `<samp><span class="samp">iso-8859-*</span></samp>', `<samp><span class="samp">utf-8</span></samp>', `<samp><span class="samp">ucs-2</span></samp>',
+`<samp><span class="samp">ucs-4</span></samp>'.  When using the Aspell utility the default encoding is
+based on the current locale.  Thus if your locale currently uses the
+`<samp><span class="samp">utf-8</span></samp>' encoding than everything will be in <acronym>UTF-8</acronym>.  The
+`<samp><span class="samp">ucs-2</span></samp>' and `<samp><span class="samp">ucs-4</span></samp>' encodings are intended to be used by other
+programs using the Aspell library and is not supported by the Aspell
+utility.
+
+     <br><dt><b>normalize</b><dd><i>(boolean)</i>
+Perform Unicode normalization.  Enabled by default.
+
+     <br><dt><b>norm-strict</b><dd><i>(boolean)</i>
+Avoid lossy conversions when normalizing.  Lossy conversions includes
+compatibility mappings such as splitting the letter `<samp><span class="samp">OE</span></samp>' (U+152)
+into `<samp><span class="samp">O</span></samp>' and `<samp><span class="samp">E</span></samp>' (when the combined letter is not available),
+and mappings which will remove accents.  Disabled by default except when
+creating dictionaries.
+
+     <br><dt><b>norm-form</b><dd><i>(string)</i>
+The normalization form the output should be in.  This option primarily
+effects the normalization form of the suggestions as when spell
+checkering as the actual text is unchanged unless there is an error. 
+Valid values are `<samp><span class="samp">none</span></samp>', `<samp><span class="samp">nfd</span></samp>' for fully decomposition
+(Normalization Form D), `<samp><span class="samp">nfc</span></samp>' for Normalization Form C, or
+`<samp><span class="samp">comp</span></samp>' for fully composed.  `<samp><span class="samp">comp</span></samp>' is like `<samp><span class="samp">nfc</span></samp>' except
+that <em>full</em> composition is used rather than <em>canonical</em>
+composition.  The <samp><span class="option">normalize</span></samp> option must be enabled for this
+option to be used.
+
+     <br><dt><b>norm-required</b><dd><i>(boolean)</i>
+Set to true when the current language requires Unicode normalization. 
+This is generally the case when private use characters are used
+internally by Aspell or when Normalization Form C is not the same as
+full composition.
+
+   </dl>
+
+<h4 class="subsection">4.2.3 Checker Options</h4>
+
+<p>These options control the behavior of Aspell when checking
+documents.
+
+     <dl>
+<dt><b>ignore,-W</b><dd><i>(integer)</i>
+Ignore words with N characters or less
+
+     <br><dt><b>ignore-repl</b><dd><i>(boolean)</i>
+Ignore commands to store replacement pairs.
+
+     <br><dt><b>save-repl</b><dd><i>(boolean)</i>
+Save the replacement word list on save all.
+
+     <br><dt><b>keyboard</b><dd><i>(file)</i>
+The base name of the keyboard definition file to use (see <a href="Notes-on-Typo_002dAnalysis.html#Notes-on-Typo_002dAnalysis">Notes on Typo-Analysis</a>)
+
+     <br><dt><b>sug-mode</b><dd><i>(mode)</i>
+Suggestion mode = `<samp><span class="samp">ultra</span></samp>' | `<samp><span class="samp">fast</span></samp>' | `<samp><span class="samp">normal</span></samp>' | `<samp><span class="samp">slow</span></samp>' |
+`<samp><span class="samp">bad-spellers</span></samp>' (see <a href="Notes-on-the-Different-Suggestion-Modes.html#Notes-on-the-Different-Suggestion-Modes">Notes on the Different Suggestion Modes</a>)
+
+     <br><dt><b>ignore-case</b><dd><i>(boolean)</i>
+Ignore case when checking words.
+
+     <br><dt><b>ignore-accents</b><dd><i>(boolean)</i>
+Ignore accents when checking words &ndash; <em>currently ignored</em>.
+
+   </dl>
+
+<h4 class="subsection">4.2.4 Filter Options</h4>
+
+<p>These options modify the behavior of the Aspell filter interface in
+general (for more information see see <a href="Notes-on-Various-Filters-and-Filter-Modes.html#Notes-on-Various-Filters-and-Filter-Modes">Notes on Various Filters and Filter Modes</a>).
+
+     <dl>
+<dt><b>filter</b><dd><i>(list)</i>
+filters to use
+
+     <br><dt><b>filter-path</b><dd><i>(list)</i>
+Where to look when loading filter and filter modes.
+
+     <br><dt><b>mode</b><dd><i>(string)</i>
+Sets the filter mode.  Possible values include, but not limited to,
+`<samp><span class="samp">none</span></samp>', `<samp><span class="samp">url</span></samp>', `<samp><span class="samp">email</span></samp>', `<samp><span class="samp">sgml</span></samp>', or `<samp><span class="samp">tex</span></samp>'.  (The
+shortcut options <samp><span class="option">-e</span></samp> may be used for email, <samp><span class="option">-H</span></samp> for
+HTML, or <samp><span class="option">-t</span></samp> for TeX).
+
+   </dl>
+
+   <p>These options belong to filters packaged along with Aspell standard
+distribution.  These options may be prefixed by the keyword
+<code>f-</code> in order to explicitly indicate that they are options
+recognized by a filter and not by Aspell itself.
+
+<h5 class="subsubsection">4.2.4.1 email</h5>
+
+<p>This filter hides quoting characters and email preamble and other
+parts of an email which need not to be spell checked.
+
+     <dl>
+<dt><b>email-quote</b><dd><i>(list)</i>
+Email quote characters.
+
+     <br><dt><b>email-margin</b><dd><i>(integer)</i>
+The number of characters that can appear before the quote character
+</dl>
+
+<h5 class="subsubsection">4.2.4.2 html</h5>
+
+<p>This filter converts an HTML source file into a format which eases
+spell checking of HTML texts by Aspell.
+
+     <dl>
+<dt><b>html-check</b><dd><i>(list)</i>
+HTML attributes to always check, such as alt= (alternate text).
+
+     <br><dt><b>html-skip</b><dd><i>(list)</i>
+HTML tags to always skip the contents of, such as &lt;script&gt;. 
+</dl>
+
+<h5 class="subsubsection">4.2.4.3 sgml</h5>
+
+<p>This filter is identical to the HTML filter except that its options has
+different default values which are currently the empty list.
+
+<h5 class="subsubsection">4.2.4.4 tex/latex</h5>
+
+<p>This filter hides all LaTeX commands and corresponding parameters not
+being readable text in LaTeX output from Aspell.
+
+     <dl>
+<dt><b>tex-command</b><dd><i>(list)</i>
+TeX commands
+
+     <br><dt><b>tex-check-comments</b><dd><i>(boolean)</i>
+check TeX comments
+
+     <!-- @item tex-multi-byte -->
+<!-- (@i{list}) TeX multi byte letter en|decoding -->
+</dl>
+
+<h5 class="subsubsection">4.2.4.5 texinfo</h5>
+
+<p>This filter hides all Texinfo commands from Aspell.  It can also hide
+Texinfo parameters and environments not corresponding to readable text.
+
+     <dl>
+<dt><b>texinfo-ignore</b><dd><i>(list)</i> Texinfo command to ignore the parameters of.
+
+     <br><dt><b>texinfo-ignore-env</b><dd><i>(list)</i> Texinfo environments to ignore.
+
+   </dl>
+
+<h5 class="subsubsection">4.2.4.6 context</h5>
+
+<!-- FIXME: Shorten -->
+<p>This filter can be used to spell check source
+codes, HTML sources and other texts which consist of different
+contexts.  These contexts must be separated by pairs of unique
+delimiters.  The different contexts may not be dependent upon each
+other except for initial context which is assumed if not any other
+context applies.
+
+     <dl>
+<dt><b>context-visible-first</b><dd><i>(boolean)</i> Switches the context which should be visible to Aspell. 
+Per default the initial context is assumed to be invisible as one
+would expect when spell checking source files of programs where
+relevant parts are contained in string constants and comments but not
+in the remaining code.  If set to true the initial context is visible
+while the delimited ones are hidden.
+
+     <br><dt><b>add|rem-context-delimiters</b><dd><i>(list)</i> Add or remove pairs of delimiters.  This allows you to
+specify the character, or sequences of characters, which should be
+used to switch contexts and therefore have to be escaped by `<samp><span class="samp">\</span></samp>' if
+they should appear literally.  The two delimiting chars belonging to
+one pair have to be separated by a space character.  If multiple pairs
+are specified by one <samp><span class="option">add|rem-context-delimiters</span></samp> call the
+different pairs have to be separated by a literal comma.  Per default
+the delimiters are set to C/C++ comment and string constant
+delimiters.  If the end of line delimits a context than this has to be
+indicated by the literal `<samp><span class="samp">\0</span></samp>' string. 
+</dl>
+
+<h4 class="subsection">4.2.5 Run-together Word Options</h4>
+
+<p>These may be used to control the behavior of run-together words (for
+more information see <a href="Controlling-the-Behavior-of-Run_002dtogether-Words.html#Controlling-the-Behavior-of-Run_002dtogether-Words">Controlling the Behavior of Run-together Words</a>):
+     <dl>
+<dt><b>run-together,-C|-B</b><dd><i>(boolean)</i>
+consider run-together words valid
+<br><dt><b>run-together-limit</b><dd><i>(integer)</i>
+maximum number of words that can be strung together
+
+     <br><dt><b>run-together-min</b><dd><i>(integer)</i>
+minimal length of interior words
+</dl>
+
+<h4 class="subsection">4.2.6 Miscellaneous Options</h4>
+
+<p>Miscellaneous other options that don't fall under any other category
+     <dl>
+<dt><b>conf</b><dd><i>(file)</i>
+Main configuration file.  This file overrides Aspell's global defaults.
+
+     <br><dt><b>conf-dir</b><dd><i>(dir)</i>
+location of main configuration file
+
+     <br><dt><b>data-dir</b><dd><i>(dir)</i>
+location of language data files
+
+     <br><dt><b>local-data-dir</b><dd><i>(dir)</i>
+alternative location of language data files.  This directory is
+searched before <samp><span class="option">data-dir</span></samp>.  It defaults to the same directory
+the actual main word list is in (which is not necessarily
+<samp><span class="option">dict-dir</span></samp>)
+
+     <br><dt><b>home-dir</b><dd><i>(dir)</i>
+location for personal files
+
+     <br><dt><b>per-conf</b><dd><i>(file)</i>
+personal configuration file.  This file overrides options found in
+the global <samp><span class="option">conf</span></samp> file
+
+     <br><dt><b>keyboard</b><dd><i>(file)</i>
+use this keyboard layout for suggesting possible words.  These spelling
+errors happen if a user accidently presses a key next to the intended
+correct key.  The default is keyboard standard.  If you are creating
+documents, you may want to set it according to your particular type of
+keyboard.  If spellchecking documents created elsewhere, you might
+want to set this to the keyboard type for that locale.  If you are not
+sure, just leave this as standard
+
+     <br><dt><b>prefix</b><dd><i>(dir)</i>
+prefix directory
+
+     <br><dt><b>set-prefix</b><dd><i>(boolean)</i>
+set the prefix based on executable location (only works on WIN32 and
+when compiled with <samp><span class="option">--enable-win32-relocatable</span></samp>)
+</dl>
+
+<h4 class="subsection">4.2.7 Aspell Utility Options</h4>
+
+     <dl>
+<dt><b>backup,-b|-x</b><dd><i>(boolean)</i>
+Create a backup file by appending <samp><span class="file">.bak</span></samp> to the file name.  This
+applies when the command is <samp><span class="command">check</span></samp> and the backup file is
+only created if any spelling modifications take place.
+
+     <br><dt><b>time</b><dd><i>(boolean)</i>
+Time load time and suggest time in <samp><span class="command">pipe</span></samp> mode.
+
+     <br><dt><b>byte-offsets</b><dd><i>(boolean)</i>
+Use byte offsets instead of character offsets in <samp><span class="command">pipe</span></samp> mode.
+
+     <br><dt><b>reverse</b><dd><i>(boolean)</i>
+Reverse the order of the suggestions list in <samp><span class="command">pipe</span></samp> mode.
+
+     <br><dt><b>keymapping</b><dd><i>(string)</i>
+the keymapping to use.  Either <samp><span class="option">aspell</span></samp> for the default mapping
+or <samp><span class="option">ispell</span></samp> to use the same mapping that the Ispell utility
+uses.
+
+     <br><dt><b>guess</b><dd><i>(boolean)</i>
+make possible root/affix combinations not in the dictionary in
+<samp><span class="command">pipe</span></samp> mode.
+
+     <br><dt><b>suggest</b><dd><i>(boolean)</i>
+Suggest possible replacements in <samp><span class="command">pipe</span></samp> mode.  If false Aspell
+will simply report the misspelling and make no attempt at suggestions
+or possible corrections. 
+</dl>
+
+   </body></html>
+

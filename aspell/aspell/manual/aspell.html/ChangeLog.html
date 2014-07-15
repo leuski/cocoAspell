@@ -1,0 +1,1107 @@
+<html lang="en">
+<head>
+<title>ChangeLog - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Installing.html#Installing" title="Installing">
+<link rel="next" href="Authors.html#Authors" title="Authors">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="ChangeLog"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Authors.html#Authors">Authors</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Installing.html#Installing">Installing</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="appendix">Appendix F ChangeLog</h2>
+
+<h3 class="heading">Changes from 0.60.6 to 0.60.6.1 (July 4, 2011)</h3>
+
+     <ul>
+<li>Update to Automake 1.10.3. 
+<li>Fix a bug which caused a race condition (leading to a likely crash)
+when two threads try to update the dictionary cache at the same time. 
+<li>Make it very clear that compiling Aspell with NDEBUG is a bad idea
+(see <a href="http://aspell.net/ndebug.html">http://aspell.net/ndebug.html</a>) by outputting a
+warning when building with NDEBUG defined. 
+<li>Numerous other minor updates and bug fixes. 
+</ul>
+
+<h3 class="heading">Changes from 0.60.5 to 0.60.6 (April 16, 2007)</h3>
+
+     <ul>
+<li>Compile fixes for Gcc 4.3. 
+<li>Updated to Libtool 2.2.2 and Automake 1.10.1
+<li>Minor tweak to suggestion code which improved suggestion results in
+certain cases. 
+<li>Always line buffer stdout and stderr in the Aspell utility when there is
+the potential for it to be used interactively through a pipe. 
+<li>Removed debug output in <samp><span class="command">aspell munch-list</span></samp>. 
+<li>Other minor updates and bug fixes. 
+</ul>
+
+<h3 class="heading">Changes from 0.60.4 to 0.60.5 (December 18, 2006)</h3>
+
+     <ul>
+<li>Compile fix for Gcc 4.1
+<li>Updated to Gettext 0.16.1, Libtool 1.5.22, Automake 1.10, Autoconf 2.61
+<li>Documentation improvements, including an updated <samp><span class="command">man</span></samp> page. 
+<li>Complain if more than one file is specified when checking files using
+the <samp><span class="command">aspell check</span></samp> command, rather than ignoring the other files. 
+<li>Large number of bug fixes. 
+</ul>
+
+<h3 class="heading">Changes from 0.60.3 to 0.60.4 (October 19, 2005)</h3>
+
+     <ul>
+<li>Fixed a bug that caused Aspell to crash when checking certain Russian
+words, this bug likely affected other languages as well. 
+<li>Updated to Gettext 0.14.5 which is required for AMD64, also updated to
+to Libtool 1.5.20. 
+<li>Fixed an alignment bug which caused mmap to always fail when reading
+in dictionaries. 
+<li>Added note about how <samp><span class="command">make clean</span></samp> will remove the HTML manuals. 
+<li>Added manual page for prezip-bin and enhanced word-list-compress manual
+page thanks to the work of Jose Da Silva. 
+<li>Other minor updates and bug fixes. 
+</ul>
+
+<h3 class="heading">Changes from 0.60.2 to 0.60.3 (June 28, 2005)</h3>
+
+     <ul>
+<li>Fixed bugs involving several of the C API functions. 
+<li>Fixed bug where `<samp><span class="samp">ultra</span></samp>' or `<samp><span class="samp">fast</span></samp>' mode would not return any
+suggestions when soundslike lookup was not used. 
+<li>Made a minor, yet significant, optimization to the suggestion code. 
+This sped things up by an order of magnitude in some cases. 
+<li>Avoid using the slow ngram scan except when the <samp><span class="option">sug-mode</span></samp> is
+`<samp><span class="samp">slow</span></samp>' or `<samp><span class="samp">bad-speller</span></samp>'. 
+<li>Fixed a bug in curses mode which caused word-wrap to not work
+correctly in some cases. 
+<li>Fixed a bug in pipe mode with a missing newline. 
+<li>Fixed the <samp><span class="command">spell</span></samp> compatibility script. 
+<li>Several other minor bugs fixed. 
+<li>Made note about the change in behavior of the <samp><span class="option">-l</span></samp> command line
+switch. 
+<li>Other manual update/fixes. 
+<li>Updated to Libtool 1.5.18, Automake 1.9.6, and Makeinfo 4.8. 
+</ul>
+
+<h3 class="heading">Changes from 0.60.1 to 0.60.2 (December 18, 2004)</h3>
+
+     <ul>
+<li>Added the <samp><span class="command">munch-list</span></samp> command to the Aspell utility.  The
+<samp><span class="command">munch</span></samp> program in the <samp><span class="file">myspell/</span></samp> directory will
+disappear in Aspell 0.61.  The <samp><span class="command">munchlist</span></samp> script will also
+likely disappear or be replaced when Aspell 0.61 is released since it
+doesn't work correctly anyway. 
+<li>Several important bug fixes some of which rendered some non-English
+languages unusable. 
+<li>Other minor changes. 
+</ul>
+
+<h3 class="heading">Changes from 0.60.1 to 0.60.1.1 (November 20, 2004)</h3>
+
+     <ul>
+<li>Fix bug involving checking of capitalized word when affix compression
+is used. 
+<li>Compile fixes. 
+<li>Added an option to disable using the &ldquo;wide&rdquo; curses version in case it
+causes compile problems. 
+<li>Minor manual updates
+<li>Avoided including some unnecessary files in the distribution. 
+</ul>
+
+<h3 class="heading">Changes from 0.60 to 0.60.1 (November 7, 2004)</h3>
+
+     <ul>
+<li>Lots of compile fixes for various platforms. 
+<li>Miscellaneous bug fixes. 
+<li>Added Nroff filter thanks to Sergey Poznyakoff. 
+<li>The default filter mode when in pipe mode is now nroff for compatibility with
+Ispell. 
+<li>Added Texinfo filter. 
+<li>Added a section detailing the differences between Ispell and Aspell. 
+<li>Updated the section on thread safety. 
+<li>Other miscellaneous manual changes such as updating the To Do and Authors
+section. 
+</ul>
+
+<h3 class="heading">Changes from 0.50.5 to 0.60 (August 27, 2004)</h3>
+
+     <ul>
+<li>Added support for Affix Compression.  Affix compression stores the root
+word and then a list of prefixes and suffixes that the word can take,
+and thus saves a lot of space.  The codebase comes from MySpell found in
+OpenOffice.  It uses the same affix file that OpenOffice (and Mozilla)
+use.  Affix compression will even work with soundslike lookup to a
+limited extent. 
+<li>Added support for accepting all input and printing all output in UTF-8
+or some other encoding different from the one Aspell uses.  This
+includes support for Unicode normalization.  Aspell can now support any
+language with no more than 210 distinct characters, including different
+capitalizations and accents, <em>even if</em> there is not an existing
+8-bit encoding that supports the language. 
+<li>Added support for loadable filters and customizable filter modes thanks
+to Christoph Hinterm&uuml;ller. 
+<li>Enhanced SGML filter to also support skipping sgml tags such as "script"
+blocks thanks to Tom Snyder. 
+<li>Added gettext support thanks to Sergey Poznyakoff
+<li>Reworked the compiled dictionary format.  Compiled dictionaries now take
+up less space (less than 80% for the English language) and
+creating them is significantly faster (over 4 times for the
+English language). 
+<li>Reworked suggestion code.  It is significantly faster when dealing with
+short words (up to 10 times).  Also added support for MySpell
+Replacement Tables and n-gram lookup.  In addition, added basic support
+for compound words. 
+<li>Manual has has been converted to texinfo format thanks to the work of
+Chris Martin. 
+<li>Reworked the build system so that a single Makefile is used for most
+of the code. 
+<li>All data, by default, is now included in
+<samp><var>libdir</var><span class="file">/aspell-0.60</span></samp>.  Also added a built time option to
+increment the major version number of the shared library.  This should
+allow both Aspell version 0.50 and 0.60 to coexist.  The major version
+number is <em>not</em> incremented by default as Aspell 0.60 is binary
+compatible with Aspell 0.50.  See <a href="Binary-Compatibility.html#Binary-Compatibility">Binary Compatibility</a>. 
+<li>The code to handle dictionaries has been rewritten.  Because of this
+support for the dictionary option <samp><span class="option">strip-accents</span></samp> has been
+removed.  In addition the <samp><span class="option">ignore-accents</span></samp> option is currently
+unimplemented. 
+<li>Lots of other minor changes due to massive overhaul of the source code.
+
+</ul>
+
+<h3 class="heading">Changes from 0.50.4.1 to 0.50.5 (Feb 10, 2004)</h3>
+
+     <ul>
+<li>Reworked url filter which fixed several bugs and now accepts
+"bla.bla/kdkdl" as a url. 
+<li>Fixed bug in which the url filter was coming before all other filters
+when it was supposed to come after. This solved a number of problems
+where the url filter was interfering with other filters. 
+<li>Small bug fix in SGML filter. 
+<li>Added code page charsets, ie cp125?.dat. 
+<li>Added natural (split) keyboard data file as "split.kbd"
+<li>Compile fixes for the upcoming Gcc 3.4
+<li>Removed Solaris link hack as it was causing more problems than it
+fixes. 
+<li>Compile fixes for Sun WorkShop 6 compiler, but there may still be some
+problems, especially with linking. 
+<li>Included patch to help compile with Microsoft Visual C++ 6. 
+<li>Minor manual fixes. 
+<li>Updated the TODO section to reflect the current progress with the next
+major version of Aspell (0.51). 
+<li>Updated to Autoconf 2.59, Automake 1.82, and Libtool 1.5.2. 
+</ul>
+
+<h3 class="heading">Changes from 0.50.4 to 0.50.4.1 (Oct 11, 2003)</h3>
+
+     <ul>
+<li>Fixed major bug in pipe mode which caused the last character to be
+chopped off words before they were stored. 
+<li>Minor formating fixes in the manual. 
+</ul>
+
+<h3 class="heading">Changes from 0.50.3 to 0.50.4 (Sep 26, 2003)</h3>
+
+     <ul>
+<li>Minor changes in URL filter to avoid treating the double quote
+character as part of the URL, and to avoid treating words ending in
+more than one period as a URL.
+
+     <li>Document fixes in Aspell API
+
+     <li>Small compile fixes, including one for GCC 3.3
+
+     <li>Updated Win32 section since a port now exists thanks to Thorsten
+Maerz.
+
+     <li>Complain instead of doing nothing or aborting for unimplemented
+functions in Aspell utility.
+
+     <li>Portability bug fixes.
+
+     <li>Upgraded to Autoconf 2.57, Automake 1.7.7, Libtool 1.5 (no longer use
+CVS version  of libtool). 
+</ul>
+
+<h3 class="heading">Changes from 0.50.2 to 0.50.3 (Nov 23, 2002)</h3>
+
+     <ul>
+<li>Hopefully fixed the Ispell alignment error problem when Aspell is used
+with ispell.el.
+
+     <li>Fixed a problem with personal dictionaries on NFS mounted home
+directories.
+
+     <li>Compiled libaspell-common directory into libaspell for now to avoid
+forcing applications to relink whenever a new Aspell version is out
+which was due to the use of the libtool '-release' flag.
+
+     <li>Fixed Makefiles so that Aspell can be built outside the source tree
+(i.e.  with VPATH).
+
+     <li>Updated the section on compiling with Win32.
+
+     <li>Updated to Autoconf 2.56. 
+</ul>
+
+<h3 class="heading">Changes from 0.50.1 to 0.50.2 (Sep 28, 2002)</h3>
+
+     <ul>
+<li>Fixed a number of bugs in Ispell compatibility mode
+
+     <li>Fixed a number of bugs with the handling of replacement pairs
+
+     <li>Other miscellaneous bug fixes
+
+     <li>Additional Win32 portability fixes
+
+     <li>Added the Ukrainian KOI8-U charset. 
+</ul>
+
+<h3 class="heading">Changes from 0.50 to 0.50.1 (Aug 28, 2002)</h3>
+
+     <ul>
+<li>A rather large number of portability fixes for non GNU/Linux platforms.
+
+     <li>Fixed pkglibdir and pkgdatadir in configure.
+
+     <li>Reintroduced some configure options from Aspell .33.7 included
+dict-dir, data-dir, curses, curses-include, win32-relocatable.
+
+     <li>Fixed Aspell so it will now compile with -O3 when using gcc.
+
+     <li>Updated note on Win32 support.
+
+     <li>Other minor manual improvements.
+
+     <li>Portability fixes in dictionary files
+
+     <li>Official dictionary package for the Slovak language. 
+</ul>
+
+<h3 class="heading">Changes from .33.7.1 to 0.50 (Aug 23, 2002)</h3>
+
+     <ul>
+<li>A complete overhaul of the source code which included merging Pspell
+into Aspell.
+
+     <li>Changed the way dictionaries and languages are handled.
+
+     <li>Added Dvorak keymap.
+
+     <li>Added the ability to list the available dictionaries
+
+     <li>Improved the spell checking interface a bit.
+
+     <li>Added support for using the Ispell keymapping when checking files.
+
+     <li>Complete rewrite of the filter interface. 
+ It should now be fairly easy to add new filters to Aspell.
+
+     <li>Added some preliminary developer documentation.
+
+     <li>Lots of other changes due to the massive overhaul of the source code. 
+</ul>
+
+<h3 class="heading">Changes from .33.7 to .33.7.1 (Aug 20, 2001)</h3>
+
+     <ul>
+<li>Minor manual fixes.
+
+     <li>Compile fix for Gcc 3.0 and Solaris. 
+</ul>
+
+<h3 class="heading">Changes from .33.6.3 to .33.7 (Aug 2, 2001)</h3>
+
+     <ul>
+<li>Updates to Autoconf 2.50 and switched to the HEAD branch of libtools.
+
+     <li>Fixed a bug which caused Aspell to crash when typo-analysis was not
+used such as when sug-mode is <strong>fast</strong> or <strong>bad spellers</strong>.
+
+     <li>Added support for typo-analysis even when a soundslike was not used.
+
+     <li>Fixed a bug which causes extended charters to display incorrectly on
+some platforms
+
+     <li>Compile fixes so that it will compile with Gcc 3.0.
+
+     <li>Compile fixed which should allow Aspell to compile with Egcs 1.1.  I
+have not been able to actually test it though.  Please let me know at
+kevina@users.sourceforge.net if you have tried with Egcs 1.1.
+
+     <li>Compile and configuration script fixes so that USE_FILE_INO will
+properly be defined and Aspell will compile correctly when it is
+defined.
+
+     <li>More ANSI C++ compliance fixes. 
+</ul>
+
+<h3 class="heading">Changes from .33.6.2 to .33.6.3 (June 3, 2001)</h3>
+
+     <ul>
+<li>Fixed a build problem in the manual/ directory by including
+manual-text and manual-html in the distribution. 
+</ul>
+
+<h3 class="heading">Changes from .33.6.1 to .33.6.2 (June 3, 2001)</h3>
+
+     <ul>
+<li>Compile fix so that Aspell will work correctly when not installed in
+/usr/local.
+
+     <li>Avoided regenerating the manual unless configured with enable-maintainer-mode.
+
+     <li>Added the missing documentation files in the scowl directory. 
+</ul>
+
+<h3 class="heading">Changes from .33.6 to .33.6.1 (May 29, 2001)</h3>
+
+     <ul>
+<li>Fixed a formating problem with the manual involving &lt;.
+
+     <li>Added a note about creating pwli files.
+
+     <li>Removed the space after between the -L and the directory name in the
+pspell-module/Makefile  which caused problems on some platforms.
+
+     <li>Added the configure option AM_MAINTAINER_MODE to avoid enabling rules
+which often causes generated build files to be rebuilt with the wrong
+version of Libtool by default.  I don't know why I didn't think to do
+this a long time ago. 
+</ul>
+
+<h3 class="heading">Changes from .33.5 to .33.6 (May 18, 2001)</h3>
+
+     <ul>
+<li>Fixed a minor bug where some words would have random compound tags
+attached to them.
+
+     <li>Fixed a compile problem on many platforms where fileno is defined as a
+macro.
+
+     <li>Updated the description for a few of Aspell's options.
+
+     <li>Removed the note of Aspell not being able to run when compiled with
+the upcoming Gcc 3.0 compiler as things seam to work now.
+
+     <li>Added a note about Aspell not being able to compile with Egcs 1.1.
+
+     <li>Added hack to deal with Libtool's interdependencies problem.  See bug
+#416981 for Pspell for more info. 
+</ul>
+
+<h3 class="heading">Changes from .33 to .33.5 (April 5, 2001)</h3>
+
+     <ul>
+<li><strong>dump master</strong> correctly detects which dictionary and language
+to use based on the <samp><span class="env">LANG</span></samp> environment variable.
+
+     <li>Fixed a problem on Win32 which involves path names that began with
+&lt;Drive Letter&gt;:.
+
+     <li>Bug fixes and enhancements so that Aspell can once again run under
+MinGW.  You can even use the new full screen interface if Aspell is
+compiled with PDCurses.
+
+     <li>Some major modifications to make Aspell more C++ compliant in order to
+get Aspell to compile under the upcoming Gcc 3.0 compiler.  This
+included only using STL features found in the standard version of C++. 
+(Which means Aspell will no longer require using the SGI version of
+the STL) This should also make compiling C++ under non-gcc compilers a
+lot simpler.  Please note that Aspell still has some problems with the
+upcoming Gcc 3.0 compiler.
+
+     <li>Minor changes to remove some -Wall warnings.
+
+     <li>Added a hack so that Aspell would properly compile as a shared library
+under Solaris.
+
+     <li>Added a few important missing words to the English word list. 
+</ul>
+
+<h3 class="heading">Changes from .32.6 to .33 (January 28, 2001)</h3>
+
+     <ul>
+<li>Added a new new curses based interface to replace the dumb terminal
+interface everyone has been bitching about.
+
+     <li>Added the ability to give higher priority to words such as "the"
+instead of "teh" which are likely to be due to typos.
+
+     <li>Reorganized the manual so that it is hopefully easier to follow.
+
+     <li>Ability to automatically select the best dictionary to use based on
+the setting of the <samp><span class="env">LANG</span></samp> environment variable.
+
+     <li>Expanded the medium dictionary size to include more words which
+included the original words found in Ispell and eliminated the large
+size for now.
+
+     <li>Added three special variant add-on dictionaries.
+
+     <li>Switched to the multi-language branch of the CVS version of libtool.
+
+</ul>
+
+<h3 class="heading">Changes from .32.5 to .32.6 (Nov 8, 2000)</h3>
+
+     <ul>
+<li>Fixed a bug where Aspell would crash when reading-in accented
+characters on some platforms.  This fixed bug # 112435.
+
+     <li>Fixed some other bugs so that it will run under Win32 under CygWin. 
+Unfortunately it still won't run properly under Mingw.
+
+     <li>Fixed the mmap test in configure so that it won't fail on some
+platforms that use munmap(char *, int) instead of munmap(void *, int).
+
+     <li>Upgraded to the latest CVS version of libtool which fixed the problem
+with using GNU Make under Solaris.
+
+     <li>Added an option to copy files instead of using symbolic links for the
+special <strong>multi</strong> dictionary files. 
+</ul>
+
+<h3 class="heading">Changes from .32.1 to .32.5 (August 18, 2000)</h3>
+
+     <ul>
+<li>Changed my email from kevinatk at home com to kevina at users
+sourceforge net please make a note of the new email address.
+
+     <li>Added an option to control if the personal replacement dictionary is
+saved when the save_all_wls method is called.
+
+     <li>Brought back the ability to dump the master word list even in the case
+of the special <strong>multi</strong> lists.
+
+     <li>Added a large number of hacker related words and some other slang
+terms to the medium size word list.
+
+     <li>Added an <strong>ispell</strong> and <strong>spell</strong> compatibility script for
+systems which don't have Ispell installed.  They are located in the
+scripts/ directory and are not installed by default.
+
+     <li>Manual fixes.
+
+     <li>Added a note on not using GNU Make on Solaris. 
+</ul>
+
+<h3 class="heading">Changes from .32 to .32.1 (August 5, 2000)</h3>
+
+     <ul>
+<li>Minor compile fixes for recent gcc snapshot.
+
+     <li>Fixed naming of pwli files.
+
+     <li>Fixed a bug when Aspell will crash when used with certain single
+letter flags.  This bug was most noticeable when used with Emacs.
+
+     <li>Word list changes, see SCOWL Readme.
+
+     <li>Other miscellaneous changes. 
+</ul>
+
+<h3 class="heading">Changes from .31.1 to .32 (July 23, 2000)</h3>
+
+     <ul>
+<li>Added support for optionally doing without the soundslike data.
+
+     <li>Greatly reduced the amount of memory used when creating word lists.
+
+     <li>Added support for ignoring accents when coming up with suggestions.
+
+     <li>Added support for local-data-dir which is searched before data-dir.
+
+     <li>Added support for specifying which words may be used in compounds and where
+ they may be used.
+
+     <li>Added support for having more than one main word list as well as a
+special <strong>multi</strong> word list files which will allow multiple word
+lists to be treated as one.
+
+     <li>Aspell now uses a completely new word list.
+
+     <li>The apostrophe (') is no longer considered part of the word when it as
+at the end of the word such as in `<samp><span class="samp">dogs'</span></samp>'. 
+</ul>
+
+<h3 class="heading">Changes from .31 to .31.1 (June 18, 2000)</h3>
+
+     <ul>
+<li>Fixed a bug where Aspell would not create a complete dictionary file
+on some platforms when the data is 8-bit.
+
+     <li>Added a workaround so Aspell will work with ispell.el 3.3.
+
+     <li>Minor compile fixes so it would compile better with the very latest
+gcc (CVS Version).
+
+     <li>Removed note about compiling in Win32 as I was now able to get it to work. 
+</ul>
+
+<h3 class="heading">Changes from .30.1 to .31 (June 11, 2000)</h3>
+
+     <ul>
+<li>Added support for spell checking run together words.
+
+     <li>Added an option to produce a list of misspelled words from standard input.
+
+     <li>More robust error reporting when reading in language data files.
+
+     <li>Fixed a bug that would cause Aspell to crash if the
+<strong>special</strong> line was not defined in the language data file.
+
+     <li>Updated Pspell Module.
+
+     <li>Minor bug fixes.
+
+     <li>Added cross references in &ldquo;The Aspell Utility Chapter&rdquo; for easier
+use. 
+</ul>
+
+<h3 class="heading">Changes from .30 to .30.1 (April 29, 2000)</h3>
+
+     <ul>
+<li>Ported Aspell to Win32 platforms.
+
+     <li>Portability fixes which may help Aspell compile on other platforms.
+
+     <li>Aspell will no longer fail if for some reason the mmap fails, instead
+it will just read the file in as normal and free the memory when done.
+
+     <li>Minor changes in the format of the main word list as a result of the
+changes, the old format should still work in most cases.
+
+     <li>Fixed a bug where Aspell was ignoring the extension of file names such
+as .html or .tex when checking files.
+
+     <li>Fixed a bug where Aspell will go into an infinite loop when creating
+the main word list from a word list which has duplicates in it.
+
+     <li>Minor changes to the manual for better clarity. 
+</ul>
+
+<h3 class="heading">Changes from .29.1 to .30 (April 2, 2000)</h3>
+
+     <ul>
+<li>Fixed many of the capitalization bugs found in previous versions of
+Aspell.
+
+     <li>Changed the format of the main word list yet again.
+
+     <li>Fixed a bug so that <code>aspell check</code> will work on the PowerPC.
+
+     <li>Added ability to change configuration options in the middle of a session.
+
+     <li>Added words from /usr/dict/words found on most Linux systems as well
+as a bunch of commonly used abbreviations to the word list.
+
+     <li>Fixed a bug where Aspell would dump core after reporting certain errors
+when compiled with gcc 2.95 or higher.  This involved reworking the
+Exception heritage to get around a bug in gcc 2.95.
+
+     <li>Added a few more commands to the list of default commands the TeX
+filter knows about.
+
+     <li>Aspell will now check if a word only contains valid characters before
+adding it to any dictionaries.  This might mean that you have to
+manually delete a few words from your personal word list.
+
+     <li>Added option to ignore case when checking a document.
+
+     <li>Adjusted the parameters of the <strong>normal</strong> suggest mode to so that
+significantly less far fetched results are returned in cases such as
+tomatoe, which went from 100 suggestions down to 32, at the expense of
+getting slightly lower results (less than 1%),
+
+     <li>Improved the edit distance algorithm for slightly faster results.
+
+     <li>Removed the `<samp><span class="samp">$$m</span></samp>' command in pipe mode, you should now use
+`<samp><span class="samp">$$cs mode,</span><var>mode</var></samp>' to set the mode and <strong>$$cr mode</strong> to
+find out the current mode.
+
+     <li>Reworked parts of Aspell to use Pspell services to avoid duplicating code.
+
+     <li>Added a module for the newly released Pspell.  It will get installed
+with the rest of Aspell.
+
+     <li>Miscellaneous other bug fixes. 
+</ul>
+
+<h3 class="heading">Changes from .29 to .29.1 (Feb 18, 2000)</h3>
+
+     <ul>
+<li>Improved the TeX filter so that it will accept '@' at the beginning
+of a command name and ignored trailing '*'s.  It also now has better
+defaults for which parameters to skip.
+
+     <li>Reworked the main dictionary so that it can be memory mapped in.  This
+decreases startup time and allows multiple Aspell processes to use the
+same memory for the main word list.  This also also made Aspell 64 bit
+clean so that it should work on an alpha now.
+
+     <li>Fix so that Aspell could compile on platforms that gnu is not yet
+available for.
+
+     <li>Fixed issue with flock so it would compile on FreeBSD.
+
+     <li>Minor changes in the code to make it more C++ compliant although I am
+sure there will still be problems when using some other compiler other
+than gcc or egcs.
+
+     <li>Added some comments to the header files to better document a few of
+the classes. 
+</ul>
+
+<h3 class="heading">Changes from .28.3 to .29 (Feb 6, 2000)</h3>
+
+     <ul>
+<li>Fixed a bug in the pipe mode with lines that start with
+`<samp><span class="samp">^$$</span></samp>'.
+
+     <li>Added support for ignoring all words less than or equal to a specified length
+
+     <li>New soundslike code based thanks to the contribution of Bj&ouml;rn Jacke. 
+It now gets all of its data from a table making it easier for other
+people to add soundslike code for their native language.  He also
+converted the metaphone algorithm to table form, eliminating the need
+for the old metaphone code.
+
+     <li>Major redesign of the suggestion code for better results.
+
+     <li>Changed the format of the personal word lists.  In most cases it
+should be converted automatically.
+
+     <li>Changed the format of the main word list.
+
+     <li>Name space cleanup for more consistent naming.  I now use name spaces
+which means that gcc 2.8.* and egcs 1.0.* will no longer cut it.
+
+     <li>Used file locks when reading and saving the personal dictionaries so
+that it truly multiprocesses safely.
+
+     <li>Added rudimentary filter support.
+
+     <li>Reworked the configuration system once again.  However, the changes to
+the end user who does not directly use my library should be minimal.
+
+     <li>Rewrote my code that handles parsing command line parameters so that
+it no longer used popt as it was causing too many problems and didn't
+integrate well with my new configuration system.
+
+     <li>Fixed pipe mode so that it will properly ignore lines starting with
+'~' for better Ispell compatibility.
+
+     <li>Aspell now has a new home page at
+<a href="http://aspell.sourceforge.net/">http://aspell.sourceforge.net/</a>.  Please make note of the new
+URL.
+
+     <li>Miscellaneous manual fixes and clarifications. 
+</ul>
+
+<h3 class="heading">Changes from .28.2.1 to .28.3 (Nov 20, 1999)</h3>
+
+     <ul>
+<li>Fixed a bug that caused Aspell to crash when spell checking words over
+60 characters long.
+
+     <li>Reworked <strong>aspell check</strong> so that
+          <ol type=1 start=1>
+<li>You no longer have to hit enter when making a choice.
+
+          <li>It will now overwrite the original file instead of creating a new
+file.  An optional backup can be made by using the -b option.
+          </ol>
+
+     <li>Fixed a few bugs in data.cc. 
+</ul>
+
+<h3 class="heading">Changes from .28.2 to .28.2.1 (Aug 25, 1999)</h3>
+
+     <ul>
+<li>Fixed the version number for the shared library.
+
+     <li>Fixed a problem with undefined references when linking to the shared library. 
+</ul>
+
+<h3 class="heading">Changes from .28.1 to .28.2 (Aug 25, 1999)</h3>
+
+     <ul>
+<li>Fixed a bunch of bugs in the language and configuration classes.
+
+     <li>Minor changes in the code so that it could compile with the new gcc
+2.95(.1).
+
+     <li>Changed the output of <code>dump config</code> so that default values are
+given the value <code>&lt;default&gt;</code>.  This means that the output can
+be used to create a configuration file.
+
+     <li>Added notes on using Aspell with VIM. 
+</ul>
+
+<h3 class="heading">Changes from .28 to .28.1 (July 27, 1999)</h3>
+
+     <ul>
+<li>Removed some debug output
+
+     <li>Changed notes on compiling with gcc 2.8.* as I managed to get it to
+compile on my school account
+
+     <li>Avoided including <strong>stdexcept</strong> in <samp><span class="file">const_string.hh</span></samp> so that
+I could get Aspell to compile on my school account with gcc 2.8.1. 
+</ul>
+
+<h3 class="heading">Changes from .27.2 to .28 (July 25, 1999)</h3>
+
+     <ul>
+Provided an iterator for the replacement classes.
+
+     <li>Added support for dumping and creating and merging the personal and
+replacement word lists.
+
+     <li>Changed the Aspell utility command line a bit, it now used popt.
+
+     <li>Totally reworked Aspell configuration system.  Now Aspell could get
+configuration from any of 5 sources: the command line, the environment
+variable <samp><span class="env">ASPELL_CONF</span></samp>, the personal configuration file, the
+global configuration file, and finally the compiled-in defaults.
+
+     <li>Totally reworked the language class in preparation for my new language
+code.  See <a href="http://aspell.sourceforge.net/international/">http://aspell.sourceforge.net/international/</a> for more
+information of what I have in store.
+
+     <li>Added some options to the configure script: &ndash;enable-dict-dir=DIR,
+&ndash;enable-doc-dir=DIR, &ndash;enable-debug, and &ndash;enable-opt
+
+     <li>Removed some old header files.
+
+     <li>Reorganized the directory structure a bit
+
+     <li>Made the text version of the manual pages slightly easier to read
+
+     <li>Used the `<samp><span class="samp">\url</span></samp>' command for urls for better formating of the
+printed version. 
+</ul>
+
+<h3 class="heading">Changes from .27.1 to .27.2 (Mar 1, 1999)</h3>
+
+     <ul>
+<li>Fixed a major bug that caused Aspell to dump core when used without
+any arguments
+
+     <li>Fixed another major bug that caused Aspell to do nothing when used in
+interactive mode.
+
+     <li>Added an option to exit in Aspell's interactive mode.
+
+     <li>Removed some old documentation files from the distribution.
+
+     <li>Minor changes to the the section on using Aspell with egcs.
+
+     <li>Minor changes to remove -Wall warnings. 
+</ul>
+
+<h3 class="heading">Changes from .27 to .27.1 (Feb 24, 1999)</h3>
+
+     <ul>
+<li>Fixed a minor compile problem.
+
+     <li>Updated the section on using Aspell with egcs to it.  It was now more
+clear why the patch was necessary. 
+</ul>
+
+<h3 class="heading">Changes from .26.2 to .27 (Feb 22, 1999)</h3>
+
+     <ul>
+<li>Totally reworked the C++ library which means you may need to change
+some things in your code.
+
+     <li>Added support for detachable and multiple personal dictionaries in the
+C++ class library.
+
+     <li>The C++ class library now throws exceptions.
+
+     <li>Reworked Aspell ability to learn from users misspellings a bit so that
+it now has a memory.  For more information see <a href="Notes-on-Storing-Replacement-Pairs.html#Notes-on-Storing-Replacement-Pairs">Notes on Storing Replacement Pairs</a>.
+
+     <li>Upgraded autoconf to version 2.13 and automake to version 1.4 for
+better portability.
+
+     <li>Fixed the configuration so the <code>make dist</code> will work.  From now on
+Aspell will be distributed with <code>make dist</code>.
+
+     <li>Added support to skip over URL's, email addresses and host names.
+
+     <li>Added support for dumping the master and personal word list.  You can
+now also merge a personal word list.  Type aspell -help for help on
+using this feature.
+
+     <li>Reorganized the source code.
+
+     <li>Started using proper version numbers for the shared library.
+
+     <li>Fixed a bug that caused Aspell to crash when adding certain
+replacement pairs.
+
+     <li>Fixed the problem with duplicate lines when exiting pipe mode for
+good. 
+</ul>
+
+<h3 class="heading">Changed from .26.1 to .26.2 (Jan 3, 1998)</h3>
+
+     <ul>
+<li>Fixed another compile problem.  Hopefully this time it will really
+compile OK on other peoples machines. 
+</ul>
+
+<h3 class="heading">Changed from .26 to .26.1 (Jan 3, 1998)</h3>
+
+     <ul>
+<li>Fixed a small compile problem in <samp><span class="file">as_data.cc</span></samp>. 
+</ul>
+
+<h3 class="heading">Changed from .25.1 to .26 (Jan 3, 1999)</h3>
+
+     <ul>
+<li>Fixed a bug that caused duplicate items to be displayed in the
+suggestion list for good.  (If it still does it please send me email.)
+
+     <li>Added the ability for Aspell to learn form the users misspellings.
+
+     <li>Library Interface changes.  Still more to come <small class="dots">...</small>.
+
+     <li>Is now multiprocess safe.  When a personal dictionary (or replacement
+list) is saved it will now first update the list against the dictionary
+on disk in case another process modified it.
+
+     <li>Fixed the bug that caused duplicate output when used non interactively
+in pipe mode.
+
+     <li>Dropped support for gcc 2.7.2 as the C++ compiler.
+
+     <li>Updated the How Aspell Works (<a href="Aspell-Suggestion-Strategy.html#Aspell-Suggestion-Strategy">Aspell Suggestion Strategy</a>.)
+
+     <li>Added support for the <samp><span class="env">ASPELL_DATA_DIR</span></samp> environment variable. 
+</ul>
+
+<h3 class="heading">Changes from .25 to .25.1 (Dec 10, 1998)</h3>
+
+     <ul>
+<li>Fixed the version number so that Aspell reports the correct version
+number.
+
+     <li>Changed the note on gcc 2.7.2 compilers to make it clear that only the
+C++ compiler cannot be gcc 2.7.2, it is OK if the C compiler is gcc
+2.7.2.
+
+     <li>Updated the TODO list and reorganized it a bit.
+
+     <li>Fixed the directory so that all the documentation will get installed
+in <tt>${prefix}/doc/aspell</tt> instead of half of it in
+<tt>${prefix}/doc/aspell</tt> and half of it in
+<tt>${prefix}/doc/kspell</tt>. 
+</ul>
+
+<h3 class="heading">Changes from .24 to .25 (Nov 23, 1998)</h3>
+
+     <ul>
+<li>Total rework of how the main word list is stored.  Start up time
+decreased to about 1/3 of what it was in .24 and memory usage
+decreased to about 2/3.  (When used with the provided word list on a
+Linux system).
+
+     <p>Also the format and default locations of the main word list data files
+changed in the process and the data is now machine dependent.  The
+personal word list format, however, stayed the same.
+
+     <li>Changed the scoring method to produce slightly better results with
+words like the vs.  teh.  And other simpler misspellings where two
+letters are swapped.
+
+     <li>Fixed the very unpredictable behavior of the `<samp><span class="samp">*</span></samp>', `<samp><span class="samp">&amp;</span></samp>',
+`<samp><span class="samp">@</span></samp>' commands in the pipe mode.
+
+     <li>Added documentations for Aspell pipe mode (also known as
+<samp><span class="command">ispell -a</span></samp> compatibility mode)
+
+     <li>Added a bunch of Aspell specific extensions to the pipe mode and
+documented them.
+
+     <li>Documented the <code>to_soundslike</code> and <code>soundslike</code> methods for
+the <code>aspell</code> class.
+
+     <li>Changed the scoring method to produce better results for words like
+<em>fone</em> vs <em>phone</em> and other words that have a spelling that
+doesn't directly relate to how the word sounds by using the phoneme
+equivalent of the word in the scoring of it.
+
+     <li>Added the <code>to_phoneme</code> and <code>have_phoneme</code> methods to the
+<code>SC_Language</code> class.
+
+     <li>Added the <code>to_phoneme</code> method to the <code>aspell</code> class.
+
+     <li>Added the framework for being able to learn from the users
+misspelling.  Right now it just keeps a log of replacements.
+
+     <li>Redid <samp><span class="file">stl_rope-30.diff</span></samp>.  For some reason the version of patch
+on my system refused it.
+
+     <li>Rewrite of the &ldquo;<em>Using as a replacement for Ispell</em>&rdquo; section
+and added the <code>run-with-aspell</code> utility as a replacement of the
+old method of mapping Ispell to Aspell.
+
+     <li>Fixed a bug that caused duplicate words to appear in the suggestion
+list. 
+</ul>
+
+<h3 class="heading">Changes from .23 to .24 (Nov 8, 1998)</h3>
+
+     <ul>
+<li>Fixed my code so that it can once again compile with g++ 2.7.2.
+
+     <li>Rewrote the How It Works chapter.
+
+     <li>Rewrote the Requirement section and added notes on compiling with g++
+2.7.2.
+
+     <li>Added a To Do chapter.
+
+     <li>Added a Glossary and References chapter.
+
+     <li>Other minor documentation improvements.
+
+     <li>Internal code documentation improvements. 
+</ul>
+
+<h3 class="heading">Changes from .22.1 to .23 (Oct 31, 1998)</h3>
+
+     <ul>
+<li>Minor documentation fixes.
+
+     <li>Changed the scoring strategy for words with 3 or less letters.  This
+cut the number of words returned for these roughly in half.
+
+     <li>Expanded the word list to also include <strong>american.0</strong> and
+<strong>american.1</strong> from the Ispell distribution.  It now includes
+<strong>english.0</strong>, <strong>english.1</strong>, <strong>american.0</strong> and
+<strong>american.1</strong> from the directory <samp><span class="file">languages/english</span></samp>
+provided with Ispell 3.1.20.
+
+     <li>Added a link to the location of the latest Ispell.el in the
+documentation.
+
+     <li>Started a C interface and added some rough documentation for it. 
+</ul>
+
+<h3 class="heading">Changes from .22 to .22.1 (Oct 27, 1998)</h3>
+
+     <ul>
+<li>Minor bug fixes.  I was deleting arrays with delete rather than
+delete[].  I was suprised that this had not created a problem.
+
+     <li>Added a simple test program to test for a memory leak present on some
+systems.  (Only debian slink at the moment.) See the file
+memleak-test.cc for more info. 
+</ul>
+
+<h3 class="heading">Changes from .21 to .22 (Oct 26, 1998)</h3>
+
+     <ul>
+<li>Major redesign of the scoring method.  It now uses absolute distances
+rather than relative scores for more consistent results.  See
+<samp><span class="file">suggest.cc</span></samp> for more info.
+
+     <li>Suggest code rewritten in several places, however the core process
+stayed the same.
+
+     <li>The <code>suggest_ultra</code> method temporarily does nothing.  It should
+be working again by the next release. 
+</ul>
+
+<h3 class="heading">Changes from .20 to .21 (Oct 13, 1998)</h3>
+
+     <ul>
+<li>Added documentation for aspell::Error
+
+     <li>
+Changed the library name from <code>libspell</code> to <code>libaspell</code>.  It
+should never have been <code>libspell</code> in the first place.  Sorry for
+the incompatibility.
+
+     <li>Added <samp><span class="file">as_error.hh</span></samp> to the list of files copied to the include
+directory so that you can actually use the library outside of the
+source dir.
+
+     <li>Fixed bug that caused a segmentation fault with words where the only
+suggestions was inserting a space or hyphen such as in
+<strong>ledgerline</strong>.
+
+     <li>Added the <strong>score</strong> method to <code>aspell</code>.
+
+     <li>Changed the scoring method to deal with word when the user uses "f" in
+place of "ph" a lot better. 
+</ul>
+
+<h3 class="heading">Changes from .11 to .20 (Oct 10, 1998)</h3>
+
+     <ul>
+<li><em>Name change</em>.  Everything that was Kspell is now Aspell.  Sorry,
+the name Kspell was already used by KDE and I didn't want to cause any
+confusion.
+
+     <li>Fixed a bug that causes a segmentation fault when the <samp><span class="env">HOME</span></samp>
+environment variable doesn't exist. 
+</ul>
+
+<h3 class="heading">Changes from .10 to .11 (Sep 12, 1998)</h3>
+
+     <ul>
+<li>Overhaul of the SC_Language class
+
+     <li>Added documentation for international support
+
+     <li>Added documentation for the C++ library
+
+     <li>Other minor bug fixes. 
+</ul>
+
+   </body></html>
+

@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+<title>Introduction - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="index.html#Top" title="Top">
+<link rel="next" href="Support.html#Support" title="Support">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Introduction"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Support.html#Support">Support</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="index.html#Top">Top</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">1 Introduction</h2>
+
+<p>GNU Aspell is a spell checker designed to eventually replace Ispell.  It
+can either be used as a library or as an independent spell checker.  Its
+main feature is that it does a much better job of suggesting possible
+replacements for a misspelled word than just about any other spell
+checker out there for the English language.  Unlike Ispell, Aspell can
+also easily check documents in UTF-8 without having to use a special
+dictionary.  Aspell will also do its best to respect the current locale
+setting.  Other advantages over Ispell include support for using
+multiple dictionaries at once and intelligently handling personal
+dictionaries when more than one Aspell process is open at once.
+
+   <p>The latest version of Aspell can always be found at <a href="http://aspell.net">http://aspell.net</a>
+
+<h3 class="section">1.1 Comparison to other spell checker engines</h3>
+
+<p><table summary=""><tr align="left"><td valign="top"></td><td valign="top">Aspell </td><td valign="top">Ispell </td><td valign="top">Netscape </td><td valign="top">Microsoft
+<br></td></tr><tr align="left"><td valign="top"></td><td valign="top"></td><td valign="top"></td><td valign="top">4.0     </td><td valign="top">Word 97
+<br></td></tr><tr align="left"><td valign="top">Open Source </td><td valign="top">x      </td><td valign="top">x
+<br></td></tr><tr align="left"><td valign="top">Suggestion  </td><td valign="top">88-98  </td><td valign="top">54     </td><td valign="top">55-70?   </td><td valign="top">71
+<br></td></tr><tr align="left"><td valign="top">Intelligence
+<br></td></tr><tr align="left"><td valign="top">Personal part </td><td valign="top">x    </td><td valign="top">x      </td><td valign="top">x
+<br></td></tr><tr align="left"><td valign="top">of Suggestions
+<br></td></tr><tr align="left"><td valign="top">Alternate Dictionaries </td><td valign="top">x </td><td valign="top">x </td><td valign="top">?        </td><td valign="top">? 
+<br></td></tr><tr align="left"><td valign="top">International Support </td><td valign="top">x </td><td valign="top">x </td><td valign="top">?         </td><td valign="top">?
+<br></td></tr></table>
+
+   <p>The Suggestion Intelligence is based on a small test kernel of
+misspelled/correct word pairs.  Go to <a href="http://aspell.net/test">http://aspell.net/test</a>
+for more info and how you can help contribute to the test kernel.  The
+current scores for Aspell are 88 in <em>fast</em> mode, 93 in
+<em>normal</em> mode, and 98 in <em>bad spellers</em> mode: for more
+information about the various suggestion modes <a href="Notes-on-the-Different-Suggestion-Modes.html#Notes-on-the-Different-Suggestion-Modes">Notes on the Different Suggestion Modes</a>.
+
+   <p>If you have any other information you would like to add to this chart
+please contact me at <a href="mailto:kevina@gnu.org">kevina@gnu.org</a>.
+
+<h4 class="subsection">1.1.1 Comparison to Ispell</h4>
+
+<h5 class="subsubsection">1.1.1.1 Features that only Aspell has</h5>
+
+     <ul>
+<li>Is an actual library that other programs can link to instead of
+having to use it through a pipe.
+
+     <li>Does a much better job of suggesting possible replacements for a
+misspelled word than Ispell does or for that matter many other spell
+checkers I have seen.  If you know a spell checker that does a better
+job please let me know.
+
+     <li>Can learn from user's misspellings.
+
+     <li>Can easily check documents in UTF-8 without having to use a special
+dictionary.
+
+     <li>Has support for using multiple dictionaries at once.
+
+     <li>Is multiprocess intelligent.  When a personal dictionary (or
+replacement list) is saved, it will now first update the list against
+the dictionary on disk in case another process modified it.
+
+     <li>Can share the memory used in the main word list between processes.
+
+     <li>A better, more complete word list for the English language.  Word
+lists are provided for American, British, and Canadian spelling. 
+Special care has been taken to only include one spelling for each word
+in any particular word list.  The word list included in Ispell by
+contrast only included support for American and British and also tends
+to included multiple spellings for a word which can mask some spelling
+errors. 
+</ul>
+
+<h5 class="subsubsection">1.1.1.2 Things that, currently, only Ispell has</h5>
+
+     <ul>
+<li>Lower memory footprint
+
+     <li>Ability to deal with arbitrary multi-character letters such as old
+ASCII encodings of accented letters.
+
+     <li>Perhaps better support for spell checking (La)TeX files.
+
+</ul>
+
+   <p>For a detailed description of how Aspell differs from Ispell, See <a href="Differences-From-Ispell.html#Differences-From-Ispell">Differences From Ispell</a>.
+
+   </body></html>
+

@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+<title>Compound Words - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Language-Related-Issues.html#Language-Related-Issues" title="Language Related Issues">
+<link rel="next" href="Words-With-Symbols-in-Them.html#Words-With-Symbols-in-Them" title="Words With Symbols in Them">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Compound-Words"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Words-With-Symbols-in-Them.html#Words-With-Symbols-in-Them">Words With Symbols in Them</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Language-Related-Issues.html#Language-Related-Issues">Language Related Issues</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">C.1 Compound Words</h3>
+
+<p>In some languages, such as German, it is acceptable to string two words
+together, thus forming a compound word.  However, there are rules to
+when this can be done.  Furthermore, it is not always sufficient to
+simply concatenate the two words.  For example, sometimes a letter is
+inserted between the two words.  Aspell currently has support for
+unconditionally stringing words together.  I tried implementing more
+sophisticated support for compound words in Aspell but it was too
+limiting and no one used it.
+
+   <p>After receiving feedback from several people it seems that acceptable
+support for compound words involved two basically independent parts. 
+If this is not sufficient for your language please let me know.
+
+<h3 class="heading">Part One</h3>
+
+<p>Describes how the word needs to be changed when forming a compound
+
+<pre class="example">     CMP &lt;flag&gt; &lt;strip&gt; &lt;add&gt; &lt;cond&gt; &lt;cond2&gt;
+     
+     &lt;flag&gt;  is the compound flag
+     &lt;strip&gt; is the string to strip or 0 for the null string
+     &lt;add&gt;   is the string to add or 0 for the null string
+     &lt;cond&gt;  is the condition to match at the end of the current word
+     &lt;cond2&gt; is the condition to match at the beginning of the next word
+</pre>
+   <p class="noindent">All but the last field are the same as a suffix entry in the existing
+affix code.
+
+   <p>&lt;cond&gt; is a simplified regular expression.  Some examples:
+<pre class="example">     . (for anything)
+     e
+     [^aeiou]y
+     [^ey]
+     [aeiou]y
+</pre>
+   <p>It does not seem necessary to change the beginning of a word when
+forming compounds
+
+<h3 class="heading">Part Two</h3>
+
+<p>Describes the position a word can appear in (beginning, middle, or
+end) and with which words.
+
+   <p>To do this each word can be assigned a category.  Then each category
+can be given a set of rules to describe how it can be used in a
+compound word for example
+
+<pre class="example">     A + B: indicates that category A may appear at the beginning of a
+       word when followed by a category B word.  When combined it is then
+       considered a category B word.
+     A + C + B: here a C word may only appear between an A or B word
+     A + A + B
+     A + A
+     A + A + A
+     etc..
+</pre>
+   <p>I have not decided if a word should be allowed to belong to more than
+one category as a new category can be created in necessary to mean
+words in both category A and B for example.
+
+<h4 class="appendixsubsec">C.1.1 To Implement</h4>
+
+<p>To implement support for compound words based on the above description
+the following will need to be done:
+
+     <ol type=1 start=1>
+
+     <li>expand the affix code to support special compound flags as
+described in part one
+
+     <li>write code to store the conditions as described in part two
+
+     <li>expand the compound checking code to check against the conditions
+
+     <li>expand the dictionary format to store the necessary compound info
+with the word
+
+        </ol>
+
+   <p>I don't know when I will be able to actually implement this.  If you
+would like to try please let me know.
+
+   </body></html>
+

@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+<title>Dictionary Naming - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Working-With-Dictionaries.html#Working-With-Dictionaries" title="Working With Dictionaries">
+<link rel="prev" href="Using-Multi-Dictionaries.html#Using-Multi-Dictionaries" title="Using Multi Dictionaries">
+<link rel="next" href="AWLI-files.html#AWLI-files" title="AWLI files">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Dictionary-Naming"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="AWLI-files.html#AWLI-files">AWLI files</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Using-Multi-Dictionaries.html#Using-Multi-Dictionaries">Using Multi Dictionaries</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Working-With-Dictionaries.html#Working-With-Dictionaries">Working With Dictionaries</a>
+<hr>
+</div>
+
+<h3 class="section">5.9 Dictionary Naming</h3>
+
+<p>In order for Aspell to be able to correctly recognize a dictionary
+based on the setting of the <samp><span class="env">LANG</span></samp> environment variable the
+dictionaries need to be located somewhere Aspell can find them and
+they need to be <em>multi</em> dictionaries.  Where Aspell looks for
+dictionaries depends on the value of the <samp><span class="option">dict-dir</span></samp> and
+<samp><span class="option">word-list-path</span></samp> option.
+
+   <p><samp><span class="option">dict-dir</span></samp> is generally <samp><var>prefix</var><span class="file">/lib/aspell</span></samp>, and
+<samp><span class="option">word-list-path</span></samp> is generally empty.
+
+   <p>Each dictionary that you expect Aspell to be able to find needs to
+have a name in the following format:
+
+<pre class="example">     <var>language</var>[_<var>region</var>][-<var>variety</var>][-<var>size</var>].multi
+</pre>
+   <p class="noindent">where <var>language</var> is the two letter language code, <var>region</var> is
+the two letter region code, <var>variety</var> is any extra information to
+distinguish the word list from other ones with the same language and
+spelling.  Multiple varieties can be used by separating them with a '-'. 
+Finally, <var>size</var> is the size of the dictionary.  If no size is
+specified then the default size of 60 will be assumed.
+
+   <p>For example:
+
+<pre class="example">     en.multi
+     en_US.multi
+     en-medical.multi
+     en-medical-85.multi
+     en-85.multi
+     de.multi
+</pre>
+   </body></html>
+

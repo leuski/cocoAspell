@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+<title>Unicode Normalization - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Language-Related-Issues.html#Language-Related-Issues" title="Language Related Issues">
+<link rel="prev" href="Words-With-Symbols-in-Them.html#Words-With-Symbols-in-Them" title="Words With Symbols in Them">
+<link rel="next" href="German-Sharp-S.html#German-Sharp-S" title="German Sharp S">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Unicode-Normalization"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="German-Sharp-S.html#German-Sharp-S">German Sharp S</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Words-With-Symbols-in-Them.html#Words-With-Symbols-in-Them">Words With Symbols in Them</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Language-Related-Issues.html#Language-Related-Issues">Language Related Issues</a>
+<hr>
+</div>
+
+<h3 class="appendixsec">C.3 Unicode Normalization</h3>
+
+<p>Because Unicode contains a large number of precomposed characters there
+are multiple ways a character can be represented.  For example letter
+&ouml; can either be represented as
+
+<pre class="example">     U+00F6 LATIN SMALL LETTER O WITH DIAERESIS
+<br>or<br>
+     U+0061 LATIN SMALL LETTER O + U+0308 COMBINING DIAERESIS
+</pre>
+   <p>By performing normalization first, Aspell will only see one of these
+representations.  The exact form of normalization depends on the
+language.  Give the choice of:
+
+     <ol type=1 start=1>
+<li>Precomposed character
+<li>Base letter + combining character(s)
+<li>Base letter only
+        </ol>
+
+<p class="noindent">if the precomposed character is in the target character set, then (1),
+if both base and combining character is present, then (2), otherwise (3).
+
+   <p>Unicode Normalization is now implemented in Aspell 0.60.
+
+   </body></html>
+

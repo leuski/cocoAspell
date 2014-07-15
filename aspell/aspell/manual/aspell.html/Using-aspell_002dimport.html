@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<title>Using aspell-import - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Working-With-Dictionaries.html#Working-With-Dictionaries" title="Working With Dictionaries">
+<link rel="next" href="How-Aspell-Selects-an-Appropriate-Dictionary.html#How-Aspell-Selects-an-Appropriate-Dictionary" title="How Aspell Selects an Appropriate Dictionary">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Using-aspell-import"></a>
+<a name="Using-aspell_002dimport"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="How-Aspell-Selects-an-Appropriate-Dictionary.html#How-Aspell-Selects-an-Appropriate-Dictionary">How Aspell Selects an Appropriate Dictionary</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Working-With-Dictionaries.html#Working-With-Dictionaries">Working With Dictionaries</a>
+<hr>
+</div>
+
+<h3 class="section">5.1 Using <samp><span class="command">aspell-import</span></samp></h3>
+
+<p>The <samp><span class="command">aspell-import</span></samp> Perl script will look for old personal
+dictionaries and will import them into GNU Aspell.  It will look for
+both Ispell and Aspell ones.  To use it, just run it from the command
+prompt.  If you get an error about <samp><span class="file">/usr/bin/perl</span></samp> not being
+found, then instead try <samp><span class="command">perl </span><var>bindir</var><span class="command">/aspell-import</span></samp>.  When
+running the script if you get a message like:
+
+<pre class="verbatim">
+Error: No word lists can be found for the language "de".
+</pre>
+
+   <p>This means that you have not installed support for the given language,
+in this case <code>de</code> for German.  To rectify the situation download
+and install a dictionary designed to work with GNU Aspell 0.50 or
+better.
+
+   </body></html>
+

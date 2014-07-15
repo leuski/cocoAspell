@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+<title>Spellchecking Individual Files - GNU Aspell 0.60.6.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Aspell 0.60.6.1 spell checker user's manual.">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Basic-Usage.html#Basic-Usage" title="Basic Usage">
+<link rel="next" href="Using-Aspell-as-a-Replacement-for-Ispell.html#Using-Aspell-as-a-Replacement-for-Ispell" title="Using Aspell as a Replacement for Ispell">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This is the user's manual for Aspell
+
+GNU Aspell is a spell checker designed to eventually replace Ispell.
+It can either be used as a library or as an independent spell checker.
+
+Copyright (C) 2000--2011 Kevin Atkinson.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Spellchecking-Individual-Files"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Using-Aspell-as-a-Replacement-for-Ispell.html#Using-Aspell-as-a-Replacement-for-Ispell">Using Aspell as a Replacement for Ispell</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Basic-Usage.html#Basic-Usage">Basic Usage</a>
+<hr>
+</div>
+
+<h3 class="section">3.1 Spellchecking Individual Files</h3>
+
+<p>To use Aspell to spellcheck a file use:
+
+<pre class="example">     aspell check [<var>options</var>] <var>filename</var>
+</pre>
+   <p class="noindent">at the command line where <var>filename</var> is the file you want to
+check and <var>options</var> is any number of optional options.  Some of
+the more useful ones include:
+
+     <dl>
+<dt><b>&ndash;mode=</b><var>mode</var><dd>the mode to use when checking files.  The available modes are
+<code>none</code>, <code>url</code>, <code>email</code>, <code>sgml</code>, <code>tex</code>,
+<code>texinfo</code>, <code>nroff</code>, among others.  For more information on the
+various modes see <a href="Notes-on-Various-Filters-and-Filter-Modes.html#Notes-on-Various-Filters-and-Filter-Modes">Notes on Various Filters and Filter Modes</a>.
+
+     <br><dt><b>&ndash;dont-backup</b><dd>don't create a backup file.  Normally, if there are any corrections
+the Aspell utility will append <samp><span class="file">.bak</span></samp> to the existing file name
+and then create a new file with corrections made during spell checking.
+
+     <br><dt><b>&ndash;sug-mode=</b><var>mode</var><dd>the suggestion mode to use where mode is one of <code>ultra</code>,
+<code>fast</code>, <code>normal</code>, or <code>bad-spellers</code>.  For more
+information on these modes see <a href="Notes-on-the-Different-Suggestion-Modes.html#Notes-on-the-Different-Suggestion-Modes">Notes on the Different Suggestion Modes</a>.
+
+     <br><dt><b>&ndash;lang=</b><var>name</var><b>/-l </b><var>name</var><dd>the language the document is written in.  The default depends on the
+current locale.
+
+     <br><dt><b>&ndash;encoding=</b><var>name</var><dd>encoding the document is expected to be in.  The default depends on the
+current locale.
+
+     <br><dt><b>&ndash;master=</b><var>name</var><b>/-d </b><var>name</var><dd>the main dictionary to use.
+
+     <br><dt><b>&ndash;keymapping=</b><var>name</var><dd>the keymapping to use.  Either <samp><span class="option">aspell</span></samp> for the default mapping
+or <samp><span class="option">ispell</span></samp> to use the same mapping that the Ispell utility
+uses. 
+</dl>
+
+   <p>For more information on the available options, please see
+<a href="Customizing-Aspell.html#Customizing-Aspell">Customizing Aspell</a>.
+
+   <p>For example to check the file <samp><span class="file">foo.txt</span></samp>:
+
+<pre class="example">     aspell check foo.txt
+</pre>
+   <p class="noindent">and to check the file <samp><span class="file">foo.txt</span></samp> using the <samp><span class="option">bad-spellers</span></samp>
+suggestion mode and the American English dictionary:
+
+<pre class="example">     aspell check --sug-mode=bad-spellers -d en_US foo.txt
+</pre>
+   <p>If the <samp><span class="option">mode</span></samp> option is not given, then Aspell will use the
+extension of the file to determine the current mode.  If the extension
+is <samp><span class="file">.tex</span></samp>, then <samp><span class="option">tex</span></samp> mode will be used, if the extension
+is <samp><span class="file">.html</span></samp>, <samp><span class="file">.htm</span></samp>, <samp><span class="file">.php</span></samp>, or <samp><span class="file">.sgml</span></samp> it will
+check the file in <samp><span class="option">sgml</span></samp> mode, otherwise it will use
+<samp><span class="option">url</span></samp> mode.
+
+   <p>For more information on the various modes that can be used, see
+<a href="Notes-on-Various-Filters-and-Filter-Modes.html#Notes-on-Various-Filters-and-Filter-Modes">Notes on Various Filters and Filter Modes</a>.
+
+   <p>If Aspell was compiled with curses support and the <samp><span class="env">TERM</span></samp>
+environment variable is set to a capable terminal type then Aspell
+will use a nice full screen interface, otherwise it will use a
+simpler &ldquo;dumb&rdquo; terminal interface where the misspelled word is
+surrounded by two '*'.  In either case the interface should be self
+explanatory.
+
+   <p>If Aspell is compiled with a version of the curses library that support
+wide characters then Aspell can also check UTF-8 text.  Furthermore, the
+document will be displayed in the encoding defined by the current
+locale.  This encoding does not necessarily have to be the same encoding
+that the document is in.  This means that is is possible to check an
+8-bit encoding such as ISO-8859-1 on an UTF-8 terminal.  To do so
+simply set the <samp><span class="option">encoding</span></samp> option to `<samp><span class="samp">iso-8859-1</span></samp>'. 
+Furthermore it is also possible to check an UTF-8 document on an 8-bit
+terminal provided that the document can be successfully converted into
+that encoding.
+
+   </body></html>
+
