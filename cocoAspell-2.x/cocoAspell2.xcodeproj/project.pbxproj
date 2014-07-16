@@ -32,7 +32,6 @@
 		626D071A07F907C200D306FB /* aspell_extras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 629F2A0107BF384800AD441B /* aspell_extras.cpp */; };
 		626D071C07F907DC00D306FB /* MutableAspellList.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A8C85407B69ED200F6A61B /* MutableAspellList.m */; };
 		626D071D07F907E000D306FB /* AspellOptionsWithLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 629F2BE507C0361000AD441B /* AspellOptionsWithLists.m */; };
-		626D072107F9089500D306FB /* NSTextViewWithLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 62186FD007B1F7D100843823 /* NSTextViewWithLinks.m */; };
 		62783F0307E6B6040019175E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		62783F0407E6B60A0019175E /* cocoAspell.m in Sources */ = {isa = PBXBuildFile; fileRef = 629F2CCE07C0462F00AD441B /* cocoAspell.m */; };
 		62783F0507E6B60A0019175E /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E653AC07B47345006ADDEF /* UserDefaults.m */; };
@@ -44,6 +43,7 @@
 		6287F33907FA89AA0004EB03 /* cocoAspell.service in CopyFiles */ = {isa = PBXBuildFile; fileRef = 62783EFB07E6B5B40019175E /* cocoAspell.service */; };
 		62A291AA19760EB2007EA72F /* libaspell.15.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A291A919760EB2007EA72F /* libaspell.15.dylib */; };
 		62A291AB19760EDA007EA72F /* libaspell.15.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A291A919760EB2007EA72F /* libaspell.15.dylib */; };
+		62A291AD19763666007EA72F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A291AC19763666007EA72F /* WebKit.framework */; };
 		62B2255507B1ED6D00D69682 /* Spelling.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 62B2254D07B1ED6D00D69682 /* Spelling.tiff */; };
 		62B2255707B1ED6D00D69682 /* Spelling.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B2255007B1ED6D00D69682 /* Spelling.m */; };
 		62B225B307B1F38600D69682 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B225AE07B1F38600D69682 /* InfoPlist.strings */; };
@@ -81,8 +81,6 @@
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		62186FA407B1F70900843823 /* cocoAspell.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = cocoAspell.tiff; sourceTree = "<group>"; };
-		62186FCF07B1F7D100843823 /* NSTextViewWithLinks.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTextViewWithLinks.h; sourceTree = "<group>"; };
-		62186FD007B1F7D100843823 /* NSTextViewWithLinks.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSTextViewWithLinks.m; sourceTree = "<group>"; };
 		6218701B07B1FDB900843823 /* AspellOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AspellOptions.h; sourceTree = "<group>"; };
 		6218701C07B1FDB900843823 /* AspellOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AspellOptions.m; sourceTree = "<group>"; };
 		6236A3F8081E237100EBE3B3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
@@ -112,6 +110,7 @@
 		629F2BE507C0361000AD441B /* AspellOptionsWithLists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AspellOptionsWithLists.m; sourceTree = "<group>"; };
 		629F2CCE07C0462F00AD441B /* cocoAspell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoAspell.m; sourceTree = "<group>"; };
 		62A291A919760EB2007EA72F /* libaspell.15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaspell.15.dylib; path = ../build/lib/libaspell.15.dylib; sourceTree = "<group>"; };
+		62A291AC19763666007EA72F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		62A8C85307B69ED200F6A61B /* MutableAspellList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableAspellList.h; sourceTree = "<group>"; };
 		62A8C85407B69ED200F6A61B /* MutableAspellList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableAspellList.m; sourceTree = "<group>"; };
 		62B2254C07B1ED6D00D69682 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A291AD19763666007EA72F /* WebKit.framework in Frameworks */,
 				62A291AB19760EDA007EA72F /* libaspell.15.dylib in Frameworks */,
 				8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */,
 				8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */,
@@ -168,6 +168,7 @@
 		089C166AFE841209C02AAC07 /* cocoAspell2 */ = {
 			isa = PBXGroup;
 			children = (
+				62A291AC19763666007EA72F /* WebKit.framework */,
 				62A291A919760EB2007EA72F /* libaspell.15.dylib */,
 				62B2254707B1ED6D00D69682 /* Resources */,
 				62B2254E07B1ED6D00D69682 /* Sources */,
@@ -260,8 +261,6 @@
 				629F2BE507C0361000AD441B /* AspellOptionsWithLists.m */,
 				62A8C85307B69ED200F6A61B /* MutableAspellList.h */,
 				62A8C85407B69ED200F6A61B /* MutableAspellList.m */,
-				62186FCF07B1F7D100843823 /* NSTextViewWithLinks.h */,
-				62186FD007B1F7D100843823 /* NSTextViewWithLinks.m */,
 				62B2254F07B1ED6D00D69682 /* Spelling.h */,
 				62B2255007B1ED6D00D69682 /* Spelling.m */,
 			);
@@ -499,7 +498,6 @@
 				626D071A07F907C200D306FB /* aspell_extras.cpp in Sources */,
 				626D071C07F907DC00D306FB /* MutableAspellList.m in Sources */,
 				626D071D07F907E000D306FB /* AspellOptionsWithLists.m in Sources */,
-				626D072107F9089500D306FB /* NSTextViewWithLinks.m in Sources */,
 				6236A3FC081E237100EBE3B3 /* Utilities.m in Sources */,
 				6259E04D0D71535100B047C0 /* AspellDictionary.m in Sources */,
 				6259E0510D71536700B047C0 /* MultilingualDictionary.m in Sources */,

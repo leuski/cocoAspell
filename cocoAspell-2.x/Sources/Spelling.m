@@ -12,7 +12,6 @@
 //	1. config.cpp Config::write_to_stream. move String obuf inside the loop
 
 #import "Spelling.h"
-#import "NSTextViewWithLinks.h"
 #import "AspellOptionsWithLists.h"
 #import "Dictionary.h"
 #import "DictionaryManager.h"
@@ -70,11 +69,22 @@
 		}
 	}
 
-	[self.mCreditsView setDrawsBackground:NO];
-	[self.mCreditsView setEditable:NO];
-	[[self.mCreditsView enclosingScrollView] setDrawsBackground:NO];
-	[self.mCreditsView setDelegate:self];
+	[self.creditsView setDrawsBackground:NO];
+	[self.creditsView setEditable:NO];
+	[[self.creditsView enclosingScrollView] setDrawsBackground:NO];
+
+	[self.creditsView.mainFrame loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[self creditsPath]]]];
+	self.creditsView.policyDelegate = self;
 	
+//	[self.creditsView setMainFrameURL:[NSURL fileURLWithPath:[self creditsPath]]];
+}
+
+- (void)webView:(WebView *)webView
+decidePolicyForNavigationAction:(NSDictionary *)actionInformation
+		request:(NSURLRequest *)request frame:(WebFrame *)frame
+decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+	[[NSWorkspace sharedWorkspace] openURL:[request URL]];
 }
 
 // ----------------------------------------------------------------------------

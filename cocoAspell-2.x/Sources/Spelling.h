@@ -9,8 +9,8 @@
 // ================================================================================
 
 #import <PreferencePanes/PreferencePanes.h>
+#import <WebKit/WebKit.h>
 
-@class NSTextViewWithLinks;
 @class DictionaryManager;
 
 @interface Spelling : NSPreferencePane 
@@ -26,9 +26,10 @@
 @property (nonatomic, strong)	IBOutlet NSTextField*			mProgressTitle;
 @property (nonatomic, strong)	IBOutlet NSProgressIndicator*	mProgressBar;
 @property (nonatomic, strong)	IBOutlet NSTabView*				mTabView;
-@property (nonatomic, strong)	IBOutlet NSTextViewWithLinks*	mCreditsView;
 @property (nonatomic, strong)	IBOutlet NSTextField*			mAlertTitle;
 @property (nonatomic, strong)	IBOutlet NSTextField*			mAlertMessage;
+
+@property (nonatomic, strong)	IBOutlet WebView*				creditsView;
 
 @property (nonatomic, assign)	BOOL							compiling;
 @property (nonatomic, strong)	DictionaryManager*				dictionaryManager;
