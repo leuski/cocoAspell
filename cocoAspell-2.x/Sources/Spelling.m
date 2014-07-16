@@ -140,13 +140,13 @@
 	} 
 	
 	if ([UserDefaults cocoAspellTimeLimit] != NULL) {
-		NSNumber*	notifiedAboutExiration	= [[UserDefaults userDefaults] objectForKey:@"notifiedAboutExiration"];
+		NSNumber*	notifiedAboutExiration	= [UserDefaults userDefaults][@"notifiedAboutExiration"];
 		if (notifiedAboutExiration == NULL || ![notifiedAboutExiration boolValue]) {
 			[mAlertTitle setStringValue:LocalizedString(@"keyWillExpireTitle",nil)];
 			[mAlertMessage setStringValue:[NSString stringWithFormat:LocalizedString(@"keyWillExpire",nil), [[UserDefaults cocoAspellTimeLimit] descriptionWithCalendarFormat:@"%x" timeZone:nil locale:nil]]];
 			[NSApp beginSheet:mAlertPanel modalForWindow:[[self mainView] window]
 				modalDelegate:self didEndSelector:@selector(alertSheetDidDismiss:returnCode:contextInfo:) contextInfo:nil];
-			[UserDefaults setObject:[NSNumber numberWithBool:YES] forKey:@"notifiedAboutExiration"];
+			[UserDefaults setObject:@YES forKey:@"notifiedAboutExiration"];
 			return;
 		}
 	}
@@ -266,15 +266,15 @@
 {
 	[NSApp endSheet:mProgressPanel];
 
-	NSString*	title	= [NSString stringWithFormat:LocalizedString(@"keyCantCompile",nil), [arg objectAtIndex:0]];
+	NSString*	title	= [NSString stringWithFormat:LocalizedString(@"keyCantCompile",nil), arg[0]];
 	NSBeginCriticalAlertSheet(title, nil, nil, nil, [[self mainView] window],
-		self, @selector(sheetDidEndShouldClose:returnCode:contextInfo:), nil, nil, [arg objectAtIndex:1]);
+		self, @selector(sheetDidEndShouldClose:returnCode:contextInfo:), nil, nil, arg[1]);
 }
 
 - (void)progressCompilation:(NSArray*)arg
 {
-	[mProgressTitle	setStringValue:[arg objectAtIndex:0]];
-	[mProgressBar setDoubleValue:[[arg objectAtIndex:1] intValue]+1];
+	[mProgressTitle	setStringValue:arg[0]];
+	[mProgressBar setDoubleValue:[arg[1] intValue]+1];
 }
 
 - (void)compileDictionaries:(NSArray*)dirs
@@ -288,16 +288,15 @@
 	DictionaryManager*	dm	= [self dictionaryManager];
 	
 	for(i = 0; i < [dirs count]; ++i) {
-		NSString*	d		= [dirs objectAtIndex:i];
+		NSString*	d		= dirs[i];
 		NSString*	error;
 		NSString*	dirName	= [d lastPathComponent];
 		
-		[self performSelectorOnMainThread:@selector(progressCompilation:) withObject:[NSArray arrayWithObjects:
-				[NSString stringWithFormat:LocalizedString(@"keyInfoMake", nil), dirName], 
-				[NSNumber numberWithInt:i], nil] waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(progressCompilation:) withObject:@[[NSString stringWithFormat:LocalizedString(@"keyInfoMake", nil), dirName], 
+				[NSNumber numberWithInt:i]] waitUntilDone:YES];
 		
 		if (![dm canCompileDictionaryAt:d error:&error] || ![dm compileDictionaryAt:d error:&error]) {
-			[self performSelectorOnMainThread:@selector(failedCompilation:) withObject:[NSArray arrayWithObjects:dirName, error, nil] waitUntilDone:YES];
+			[self performSelectorOnMainThread:@selector(failedCompilation:) withObject:@[dirName, error] waitUntilDone:YES];
 			break;
 		}
 
@@ -447,7 +446,7 @@
 
 - (NSString *)version
 {
-	return [NSString stringWithFormat:LocalizedString(@"keyVersion",nil), [[[NSBundle bundleForClass:[Spelling class]] infoDictionary] objectForKey:@"CFBundleVersion"]];
+	return [NSString stringWithFormat:LocalizedString(@"keyVersion",nil), [[NSBundle bundleForClass:[Spelling class]] infoDictionary][@"CFBundleVersion"]];
 }
 
 @end

@@ -62,7 +62,7 @@
 		}
 
 		int			wc	= 0;
-		NSRange		rng	= [[self.dictionaries objectAtIndex:i] findMisspelledWordInBuffer:buffer+offset size:size-offset*sizeof(unichar) wordCount:&wc countOnly:countOnly];
+		NSRange		rng	= [(self.dictionaries)[i] findMisspelledWordInBuffer:buffer+offset size:size-offset*sizeof(unichar) wordCount:&wc countOnly:countOnly];
 
 		if (rng.location == NSNotFound) {
 			*wordCount	+= wc;

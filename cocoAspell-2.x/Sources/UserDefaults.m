@@ -28,7 +28,7 @@ NSString*	kDefaultsDomain	= @"net.leuski.cocoaspell";
 	} else {
 		newDefaults	= [NSMutableDictionary dictionary];
 	}
-	[newDefaults setObject:inObject forKey:inKey];
+	newDefaults[inKey] = inObject;
 	[[NSUserDefaults standardUserDefaults] setPersistentDomain:newDefaults forName:kDefaultsDomain];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }

@@ -59,7 +59,7 @@ NSArray* allDictionaryDirectories(DictionaryDirectoryFlag flag)
 	BOOL				isDir;
 
 	for(i = 0; i < [paths count]; ++i) {
-		NSString*	dirPath	= [paths objectAtIndex:i];
+		NSString*	dirPath	= paths[i];
 
 		dirPath				= cocoAspellFolderForLibraryFolder(dirPath);
 
@@ -73,7 +73,7 @@ NSArray* allDictionaryDirectories(DictionaryDirectoryFlag flag)
 		NSUInteger		j;
 
 		for(j = 0; j < [subPaths count]; ++j) {
-			NSString*	subPath		= [dirPath stringByAppendingPathComponent:[subPaths objectAtIndex:j]];
+			NSString*	subPath		= [dirPath stringByAppendingPathComponent:subPaths[j]];
 			
 //			NSLog(@"%@", subPath);
 			

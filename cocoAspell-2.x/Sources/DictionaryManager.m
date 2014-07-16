@@ -48,7 +48,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 	if (self = [super init]) {
 		self.persistent		= inPersistent;
 		self.filters		= [self createFilterOptions];
-		self.dictionaries	= [NSArray array];
+		self.dictionaries	= @[];
 	}
 	return self;
 }
@@ -182,7 +182,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		while (file = [enumerator nextObject]) {
 			if ([[file pathExtension] isEqualToString:@"cwl"]) {
 				fattrs		= [fm fileAttributesAtPath:[dictionaryPath stringByAppendingPathComponent:file] traverseLink:YES];
-				if (fsize = [fattrs objectForKey:NSFileSize]) {
+				if (fsize = fattrs[NSFileSize]) {
 					neededSpace += [fsize floatValue];
 				}
 			}
@@ -191,7 +191,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		neededSpace *= 10;
 		
 		fattrs		= [fm fileSystemAttributesAtPath:dictionaryPath];
-		if (fsize = [fattrs objectForKey:NSFileSystemFreeSize]) {
+		if (fsize = fattrs[NSFileSystemFreeSize]) {
 			float   existingSpace   = [fsize floatValue];
 			float	delta			= existingSpace - neededSpace;
 			if (delta < 0) {
@@ -245,14 +245,14 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 	
 	if ([manager fileExistsAtPath:destPath]) {
 		NSDictionary*	info			= [NSDictionary dictionaryWithContentsOfFile:destPath];
-		NSDictionary*	languagesDict	= [((NSArray*)[info objectForKey:@"NSServices"]) objectAtIndex:0];
-		NSArray*		langNames		= [languagesDict objectForKey:@"NSLanguages"];
+		NSDictionary*	languagesDict	= ((NSArray*)info[@"NSServices"])[0];
+		NSArray*		langNames		= languagesDict[@"NSLanguages"];
 		if (langNames) {
 			return langNames;
 		}
 	}
 		
-	return [NSArray array];
+	return @[];
 }
 
 // ----------------------------------------------------------------------------
@@ -273,8 +273,8 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 	NSDictionary*	srcInfo	= [NSDictionary dictionaryWithContentsOfFile:srcInfoPath];
 	NSDictionary*	dstInfo	= [NSDictionary dictionaryWithContentsOfFile:dstInfoPath];
 	
-	NSString*		srcVersion	= [srcInfo objectForKey:@"CFBundleVersion"];
-	NSString*		dstVersion	= [dstInfo objectForKey:@"CFBundleVersion"];
+	NSString*		srcVersion	= srcInfo[@"CFBundleVersion"];
+	NSString*		dstVersion	= dstInfo[@"CFBundleVersion"];
 	
 	if (srcVersion && [srcVersion isEqualToString:dstVersion])
 		return YES;
@@ -341,7 +341,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		return NO;
 	}
 	
-	languagesDict 	= [((NSArray*)[info objectForKey:@"NSServices"]) objectAtIndex:0];
+	languagesDict 	= ((NSArray*)info[@"NSServices"])[0];
 	if (!languagesDict) {
 		NSLog(@"no language dictionary");
 		return NO;
@@ -355,7 +355,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 	}
 #endif // __multilingual__
 	
-	[languagesDict setObject:inArray forKey:@"NSLanguages"];
+	languagesDict[@"NSLanguages"] = inArray;
 
 //	execPath	= [[[thisBundle executablePath] 
 //								stringByDeletingLastPathComponent] 
@@ -393,7 +393,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 	NSMutableArray*	dicts					= [NSMutableArray array];
 	NSArray*		dirs					= allDictionaryDirectories(kCompiledDictionary);
 	NSArray*		enabledDictionaryNames	= [self loadEnabledDictionaryNames];
-	NSDictionary*	nameMap					= [[UserDefaults userDefaults] objectForKey:@"names"];
+	NSDictionary*	nameMap					= [UserDefaults userDefaults][@"names"];
 	for(NSString* dictDir in dirs) {
 		NSDirectoryEnumerator*	enumerator	= [[NSFileManager defaultManager] enumeratorAtPath:dictDir];
 		NSString*				file;
@@ -401,7 +401,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 			if ([[file pathExtension] isEqualToString:@"multi"]) {
 				Dictionary*	d	= [[AspellDictionary alloc] initWithFilePath:[dictDir stringByAppendingPathComponent:file] persistent:self.persistent];
 				if (d) {
-					NSString*	n	= [nameMap objectForKey:d.identifier];
+					NSString*	n	= nameMap[d.identifier];
 					if (n) {
 						d.name = n;
 					}
@@ -490,7 +490,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 			NSMutableDictionary*	nameMap			= [[NSMutableDictionary alloc] init];
 			for (Dictionary* d in self.dictionaries) {
 				if (d.name != d.identifier) {
-					[nameMap setObject:d.name forKey:d.identifier];
+					nameMap[d.identifier] = d.name;
 				}
 			}
 			[UserDefaults setObject:nameMap forKey:@"names"];

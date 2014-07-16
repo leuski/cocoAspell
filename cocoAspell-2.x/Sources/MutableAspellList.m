@@ -80,7 +80,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 	[self willChangeValueForKey:@"objects"];
 	[objects removeAllObjects];
 	for(i = 0; i < [data count]; ++i) {
-		[objects addObject:[[controllerClass alloc] initWithAspellList:self value:[data objectAtIndex:i]]];
+		[objects addObject:[[controllerClass alloc] initWithAspellList:self value:data[i]]];
 	}
 	[self didChangeValueForKey:@"objects"];
 }
@@ -138,7 +138,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (id)objectInObjectsAtIndex:(NSUInteger)inIndex
 {
-	return [objects objectAtIndex:inIndex];
+	return objects[inIndex];
 }
 
 // ----------------------------------------------------------------------------
@@ -189,7 +189,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 	}
 	[(StringController*)[self objectInObjectsAtIndex:inIndex] setArray:nil]; 
 	[inObject assignUniqueValue:self];
-	[objects replaceObjectAtIndex:inIndex withObject:inObject];
+	objects[inIndex] = inObject;
 	[(StringController*)inObject setArray:self]; 
 	[self dataChanged];
 }
@@ -284,7 +284,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 - (NSError*)makeErrorRecord:(NSString*)key
 {
 	NSString*		errorString		= LocalizedString(key, nil);
-	NSDictionary*	userInfoDict	= [NSDictionary dictionaryWithObject:errorString forKey:NSLocalizedDescriptionKey];
+	NSDictionary*	userInfoDict	= @{NSLocalizedDescriptionKey: errorString};
 	NSError*		error			= [[NSError alloc] initWithDomain:kDefaultsDomain
 										code:0
 										userInfo:userInfoDict];
@@ -362,11 +362,10 @@ static NSArray*		kCheckFSA;
 {
 	kCheckArg	= [[NSString alloc] initWithFormat:@"{%C}", 0x221a];
 	kCheckOpt	= [[NSString alloc] initWithFormat:@"[%C]", 0x221a];
-	kCheckFSA	= [[NSArray alloc] initWithObjects:
-		@"[1{2", 
+	kCheckFSA	= @[@"[1{2", 
 		[NSString stringWithFormat:@"%C3]5", 0x221a], 
 		[NSString stringWithFormat:@"%C4}6", 0x221a], 
-		@"]7", @"}8", @"o", @"p", @"O", @"P", nil];
+		@"]7", @"}8", @"o", @"p", @"O", @"P"];
 }
 
 // ----------------------------------------------------------------------------
@@ -394,7 +393,7 @@ static NSArray*		kCheckFSA;
 	for(i = 0; i < [arg length]; ++i) {
 		unichar		ch	= [arg characterAtIndex:i];
 		if ([whitespace characterIsMember:ch]) continue;
-		NSString*	rule	= [kCheckFSA objectAtIndex:state];
+		NSString*	rule	= kCheckFSA[state];
 		for(j = 0; j < [rule length]; j += 2) {
 			if (ch == [rule characterAtIndex:j]) {
 				state = [rule characterAtIndex:j+1]-'0';
@@ -412,12 +411,12 @@ static NSArray*		kCheckFSA;
 			return nil;
 		}
 		if (state >= 5) {
-			[res appendString:[kCheckFSA objectAtIndex:state]];
+			[res appendString:kCheckFSA[state]];
 			state	= 0;
 		}
 	}
 	if (state != 0) {
-		NSString*	rule	= [kCheckFSA objectAtIndex:state];
+		NSString*	rule	= kCheckFSA[state];
 		if (outError) {
 			if ([rule length] > 2) {
 				*outError	= [NSString stringWithFormat:LocalizedString(@"keyErrorTeXParamUnexpectedEOL2",nil), i, [rule characterAtIndex:0], [rule characterAtIndex:2]];
@@ -557,7 +556,7 @@ static NSArray*		kCheckFSA;
 	if (outError)
 		*outError		= [[NSError alloc] initWithDomain:kDefaultsDomain
 						code:0
-						userInfo:[NSDictionary dictionaryWithObject:errMessage forKey:NSLocalizedDescriptionKey]];
+						userInfo:@{NSLocalizedDescriptionKey: errMessage}];
 	
 	
 	return NO;

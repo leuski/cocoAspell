@@ -56,7 +56,7 @@ static NSString*	kHomeDir	= nil;
 
 + (void)initialize
 {
-	[AspellOptions setKeys:[NSArray arrayWithObject:@"sug-mode"] triggerChangeNotificationsForDependentKey:@"suggestionModeAsInt"];
+	[AspellOptions setKeys:@[@"sug-mode"] triggerChangeNotificationsForDependentKey:@"suggestionModeAsInt"];
 	NSString*	hd	= [AspellOptions cocoAspellHomeDir];
 	if (![[NSFileManager defaultManager] fileExistsAtPath:hd]) {
 		[[NSFileManager defaultManager] createDirectoryAtPath:hd attributes:nil];
@@ -70,7 +70,7 @@ static NSString*	kHomeDir	= nil;
 + (NSString*)cocoAspellHomeDir
 {
 	if (!kHomeDir) {
-		kHomeDir	= [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, true) objectAtIndex:0];
+		kHomeDir	= NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, true)[0];
 		kHomeDir	= [[kHomeDir stringByAppendingPathComponent:@"Preferences"] stringByAppendingPathComponent:@"cocoAspell"];
 	}
 	return kHomeDir;
@@ -151,10 +151,10 @@ static NSString*	kHomeDir	= nil;
 //	NSLog(@"observed %@ %@ %@ %@", keyPath, object, change, context);
 	
 	if ([keyPath isEqualToString:@"filter"]) {
-		int		chFlag	= [[change objectForKey:NSKeyValueChangeKindKey] intValue];
+		int		chFlag	= [change[NSKeyValueChangeKindKey] intValue];
 		if (chFlag == NSKeyValueChangeSetting) {
-			NSArray*		oldValue	= [change objectForKey:NSKeyValueChangeOldKey];
-			NSArray*		newValue	= [change objectForKey:NSKeyValueChangeNewKey];
+			NSArray*		oldValue	= change[NSKeyValueChangeOldKey];
+			NSArray*		newValue	= change[NSKeyValueChangeNewKey];
 			for (NSString* v in oldValue) {
 				if (![newValue containsObject:v]) {
 					NSString* s	= [kFilterSetPrefix stringByAppendingString:v];
@@ -181,7 +181,7 @@ static NSString*	kHomeDir	= nil;
 {
 //	NSLog(@"%@", inKey);
 	if ([inKey hasPrefix:kFilterSetPrefix]) {
-		return [NSNumber numberWithBool:[self usingFilter:[inKey substringFromIndex:[kFilterSetPrefix length]]]];
+		return @([self usingFilter:[inKey substringFromIndex:[kFilterSetPrefix length]]]);
 	} else {
 		const struct AspellKeyInfo*	ki;
 		ki	= aspell_config_keyinfo(self.aspellConfig, [inKey UTF8String]);
@@ -191,8 +191,8 @@ static NSString*	kHomeDir	= nil;
 		}
 		if (ki) { 
 			switch (ki->type) {
-				case AspellKeyInfoInt:		return [NSNumber numberWithInt:[self intForKey:inKey]];
-				case AspellKeyInfoBool:		return [NSNumber numberWithBool:[self boolForKey:inKey]];
+				case AspellKeyInfoInt:		return @([self intForKey:inKey]);
+				case AspellKeyInfoBool:		return @([self boolForKey:inKey]);
 				case AspellKeyInfoList:		return [self arrayForKey:inKey];
 				case AspellKeyInfoString:	return [self stringForKey:inKey];
 			}
@@ -258,7 +258,7 @@ static NSString*	kHomeDir	= nil;
 	AspellKeyInfoEnumeration*	keys	= aspell_config_possible_elements(self.aspellConfig, 1);
 	const AspellKeyInfo*		ki;
 	while (ki = aspell_key_info_enumeration_next(keys)) {
-		[res addObject:[NSString stringWithUTF8String:ki->name]];
+		[res addObject:@(ki->name)];
 	}
 	delete_aspell_key_info_enumeration(keys);
 	return res;
@@ -282,7 +282,7 @@ static NSString*	kHomeDir	= nil;
 
 - (void)setSuggestionModeAsInt:(int)inValue
 {
-	[self setValue:[[AspellOptions suggestionModes] objectAtIndex:inValue] forKey:@"sug-mode"];
+	[self setValue:[AspellOptions suggestionModes][inValue] forKey:@"sug-mode"];
 }
 
 // ----------------------------------------------------------------------------
@@ -307,8 +307,8 @@ static NSString*	kHomeDir	= nil;
 	AspellStringPair				p;
 	while (!aspell_string_pair_enumeration_at_end(e)) {
 		p = aspell_string_pair_enumeration_next(e);
-		NSString*	key	= [NSString stringWithUTF8String:p.first];
-		[result setObject:[self valueForKey:key] forKey:key];
+		NSString*	key	= @(p.first);
+		result[key] = [self valueForKey:key];
 	}
 	delete_aspell_string_pair_enumeration(e);
 	return result;
@@ -334,7 +334,7 @@ static NSString*	kHomeDir	= nil;
 + (NSArray*)suggestionModes
 {
 	if (kSuggestionsModes == nil) {
-		kSuggestionsModes	= [[NSArray alloc] initWithObjects:@"ultra", @"fast", @"normal", @"bad-spellers", nil];
+		kSuggestionsModes	= @[@"ultra", @"fast", @"normal", @"bad-spellers"];
 	}
 	return kSuggestionsModes;
 }
@@ -447,7 +447,7 @@ static NSString*	kHomeDir	= nil;
 	NSUInteger	i;
 	const char*	add_key	= [[@"add-" stringByAppendingString:inKey] UTF8String];
 	for(i = 0; i < [inValue count]; ++i) {
-		aspell_config_replace(self.aspellConfig, add_key, [[inValue objectAtIndex:i] UTF8String]);
+		aspell_config_replace(self.aspellConfig, add_key, [inValue[i] UTF8String]);
 	}
 
 	[self didChangeValueForKey:inKey];
@@ -460,7 +460,7 @@ static NSString*	kHomeDir	= nil;
 
 - (NSString*)stringForKey:(NSString*)inKey
 {
-	return [NSString stringWithUTF8String:aspell_config_retrieve(self.aspellConfig,[inKey UTF8String])];
+	return @(aspell_config_retrieve(self.aspellConfig,[inKey UTF8String]));
 }
 
 // ----------------------------------------------------------------------------

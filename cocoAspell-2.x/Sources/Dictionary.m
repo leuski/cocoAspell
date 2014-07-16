@@ -27,9 +27,7 @@ static NSArray*	kStorableKeys		= nil;
 
 + (void)initialize
 {
-	kStorableKeys	= [[NSArray alloc] initWithObjects:
-		@"name", @"identifier",@"enabled", 
-		nil];
+	kStorableKeys	= @[@"name", @"identifier",@"enabled"];
 }
 
 
@@ -109,12 +107,12 @@ static NSArray*	kStorableKeys		= nil;
 
 - (NSArray*)suggestGuessesForWord:(NSString*)word
 {
-	return [NSArray array];
+	return @[];
 }
 
 - (NSArray*)suggestCompletionsForPartialWordRange:(NSRange)inRange inString:(NSString*)str
 {
-	return [NSArray array];
+	return @[];
 }
 
 

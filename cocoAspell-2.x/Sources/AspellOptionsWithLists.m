@@ -78,7 +78,7 @@
 
 - (MutableAspellList*)mutableListForKey:(NSString*)inKey
 {
-	MutableAspellList*	list	= [[self listCaches] objectForKey:inKey];
+	MutableAspellList*	list	= [self listCaches][inKey];
 	if (!list) {
 		Class	cc	= [StringController class];
 		if ([inKey isEqualToString:[kMutableListPrefix stringByAppendingString:@"f_tex_command"]]) {
@@ -89,7 +89,7 @@
 					initWithAspellOptions:self 
 					key:inKey 
 					controllerClass:cc];
-		[[self listCaches] setObject:list forKey:inKey];
+		[self listCaches][inKey] = list;
 	}
 	return list;
 }
