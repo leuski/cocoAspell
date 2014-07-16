@@ -17,7 +17,7 @@
 	NSArray*	_dictionaries;
 }
 
-@property(retain) NSArray*	dictionaries;
+@property(strong) NSArray*	dictionaries;
 
 - (id)initWithDictionaries:(NSArray*)dicts;
 

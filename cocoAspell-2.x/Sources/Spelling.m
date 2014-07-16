@@ -47,7 +47,6 @@
 - (void)dealloc
 {
 	[self setDictionaryManager:nil];
-	[super dealloc];
 }
 
 // ----------------------------------------------------------------------------
@@ -222,9 +221,9 @@
 - (DictionaryManager *)dictionaryManager
 {
 	if (!dictionaryManager) {
-		dictionaryManager	= [[[EditableDictionaryManager alloc] initPersistent:YES] autorelease];
+		dictionaryManager	= [[EditableDictionaryManager alloc] initPersistent:YES];
 	}
-	return [[dictionaryManager retain] autorelease];
+	return dictionaryManager;
 }
 
 // ----------------------------------------------------------------------------
@@ -234,8 +233,7 @@
 - (void)setDictionaryManager:(DictionaryManager *)newDictionaryManager
 {
     if (dictionaryManager != newDictionaryManager) {
-		[dictionaryManager release];
-		dictionaryManager = [newDictionaryManager retain];
+		dictionaryManager = newDictionaryManager;
     }
 }
 
@@ -395,7 +393,7 @@
 
 - (NSString *)registrationName
 {
-	return [[registrationName retain] autorelease];
+	return registrationName;
 }
 
 // ----------------------------------------------------------------------------
@@ -405,7 +403,6 @@
 - (void)setRegistrationName:(NSString *)newRegistrationName
 {
     if (registrationName != newRegistrationName) {
-		[registrationName release];
 		registrationName = [newRegistrationName copy];
 		[self checkRegistration];
     }
@@ -417,7 +414,7 @@
 
 - (NSString *)registrationNumber
 {
-	return [[registrationNumber retain] autorelease];
+	return registrationNumber;
 }
 
 // ----------------------------------------------------------------------------
@@ -427,7 +424,6 @@
 - (void)setRegistrationNumber:(NSString *)newRegistrationNumber
 {
     if (registrationNumber != newRegistrationNumber) {
-		[registrationNumber release];
 		registrationNumber = [newRegistrationNumber copy];
 		[self checkRegistration];
     }

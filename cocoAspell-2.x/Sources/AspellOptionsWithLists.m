@@ -37,7 +37,6 @@
 - (void)dealloc
 {
 	[self setListCaches:nil];
-	[super dealloc];
 }
 
 // ----------------------------------------------------------------------------
@@ -46,7 +45,7 @@
 
 - (NSMutableDictionary *)listCaches
 {
-	return [[listCaches retain] autorelease];
+	return listCaches;
 }
 
 // ----------------------------------------------------------------------------
@@ -56,8 +55,7 @@
 - (void)setListCaches:(NSMutableDictionary *)newListCaches
 {
     if (listCaches != newListCaches) {
-		[listCaches release];
-		listCaches = [newListCaches retain];
+		listCaches = newListCaches;
     }
 }
 
@@ -87,10 +85,10 @@
 			cc	= [TeXCommandController class];
 		}
 		
-		list	= [[[MutableAspellList alloc] 
+		list	= [[MutableAspellList alloc] 
 					initWithAspellOptions:self 
 					key:inKey 
-					controllerClass:cc] autorelease];
+					controllerClass:cc];
 		[[self listCaches] setObject:list forKey:inKey];
 	}
 	return list;

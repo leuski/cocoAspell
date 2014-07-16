@@ -15,7 +15,7 @@
 	AspellOptions*			_options;
 	AspellSpeller*			_speller;
 }
-@property(retain)			AspellOptions*			options;
+@property(strong)			AspellOptions*			options;
 @property(assign,readonly)	AspellSpeller*			speller;
 
 - (id)initWithFilePath:(NSString*)inPath persistent:(BOOL)flag;

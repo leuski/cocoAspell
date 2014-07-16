@@ -24,8 +24,8 @@ extern NSString*	kMultilingualDictionaryName;
 	BOOL							_persistent;
 }
 
-@property(retain)	NSArray*		dictionaries;
-@property(retain)	AspellOptions*	filters;
+@property(strong)	NSArray*		dictionaries;
+@property(strong)	AspellOptions*	filters;
 @property(assign)	BOOL			persistent;
 
 - (id)init;

@@ -37,12 +37,6 @@ static NSArray*	kStorableKeys		= nil;
 //	
 // ----------------------------------------------------------------------------
 
-- (void)dealloc
-{
-	self.name		= nil;
-	self.identifier	= nil;
-	[super dealloc];
-}
 
 // ----------------------------------------------------------------------------
 //	
@@ -68,7 +62,7 @@ static NSArray*	kStorableKeys		= nil;
 
 - (NSString *)name
 {
-	return self->_name ? [[self->_name retain] autorelease] : self.identifier;
+	return self->_name ? self->_name : self.identifier;
 }
 
 
@@ -83,8 +77,7 @@ static NSArray*	kStorableKeys		= nil;
 	}
 
     if (![self->_name isEqualToString:newName]) {
-		[self->_name release];
-		self->_name = [newName retain];
+		self->_name = newName;
     }
 }
 

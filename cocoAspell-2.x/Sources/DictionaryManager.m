@@ -69,11 +69,11 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 - (AspellOptions*)createFilterOptionsWithClass:(Class)inClass
 {
 	NSString*		homeDir	= [AspellOptions cocoAspellHomeDir];
-	AspellOptions*	fltrs	= [[[inClass alloc] 
+	AspellOptions*	fltrs	= [[inClass alloc] 
 								initWithContentOfFile:[homeDir 
-								stringByAppendingPathComponent:kFiltersConfigFileName]] autorelease];
+								stringByAppendingPathComponent:kFiltersConfigFileName]];
 	if (!fltrs) {
-		fltrs	= [[[inClass alloc] init] autorelease];
+		fltrs	= [[inClass alloc] init];
 		[fltrs setValue:kFiltersConfigFileName	forKey:@"per-conf"];
 		[fltrs setValue:homeDir					forKey:@"home_dir"];
 		[fltrs setValue:@"ucs-2"				forKey:@"encoding"];
@@ -89,8 +89,6 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 - (void)dealloc
 {
 	self.dictionaries	= nil;
-	self.filters		= nil;
-	[super dealloc];
 }
 
 // ----------------------------------------------------------------------------
@@ -401,7 +399,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		NSString*				file;
 		while (file = [enumerator nextObject]) {
 			if ([[file pathExtension] isEqualToString:@"multi"]) {
-				Dictionary*	d	= [[[AspellDictionary alloc] initWithFilePath:[dictDir stringByAppendingPathComponent:file] persistent:self.persistent] autorelease];
+				Dictionary*	d	= [[AspellDictionary alloc] initWithFilePath:[dictDir stringByAppendingPathComponent:file] persistent:self.persistent];
 				if (d) {
 					NSString*	n	= [nameMap objectForKey:d.identifier];
 					if (n) {
@@ -432,8 +430,7 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 			[self.dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"name"];
 		}
 		
-		[self->_dictionaries release];
-		self->_dictionaries = [newDictionaries retain];
+		self->_dictionaries = newDictionaries;
 
 		if (self.dictionaries) {
 			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.dictionaries count])];
@@ -486,7 +483,6 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 				}
 			}
 			[self storeEnabledDictionaryNames:enabledDictionaryNames];
-			[enabledDictionaryNames release];
 			[self notifyDictionarySetChanged];
 		}
 		
@@ -498,7 +494,6 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 				}
 			}
 			[UserDefaults setObject:nameMap forKey:@"names"];
-			[nameMap release];
 			[self notifyDictionarySetChanged];
 		}
 		

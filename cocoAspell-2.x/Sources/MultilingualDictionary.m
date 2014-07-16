@@ -24,11 +24,6 @@
 	return self;
 }
 
-- (void)dealloc
-{
-	self.dictionaries	= nil;
-	[super dealloc];
-}
 
 - (void)setFilterConfig:(AspellConfig*)filterConfig 
 {

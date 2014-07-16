@@ -54,11 +54,9 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (void)dealloc
 {
-	[objects release];
 	objects	= nil;
 	[self setKey:nil];
 	[self setOptions:nil];
-	[super dealloc];
 }
 
 // ----------------------------------------------------------------------------
@@ -82,7 +80,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 	[self willChangeValueForKey:@"objects"];
 	[objects removeAllObjects];
 	for(i = 0; i < [data count]; ++i) {
-		[objects addObject:[[[controllerClass alloc] initWithAspellList:self value:[data objectAtIndex:i]] autorelease]];
+		[objects addObject:[[controllerClass alloc] initWithAspellList:self value:[data objectAtIndex:i]]];
 	}
 	[self didChangeValueForKey:@"objects"];
 }
@@ -93,7 +91,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (AspellOptions *)options
 {
-	return [[options retain] autorelease];
+	return options;
 }
 
 // ----------------------------------------------------------------------------
@@ -111,7 +109,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (NSString *)key
 {
-	return [[key retain] autorelease];
+	return key;
 }
 
 // ----------------------------------------------------------------------------
@@ -121,7 +119,6 @@ NSString*	kMutableListPrefix	= @"mutable_";
 - (void)setKey:(NSString *)newKey
 {
     if (key != newKey) {
-		[key release];
 		key = [newKey copy];
     }
 }
@@ -229,7 +226,6 @@ NSString*	kMutableListPrefix	= @"mutable_";
 {
 	[self setArray:nil];
 	[self setValue:nil];
-	[super dealloc];
 }
 
 // ----------------------------------------------------------------------------
@@ -247,7 +243,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (NSString *)value
 {
-	return [[value retain] autorelease];
+	return value;
 }
 
 // ----------------------------------------------------------------------------
@@ -257,7 +253,6 @@ NSString*	kMutableListPrefix	= @"mutable_";
 - (void)setValue:(NSString *)newValue
 {
     if (value ? ![value isEqualToString:newValue] : value != newValue) {
-		[value release];
 		value = [newValue copy];
 //		NSLog(@"new value: %@", newValue);
 		[[self array] dataChanged];
@@ -290,9 +285,9 @@ NSString*	kMutableListPrefix	= @"mutable_";
 {
 	NSString*		errorString		= LocalizedString(key, nil);
 	NSDictionary*	userInfoDict	= [NSDictionary dictionaryWithObject:errorString forKey:NSLocalizedDescriptionKey];
-	NSError*		error			= [[[NSError alloc] initWithDomain:kDefaultsDomain
+	NSError*		error			= [[NSError alloc] initWithDomain:kDefaultsDomain
 										code:0
-										userInfo:userInfoDict] autorelease];
+										userInfo:userInfoDict];
 	return error;
 }
 
@@ -560,9 +555,9 @@ static NSArray*		kCheckFSA;
 	}
 	
 	if (outError)
-		*outError		= [[[NSError alloc] initWithDomain:kDefaultsDomain
+		*outError		= [[NSError alloc] initWithDomain:kDefaultsDomain
 						code:0
-						userInfo:[NSDictionary dictionaryWithObject:errMessage forKey:NSLocalizedDescriptionKey]] autorelease];
+						userInfo:[NSDictionary dictionaryWithObject:errMessage forKey:NSLocalizedDescriptionKey]];
 	
 	
 	return NO;

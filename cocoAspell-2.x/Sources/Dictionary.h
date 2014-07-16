@@ -19,12 +19,12 @@
 	BOOL					_enabled;
 }
 
-@property(retain)	NSString*				name;
-@property(retain)	NSString*				readableName;
+@property(strong)	NSString*				name;
+@property(strong)	NSString*				readableName;
 @property(assign)	BOOL					enabled;
 
-@property(retain)	NSString*				identifier;
-@property(retain, readonly)	NSString*		copyright;
+@property(strong)	NSString*				identifier;
+@property(strong, readonly)	NSString*		copyright;
 
 @property(assign, readonly)	BOOL			caseSensitive;
 

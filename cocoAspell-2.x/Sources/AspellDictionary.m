@@ -30,7 +30,7 @@
 {
 	if (self = [super init]) {		
 
-		self.identifier	= [[[inPath lastPathComponent] stringByDeletingPathExtension] retain];
+		self.identifier	= [[inPath lastPathComponent] stringByDeletingPathExtension];
 		
 		NSRange		rng	= [self.identifier rangeOfString:@"-"];
 		NSString*	langCode;
@@ -48,10 +48,10 @@
 		NSString*		optsFile	= [self.identifier stringByAppendingPathExtension:@"conf"];
 		NSString*		optsPath	= [[AspellOptions cocoAspellHomeDir] stringByAppendingPathComponent:optsFile];
 		
-		opts	= [[[AspellOptions alloc] initWithContentOfFile:optsPath] autorelease];
+		opts	= [[AspellOptions alloc] initWithContentOfFile:optsPath];
 		if (!opts) {
 //			NSLog(@"no file %@", optsPath);
-			opts	= [[[AspellOptions alloc] init] autorelease];
+			opts	= [[AspellOptions alloc] init];
 			if (opts) {
 				NSString*		home_dir	= [AspellOptions cocoAspellHomeDir];
 				[opts setValue:home_dir				forKey:@"home_dir"];
@@ -92,7 +92,7 @@
 	NSStringEncoding	encoding;
 	NSString*			content	= [NSString stringWithContentsOfFile:[dir stringByAppendingPathComponent:fileName] usedEncoding:&encoding error:nil];
 	if (!content) return;
-	for (NSString* line in [content componentsSeparatedByString:@"\n"]) {
+	for (__strong NSString* line in [content componentsSeparatedByString:@"\n"]) {
 		line	= [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		if ([line hasPrefix:@"add"]) {
 			line	= [line substringFromIndex:[@"add" length]];
@@ -136,8 +136,6 @@
 - (void)dealloc
 {
 	self.speller	= nil;
-	self.options	= nil;
-	[super dealloc];
 }
 
 // ----------------------------------------------------------------------------

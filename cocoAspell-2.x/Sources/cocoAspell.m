@@ -36,7 +36,7 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 - (id)initWithDictionaryManager:(DictionaryManager*)dm
 {
 	if (self = [super init]) {
-		dictionaryManager	= [dm retain];
+		dictionaryManager	= dm;
 
 		[(NSNotificationCenter*)[NSDistributedNotificationCenter defaultCenter] 
 			addObserver:	self
@@ -69,9 +69,7 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 		name:			kAspellDictionarySetChangedNotification 
 		object:			nil];
 	
-	[dictionaryManager release];
 	dictionaryManager	= nil;
-	[super dealloc];
 }
 
 // ----------------------------------------------------------------------------
@@ -93,7 +91,7 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 
 #ifdef __multilingual__	
 	if ([kMultilingualDictionaryName isEqualToString:inName]) {
-		d	= [[[MultilingualDictionary alloc] initWithDictionaries:[[self dictionaryManager] enabledDictionaries]] autorelease];
+		d	= [[MultilingualDictionary alloc] initWithDictionaries:[[self dictionaryManager] enabledDictionaries]];
 		[d setFilterConfig:[[[self dictionaryManager] filters] aspellConfig]];
 		return d;
 	} 
@@ -270,60 +268,59 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 
 int main(int argc, char** argv)
 {
-	NSAutoreleasePool*	pool	= [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 
-	if (![UserDefaults cocoAspellExpired]) {
+		if (![UserDefaults cocoAspellExpired]) {
 
-		NSSpellServer*		aServer = [[NSSpellServer alloc] init];
-		
-		DictionaryManager*	dm		= [[[DictionaryManager alloc] init] autorelease];
-		[dm setDictionaries:[dm allDictionaries]];
-		
-		NSUInteger			nregistered = 0;
-		
-		NSLog(@"Attempting to regirster %d dictionaries", [[dm dictionaries] count]);
-		
-		for (Dictionary* d in [dm dictionaries]) {
-			if (d.enabled) {
-				NSString*	name	= d.name;
-				NSString*	path	= [d isKindOfClass:[AspellDictionary class]] ? [((AspellDictionary*)d).options valueForKey:@"dict-dir"] : nil;
-				if (![aServer registerLanguage:name byVendor:@"Aspell"]) {
-					NSLog(@"cocoAspell failed to register %@ from %@/%@\n", name, path, d.identifier); 
-				} else {
-					++nregistered;
-					NSLog(@"cocoAspell registered %@ from %@/%@\n", name, path, d.identifier); 		
+			NSSpellServer*		aServer = [[NSSpellServer alloc] init];
+			
+			DictionaryManager*	dm		= [[DictionaryManager alloc] init];
+			[dm setDictionaries:[dm allDictionaries]];
+			
+			NSUInteger			nregistered = 0;
+			
+			NSLog(@"Attempting to regirster %d dictionaries", [[dm dictionaries] count]);
+			
+			for (Dictionary* d in [dm dictionaries]) {
+				if (d.enabled) {
+					NSString*	name	= d.name;
+					NSString*	path	= [d isKindOfClass:[AspellDictionary class]] ? [((AspellDictionary*)d).options valueForKey:@"dict-dir"] : nil;
+					if (![aServer registerLanguage:name byVendor:@"Aspell"]) {
+						NSLog(@"cocoAspell failed to register %@ from %@/%@\n", name, path, d.identifier); 
+					} else {
+						++nregistered;
+						NSLog(@"cocoAspell registered %@ from %@/%@\n", name, path, d.identifier); 		
+					}
 				}
 			}
-		}
-		
-		if (nregistered > 0) {
+			
+			if (nregistered > 0) {
 
-			NSLog(@"Starting Aspell SpellChecker.\n");
+				NSLog(@"Starting Aspell SpellChecker.\n");
 
-			cocoAspell*	server	= [[[cocoAspell alloc] initWithDictionaryManager:dm] autorelease];
-	//		@try {
-				[aServer setDelegate:server];
-				[aServer run];
-	//		} @catch (NSException* ex) {
-	//			NSLog(@"%@", ex);
-	//		} @finally {
-	//			[server release];
-	//		}
+				cocoAspell*	server	= [[cocoAspell alloc] initWithDictionaryManager:dm];
+		//		@try {
+					[aServer setDelegate:server];
+					[aServer run];
+		//		} @catch (NSException* ex) {
+		//			NSLog(@"%@", ex);
+		//		} @finally {
+		//			[server release];
+		//		}
+
+			} else {
+			
+				NSLog(@"There are no languages enabled. Canceling cocoAspell SpellChecker.\n");
+				
+			}
+
 
 		} else {
 		
-			NSLog(@"There are no languages enabled. Canceling cocoAspell SpellChecker.\n");
-			
+			NSLog(@"This version of cocoAspell has expired");
+
 		}
 
-		[aServer release];
-
-	} else {
-	
-		NSLog(@"This version of cocoAspell has expired");
-
 	}
-
-	[pool release];
 	return 0;
 }

@@ -72,7 +72,6 @@ static NSString*	kHomeDir	= nil;
 	if (!kHomeDir) {
 		kHomeDir	= [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, true) objectAtIndex:0];
 		kHomeDir	= [[kHomeDir stringByAppendingPathComponent:@"Preferences"] stringByAppendingPathComponent:@"cocoAspell"];
-		[kHomeDir retain];
 	}
 	return kHomeDir;
 }
@@ -83,7 +82,7 @@ static NSString*	kHomeDir	= nil;
 
 + (AspellOptions*)aspellOptionsWithAspellConfig:(AspellConfig*)inConfig
 {
-	return [[[AspellOptions alloc] initWithAspellConfig:inConfig] autorelease];
+	return [[AspellOptions alloc] initWithAspellConfig:inConfig];
 }
 
 // ----------------------------------------------------------------------------
@@ -141,7 +140,6 @@ static NSString*	kHomeDir	= nil;
 	[self removeObserver:self forKeyPath:@"filter"];
 	delete_aspell_config(self->_aspellConfig);
 	self->_aspellConfig	= nil;
-	[super dealloc];
 }
 
 // ----------------------------------------------------------------------------
