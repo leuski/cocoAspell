@@ -24,7 +24,7 @@
 
 namespace acommon {
 
-extern "C" int aspell_config_read_in_file(Config * ths, const char * file_name)
+static int aspell_config_read_in_file(Config * ths, const char * file_name)
 {
 	PosibErr<void>	ret	= ths->read_in_file(file_name);
 	ths->err_.reset(ret.release_err());
@@ -32,7 +32,7 @@ extern "C" int aspell_config_read_in_file(Config * ths, const char * file_name)
 	return 1;
 }
 
-extern "C" int aspell_config_write_out_file(Config * ths, const char * file_name)
+static int aspell_config_write_out_file(Config * ths, const char * file_name)
 {
     FStream out;
 	PosibErr<void>	ret	= out.open(file_name, "w");
@@ -42,7 +42,7 @@ extern "C" int aspell_config_write_out_file(Config * ths, const char * file_name
 	return 1;
 }
 
-extern "C" int aspell_config_merge(Config * ths, const Config * other)
+static int aspell_config_merge(Config * ths, const Config * other)
 {
 	PosibErr<void>	ret	= ths->merge(*other);
 	ths->err_.reset(ret.release_err());
@@ -50,4 +50,19 @@ extern "C" int aspell_config_merge(Config * ths, const Config * other)
 	return 1;
 }
 
+}
+
+extern "C" int aspell_config_read_in_file(struct AspellConfig * ths, const char * file_name)
+{
+	return acommon::aspell_config_read_in_file(reinterpret_cast<acommon::Config*>(ths), file_name);
+}
+
+extern "C" int aspell_config_write_out_file(struct AspellConfig * ths, const char * file_name)
+{
+	return acommon::aspell_config_write_out_file(reinterpret_cast<acommon::Config*>(ths), file_name);
+}
+
+extern "C" int aspell_config_merge(struct AspellConfig * ths, const struct AspellConfig * other)
+{
+	return acommon::aspell_config_merge(reinterpret_cast<acommon::Config*>(ths), reinterpret_cast<const acommon::Config*>(other));
 }

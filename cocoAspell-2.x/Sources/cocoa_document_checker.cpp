@@ -91,7 +91,7 @@ PosibErr<CocoaDocumentChecker *> new_cocoa_document_checker(Speller * speller)
 	return checker.release();
 }
 
-extern "C" int aspell_speller_check_spelling(Speller * speller, const char * textData, 
+static int aspell_speller_check_spelling(Speller * speller, const char * textData,
 	int textSize, int * wordCount, int countOnly, unsigned int * offset, unsigned  int * length)
 {
 	PosibErr<CocoaDocumentChecker *> ret = new_cocoa_document_checker(speller);
@@ -117,7 +117,7 @@ extern "C" int aspell_speller_check_spelling(Speller * speller, const char * tex
 	return 1;
 }
 	
-extern "C" int aspell_speller_remove_from_personal(Speller * ths, const char * word, int word_size)
+static int aspell_speller_remove_from_personal(Speller * ths, const char * word, int word_size)
 {
 //	ths->temp_str_0.clear();
 //	ths->to_internal_->convert(word, word_size, ths->temp_str_0);
@@ -128,5 +128,16 @@ extern "C" int aspell_speller_remove_from_personal(Speller * ths, const char * w
 	return 1;
 }
 
+}
+
+extern "C" int aspell_speller_check_spelling(struct AspellSpeller * speller, const char * textData,
+											 int textSize, int * wordCount, int countOnly, unsigned int * offset, unsigned  int * length)
+{
+	return acommon::aspell_speller_check_spelling(reinterpret_cast<acommon::Speller*>(speller), textData, textSize, wordCount, countOnly, offset, length);
+}
+
+extern "C" int aspell_speller_remove_from_personal(struct AspellSpeller * ths, const char * word, int word_size)
+{
+	return acommon::aspell_speller_remove_from_personal(reinterpret_cast<acommon::Speller*>(ths), word, word_size);
 }
 

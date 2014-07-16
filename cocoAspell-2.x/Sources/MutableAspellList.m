@@ -148,7 +148,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (void)getObjects:(id*)inBuffer range:(NSRange)inRange
+- (void)getObjects:(id __unsafe_unretained [])inBuffer range:(NSRange)inRange
 {
 	[objects getObjects:inBuffer range:inRange];
 }

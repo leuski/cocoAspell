@@ -35,8 +35,10 @@
 #import "NSTextViewWithLinks.h"
 
 
+
 //	Informal protocol for extending NSTextView's delegate
-@interface NSObject (NSTextViewWithLinks_Delegate)
+@protocol NSTextViewWithLinksDelegate <NSTextViewDelegate>
+@optional
 - (NSCursor *) cursorForLink: (NSObject *) linkObject
     atIndex: (NSUInteger) charIndex
     ofTextView: (NSTextView *) aTextView;
@@ -86,7 +88,7 @@
 
     //	If the delegate implements the method, consult it.
     if ([[self delegate] respondsToSelector: @selector(cursorForLink:atIndex:ofTextView:)])
-        result = [[self delegate] cursorForLink: linkObject  atIndex: charIndex  ofTextView: self];
+        result = [(id<NSTextViewWithLinksDelegate>)[self delegate] cursorForLink: linkObject  atIndex: charIndex  ofTextView: self];
 
     //	If the delegate didn't implement it, or it did but returned nil, substitute a guess.
     if (result == nil)
