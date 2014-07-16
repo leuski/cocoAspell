@@ -69,10 +69,10 @@ NSArray* allDictionaryDirectories(DictionaryDirectoryFlag flag)
 		if (![manager fileExistsAtPath:dirPath isDirectory:&isDir] || !isDir)
 			continue;
 			
-		NSArray*		subPaths	= [manager directoryContentsAtPath:dirPath];
-		NSUInteger		j;
+		NSError*		error;
+		NSArray*		subPaths	= [manager contentsOfDirectoryAtPath:dirPath error:&error]; // TODO check error
 
-		for(j = 0; j < [subPaths count]; ++j) {
+		for(NSUInteger j = 0, n = subPaths.count; j < n; ++j) {
 			NSString*	subPath		= [dirPath stringByAppendingPathComponent:subPaths[j]];
 			
 //			NSLog(@"%@", subPath);
@@ -95,35 +95,17 @@ getSystemLanguageName(
 	NSString*	inName,
 	BOOL		inEnglish)
 {
-	UniChar			buffer[NameBufferSize];
-	UniCharCount	actualNameLen;
-	LocaleRef		locale;
-	OSStatus		status;
-	LocaleRef		displayLocale;
+	if (!inName) return inName;
 	
-	if (!inName)
-		return inName;
+	NSLocale*		locale = [NSLocale localeWithLocaleIdentifier:inName];
+	if (!locale) return inName;
 	
-	status	= LocaleRefFromLocaleString([inName UTF8String], &locale);
-	if (status != 0) {
-		return inName;
-	}
-	
-	displayLocale	= locale;
+	NSLocale*		displayLocale = locale;
 	if (inEnglish) {
-		status = LocaleRefFromLocaleString("en", &displayLocale);
-		if (status != 0) {
-			return inName;
-		}
+		displayLocale = [NSLocale localeWithLocaleIdentifier:@"en"];
+		if (!displayLocale) return inName;
 	}
 	
-	status	= LocaleGetName(locale, 0, 
-		kLocaleNameMask, 
-		displayLocale, NameBufferSize, &actualNameLen, buffer);
-	
-	if (status != 0) {
-		return inName;
-	}
-
-	return [NSString stringWithCharacters:buffer length:actualNameLen];
+	NSString* displayNameString = [displayLocale displayNameForKey:NSLocaleIdentifier value:[locale localeIdentifier]];
+	return displayNameString ? displayNameString : inName;
 }

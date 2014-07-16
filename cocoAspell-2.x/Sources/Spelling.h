@@ -14,32 +14,25 @@
 @class DictionaryManager;
 
 @interface Spelling : NSPreferencePane 
-{
-    IBOutlet NSTextField*			mProgressTitle;
-    IBOutlet NSWindow*				mProgressPanel;
-    IBOutlet NSWindow*				mCopyrightPanel;
-    IBOutlet NSWindow*				mAlertPanel;
-    IBOutlet NSWindow*				mRegistrationPanel;
-	IBOutlet NSProgressIndicator*	mProgressBar;
-	IBOutlet NSTabView*				mTabView;
-	IBOutlet NSTextViewWithLinks*	mCreditsView;
-	IBOutlet NSTextField*			mAlertTitle;
-	IBOutlet NSTextField*			mAlertMessage;
-	
-	BOOL							compiling;
-	DictionaryManager*				dictionaryManager;
-	
-	BOOL							validRegistration;
-	NSString*						registrationName;
-	NSString*						registrationNumber;
-}
 
 - (void)mainViewDidLoad;
 
-- (BOOL)isCompiling;
-- (void)setCompiling:(BOOL)newCompiling;
 
-- (DictionaryManager *)dictionaryManager;
-- (void)setDictionaryManager:(DictionaryManager *)newDictionaryManager;
+@property (nonatomic, strong)	IBOutlet NSWindow*				mProgressPanel;
+@property (nonatomic, strong)	IBOutlet NSWindow*				mCopyrightPanel;
+@property (nonatomic, strong)	IBOutlet NSWindow*				mAlertPanel;
+@property (nonatomic, strong)	IBOutlet NSWindow*				mRegistrationPanel;
+
+@property (nonatomic, strong)	IBOutlet NSTextField*			mProgressTitle;
+@property (nonatomic, strong)	IBOutlet NSProgressIndicator*	mProgressBar;
+@property (nonatomic, strong)	IBOutlet NSTabView*				mTabView;
+@property (nonatomic, strong)	IBOutlet NSTextViewWithLinks*	mCreditsView;
+@property (nonatomic, strong)	IBOutlet NSTextField*			mAlertTitle;
+@property (nonatomic, strong)	IBOutlet NSTextField*			mAlertMessage;
+
+@property (nonatomic, assign)	BOOL							compiling;
+@property (nonatomic, strong)	DictionaryManager*				dictionaryManager;
+
+@property (nonatomic, strong, readonly)	NSString*						version;
 
 @end

@@ -14,17 +14,19 @@
 
 NSString*	kMutableListPrefix	= @"mutable_";
 
-@interface StringController (Private)
+@interface StringController ()
 - (void)assignUniqueValue:(MutableAspellList*)list;
 - (NSError*)makeErrorRecord:(NSString*)key;
 @end
 
-@interface MutableAspellList (Private)
+@interface MutableAspellList ()
+@property (nonatomic, strong)	AspellOptions*		options;
+@property (nonatomic, copy)		NSString*			key;
+@property (nonatomic, strong)	NSMutableArray*		objects;
+@property (nonatomic, assign)	Class				controllerClass;
+
 - (void)reloadData;
 - (void)dataChanged;
-- (void)setOptions:(AspellOptions *)newOptions;
-- (void)setKey:(NSString *)newKey;
-- (unsigned)indexOfObject:(id)inObject;
 
 @end
 
@@ -37,10 +39,10 @@ NSString*	kMutableListPrefix	= @"mutable_";
 - (id)initWithAspellOptions:(AspellOptions*)inOptions key:(NSString*)inKey controllerClass:(Class)inControllerClass
 {
 	if (self = [super init]) {
-		[self setKey:inKey];
-		[self setOptions:inOptions];
-		objects	= [[NSMutableArray alloc] init];
-		controllerClass	= inControllerClass;
+		self.key = inKey;
+		self.options = inOptions;
+		self.objects	= [NSMutableArray new];
+		self.controllerClass	= inControllerClass;
 		
 		[self reloadData];
 		
@@ -52,20 +54,9 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (void)dealloc
-{
-	objects	= nil;
-	[self setKey:nil];
-	[self setOptions:nil];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
 - (NSString*)dataKey
 {
-	return [[self key] substringFromIndex:[kMutableListPrefix length]];
+	return [self.key substringFromIndex:[kMutableListPrefix length]];
 }
 
 // ----------------------------------------------------------------------------
@@ -74,13 +65,12 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (void)reloadData
 {
-	NSArray*	data	= [[self options] valueForKey:[self dataKey]];
-	unsigned	i;
+	NSArray*	data	= self.options[self.dataKey];
 	
 	[self willChangeValueForKey:@"objects"];
-	[objects removeAllObjects];
-	for(i = 0; i < [data count]; ++i) {
-		[objects addObject:[[controllerClass alloc] initWithAspellList:self value:data[i]]];
+	[self.objects removeAllObjects];
+	for(NSUInteger i = 0, n = data.count; i < n; ++i) {
+		[self.objects addObject:[[self.controllerClass alloc] initWithAspellList:self value:data[i]]];
 	}
 	[self didChangeValueForKey:@"objects"];
 }
@@ -89,56 +79,18 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (AspellOptions *)options
-{
-	return options;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setOptions:(AspellOptions *)newOptions
-{
-	options	= newOptions;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (NSString *)key
-{
-	return key;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setKey:(NSString *)newKey
-{
-    if (key != newKey) {
-		key = [newKey copy];
-    }
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
 - (NSUInteger)countOfObjects
 {
-	return [objects count];
+	return [self.objects count];
 }
 
 // ----------------------------------------------------------------------------
 //	
 // ----------------------------------------------------------------------------
 
-- (id)objectInObjectsAtIndex:(NSUInteger)inIndex
+- (StringController*)objectInObjectsAtIndex:(NSUInteger)inIndex
 {
-	return objects[inIndex];
+	return self.objects[inIndex];
 }
 
 // ----------------------------------------------------------------------------
@@ -147,22 +99,22 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (void)getObjects:(id __unsafe_unretained [])inBuffer range:(NSRange)inRange
 {
-	[objects getObjects:inBuffer range:inRange];
+	[self.objects getObjects:inBuffer range:inRange];
 }
 
 // ----------------------------------------------------------------------------
 //	
 // ----------------------------------------------------------------------------
 
-- (void)insertObject:(id)inObject inObjectsAtIndex:(NSUInteger)inIndex
+- (void)insertObject:(StringController*)inObject inObjectsAtIndex:(NSUInteger)inIndex
 {
 	if ([inObject array] != nil) {
 		NSLog(@"attemptng to insert the same object into multiple lists");
 		return;
 	}
 	[inObject assignUniqueValue:self];
-	[objects insertObject:inObject atIndex:inIndex];
-	[(StringController*)inObject setArray:self]; 
+	[self.objects insertObject:inObject atIndex:inIndex];
+	inObject.array = self;
 	[self dataChanged];
 }
 
@@ -172,8 +124,8 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (void)removeObjectFromObjectsAtIndex:(NSUInteger)inIndex
 {
-	[(StringController*)[self objectInObjectsAtIndex:inIndex] setArray:nil]; 
-	[objects removeObjectAtIndex:inIndex];
+	[self objectInObjectsAtIndex:inIndex].array = nil;
+	[self.objects removeObjectAtIndex:inIndex];
 	[self dataChanged];
 }
 
@@ -181,23 +133,22 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (void)replaceObjectInObjectsAtIndex:(NSUInteger)inIndex withObject:(id)inObject
+- (void)replaceObjectInObjectsAtIndex:(NSUInteger)inIndex withObject:(StringController*)inObject
 {
-	if ([inObject array] != nil) {
+	if (inObject.array != nil) {
 		NSLog(@"attemptng to insert the same object into multiple lists");
 		return;
 	}
-	[(StringController*)[self objectInObjectsAtIndex:inIndex] setArray:nil]; 
+	[self objectInObjectsAtIndex:inIndex].array = nil;
 	[inObject assignUniqueValue:self];
-	objects[inIndex] = inObject;
-	[(StringController*)inObject setArray:self]; 
+	self.objects[inIndex] = inObject;
+	inObject.array = self;
 	[self dataChanged];
 }
 
 - (void)dataChanged
 {
-	[[self options] setValue:[self valueForKeyPath:@"objects.@unionOfObjects.value"] 
-		forKey:[self dataKey]];
+	self.options[self.dataKey] = [self valueForKeyPath:@"objects.@unionOfObjects.value"];
 }
 
 @end
@@ -212,8 +163,8 @@ NSString*	kMutableListPrefix	= @"mutable_";
 - (id)initWithAspellList:(MutableAspellList*)inArray value:(NSString*)inValue;
 {
 	if (self = [super init]) {
-		[self setValue:inValue];
-		[self setArray:inArray];
+		self.value = inValue;
+		self.array = inArray;
 	}
 	return self;
 }
@@ -222,28 +173,9 @@ NSString*	kMutableListPrefix	= @"mutable_";
 //	
 // ----------------------------------------------------------------------------
 
-- (void)dealloc
-{
-	[self setArray:nil];
-	[self setValue:nil];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
 - (NSString*)description
 {
-	return [self value];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (NSString *)value
-{
-	return value;
+	return self.value;
 }
 
 // ----------------------------------------------------------------------------
@@ -252,29 +184,11 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (void)setValue:(NSString *)newValue
 {
-    if (value ? ![value isEqualToString:newValue] : value != newValue) {
-		value = [newValue copy];
+    if (_value ? ![_value isEqualToString:newValue] : _value != newValue) {
+		_value = [newValue copy];
 //		NSLog(@"new value: %@", newValue);
-		[[self array] dataChanged];
+		[self.array dataChanged];
     }
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (MutableAspellList *)array
-{
-	return array;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setArray:(MutableAspellList *)newArray
-{
-	array = newArray;
 }
 
 // ----------------------------------------------------------------------------
@@ -300,7 +214,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 	unsigned	i, n	= [list countOfObjects];
 	for(i = 0; i < n; ++i) {
 		StringController*	sc	= [list objectInObjectsAtIndex:i];
-		if ([val isEqualToString:[sc value]] && sc != self && [sc array]) {
+		if ([val isEqualToString:sc.value] && sc != self && sc.array) {
 			return YES;
 		}
 	}
@@ -313,14 +227,14 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 -(BOOL)validateValue:(id *)ioValue error:(NSError **)outError
 {
-	if (![self array]) return YES;
+	if (!self.array) return YES;
 	NSString*	val		= [*ioValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	if ([val length] == 0) {
 		if (outError)
 			*outError	= [self makeErrorRecord:@"keyErrorEmptyEntry"];
 		return NO;
 	}
-	if ([self list:[self array] hasObject:val]) {
+	if ([self list:self.array hasObject:val]) {
 		if (outError)
 			*outError	= [self makeErrorRecord:@"keyErrorDuplicateEntry"];
 		return NO;
@@ -510,8 +424,8 @@ static NSArray*		kCheckFSA;
 {
 	unsigned	i, n	= [list countOfObjects];
 	for(i = 0; i < n; ++i) {
-		TeXCommandController*	sc	= [list objectInObjectsAtIndex:i];
-		if ([val isEqualToString:[sc command]] && sc != self && [sc array]) {
+		StringController*	sc	= [list objectInObjectsAtIndex:i];
+		if ([sc isKindOfClass:[TeXCommandController class]] && [val isEqualToString:((TeXCommandController*)sc).command] && sc != self && sc.array) {
 			return YES;
 		}
 	}
@@ -524,14 +438,14 @@ static NSArray*		kCheckFSA;
 
 - (BOOL)validateCommand:(id *)ioValue error:(NSError **)outError
 {
-	if (![self array]) return YES;
+	if (!self.array) return YES;
 	NSString*	val		= [*ioValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	if ([val length] == 0) {
 		if (outError)
 			*outError	= [self makeErrorRecord:@"keyErrorEmptyEntry"];
 		return NO;
 	}
-	if ([self list:[self array] hasObject:val]) {
+	if ([self list:self.array hasObject:val]) {
 		if (outError)
 			*outError	= [self makeErrorRecord:@"keyErrorDuplicateEntry"];
 		return NO;

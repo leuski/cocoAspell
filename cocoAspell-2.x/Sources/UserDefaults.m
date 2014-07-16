@@ -33,25 +33,6 @@ NSString*	kDefaultsDomain	= @"net.leuski.cocoaspell";
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (BOOL)cocoAspellIsRegistered
-{
-	return YES;
-}
-
-+ (BOOL)cocoAspellExpired
-{
-	NSDate*	limit	= [UserDefaults cocoAspellTimeLimit];
-	if (limit == NULL)
-		return NO;
-		
-	return (NSOrderedAscending == [limit compare:[NSDate date]]);
-}
-
-+ (NSDate*)cocoAspellTimeLimit
-{
-	return nil; // [NSDate dateWithString:@"2005-07-01 00:00:00 -0700"];
-}
-
 @end
 
 NSString* LocalizedString(NSString* key, NSString* desc)

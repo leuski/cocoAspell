@@ -13,20 +13,16 @@
 
 @class AspellOptions;
 
-@interface Dictionary : NSObject {
-	NSString*				_name;
-	NSString*				_identifier;
-	BOOL					_enabled;
-}
+@interface Dictionary : NSObject
 
-@property(strong)	NSString*				name;
-@property(strong)	NSString*				readableName;
-@property(assign)	BOOL					enabled;
+@property (nonatomic, strong)	NSString*				name;
+@property (nonatomic, strong)	NSString*				readableName;
+@property (nonatomic, assign)	BOOL					enabled;
 
-@property(strong)	NSString*				identifier;
-@property(strong, readonly)	NSString*		copyright;
+@property (nonatomic, strong)	NSString*				identifier;
+@property (nonatomic, strong, readonly)	NSString*		copyright;
 
-@property(assign, readonly)	BOOL			caseSensitive;
+@property (nonatomic, assign, readonly)	BOOL			caseSensitive;
 
 - (void)setFilterConfig:(AspellConfig*)filterConfig;
 - (void)forgetWord:(NSString *)word;

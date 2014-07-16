@@ -18,15 +18,11 @@ extern NSString*	kAspellDictionarySetChangedNotification;
 extern NSString*	kMultilingualDictionaryName;
 #endif // __multilingual__
 
-@interface DictionaryManager : NSObject {
-	NSArray*						_dictionaries;
-	AspellOptions*					_filters;
-	BOOL							_persistent;
-}
+@interface DictionaryManager : NSObject
 
-@property(strong)	NSArray*		dictionaries;
-@property(strong)	AspellOptions*	filters;
-@property(assign)	BOOL			persistent;
+@property (nonatomic, strong)	NSArray*		dictionaries;
+@property (nonatomic, strong)	AspellOptions*	filters;
+@property (nonatomic, assign)	BOOL			persistent;
 
 - (id)init;
 - (id)initPersistent:(BOOL)inPersistent;

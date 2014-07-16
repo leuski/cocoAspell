@@ -29,9 +29,6 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 @end
 
 @implementation DictionaryManager
-@synthesize dictionaries	= _dictionaries;
-@synthesize filters			= _filters;
-@synthesize persistent		= _persistent;
 
 - (AspellOptions*)createFilterOptions
 {
@@ -74,21 +71,12 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 								stringByAppendingPathComponent:kFiltersConfigFileName]];
 	if (!fltrs) {
 		fltrs	= [[inClass alloc] init];
-		[fltrs setValue:kFiltersConfigFileName	forKey:@"per-conf"];
-		[fltrs setValue:homeDir					forKey:@"home_dir"];
-		[fltrs setValue:@"ucs-2"				forKey:@"encoding"];
+		fltrs[@"per-conf"] = kFiltersConfigFileName;
+		fltrs[@"home_dir"] = homeDir;
+		fltrs[@"encoding"] = @"ucs-2";
 	}
 	[fltrs setPersistent:self.persistent];
 	return fltrs;
-}
-
-// ----------------------------------------------------------------------------
-// 
-// ----------------------------------------------------------------------------
-
-- (void)dealloc
-{
-	self.dictionaries	= nil;
 }
 
 // ----------------------------------------------------------------------------
@@ -176,13 +164,14 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		NSDictionary*			fattrs;
 		float					neededSpace  = 0;
 		NSNumber*				fsize;
+		NSError*				error;
 		
 		enumerator 	= [[NSFileManager defaultManager] enumeratorAtPath:dictionaryPath];
 
 		while (file = [enumerator nextObject]) {
 			if ([[file pathExtension] isEqualToString:@"cwl"]) {
-				fattrs		= [fm fileAttributesAtPath:[dictionaryPath stringByAppendingPathComponent:file] traverseLink:YES];
-				if (fsize = fattrs[NSFileSize]) {
+				fattrs		= [fm attributesOfItemAtPath:[[dictionaryPath stringByAppendingPathComponent:file] stringByResolvingSymlinksInPath] error:&error]; // TODO check error
+				if ((fsize = fattrs[NSFileSize])) {
 					neededSpace += [fsize floatValue];
 				}
 			}
@@ -190,8 +179,8 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 		
 		neededSpace *= 10;
 		
-		fattrs		= [fm fileSystemAttributesAtPath:dictionaryPath];
-		if (fsize = fattrs[NSFileSystemFreeSize]) {
+		fattrs		= [fm attributesOfFileSystemForPath:[dictionaryPath stringByResolvingSymlinksInPath] error:&error]; // TODO check error
+		if ((fsize = fattrs[NSFileSystemFreeSize])) {
 			float   existingSpace   = [fsize floatValue];
 			float	delta			= existingSpace - neededSpace;
 			if (delta < 0) {
@@ -216,21 +205,21 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 // 
 // ----------------------------------------------------------------------------
 
-- (NSString*)serviceFilePath
+- (NSURL*)serviceFileURL
 {
-	return [[[@"~/Library" stringByStandardizingPath]
-				stringByAppendingPathComponent:@"Services"] 
-				stringByAppendingPathComponent:kCocoAspellServiceName];
+	return [[[NSURL fileURLWithPath:[@"~/Library" stringByStandardizingPath]]
+				URLByAppendingPathComponent:@"Services"]
+				URLByAppendingPathComponent:kCocoAspellServiceName];
 }
 
 // ----------------------------------------------------------------------------
 // 
 // ----------------------------------------------------------------------------
 
-- (NSString*)serviceInfoFilePath:(NSString*)serviceFilePath
+- (NSURL*)serviceInfoFileURL:(NSURL*)serviceFileURL
 {
-	return [[serviceFilePath stringByAppendingPathComponent:@"Contents"] 
-				stringByAppendingPathComponent:@"Info.plist"];
+	return [[serviceFileURL URLByAppendingPathComponent:@"Contents"]
+				URLByAppendingPathComponent:@"Info.plist"];
 }
 
 
@@ -240,11 +229,11 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 
 - (NSArray*)loadEnabledDictionaryNames
 {
-	NSString*		destPath 	= [self serviceInfoFilePath:[self serviceFilePath]];
+	NSURL*			dstURL		= [self serviceInfoFileURL:[self serviceFileURL]];
 	NSFileManager*	manager		= [NSFileManager defaultManager];
 	
-	if ([manager fileExistsAtPath:destPath]) {
-		NSDictionary*	info			= [NSDictionary dictionaryWithContentsOfFile:destPath];
+	if ([manager fileExistsAtPath:dstURL.path]) {
+		NSDictionary*	info			= [NSDictionary dictionaryWithContentsOfURL:dstURL];
 		NSDictionary*	languagesDict	= ((NSArray*)info[@"NSServices"])[0];
 		NSArray*		langNames		= languagesDict[@"NSLanguages"];
 		if (langNames) {
@@ -259,19 +248,20 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 // 
 // ----------------------------------------------------------------------------
 
-- (BOOL)copyServiceBundleFrom:(NSString*)srcPath to:(NSString*)dstPath
+- (BOOL)copyServiceBundleFrom:(NSURL*)srcURL to:(NSURL*)dstURL
 {
 	NSFileManager*			manager		= [NSFileManager defaultManager];
-
-	if (![manager fileExistsAtPath:dstPath]) {
-		return [manager copyPath:srcPath toPath:dstPath handler:nil];
+	NSError*				error;
+	
+	if (![manager fileExistsAtPath:dstURL.path]) {
+		return [manager copyItemAtURL:srcURL toURL:dstURL error:&error]; // TODO check error
 	}
 
-	NSString*	dstInfoPath	= [self serviceInfoFilePath:dstPath];
-	NSString*	srcInfoPath	= [self serviceInfoFilePath:srcPath];
+	NSURL*	dstInfoURL	= [self serviceInfoFileURL:dstURL];
+	NSURL*	srcInfoURL	= [self serviceInfoFileURL:srcURL];
 
-	NSDictionary*	srcInfo	= [NSDictionary dictionaryWithContentsOfFile:srcInfoPath];
-	NSDictionary*	dstInfo	= [NSDictionary dictionaryWithContentsOfFile:dstInfoPath];
+	NSDictionary*	srcInfo	= [NSDictionary dictionaryWithContentsOfURL:srcInfoURL];
+	NSDictionary*	dstInfo	= [NSDictionary dictionaryWithContentsOfURL:dstInfoURL];
 	
 	NSString*		srcVersion	= srcInfo[@"CFBundleVersion"];
 	NSString*		dstVersion	= dstInfo[@"CFBundleVersion"];
@@ -279,8 +269,8 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 	if (srcVersion && [srcVersion isEqualToString:dstVersion])
 		return YES;
 		
-	[manager removeFileAtPath:dstPath handler:nil];
-	return [manager copyPath:srcPath toPath:dstPath handler:nil];
+	[manager removeItemAtURL:dstURL error:&error]; // TODO check error
+	return [manager copyItemAtURL:srcURL toURL:dstURL error:&error]; // TODO check error
 }
 
 // ----------------------------------------------------------------------------
@@ -289,11 +279,12 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 
 - (void)removeServiceBundle
 {
+	NSError* error;
 	[self notifyDictionarySetChanged];
-	NSString*				dstPath 	= [self serviceFilePath];
+	NSURL*					dstURL 	= [self serviceFileURL];
 	NSFileManager*			manager		= [NSFileManager defaultManager];
-	if ([manager fileExistsAtPath:dstPath]) {
-		[manager removeFileAtPath:dstPath handler:nil];
+	if ([manager fileExistsAtPath:dstURL.path]) {
+		[manager removeItemAtURL:dstURL error:&error]; // TODO check error
 	}
 }
 
@@ -302,39 +293,29 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 // ----------------------------------------------------------------------------
 
 - (BOOL)storeEnabledDictionaryNames:(NSArray*)inArray
-{
-	if ([UserDefaults cocoAspellExpired]) {
-		[self removeServiceBundle];
-		return NO;
-	}
-	
-	NSString*				destPath 	= [@"~/Library" stringByStandardizingPath];
+{	
 	NSFileManager*			manager		= [NSFileManager defaultManager];
 	NSMutableDictionary*	info;
 	NSMutableDictionary*	languagesDict;
 //	NSString*				execPath;
 	NSBundle*				thisBundle	= [NSBundle bundleForClass:[Dictionary class]];
+	NSError*				error;
 	
-	if (![manager fileExistsAtPath:destPath]) {
-		if (![manager createDirectoryAtPath:destPath attributes:nil])
-			return NO;
+	NSURL* dstURL = [[NSURL fileURLWithPath:[@"~/Library" stringByStandardizingPath]] URLByAppendingPathComponent:@"Services"];
+	
+	if (![manager createDirectoryAtURL:dstURL withIntermediateDirectories:YES attributes:nil error:&error]) {
+		return NO;
 	}
-
-	destPath = [destPath stringByAppendingPathComponent:@"Services"];
-	if (![manager fileExistsAtPath:destPath]) {
-		if (![manager createDirectoryAtPath:destPath attributes:nil])
-			return NO;
-	}
-
-	destPath = [destPath stringByAppendingPathComponent:kCocoAspellServiceName];
+	
+	dstURL = [dstURL URLByAppendingPathComponent:kCocoAspellServiceName];
 //	NSURL*		serviceURL			= [NSURL fileURLWithPath:destPath];
 
-	NSString*	srcPath		= [[thisBundle resourcePath] stringByAppendingPathComponent:kCocoAspellServiceName];
+	NSURL*	srcURL		= [[thisBundle resourceURL] URLByAppendingPathComponent:kCocoAspellServiceName];
 
-	[self copyServiceBundleFrom:srcPath to:destPath];
+	[self copyServiceBundleFrom:srcURL to:dstURL];
 
-	NSString*	dstInfoPath	= [self serviceInfoFilePath:destPath];
-	info		= [NSMutableDictionary dictionaryWithContentsOfFile:dstInfoPath];
+	NSURL*	dstInfoURL	= [self serviceInfoFileURL:dstURL];
+	info		= [NSMutableDictionary dictionaryWithContentsOfURL:dstInfoURL];
 
 	if (!info) {
 		NSLog(@"no Info.plist file in cocoAspell.service");
@@ -364,8 +345,8 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 //	[languagesDict setObject:execPath forKey:@"NSExecutable"];
 //	[info setObject:execPath forKey:@"CFBundleExecutable"];
 
-	if (![info writeToFile:dstInfoPath atomically:YES]) {
-		NSLog(@"failed to write language dictionary to %@", dstInfoPath);
+	if (![info writeToURL:dstInfoURL atomically:YES]) {
+		NSLog(@"failed to write language dictionary to %@", dstInfoURL);
 	}
 	NSUpdateDynamicServices();
 	
@@ -423,19 +404,19 @@ NSString*	kMultilingualDictionaryName		= @"Multilingual";
 
 - (void)setDictionaries:(NSArray *)newDictionaries
 {
-    if (self.dictionaries != newDictionaries) {
-		if (self.dictionaries) {
-			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.dictionaries count])];
-			[self.dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"enabled"];
-			[self.dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"name"];
+    if (self->_dictionaries != newDictionaries) {
+		if (self->_dictionaries) {
+			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self->_dictionaries count])];
+			[self->_dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"enabled"];
+			[self->_dictionaries removeObserver:self fromObjectsAtIndexes:idxs forKeyPath:@"name"];
 		}
 		
 		self->_dictionaries = newDictionaries;
 
-		if (self.dictionaries) {
-			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.dictionaries count])];
-			[self.dictionaries addObserver:self toObjectsAtIndexes:idxs forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:nil];
-			[self.dictionaries addObserver:self toObjectsAtIndexes:idxs forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+		if (self->_dictionaries) {
+			NSIndexSet*	idxs	= [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self->_dictionaries count])];
+			[self->_dictionaries addObserver:self toObjectsAtIndexes:idxs forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:nil];
+			[self->_dictionaries addObserver:self toObjectsAtIndexes:idxs forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
 		}
     }
 }

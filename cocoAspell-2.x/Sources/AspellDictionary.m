@@ -17,10 +17,11 @@
 #import "aspell_extras.h"
 #import "cocoa_document_checker.h"
 
+@interface AspellDictionary ()
+@property (nonatomic, assign)	AspellSpeller*			speller;
+@end
 
 @implementation AspellDictionary
-@synthesize options		= _options;
-@synthesize speller		= _speller;
 
 // ----------------------------------------------------------------------------
 //	
@@ -54,21 +55,21 @@
 			opts	= [[AspellOptions alloc] init];
 			if (opts) {
 				NSString*		home_dir	= [AspellOptions cocoAspellHomeDir];
-				[opts setValue:home_dir				forKey:@"home_dir"];
-				[opts setValue:@"ucs-2"				forKey:@"encoding"];
-				[opts setValue:@"cocoAspell.conf"	forKey:@"per-conf"];
+				opts[@"home_dir"] = home_dir;
+				opts[@"encoding"] = @"ucs-2";
+				opts[@"per-conf"] = @"cocoAspell.conf";
 			}
 		}
 		
 		self.options	= opts;
 		self.options.persistent	= flag; 
 
-		[self.options setValue:langCode forKey:@"lang"];
-		[self.options setValue:langJargon forKey:@"jargon"];
-		[self.options setValue:[inPath stringByDeletingLastPathComponent] forKey:@"dict-dir"];
-		[self.options setValue:[self.identifier stringByAppendingPathExtension:@"prepl"] forKey:@"repl"];
-		[self.options setValue:[self.identifier stringByAppendingPathExtension:@"pws"] forKey:@"personal"];
-		[self.options setValue:optsFile forKey:@"per-conf"];
+		self.options[@"lang"] = langCode;
+		self.options[@"jargon"] = langJargon;
+		self.options[@"dict-dir"] = [inPath stringByDeletingLastPathComponent];
+		self.options[@"repl"] = [self.identifier stringByAppendingPathExtension:@"prepl"];
+		self.options[@"personal"] = [self.identifier stringByAppendingPathExtension:@"pws"];
+		self.options[@"per-conf"] = optsFile;
 
 		
 		NSString*	fixedName	= getSystemLanguageName(langCode, YES);
@@ -123,6 +124,8 @@
 
 - (void)setSpeller:(AspellSpeller*)newSpeller
 {
+	if (self->_speller == newSpeller) return;
+	
 	if (self->_speller) {
 		delete_aspell_speller(self->_speller);
 	}

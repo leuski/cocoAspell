@@ -17,12 +17,10 @@ extern NSString* kAspellOptionsChangedNotification;
 //	- useFilter-###				where ### is the filter name string. It is BOOL and defines whether 
 //								the filter is included into the filter set.
 
-@interface AspellOptions : NSObject {
-	AspellConfig*			_aspellConfig;
-	BOOL					_persistent;
-}
-@property(assign,readonly)	AspellConfig*		aspellConfig;
-@property(assign)			BOOL				persistent;
+@interface AspellOptions : NSObject
+
+@property (assign, readonly)	AspellConfig*		aspellConfig;
+@property (assign)				BOOL				persistent;
 
 + (NSString*)cocoAspellHomeDir;
 
@@ -42,5 +40,7 @@ extern NSString* kAspellOptionsChangedNotification;
 
 - (NSDictionary*)dictionaryWithAllNondefaultValues;
 
+- (id)objectForKeyedSubscript:(NSString*)key;
+- (void)setObject:(id)obj forKeyedSubscript:(NSString*)key;
 
 @end

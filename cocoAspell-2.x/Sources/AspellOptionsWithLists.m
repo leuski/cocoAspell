@@ -15,7 +15,6 @@
 - (MutableAspellList*)mutableListForKey:(NSString*)inKey;
 @end
 
-
 @implementation AspellOptionsWithLists
 
 // ----------------------------------------------------------------------------
@@ -25,38 +24,9 @@
 - (id)initWithAspellConfigNoCopy:(AspellConfig*)inConfig
 {
 	if (self = [super initWithAspellConfigNoCopy:inConfig]) {
-		[self setListCaches:[NSMutableDictionary dictionary]];
+		self.listCaches = [NSMutableDictionary dictionary];
 	}
 	return self;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)dealloc
-{
-	[self setListCaches:nil];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (NSMutableDictionary *)listCaches
-{
-	return listCaches;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setListCaches:(NSMutableDictionary *)newListCaches
-{
-    if (listCaches != newListCaches) {
-		listCaches = newListCaches;
-    }
 }
 
 // ----------------------------------------------------------------------------
@@ -89,7 +59,7 @@
 					initWithAspellOptions:self 
 					key:inKey 
 					controllerClass:cc];
-		[self listCaches][inKey] = list;
+		self.listCaches[inKey] = list;
 	}
 	return list;
 }

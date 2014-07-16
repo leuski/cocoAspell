@@ -559,7 +559,6 @@
 					__multilingual__,
 				);
 				INFOPLIST_FILE = "Resources/service-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/leuski/Documents/Projects/cocoAspell/build/lib,
@@ -593,7 +592,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
 				INFOPLIST_FILE = "Resources/service-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/leuski/Documents/Projects/cocoAspell/build/lib,
@@ -624,7 +622,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
 				INFOPLIST_FILE = "Resources/service-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/leuski/Documents/Projects/cocoAspell/build/lib,
@@ -652,6 +649,9 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				DSTROOT = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -857,6 +857,7 @@
 					../aspell/common,
 					../aspell/modules/speller/default,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Development;
@@ -872,6 +873,7 @@
 					../aspell/common,
 					../aspell/modules/speller/default,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Deployment;
@@ -885,6 +887,7 @@
 					../aspell/common,
 					../aspell/modules/speller/default,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Default;
@@ -900,7 +903,7 @@
 				6289E63108A1D39B0062091E /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		6289E63208A1D39B0062091E /* Build configuration list for PBXNativeTarget "cocoAspell2" */ = {
 			isa = XCConfigurationList;
@@ -910,7 +913,7 @@
 				6289E63508A1D39B0062091E /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		6289E63A08A1D39B0062091E /* Build configuration list for PBXNativeTarget "Dictionary Installer" */ = {
 			isa = XCConfigurationList;
@@ -920,7 +923,7 @@
 				6289E63D08A1D39B0062091E /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		6289E63E08A1D39B0062091E /* Build configuration list for PBXProject "cocoAspell2" */ = {
 			isa = XCConfigurationList;
@@ -930,7 +933,7 @@
 				6289E64108A1D39B0062091E /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 /* End XCConfigurationList section */
 	};

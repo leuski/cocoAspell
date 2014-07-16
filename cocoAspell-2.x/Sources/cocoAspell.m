@@ -17,9 +17,8 @@
 
 //#define __debug__
 
-@interface cocoAspell : NSObject {
-	DictionaryManager*	dictionaryManager;
-}
+@interface cocoAspell : NSObject <NSSpellServerDelegate>
+@property (nonatomic, strong) DictionaryManager*	dictionaryManager;
 
 - (id)initWithDictionaryManager:(DictionaryManager*)dm;
 
@@ -36,7 +35,7 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 - (id)initWithDictionaryManager:(DictionaryManager*)dm
 {
 	if (self = [super init]) {
-		dictionaryManager	= dm;
+		self.dictionaryManager	= dm;
 
 		[(NSNotificationCenter*)[NSDistributedNotificationCenter defaultCenter] 
 			addObserver:	self
@@ -68,17 +67,6 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 		removeObserver:	self 
 		name:			kAspellDictionarySetChangedNotification 
 		object:			nil];
-	
-	dictionaryManager	= nil;
-}
-
-// ----------------------------------------------------------------------------
-// 
-// ----------------------------------------------------------------------------
-
-- (DictionaryManager*)dictionaryManager
-{
-	return dictionaryManager;
 }
 
 // ----------------------------------------------------------------------------
@@ -201,7 +189,7 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 	}
 	
 #ifdef __debug__
-	NSLog(@"found misspeling at %@ and word count %d : |%@|", NSStringFromRange(result), *wordCount, ((result.location == NSNotFound) ? @"" : [stringToCheck substringWithRange:result]));
+	NSLog(@"found misspeling at %@ and word count %ld : |%@|", NSStringFromRange(result), (long)*wordCount, ((result.location == NSNotFound) ? @"" : [stringToCheck substringWithRange:result]));
 #endif
 
 	return result;
@@ -221,10 +209,6 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 
 	NSMutableArray*	result	= [NSMutableArray array];
 	
-	if (![UserDefaults cocoAspellIsRegistered]) {
-		[result addObject:kPleaseRegister];
-	}
-
 	[result addObjectsFromArray:[[self dictionaryForName:language] suggestGuessesForWord:word]];
 
 #ifdef __debug__
@@ -248,10 +232,6 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 
 	NSMutableArray*	result	= [NSMutableArray array];
 
-	if (![UserDefaults cocoAspellIsRegistered]) {
-		[result addObject:kPleaseRegister];
-	}
-
 	[result addObjectsFromArray:[[self dictionaryForName:language] suggestCompletionsForPartialWordRange:inRange inString:str]];
 
 #ifdef __debug__
@@ -270,56 +250,49 @@ int main(int argc, char** argv)
 {
 	@autoreleasepool {
 
-		if (![UserDefaults cocoAspellExpired]) {
-
-			NSSpellServer*		aServer = [[NSSpellServer alloc] init];
-			
-			DictionaryManager*	dm		= [[DictionaryManager alloc] init];
-			[dm setDictionaries:[dm allDictionaries]];
-			
-			NSUInteger			nregistered = 0;
-			
-			NSLog(@"Attempting to regirster %d dictionaries", [[dm dictionaries] count]);
-			
-			for (Dictionary* d in [dm dictionaries]) {
-				if (d.enabled) {
-					NSString*	name	= d.name;
-					NSString*	path	= [d isKindOfClass:[AspellDictionary class]] ? [((AspellDictionary*)d).options valueForKey:@"dict-dir"] : nil;
-					if (![aServer registerLanguage:name byVendor:@"Aspell"]) {
-						NSLog(@"cocoAspell failed to register %@ from %@/%@\n", name, path, d.identifier); 
-					} else {
-						++nregistered;
-						NSLog(@"cocoAspell registered %@ from %@/%@\n", name, path, d.identifier); 		
-					}
+		NSSpellServer*		aServer = [[NSSpellServer alloc] init];
+		
+		DictionaryManager*	dm		= [[DictionaryManager alloc] init];
+		[dm setDictionaries:[dm allDictionaries]];
+		
+		NSUInteger			nregistered = 0;
+		
+		NSLog(@"Attempting to regirster %lu dictionaries", (unsigned long)[dm.dictionaries count]);
+		
+		for (Dictionary* d in [dm dictionaries]) {
+			if (d.enabled) {
+				NSString*	name	= d.name;
+				NSString*	path	= [d isKindOfClass:[AspellDictionary class]] ? [((AspellDictionary*)d).options valueForKey:@"dict-dir"] : nil;
+				if (![aServer registerLanguage:name byVendor:@"Aspell"]) {
+					NSLog(@"cocoAspell failed to register %@ from %@/%@\n", name, path, d.identifier); 
+				} else {
+					++nregistered;
+					NSLog(@"cocoAspell registered %@ from %@/%@\n", name, path, d.identifier); 		
 				}
 			}
-			
-			if (nregistered > 0) {
+		}
+		
+		if (nregistered > 0) {
 
-				NSLog(@"Starting Aspell SpellChecker.\n");
+			NSLog(@"Starting Aspell SpellChecker.\n");
 
-				cocoAspell*	server	= [[cocoAspell alloc] initWithDictionaryManager:dm];
-		//		@try {
-					[aServer setDelegate:server];
-					[aServer run];
-		//		} @catch (NSException* ex) {
-		//			NSLog(@"%@", ex);
-		//		} @finally {
-		//			[server release];
-		//		}
-
-			} else {
-			
-				NSLog(@"There are no languages enabled. Canceling cocoAspell SpellChecker.\n");
-				
-			}
-
+			cocoAspell*	server	= [[cocoAspell alloc] initWithDictionaryManager:dm];
+	//		@try {
+				[aServer setDelegate:server];
+				[aServer run];
+	//		} @catch (NSException* ex) {
+	//			NSLog(@"%@", ex);
+	//		} @finally {
+	//			[server release];
+	//		}
 
 		} else {
 		
-			NSLog(@"This version of cocoAspell has expired");
-
+			NSLog(@"There are no languages enabled. Canceling cocoAspell SpellChecker.\n");
+			
 		}
+
+
 
 	}
 	return 0;

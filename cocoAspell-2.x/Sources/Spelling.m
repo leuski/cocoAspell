@@ -22,19 +22,12 @@
 - (void)compileDictionaries:(NSArray*)dirs;
 @end
 
-@interface Spelling (Private)
+@interface Spelling () <NSTextViewDelegate>
 - (void)finishedCompiling;
 - (void)sheetDidEndShouldClose:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 @end
 
-@interface Spelling (Registration)
-- (NSString *)registrationName;
-- (NSString *)registrationNumber;
-- (void)setValidRegistration:(BOOL)flag;
-@end
-
-@interface EditableDictionaryManager : DictionaryManager {
-}
+@interface EditableDictionaryManager : DictionaryManager
 @end
 
 @implementation Spelling
@@ -44,18 +37,9 @@
 //	
 // ----------------------------------------------------------------------------
 
-- (void)dealloc
-{
-	[self setDictionaryManager:nil];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
 - (void)finishedCompiling
 {
-	[[self dictionaryManager] setDictionaries:[[self dictionaryManager] allDictionaries]];
+	self.dictionaryManager.dictionaries = [self.dictionaryManager allDictionaries];
 }
 
 // ----------------------------------------------------------------------------
@@ -78,18 +62,18 @@
 {
 	NSString*	path	= [[NSBundle bundleForClass:[self class]] pathForResource:@"DictionaryInstaller" ofType:@"app"];
 	if (!path) {
-		for (NSTabViewItem* it in [mTabView tabViewItems]) {
+		for (NSTabViewItem* it in [self.mTabView tabViewItems]) {
 			if ([[it identifier] isEqual:@"installer"]) {
-				[mTabView removeTabViewItem:it];
+				[self.mTabView removeTabViewItem:it];
 				break;
 			}
 		}
 	}
 
-	[mCreditsView setDrawsBackground:NO];
-	[mCreditsView setEditable:NO];
-	[[mCreditsView enclosingScrollView] setDrawsBackground:NO];
-	[mCreditsView setDelegate:self];
+	[self.mCreditsView setDrawsBackground:NO];
+	[self.mCreditsView setEditable:NO];
+	[[self.mCreditsView enclosingScrollView] setDrawsBackground:NO];
+	[self.mCreditsView setDelegate:self];
 	
 }
 
@@ -101,7 +85,7 @@
 {
 	NSArray*	dicts	= [[self dictionaryManager] allUncompiledDictionaryDirectories];
 
-	if ([dicts count] > 0 && ![UserDefaults cocoAspellExpired]) {
+	if ([dicts count] > 0) {
 		[NSApplication detachDrawingThread:@selector(compileDictionaries:) toTarget:self withObject:dicts];
 	} else {
 		[self finishedCompiling];
@@ -120,7 +104,7 @@
 
 - (void)closeAlertPanel:(id)sender
 {
-	[NSApp endSheet:mAlertPanel];
+	[NSApp endSheet:self.mAlertPanel];
 }
 
 // ----------------------------------------------------------------------------
@@ -130,26 +114,6 @@
 - (void)didSelect
 {	
 //	NSLog(@"%@", dicts);
-
-	if ([UserDefaults cocoAspellExpired]) {
-		[mAlertTitle setStringValue:LocalizedString(@"keyExpiredTitle",nil)];
-		[mAlertMessage setStringValue:LocalizedString(@"keyExpired",nil)];
-		[NSApp beginSheet:mAlertPanel modalForWindow:[[self mainView] window]
-			modalDelegate:self didEndSelector:@selector(alertSheetDidDismiss:returnCode:contextInfo:) contextInfo:nil];
-		return;
-	} 
-	
-	if ([UserDefaults cocoAspellTimeLimit] != NULL) {
-		NSNumber*	notifiedAboutExiration	= [UserDefaults userDefaults][@"notifiedAboutExiration"];
-		if (notifiedAboutExiration == NULL || ![notifiedAboutExiration boolValue]) {
-			[mAlertTitle setStringValue:LocalizedString(@"keyWillExpireTitle",nil)];
-			[mAlertMessage setStringValue:[NSString stringWithFormat:LocalizedString(@"keyWillExpire",nil), [[UserDefaults cocoAspellTimeLimit] descriptionWithCalendarFormat:@"%x" timeZone:nil locale:nil]]];
-			[NSApp beginSheet:mAlertPanel modalForWindow:[[self mainView] window]
-				modalDelegate:self didEndSelector:@selector(alertSheetDidDismiss:returnCode:contextInfo:) contextInfo:nil];
-			[UserDefaults setObject:@YES forKey:@"notifiedAboutExiration"];
-			return;
-		}
-	}
 	
 	[self beginCompiling];
 }
@@ -168,29 +132,9 @@
 //	
 // ----------------------------------------------------------------------------
 
-- (BOOL)isCompiling
-{
-	return compiling;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setCompiling:(BOOL)newCompiling
-{
-    if (compiling != newCompiling) {
-		compiling = newCompiling;
-    }
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
 - (void)displayAboutDictionaryInfo:(Dictionary*)inDict
 {
-	[NSApp beginSheet:mCopyrightPanel modalForWindow:[[self mainView] window]
+	[NSApp beginSheet:self.mCopyrightPanel modalForWindow:[[self mainView] window]
 		modalDelegate:self didEndSelector:@selector(sheetDidEndShouldClose:returnCode:contextInfo:) contextInfo:nil];
 }
 
@@ -211,7 +155,7 @@
 
 - (IBAction)closeCopyrightPanel:(id)sender
 {
-	[NSApp endSheet:mCopyrightPanel];
+	[NSApp endSheet:self.mCopyrightPanel];
 }
 
 // ----------------------------------------------------------------------------
@@ -220,21 +164,15 @@
 
 - (DictionaryManager *)dictionaryManager
 {
-	if (!dictionaryManager) {
-		dictionaryManager	= [[EditableDictionaryManager alloc] initPersistent:YES];
+	if (!_dictionaryManager) {
+		_dictionaryManager	= [[EditableDictionaryManager alloc] initPersistent:YES];
 	}
-	return dictionaryManager;
+	return _dictionaryManager;
 }
 
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setDictionaryManager:(DictionaryManager *)newDictionaryManager
+- (NSString *)version
 {
-    if (dictionaryManager != newDictionaryManager) {
-		dictionaryManager = newDictionaryManager;
-    }
+	return [NSString stringWithFormat:LocalizedString(@"keyVersion",nil), [[NSBundle bundleForClass:[Spelling class]] infoDictionary][@"CFBundleVersion"]];
 }
 
 @end
@@ -246,17 +184,17 @@
 {
 	[self setCompiling:YES];
 
-	[NSApp beginSheet:mProgressPanel modalForWindow:[[self mainView] window]
+	[NSApp beginSheet:self.mProgressPanel modalForWindow:[[self mainView] window]
 		modalDelegate:self didEndSelector:@selector(sheetDidEndShouldClose:returnCode:contextInfo:) contextInfo:nil];
 		
-	[mProgressBar setMinValue:0];
-	[mProgressBar setMaxValue:[arg count]+1];
-	[mProgressBar setDoubleValue:1];
+	[self.mProgressBar setMinValue:0];
+	[self.mProgressBar setMaxValue:[arg count]+1];
+	[self.mProgressBar setDoubleValue:1];
 }
 
 - (void)endCompilation:(id)arg
 {
-	[mProgressBar setDoubleValue:[mProgressBar maxValue]];
+	[self.mProgressBar setDoubleValue:[self.mProgressBar maxValue]];
 	[self setCompiling:NO];
 	[self finishedCompiling];
 //	[mProgressPanel display];
@@ -264,7 +202,7 @@
 
 - (void)failedCompilation:(NSArray*)arg
 {
-	[NSApp endSheet:mProgressPanel];
+	[NSApp endSheet:self.mProgressPanel];
 
 	NSString*	title	= [NSString stringWithFormat:LocalizedString(@"keyCantCompile",nil), arg[0]];
 	NSBeginCriticalAlertSheet(title, nil, nil, nil, [[self mainView] window],
@@ -273,8 +211,8 @@
 
 - (void)progressCompilation:(NSArray*)arg
 {
-	[mProgressTitle	setStringValue:arg[0]];
-	[mProgressBar setDoubleValue:[arg[1] intValue]+1];
+	[self.mProgressTitle	setStringValue:arg[0]];
+	[self.mProgressBar setDoubleValue:[arg[1] intValue]+1];
 }
 
 - (void)compileDictionaries:(NSArray*)dirs
@@ -300,7 +238,7 @@
 			break;
 		}
 
-		[mProgressTitle	setStringValue:[NSString stringWithFormat:LocalizedString(@"keyInfoDone", nil), dirName]];
+		[self.mProgressTitle	setStringValue:[NSString stringWithFormat:LocalizedString(@"keyInfoDone", nil), dirName]];
 
 	}
 	
@@ -309,7 +247,7 @@
 
 - (IBAction)closeProgressPanel:(id)sender
 {
-	[NSApp endSheet:mProgressPanel];
+	[NSApp endSheet:self.mProgressPanel];
 }
 
 @end
@@ -320,133 +258,6 @@
 - (AspellOptions*)createFilterOptions
 {
 	return [self createFilterOptionsWithClass:[AspellOptionsWithLists class]];
-}
-
-@end
-
-@implementation Spelling (Registration)
-
-- (void)checkRegistration
-{
-	[self setValidRegistration:[[self registrationName] length] && [[self registrationNumber] length]];
-	[self willChangeValueForKey:@"registrationInfo"];
-	[self didChangeValueForKey:@"registrationInfo"];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (IBAction)closeRegistrationPanel:(id)sender
-{
-	[NSApp endSheet:mRegistrationPanel];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)displayRegistrationPanel
-{
-	[NSApp beginSheet:mRegistrationPanel modalForWindow:[[self mainView] window]
-		modalDelegate:self didEndSelector:@selector(sheetDidEndShouldClose:returnCode:contextInfo:) contextInfo:nil];
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (BOOL)isRegistrable
-{
-	return NO;
-}
-
-- (BOOL)isRegistered
-{
-	return NO;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (BOOL)isValidRegistration
-{
-	return validRegistration;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setValidRegistration:(BOOL)newValidRegistration
-{
-    if (validRegistration != newValidRegistration) {
-		validRegistration = newValidRegistration;
-    }
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (NSString *)registrationName
-{
-	return registrationName;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setRegistrationName:(NSString *)newRegistrationName
-{
-    if (registrationName != newRegistrationName) {
-		registrationName = [newRegistrationName copy];
-		[self checkRegistration];
-    }
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (NSString *)registrationNumber
-{
-	return registrationNumber;
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (void)setRegistrationNumber:(NSString *)newRegistrationNumber
-{
-    if (registrationNumber != newRegistrationNumber) {
-		registrationNumber = [newRegistrationNumber copy];
-		[self checkRegistration];
-    }
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (NSString *)registrationInfo
-{
-	if ([self isValidRegistration]) 
-		return [NSString stringWithFormat:LocalizedString(@"keyRegistered",nil), [self registrationName]];
-	else 
-		return LocalizedString(@"keyUnregistered",nil);
-}
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
-- (NSString *)version
-{
-	return [NSString stringWithFormat:LocalizedString(@"keyVersion",nil), [[NSBundle bundleForClass:[Spelling class]] infoDictionary][@"CFBundleVersion"]];
 }
 
 @end

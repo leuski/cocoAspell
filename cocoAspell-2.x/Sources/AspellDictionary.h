@@ -11,12 +11,10 @@
 #import <Foundation/Foundation.h>
 #import "Dictionary.h"
 
-@interface AspellDictionary : Dictionary {
-	AspellOptions*			_options;
-	AspellSpeller*			_speller;
-}
-@property(strong)			AspellOptions*			options;
-@property(assign,readonly)	AspellSpeller*			speller;
+@interface AspellDictionary : Dictionary
+
+@property (nonatomic, strong)			AspellOptions*			options;
+@property (nonatomic, assign, readonly)	AspellSpeller*			speller;
 
 - (id)initWithFilePath:(NSString*)inPath persistent:(BOOL)flag;
 

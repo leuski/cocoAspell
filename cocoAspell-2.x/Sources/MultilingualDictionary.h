@@ -13,11 +13,9 @@
 #import <Foundation/Foundation.h>
 #import "Dictionary.h"
 
-@interface MultilingualDictionary : Dictionary {
-	NSArray*	_dictionaries;
-}
+@interface MultilingualDictionary : Dictionary
 
-@property(strong) NSArray*	dictionaries;
+@property (nonatomic, strong) NSArray*	dictionaries;
 
 - (id)initWithDictionaries:(NSArray*)dicts;
 

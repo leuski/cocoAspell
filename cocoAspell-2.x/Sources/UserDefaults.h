@@ -19,10 +19,6 @@ extern NSString*	kDefaultsDomain;
 + (NSDictionary*)userDefaults;
 + (void)setObject:(NSObject*)inObject forKey:(NSString*)inKey;
 
-+ (BOOL)cocoAspellIsRegistered;
-+ (BOOL)cocoAspellExpired;
-+ (NSDate*)cocoAspellTimeLimit;
-
 @end
 
 NSString* LocalizedString(NSString* key, NSString* desc);

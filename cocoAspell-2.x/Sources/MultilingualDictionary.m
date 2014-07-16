@@ -14,7 +14,6 @@
 
 
 @implementation MultilingualDictionary
-@synthesize dictionaries	= _dictionaries;
 
 - (id)initWithDictionaries:(NSArray*)dicts
 {

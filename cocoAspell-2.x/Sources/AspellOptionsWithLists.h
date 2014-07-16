@@ -11,11 +11,6 @@
 #import "AspellOptions.h"
 
 
-@interface AspellOptionsWithLists : AspellOptions {
-	NSMutableDictionary*	listCaches;
-}
-
-- (NSMutableDictionary *)listCaches;
-- (void)setListCaches:(NSMutableDictionary *)newListCaches;
-
+@interface AspellOptionsWithLists : AspellOptions
+@property(nonatomic, strong) NSMutableDictionary* listCaches;
 @end

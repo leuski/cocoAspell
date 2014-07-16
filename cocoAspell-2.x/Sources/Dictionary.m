@@ -14,12 +14,7 @@
 static NSArray*	kStorableKeys		= nil;
 
 @implementation Dictionary
-@synthesize name		= _name;
-@synthesize identifier	= _identifier;
-@synthesize enabled		= _enabled;
-
-@dynamic readableName;
-@dynamic caseSensitive;
+@synthesize name = _name;
 
 // ----------------------------------------------------------------------------
 //	
@@ -29,12 +24,6 @@ static NSArray*	kStorableKeys		= nil;
 {
 	kStorableKeys	= @[@"name", @"identifier",@"enabled"];
 }
-
-
-// ----------------------------------------------------------------------------
-//	
-// ----------------------------------------------------------------------------
-
 
 // ----------------------------------------------------------------------------
 //	

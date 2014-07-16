@@ -18,7 +18,11 @@ static NSString*	kFilterSetPrefix	= @"useFilter_";
 
 NSString*	kAspellOptionsChangedNotification		= @"net.leuski.cocoaspell.OptionsChangedNotification";
 
-@interface AspellOptions (Private)
+@interface AspellOptions ()
+
+@property (nonatomic, assign) int suggestionModeAsInt;
+@property (assign)	AspellConfig*		aspellConfig;
+
 + (NSArray*)suggestionModes;
 - (BOOL)usingFilter:(NSString*)filter;
 - (void)setUsing:(BOOL)inValue filter:(NSString*)filter;
@@ -47,8 +51,6 @@ static NSString*	makeAltKey(NSString* inKey)
 static NSString*	kHomeDir	= nil;
 
 @implementation AspellOptions
-@synthesize persistent		= _persistent;
-@synthesize aspellConfig	= _aspellConfig;
 
 // ----------------------------------------------------------------------------
 //	
@@ -56,11 +58,15 @@ static NSString*	kHomeDir	= nil;
 
 + (void)initialize
 {
-	[AspellOptions setKeys:@[@"sug-mode"] triggerChangeNotificationsForDependentKey:@"suggestionModeAsInt"];
 	NSString*	hd	= [AspellOptions cocoAspellHomeDir];
 	if (![[NSFileManager defaultManager] fileExistsAtPath:hd]) {
-		[[NSFileManager defaultManager] createDirectoryAtPath:hd attributes:nil];
+		[[NSFileManager defaultManager] createDirectoryAtURL:[NSURL fileURLWithPath:hd isDirectory:YES] withIntermediateDirectories:YES attributes:nil error:nil]; // TODO check error
 	}
+}
+
++ (NSSet*)keyPathsForValuesAffectingSuggestionModeAsInt
+{
+	return [NSSet setWithObject:@"sug-mode"];
 }
 
 // ----------------------------------------------------------------------------
@@ -125,9 +131,11 @@ static NSString*	kHomeDir	= nil;
 
 - (id)initWithAspellConfigNoCopy:(AspellConfig*)inConfig
 {
-	self->_aspellConfig			= inConfig;		
-	self.persistent				= NO;
-	[self addObserver:self forKeyPath:@"filter" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (self = [super init]) {
+		self->_aspellConfig			= inConfig;
+		self.persistent				= NO;
+		[self addObserver:self forKeyPath:@"filter" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	}
 	return self;
 }
 
@@ -137,9 +145,11 @@ static NSString*	kHomeDir	= nil;
 
 - (void)dealloc
 {
-	[self removeObserver:self forKeyPath:@"filter"];
-	delete_aspell_config(self->_aspellConfig);
-	self->_aspellConfig	= nil;
+	if (self->_aspellConfig) {
+		[self removeObserver:self forKeyPath:@"filter"];
+		delete_aspell_config(self->_aspellConfig);
+		self->_aspellConfig	= nil;
+	}
 }
 
 // ----------------------------------------------------------------------------
@@ -244,8 +254,18 @@ static NSString*	kHomeDir	= nil;
 			}
 			return;
 		}
-		[super setValue:inValue forKey:inKey];
+		[super setValue:inValue forKeyPath:inKey];
 	}
+}
+
+- (id)objectForKeyedSubscript:(NSString*)key
+{
+	return [self valueForKey:key];
+}
+
+- (void)setObject:(id)obj forKeyedSubscript:(NSString*)key
+{
+	[self setValue:obj forKeyPath:key];
 }
 
 // ----------------------------------------------------------------------------
@@ -257,7 +277,7 @@ static NSString*	kHomeDir	= nil;
 	NSMutableArray*				res		= [NSMutableArray array];
 	AspellKeyInfoEnumeration*	keys	= aspell_config_possible_elements(self.aspellConfig, 1);
 	const AspellKeyInfo*		ki;
-	while (ki = aspell_key_info_enumeration_next(keys)) {
+	while ((ki = aspell_key_info_enumeration_next(keys))) {
 		[res addObject:@(ki->name)];
 	}
 	delete_aspell_key_info_enumeration(keys);
@@ -282,7 +302,7 @@ static NSString*	kHomeDir	= nil;
 
 - (void)setSuggestionModeAsInt:(int)inValue
 {
-	[self setValue:[AspellOptions suggestionModes][inValue] forKey:@"sug-mode"];
+	self[@"sug-mode"] = [AspellOptions suggestionModes][inValue];
 }
 
 // ----------------------------------------------------------------------------
@@ -323,10 +343,6 @@ static NSString*	kHomeDir	= nil;
 	return [[self dictionaryWithValuesForKeys:[self allKeys]] description];
 }
 
-@end
-
-@implementation AspellOptions (Private)
-
 // ----------------------------------------------------------------------------
 //	
 // ----------------------------------------------------------------------------
@@ -354,7 +370,7 @@ static NSString*	kHomeDir	= nil;
 			set = [set mutableCopy];
 			[(NSMutableArray*)set removeObject:filter];
 		}
-		[self setValue:set forKey:@"filter"];
+		self[@"filter"] = set;
 	}
 }
 
@@ -494,7 +510,7 @@ static NSString*	kHomeDir	= nil;
 
 	const char* el;
 	AspellStringEnumeration * en = aspell_string_list_elements(lst);
-	while (el = aspell_string_enumeration_next(en)) {
+	while ((el = aspell_string_enumeration_next(en))) {
 		[arr addObject:[NSMutableString stringWithUTF8String:el]];
 	}
 	delete_aspell_string_enumeration(en);

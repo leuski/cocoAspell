@@ -14,12 +14,12 @@ extern NSString*	kMutableListPrefix;
 
 @class AspellOptions;
 
-@interface MutableAspellList : NSObject {
-	AspellOptions*		options;
-	NSString*			key;
-	NSMutableArray*		objects;
-	Class				controllerClass;
-}
+@class StringController;
+
+@interface MutableAspellList : NSObject
+@property (nonatomic, strong, readonly)	AspellOptions*		options;
+@property (nonatomic, copy, readonly)	NSString*			key;
+@property (nonatomic, strong, readonly)	NSMutableArray*		objects;
 
 - (id)initWithAspellOptions:(AspellOptions*)inOptions key:(NSString*)inKey controllerClass:(Class)inControllerClass;
 
@@ -29,10 +29,10 @@ extern NSString*	kMutableListPrefix;
 - (NSString *)dataKey;
 
 - (NSUInteger)countOfObjects;
-- (id)objectInObjectsAtIndex:(NSUInteger)inIndex;
-- (void)insertObject:(id)inObject inObjectsAtIndex:(NSUInteger)inIndex;
+- (StringController*)objectInObjectsAtIndex:(NSUInteger)inIndex;
+- (void)insertObject:(StringController*)inObject inObjectsAtIndex:(NSUInteger)inIndex;
 - (void)removeObjectFromObjectsAtIndex:(NSUInteger)inIndex;
-- (void)replaceObjectInObjectsAtIndex:(NSUInteger)inIndex withObject:(id)inObject;
+- (void)replaceObjectInObjectsAtIndex:(NSUInteger)inIndex withObject:(StringController*)inObject;
 
 @end
 
@@ -40,25 +40,13 @@ extern NSString*	kMutableListPrefix;
 - (id)initWithAspellList:(MutableAspellList*)inList value:(NSString*)inValue;
 @end
 
-@interface StringController : NSObject <AspellListElement> {
-	NSString*			value;
-	MutableAspellList*	array;
-}
-
-- (NSString *)value;
-- (void)setValue:(NSString *)newValue;
-
-- (MutableAspellList *)array;
-- (void)setArray:(MutableAspellList *)newArray;
+@interface StringController : NSObject <AspellListElement>
+@property (nonatomic, strong) NSString* value;
+@property (nonatomic, weak) MutableAspellList* array;
 @end
 
-@interface TeXCommandController : StringController {
-}
-
-- (NSString *)command;
-- (void)setCommand:(NSString *)newCommand;
-
-- (NSString *)arguments;
-- (void)setArguments:(NSString *)newArguments;
+@interface TeXCommandController : StringController
+@property (nonatomic, strong) NSString* command;
+@property (nonatomic, strong) NSString* arguments;
 @end
 
