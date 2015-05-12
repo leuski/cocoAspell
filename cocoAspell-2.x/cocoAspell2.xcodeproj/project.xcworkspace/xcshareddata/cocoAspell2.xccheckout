@@ -10,42 +10,36 @@
 	<string>cocoAspell2</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>ABACF7F0-B210-43F4-A24B-D8C5BAB12399</key>
-		<string>https://svn.home.leuski.net/cocoAspell/trunk/cocoAspell-2.x</string>
+		<key>2c98d930-c015-0410-94db-d7ee84b40496++1080</key>
+		<string>http://svn.home.leuski.net/cocoAspell/trunk</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>cocoAspell-2.x/cocoAspell2.xcodeproj/project.xcworkspace</string>
+	<string>cocoAspell-2.x/cocoAspell2.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>ABACF7F0-B210-43F4-A24B-D8C5BAB12399</key>
-		<string>../..</string>
+		<key>2c98d930-c015-0410-94db-d7ee84b40496++1080</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
-		<key>ABACF7F0-B210-43F4-A24B-D8C5BAB12399</key>
-		<string>https://svn.home.leuski.net</string>
+		<key>2c98d930-c015-0410-94db-d7ee84b40496++1080</key>
+		<string>http://svn.home.leuski.net</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://svn.home.leuski.net/cocoAspell/trunk/cocoAspell-2.x/cocoAspell2.xcodeproj</string>
+	<string>http://svn.home.leuski.net/cocoAspell/trunk/cocoAspell-2.x/cocoAspell2.xcodeproj</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>ABACF7F0-B210-43F4-A24B-D8C5BAB12399</string>
+	<string>2c98d930-c015-0410-94db-d7ee84b40496++1080</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
-			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
-			<string>cocoAspell/branches</string>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>
-			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
-			<string>cocoAspell/tags</string>
-			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
-			<string>cocoAspell/trunk</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>ABACF7F0-B210-43F4-A24B-D8C5BAB12399</string>
+			<string>2c98d930-c015-0410-94db-d7ee84b40496++1080</string>
 			<key>IDESourceControlWCCName</key>
-			<string>cocoAspell-2.x</string>
+			<string>cocoAspell</string>
 		</dict>
 	</array>
 </dict>
