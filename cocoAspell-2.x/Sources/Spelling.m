@@ -163,8 +163,11 @@ decisionListener:(id < WebPolicyDecisionListener >)listener
 
 - (void)displayAboutDictionaryInfo:(Dictionary*)inDict
 {
-	[NSApp beginSheet:self.mCopyrightPanel modalForWindow:[[self mainView] window]
-		modalDelegate:self didEndSelector:@selector(sheetDidEndShouldClose:returnCode:contextInfo:) contextInfo:nil];
+  [self.mainView.window beginSheet:self.mCopyrightPanel
+                 completionHandler:^(NSModalResponse returnCode)
+  {
+    [self.mCopyrightPanel close];
+  }];
 }
 
 // ----------------------------------------------------------------------------
@@ -213,10 +216,13 @@ decisionListener:(id < WebPolicyDecisionListener >)listener
 {
 	[self setCompiling:YES];
 
-	[NSApp beginSheet:self.mProgressPanel modalForWindow:[[self mainView] window]
-		modalDelegate:self didEndSelector:@selector(sheetDidEndShouldClose:returnCode:contextInfo:) contextInfo:nil];
-		
-	[self.mProgressBar setMinValue:0];
+  [self.mainView.window beginSheet:self.mProgressPanel
+                 completionHandler:^(NSModalResponse returnCode)
+   {
+     [self.mProgressPanel close];
+   }];
+
+  [self.mProgressBar setMinValue:0];
 	[self.mProgressBar setMaxValue:[arg count]+1];
 	[self.mProgressBar setDoubleValue:1];
 }
@@ -233,9 +239,16 @@ decisionListener:(id < WebPolicyDecisionListener >)listener
 {
 	[NSApp endSheet:self.mProgressPanel];
 
-	NSString*	title	= [NSString stringWithFormat:LocalizedString(@"keyCantCompile",nil), arg[0]];
-	NSBeginCriticalAlertSheet(title, nil, nil, nil, [[self mainView] window],
-		self, @selector(sheetDidEndShouldClose:returnCode:contextInfo:), nil, nil, @"%@", arg[1]);
+  NSAlert* alert = [NSAlert new];
+  alert.alertStyle = NSAlertStyleCritical;
+  alert.messageText = [NSString stringWithFormat:LocalizedString(@"keyCantCompile",nil), arg[0]];
+  alert.informativeText = [NSString stringWithFormat:@"%@", arg[1]];
+  
+  [alert beginSheetModalForWindow:self.mainView.window
+                completionHandler:^(NSModalResponse returnCode)
+  {
+    [alert.window close];
+  }];
 }
 
 - (void)progressCompilation:(NSArray*)arg
