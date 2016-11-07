@@ -1,0 +1,11 @@
+make_title = "make & gnumake";
+make_description = "Install make and gnumake utilities from Apple's developer tools package. Disabled if the utilities are already present in the system.";
+
+aspell_title = "GNU Aspell";
+aspell_description = "Install GNU Aspell software and libraries into /usr/local.";
+
+english_title = "English Aspell dictionary";
+english_description = "Install English dictionary.";
+
+spelling_title = "Spelling Preference Pane";
+spelling_description = "Install Spelling preference pane and cocoAspell spelling service for all users of this machine.";

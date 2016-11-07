@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <style type="text/css">
+
+* {
+  font-family: -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+      "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+  font-size: 12px;
+}
+
+@media screen {
+  font-size: 12px;
+}
+
+@media print {
+  font-size: 12px;
+}
+
+    p.center {
+    	text-align: center;
+    }
+    p.header {
+    	margin-top: 6px;
+    	font-weight: bold;	
+    }
+
+    p.quote {
+    	text-indent: 28.0px;
+    }
+
+    span.code {
+    	font: 12.0px Courier
+    }
+
+  </style>
+</head>
+<body>
+
+<p class="center"><img src="cocoAspell.png" alt="cocoAspell" /></p>
+
+<p class="center">Mac OS X interface for Aspell.</p>
+
+<p class="center">Version 2.5</p>
+
+<p class="header">Introduction</p>
+
+<p>This is a release of cocoAspell package. This version supports Mac OS 10.11 and higher. If you are using any previous version of Mac OS X, you cannot use this software.</p>
+
+<p class="header">Installing the software</p>
+
+<p>The Installer should do all the work. You will need an Administrator user name and password to install the software.</p>
+
+<p>The distribution contains three pieces:</p>
+<ol>
+<li>full installation of the compiled version of the GNU Aspell package (version 0.60.6.1). It will also install the make utility if it's not available on the machine.</li>
+<li>cocoAspell preference pane</li>
+<li>aspell dictionary for English (optional installation)</li>
+</ol>
+
+<p>Once the installation is complete open <b>System Preferences</b>, select <b>Spelling</b>, and enable the dictionaries</p>
+
+<p class="header">Installing a dictionary</p>
+
+<p>English dictionary is installed by default. Additional dictionaries can be downloaded from <a href="ftp://ftp.gnu.org/gnu/aspell/dict">ftp://ftp.gnu.org/gnu/aspell/dict</a>. The site contains dictionaries for over 90 languages. They are organized in folders by the two-letter language codes. Each folder contains a file with a name that looks like this (this is the German dictionary)</p>
+
+<p class="quote"><span class="code">aspell-de-0.50-2.tar.bz2</span></p>
+
+<p>Download the file, uncompress it (e.g., you may use StuffIt Expander to do that), and place the resulting folder into <span class="code">/Library/Application Support/cocoAspell/</span>. Alternatively, you may install the dictionary into your own Library folder: <span class="code">~/Library/Application Support/cocoAspell/</span>. Here "~" stands for your home folder.</p>
+
+<p>In our example, the installed dictionary will be:</p>
+
+<p class="quote"><span class="code">/Library/Application Support/cocoAspell/aspell-de-0.50-2</span></p>
+
+<p>Some of the languages have multiple dictionaries (i.e., multiple files on the ftp site), any of them should work with this version of cocoAspell. For example, suppose the German dictionary folder has three versions</p>
+
+<ul>
+<li><span class="code">aspell-de-0.50-2.tar.bz2</span></li>
+<li><span class="code">aspell5-de-20030222-1.tar.bz2</span></li>
+<li><span class="code">aspell6-de-alt-2.1-1.tar.bz2</span></li>
+</ul>
+
+<br/>
+
+<p>I would suggest you choose the dictionary using the following rule: prefer files that start with "aspell6" over files that start with "aspell5" over files that start with simply "aspell". If you are interested in more details about the differences, see the README file at the ftp site.</p>
+
+<p>Unfortunately, I do not have any information about the quality of individual dictionaries. If you have any questions, please contact the author of the particular dictionary. Generally, you may find the contact information in the ReadMe file in the dictionary folder.</p>
+
+</body>
+</html>

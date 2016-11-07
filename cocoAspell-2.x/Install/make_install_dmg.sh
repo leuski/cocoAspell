@@ -122,13 +122,13 @@ then
 	mkdir -p "$install_root/$dmg_name"
 	pushd "$install_root"
 
-	execute productbuild --package make.pkg \
-		--package aspell.pkg \
-		--package english.pkg \
-		--package spelling.pkg \
+	execute productbuild \
+		--resources "${cocoAspell_source}/Install/Resources" \
+		--distribution "${cocoAspell_source}/Install/distribution.plist" \
+		--package-path "$install_root" \
 		"$dmg_name/cocoAspell.pkg"
 
-	cp -R "${cocoAspell_source}/Install/Resources/READ BEFORE you install.rtfd" \
+	cp -R "${cocoAspell_source}/Install/Readme.pdf" \
 		"$install_root/$dmg_name/"
 fi
 

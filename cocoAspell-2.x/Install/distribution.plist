@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-gui-script minSpecVersion="2">
+	<welcome file="Welcome.html" uti="public.html"/>
+	<background file="Spelling.png" uti="public.png" alignment="bottomleft" scaling="none"/>
+	<readme file="Readme.html" uti="public.html"/>
+	<license file="License.html" uti="public.html"/>
+    <pkg-ref id="net.leuski.cocoaspell.make.pkg"/>
+    <pkg-ref id="net.leuski.cocoaspell.aspell.pkg"/>
+    <pkg-ref id="net.leuski.cocoaspell.english.pkg"/>
+    <pkg-ref id="net.leuski.cocoaspell.spelling.pkg"/>
+    <options customize="always" require-scripts="false" hostArchitectures="x86_64"/>
+    <volume-check>
+        <allowed-os-versions>
+            <os-version min="10.11"/>
+        </allowed-os-versions>
+    </volume-check>
+    <choices-outline>
+				<line choice="net.leuski.cocoaspell.make.pkg"/>
+				<line choice="net.leuski.cocoaspell.aspell.pkg"/>
+				<line choice="net.leuski.cocoaspell.english.pkg"/>
+				<line choice="net.leuski.cocoaspell.spelling.pkg"/>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="net.leuski.cocoaspell.make.pkg" visible="true" 
+    	title="make_title" 
+    	description="make_description"
+    	>
+        <pkg-ref id="net.leuski.cocoaspell.make.pkg"/>
+    </choice>
+    <pkg-ref id="net.leuski.cocoaspell.make.pkg" version="10.11" onConclusion="none">make.pkg</pkg-ref>
+    <choice id="net.leuski.cocoaspell.aspell.pkg" visible="true" 
+    	title="aspell_title" 
+    	description="aspell_description"
+    	>
+        <pkg-ref id="net.leuski.cocoaspell.aspell.pkg"/>
+    </choice>
+    <pkg-ref id="net.leuski.cocoaspell.aspell.pkg" version="1" onConclusion="none">aspell.pkg</pkg-ref>
+    <choice id="net.leuski.cocoaspell.english.pkg" visible="true" 
+    	title="english_title" 
+    	description="english_description"
+    	>
+        <pkg-ref id="net.leuski.cocoaspell.english.pkg"/>
+    </choice>
+    <pkg-ref id="net.leuski.cocoaspell.english.pkg" version="1" onConclusion="none">english.pkg</pkg-ref>
+    <choice id="net.leuski.cocoaspell.spelling.pkg" visible="true" 
+    	title="spelling_title" 
+    	description="spelling_description"
+    	>
+        <pkg-ref id="net.leuski.cocoaspell.spelling.pkg"/>
+    </choice>
+    <pkg-ref id="net.leuski.cocoaspell.spelling.pkg" version="2.5" onConclusion="none">spelling.pkg</pkg-ref>
+</installer-gui-script>
