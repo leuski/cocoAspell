@@ -3,11 +3,10 @@
 this_root=`pwd`
 
 install_root="$this_root/../../tmp"
-aspell_root="$this_root/../../aspell-0.60.5"
+install_root="${HOME}/Documents/Developer/Build/cocoAspell/install"
+aspell_root="$this_root/../../aspell"
 
-installed_log="$this_root/installed.log.txt"
-installed_log="/Users/leuski/Documents/Projects/cocoaspell/installed.0.60.5.2.txt"
-dmg_name="cocoAspell.2.1"
+dmg_name="cocoAspell.2.5"
 
 function execute {
 	echo ""
@@ -15,82 +14,50 @@ function execute {
 	$*
 }
 
-echo ""
-echo ""
-read -p "Export Installer root? [y]" -n 1 export_installer
 
-if [ "$export_installer" != "n" ] 
-then
-	read -p "Specify installer root [$install_root]:" tmp_dir
-	if [ -n "$tmp_dir" ]
-	then
-		install_root="$tmp_dir"
-	fi
-	
-	execute svn --force export "http://leuski@leuski.homeip.net:8057/svn/cocoAspell/trunk/cocoAspell-2.x/Install" "$install_root"
-fi
 
 echo ""
 echo ""
-read -p "Configure aspell compilation? [y]" -n 1 configure_aspell
+read -p "build aspell package? [y]" -n 1 configure_aspell
 
 if [ "$configure_aspell" != "n" ] 
 then
 
-	read -p "Specify aspell installation directory [$aspell_root]:" tmp_dir
+	read -p "Specify aspell source directory [$aspell_root]:" tmp_dir
 	if [ -n "$tmp_dir" ]
 	then
 		aspell_root="$tmp_dir"
 	fi
 	
-	cd Scripts
-	execute ./compile_aspell_universal.sh "$aspell_root"
-	cd "$this_root"
-
-fi
-
-echo ""
-echo ""
-read -p "Install aspell? [y]" -n 1 install_aspell
-
-if [ "$install_aspell" != "n" ] 
-then
-
-	read -p "Specify aspell installation directory [$aspell_root]:" tmp_dir
-	if [ -n "$tmp_dir" ]
-	then
-		aspell_root="$tmp_dir"
-	fi
+	pushd "$aspell_root"
 	
-	cd "$aspell_root"
-	execute sudo make install > "$installed_log"
-	cd "$this_root"
-	
-fi
+	tmp_aspell_install_dir="$install_root/aspell"
+	apsell_install_prefix="/usr/local"
 
-echo ""
-echo ""
-read -p "Configure aspell root? [y]" -n 1 configure_aspell_root
+	make clean
 
-if [ "$configure_aspell_root" != "n" ] 
-then
+	ARCH_FLAGS="-arch x86_64 -mmacosx-version-min=10.10"
+	SDK_ROOT="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 
-	read -p "Specify aspell installation log [$installed_log]:" tmp_dir
-	if [ -n "$tmp_dir" ]
-	then
-		installed_log="$tmp_dir"
-	fi
+	export CFLAGS="$SDK_ROOT $ARCH_FLAGS"
+	export CXXFLAGS="$SDK_ROOT $ARCH_FLAGS"
+	export LDFLAGS="$ARCH_FLAGS"
+
+	./configure --disable-dependency-tracking
+
+	make -j 10
+	make DESTDIR="$tmp_aspell_install_dir" install
 	
-	if [ ! -f "$installed_log" ]
-	then
-		echo "Cannot locate file $installed_log"
-		exit 1
-	fi
+	mkdir -p "${tmp_aspell_install_dir}${apsell_install_prefix}/etc/"
+	cp "$this_root/../../cocoAspell-2.x/Sources/aspell.conf" "${tmp_aspell_install_dir}${apsell_install_prefix}/etc/"
+
+	popd
 	
-	cd Scripts
-	execute ./prepare_aspell_root.sh "$installed_log" "$install_root"
-	cd "$this_root"
-	
+	pkgbuild --root "${tmp_aspell_install_dir}${apsell_install_prefix}" \
+		--identifier "net.leuski.cocoaspell.aspell.pkg" \
+		--version 1 \
+		--install-location "${apsell_install_prefix}" \
+		"$install_root/aspell.pkg"
 fi
 
 echo ""
