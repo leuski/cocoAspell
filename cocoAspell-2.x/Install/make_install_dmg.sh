@@ -17,7 +17,7 @@ function execute {
 }
 
 
-
+#-----------------------------------------------------------------------------------------
 echo ""
 read -p "build aspell package? [y]" -n 1 configure_aspell
 
@@ -50,7 +50,8 @@ then
 	make DESTDIR="$tmp_aspell_install_dir" install
 	
 	mkdir -p "${tmp_aspell_install_dir}${apsell_install_prefix}/etc/"
-	cp "${cocoAspell_source}/Sources/aspell.conf" "${tmp_aspell_install_dir}${apsell_install_prefix}/etc/"
+	cp "${cocoAspell_source}/Sources/aspell.conf" \
+		"${tmp_aspell_install_dir}${apsell_install_prefix}/etc/"
 
 	popd
 	
@@ -62,9 +63,9 @@ then
 		"$install_root/aspell.pkg"
 fi
 
+#-----------------------------------------------------------------------------------------
 echo ""
 read -p "Compile Spelling prefPane? [y]" -n 1 compile_spelling
-
 
 if [ "$compile_spelling" != "n" ] 
 then
@@ -73,7 +74,9 @@ then
 	spelling_install_prefix="/Library"
 
 	pushd ..
-	execute xcodebuild -target cocoAspell2 -configuration Deployment DSTROOT="$tmp_spelling_install_dir"
+	execute xcodebuild -target cocoAspell2 \
+		-configuration Deployment \
+		DSTROOT="$tmp_spelling_install_dir"
 	popd
 	
 	execute pkgbuild \
@@ -94,8 +97,16 @@ then
 		--install-location "${english_install_prefix}" \
 		"$install_root/english.pkg"
 
+	execute pkgbuild \
+		--root "${cocoAspell_source}/Install/Packages/make-10.11/root" \
+		--identifier "net.leuski.cocoaspell.make.pkg" \
+		--version 10.11 \
+		--scripts "${cocoAspell_source}/Install/Packages/make-10.11/rsrc" \
+		--install-location "/usr/bin" \
+		"$install_root/make.pkg"	
 fi
 
+#-----------------------------------------------------------------------------------------
 echo ""
 read -p "Make package? [y]" -n 1 make_package
 
@@ -109,14 +120,21 @@ then
 	fi
 
 	mkdir -p "$install_root/$dmg_name"
-	execute /Developer/Applications/Utilities/PackageMaker.app/Contents/MacOS/PackageMaker --doc "$install_root/cocoAspell.pmdoc" --out "$install_root/$dmg_name/cocoAspell.pkg"
-	cp -R "$install_root/Resources/READ BEFORE you install.rtfd" "$install_root/$dmg_name/"
+	pushd "$install_root"
+
+	execute productbuild --package make.pkg \
+		--package aspell.pkg \
+		--package english.pkg \
+		--package spelling.pkg \
+		"$dmg_name/cocoAspell.pkg"
+
+	cp -R "${cocoAspell_source}/Install/Resources/READ BEFORE you install.rtfd" \
+		"$install_root/$dmg_name/"
 fi
 
+#-----------------------------------------------------------------------------------------
 echo ""
-
 read -p "Make disk image? [y]" -n 1 make_disk_image
-
 
 if [ "$make_disk_image" != "n" ] 
 then
@@ -133,7 +151,8 @@ then
 		exit 1
 	fi
 	
-	execute hdiutil create -srcfolder "$install_root/$dmg_name" -ov "$install_root/$dmg_name.dmg"
+	execute hdiutil create -srcfolder "$install_root/$dmg_name" \
+		-ov "$install_root/$dmg_name.dmg"
 fi
 
 
