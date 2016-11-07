@@ -1,0 +1,13 @@
+cocoAspell-2.x/build
+cocoAspell2.xcscmblueprint
+cocoAspell2.xccheckout
+aspell/common/.deps
+Makefile
+.dirstamp
+config.log
+config.status
+libtool
+stamp-h1
+settings.h
+aspell/po/Makefile.in
+aspell/po/POTFILES
