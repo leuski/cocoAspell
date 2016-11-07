@@ -133,7 +133,6 @@
                                                         </buttonCell>
                                                         <connections>
                                                             <binding destination="972" name="value" keyPath="selection.options.run_together" id="1096"/>
-                                                            <outlet property="nextKeyView" destination="677" id="697"/>
                                                         </connections>
                                                     </button>
                                                     <button toolTip="Select to ignore case while checking the words" id="696">
@@ -147,8 +146,8 @@
                                                             <binding destination="972" name="value" keyPath="selection.options.ignore_case" id="1071"/>
                                                         </connections>
                                                     </button>
-                                                    <popUpButton toolTip="Select the suggestion mode. The higher the mode, the more possible spelling variants are suggested " verticalHuggingPriority="750" id="659">
-                                                        <rect key="frame" x="123" y="273" width="139" height="26"/>
+                                                    <popUpButton toolTip="Select the suggestion mode. The higher the mode, the more possible spelling variants are suggested " verticalHuggingPriority="750" misplaced="YES" id="659">
+                                                        <rect key="frame" x="129" y="273" width="133" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Normal" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="663" id="1444">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -167,9 +166,9 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <textField verticalHuggingPriority="750" misplaced="YES" id="707">
-                                                        <rect key="frame" x="0.0" y="279" width="125" height="17"/>
+                                                        <rect key="frame" x="1" y="279" width="125" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Suggestions mode:" id="1447">
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Suggestions mode" id="1447">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="backgroundColor" red="0.98254054999999996" green="1" blue="0.98690546000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -217,28 +216,6 @@
                                                         <rect key="frame" x="186" y="58" width="73" height="5"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     </box>
-                                                    <form verticalHuggingPriority="750" mode="track" allowsEmptySelection="NO" autosizesCells="NO" id="968">
-                                                        <rect key="frame" x="2" y="361" width="257" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        <size key="cellSize" width="257" height="22"/>
-                                                        <size key="intercellSpacing" width="1" height="8"/>
-                                                        <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="1520">
-                                                            <font key="font" metaFont="system"/>
-                                                            <font key="titleFont" metaFont="system"/>
-                                                        </formCell>
-                                                        <cells>
-                                                            <column>
-                                                                <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Name:" id="969">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <font key="titleFont" metaFont="system"/>
-                                                                    <connections>
-                                                                        <binding destination="972" name="value" keyPath="selection.name" id="1367"/>
-                                                                    </connections>
-                                                                </formCell>
-                                                            </column>
-                                                        </cells>
-                                                    </form>
                                                     <button id="1072">
                                                         <rect key="frame" x="32" y="186" width="63" height="18"/>
                                                         <autoresizingMask key="autoresizingMask"/>
@@ -327,38 +304,77 @@
                                                             <binding destination="972" name="value" keyPath="selection.options.useFilter_email" id="1087"/>
                                                         </connections>
                                                     </button>
-                                                    <form verticalHuggingPriority="750" mode="track" allowsEmptySelection="NO" autosizesCells="NO" id="677">
-                                                        <rect key="frame" x="26" y="0.0" width="234" height="52"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        <size key="cellSize" width="234" height="22"/>
-                                                        <size key="intercellSpacing" width="1" height="8"/>
-                                                        <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="1519">
+                                                    <textField verticalHuggingPriority="750" misplaced="YES" id="N6L-YR-Fd9">
+                                                        <rect key="frame" x="195" y="30" width="64" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ktH-HG-4Pv">
                                                             <font key="font" metaFont="system"/>
-                                                            <font key="titleFont" metaFont="system"/>
-                                                        </formCell>
-                                                        <cells>
-                                                            <column>
-                                                                <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" toolTip="Maximum number of words that can be strung together" title="Maximum number of words:" stringValue="8" id="678">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <font key="titleFont" metaFont="system"/>
-                                                                    <connections>
-                                                                        <binding destination="972" name="value" keyPath="selection.options.run_together_limit" id="1097"/>
-                                                                    </connections>
-                                                                </formCell>
-                                                                <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" toolTip="Minimal length of interior words" tag="1" title="Minimum word length:" stringValue="3" id="681">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <font key="titleFont" metaFont="system"/>
-                                                                    <connections>
-                                                                        <binding destination="972" name="value" keyPath="selection.options.run_together_min" id="1098"/>
-                                                                    </connections>
-                                                                </formCell>
-                                                            </column>
-                                                        </cells>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
                                                         <connections>
-                                                            <binding destination="972" name="enabled" keyPath="selection.options.run_together" id="1100"/>
+                                                            <binding destination="972" name="enabled" keyPath="selection.options.run_together" id="azz-Qv-ZLE"/>
+                                                            <binding destination="972" name="value" keyPath="selection.options.run_together_limit" id="IZB-8I-GjA"/>
                                                         </connections>
-                                                    </form>
+                                                    </textField>
+                                                    <textField verticalHuggingPriority="750" misplaced="YES" id="FTh-Co-iRB">
+                                                        <rect key="frame" x="195" y="0.0" width="64" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Ngs-kR-yR8">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="972" name="enabled" keyPath="selection.options.run_together" id="Ax6-XU-9rM"/>
+                                                            <binding destination="972" name="value" keyPath="selection.options.run_together_min" id="b49-Ey-Ual"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="bur-bk-46F">
+                                                        <rect key="frame" x="-2" y="33" width="195" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Maximum number of words" id="5ka-Ar-x9e">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="972" name="enabled" keyPath="selection.options.run_together" id="3R0-uR-azZ"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="qNU-dy-lIe">
+                                                        <rect key="frame" x="-2" y="3" width="195" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Minimum word length" id="pwX-oz-bLn">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="972" name="enabled" keyPath="selection.options.run_together" id="qBu-Sj-1pL"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField verticalHuggingPriority="750" misplaced="YES" id="aRn-XY-ohc">
+                                                        <rect key="frame" x="39" y="363" width="220" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="BNs-YB-42X">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="972" name="value" keyPath="selection.name" id="iQ3-2u-Wyf"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="vse-G0-Rvt">
+                                                        <rect key="frame" x="-3" y="366" width="40" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Name" id="Fal-GG-Y3l">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
                                                 </subviews>
                                             </view>
                                             <font key="titleFont" size="11" name="LucidaGrande"/>
@@ -391,28 +407,6 @@
                                                         <rect key="frame" x="10" y="33" width="576" height="338"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <form verticalHuggingPriority="750" mode="track" allowsEmptySelection="NO" autosizesCells="NO" id="1020">
-                                                                <rect key="frame" x="20" y="250" width="181" height="22"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="cellSize" width="181" height="22"/>
-                                                                <size key="intercellSpacing" width="1" height="8"/>
-                                                                <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="1521">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <font key="titleFont" metaFont="system"/>
-                                                                </formCell>
-                                                                <cells>
-                                                                    <column>
-                                                                        <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="E-mail Margin:" id="1157">
-                                                                            <font key="font" metaFont="system"/>
-                                                                            <font key="titleFont" metaFont="system"/>
-                                                                            <connections>
-                                                                                <binding destination="1166" name="value" keyPath="selection.f_email_margin" id="1184"/>
-                                                                            </connections>
-                                                                        </formCell>
-                                                                    </column>
-                                                                </cells>
-                                                            </form>
                                                             <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="1159">
                                                                 <rect key="frame" x="273" y="48" width="283" height="224"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -507,6 +501,27 @@
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
+                                                            <textField verticalHuggingPriority="750" misplaced="YES" id="yVB-jb-0nA">
+                                                                <rect key="frame" x="116" y="250" width="85" height="22"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="G2y-ie-TMm">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <connections>
+                                                                    <binding destination="1166" name="value" keyPath="selection.f_email_margin" id="4Uk-WV-PXb"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="vFW-Zk-skw">
+                                                                <rect key="frame" x="17" y="252" width="97" height="17"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="E-mail Margin" id="WGx-Cp-EkL">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
                                                         </subviews>
                                                     </view>
                                                 </tabViewItem>
@@ -527,7 +542,7 @@
                                                             <textField verticalHuggingPriority="750" id="1031">
                                                                 <rect key="frame" x="17" y="255" width="174" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="TeX command parameters:" id="1460">
+                                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="TeX command parameters" id="1460">
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -676,7 +691,7 @@
                                                                     <textField verticalHuggingPriority="750" id="1110">
                                                                         <rect key="frame" x="0.0" y="242" width="259" height="30"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Do not check parameters of the following Texinfo commands:" id="1469">
+                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Do not check parameters of the following Texinfo commands" id="1469">
                                                                             <font key="font" metaFont="label"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -767,7 +782,7 @@
                                                                     <textField verticalHuggingPriority="750" id="1111">
                                                                         <rect key="frame" x="0.0" y="242" width="260" height="30"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Do not check the following Texinfo environments:" id="1470">
+                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Do not check the following Texinfo environments" id="1470">
                                                                             <font key="font" metaFont="label"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -875,7 +890,7 @@
                                                                     <textField verticalHuggingPriority="750" id="1126">
                                                                         <rect key="frame" x="0.0" y="255" width="259" height="18"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Check the following SGML attributes:" id="1477">
+                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Check the following SGML attributes" id="1477">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -966,7 +981,7 @@
                                                                     <textField verticalHuggingPriority="750" id="1120">
                                                                         <rect key="frame" x="0.0" y="255" width="259" height="18"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Do not check the following SGML tags:" id="1476">
+                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Do not check the following SGML tags" id="1476">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1074,7 +1089,7 @@
                                                                     <textField verticalHuggingPriority="750" id="1139">
                                                                         <rect key="frame" x="0.0" y="255" width="259" height="18"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Check the following HTML attributes:" id="1483">
+                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Check the following HTML attributes" id="1483">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1217,7 +1232,7 @@
                                                                     <textField verticalHuggingPriority="750" id="1140">
                                                                         <rect key="frame" x="0.0" y="255" width="259" height="18"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Do not check the following HTML tags:" id="1484">
+                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Do not check the following HTML tags" id="1484">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1508,10 +1523,8 @@ DQ
                     <textField verticalHuggingPriority="750" misplaced="YES" id="889">
                         <rect key="frame" x="17" y="369" width="465" height="18"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="1506">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="&lt;&lt;Dictionary name. do not localize&gt;&gt;" id="1506">
                             <font key="font" metaFont="systemBold"/>
-                            <string key="title">&lt;&lt;Dictionary name. do not localize&gt;&gt;
-</string>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
