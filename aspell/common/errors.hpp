@@ -9,8 +9,9 @@
 #ifndef ASPELL_ERRORS__HPP
 #define ASPELL_ERRORS__HPP
 
-//#define AL_ASPELL_EXTERN_C extern "C"
-#define AL_ASPELL_EXTERN_C extern
+#ifndef AL_ASPELL_EXTERN_C
+#define AL_ASPELL_EXTERN_C extern "C"
+#endif
 
 namespace acommon {
 
