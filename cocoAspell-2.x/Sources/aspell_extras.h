@@ -44,4 +44,6 @@ int aspell_config_merge(struct AspellConfig * ths, const struct AspellConfig * o
 #ifdef __cplusplus
 }
 #endif
+
+
 #endif /* __aspell_extras__ */

@@ -33,12 +33,18 @@
 
 #ifdef __cplusplus
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+
 #include "filter.hpp"
 #include "char_vector.hpp"
 #include "copy_ptr.hpp"
 #include "can_have_error.hpp"
 #include "filter_char.hpp"
 #include "filter_char_vector.hpp"
+
+#pragma clang diagnostic pop
+
 
 namespace acommon {
 

@@ -36,6 +36,7 @@
 #import "aspell.h"
 #import "aspell_extras.h"
 #import "cocoa_document_checker.h"
+#import "clip_int.h"
 
 @interface AspellDictionary ()
 @property (nonatomic, assign)	AspellSpeller*			speller;
@@ -226,7 +227,7 @@
 {
 	if (!self.speller) return;
 	
-	NSUInteger	textSize	= sizeof(unichar) * [word length];
+	int       textSize	= CLIP_TO_INT(sizeof(unichar) * [word length]);
 	unichar*	textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		[word getCharacters:textData];
@@ -250,8 +251,8 @@
 {
 	if (!self.speller) return;
 	
-	NSUInteger	textSize	= sizeof(unichar) * [word length];
-	unichar*	textData	= (unichar*)malloc(textSize);
+	int       textSize	= CLIP_TO_INT(sizeof(unichar) * [word length]);
+	unichar*  textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		[word getCharacters:textData];
 #ifdef __debug__
@@ -291,7 +292,7 @@
 	NSMutableArray*	result	= [NSMutableArray array];
 	if (!self.speller) return result;
 	
-	NSUInteger	textSize	= sizeof(unichar) * [word length];
+	int       textSize	= CLIP_TO_INT(sizeof(unichar) * [word length]);
 	unichar*	textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		[word getCharacters:textData];
@@ -320,7 +321,8 @@
 
 	NSString*	prefix		= [str substringWithRange:inRange];
 	NSString*	word		= prefix;
-	NSUInteger	textSize	= sizeof(unichar) * [word length];
+	NSUInteger	longTextSize	= sizeof(unichar) * [word length];
+  int textSize = (int)MIN(longTextSize, INT_MAX);
 	unichar*	textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		[word getCharacters:textData];

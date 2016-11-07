@@ -31,6 +31,7 @@
 #import "AspellOptions.h"
 #import "MutableAspellList.h"
 #import "aspell_extras.h"
+#import "clip_int.h"
 
 static NSArray*		kSuggestionsModes	= nil;
 static NSString*	kFilterSetPrefix	= @"useFilter_";
@@ -312,8 +313,8 @@ static NSString*	kHomeDir	= nil;
 {
 	NSString*	mode	= [self stringForKey:@"sug-mode"];
 	NSUInteger	idx		= [[AspellOptions suggestionModes] indexOfObject:mode];
-	if (idx == NSNotFound) idx	= 2;
-	return idx;
+	if (idx == NSNotFound) idx = 2;
+	return CLIP_TO_INT(idx);
 }
 
 // ----------------------------------------------------------------------------

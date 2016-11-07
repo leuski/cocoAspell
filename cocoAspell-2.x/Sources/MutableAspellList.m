@@ -231,7 +231,7 @@ NSString*	kMutableListPrefix	= @"mutable_";
 
 - (BOOL)list:(MutableAspellList*)list hasObject:(NSString*)val 
 {
-	unsigned	i, n	= [list countOfObjects];
+	NSUInteger	i, n	= [list countOfObjects];
 	for(i = 0; i < n; ++i) {
 		StringController*	sc	= [list objectInObjectsAtIndex:i];
 		if ([val isEqualToString:sc.value] && sc != self && sc.array) {
@@ -442,7 +442,7 @@ static NSArray*		kCheckFSA;
 
 - (BOOL)list:(MutableAspellList*)list hasObject:(NSString*)val 
 {
-	unsigned	i, n	= [list countOfObjects];
+	NSUInteger	i, n	= [list countOfObjects];
 	for(i = 0; i < n; ++i) {
 		StringController*	sc	= [list objectInObjectsAtIndex:i];
 		if ([sc isKindOfClass:[TeXCommandController class]] && [val isEqualToString:((TeXCommandController*)sc).command] && sc != self && sc.array) {

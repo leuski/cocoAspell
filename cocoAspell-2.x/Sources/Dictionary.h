@@ -29,6 +29,7 @@
 // ============================================================================
 
 #import <Foundation/Foundation.h>
+
 #import "aspell.h"
 
 @class AspellOptions;

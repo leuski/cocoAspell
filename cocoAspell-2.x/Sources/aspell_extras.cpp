@@ -30,6 +30,9 @@
 
 #include "aspell_extras.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+
 #include "fstream.hpp"
 #include "config.hpp"
 #include "error.hpp"
@@ -41,6 +44,8 @@
 #include "convert.hpp"
 #include "tokenizer.hpp"
 #include "document_checker.hpp"
+
+#pragma clang diagnostic pop
 
 namespace acommon {
 

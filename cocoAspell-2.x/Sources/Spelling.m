@@ -40,7 +40,7 @@
 - (void)compileDictionaries:(NSArray*)dirs;
 @end
 
-@interface Spelling () <NSTextViewDelegate>
+@interface Spelling () <WebPolicyDelegate>
 - (void)finishedCompiling;
 - (void)sheetDidEndShouldClose:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 @end
@@ -235,7 +235,7 @@ decisionListener:(id < WebPolicyDecisionListener >)listener
 
 	NSString*	title	= [NSString stringWithFormat:LocalizedString(@"keyCantCompile",nil), arg[0]];
 	NSBeginCriticalAlertSheet(title, nil, nil, nil, [[self mainView] window],
-		self, @selector(sheetDidEndShouldClose:returnCode:contextInfo:), nil, nil, arg[1]);
+		self, @selector(sheetDidEndShouldClose:returnCode:contextInfo:), nil, nil, @"%@", arg[1]);
 }
 
 - (void)progressCompilation:(NSArray*)arg
@@ -260,7 +260,7 @@ decisionListener:(id < WebPolicyDecisionListener >)listener
 		NSString*	dirName	= [d lastPathComponent];
 		
 		[self performSelectorOnMainThread:@selector(progressCompilation:) withObject:@[[NSString stringWithFormat:LocalizedString(@"keyInfoMake", nil), dirName], 
-				[NSNumber numberWithInt:i]] waitUntilDone:YES];
+				[NSNumber numberWithUnsignedInteger:i]] waitUntilDone:YES];
 		
 		if (![dm canCompileDictionaryAt:d error:&error] || ![dm compileDictionaryAt:d error:&error]) {
 			[self performSelectorOnMainThread:@selector(failedCompilation:) withObject:@[dirName, error] waitUntilDone:YES];

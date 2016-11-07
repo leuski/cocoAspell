@@ -31,7 +31,7 @@
 // ============================================================================
 
 #import "MultilingualDictionary.h"
-
+#import "clip_int.h"
 
 @implementation MultilingualDictionary
 
@@ -81,7 +81,10 @@
 		}
 
 		int			wc	= 0;
-		NSRange		rng	= [(self.dictionaries)[i] findMisspelledWordInBuffer:buffer+offset size:size-offset*sizeof(unichar) wordCount:&wc countOnly:countOnly];
+		NSRange rng	= [(self.dictionaries)[i] findMisspelledWordInBuffer:buffer+offset
+                                                                size:size-CLIP_TO_UINT(offset*sizeof(unichar))
+                                                           wordCount:&wc
+                                                           countOnly:countOnly];
 
 		if (rng.location == NSNotFound) {
 			*wordCount	+= wc;

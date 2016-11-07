@@ -30,11 +30,18 @@
 
 #include "cocoa_document_checker.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+
 #include "tokenizer.hpp"
 #include "convert.hpp"
 #include "speller.hpp"
 #include "config.hpp"
 #include "data.hpp"
+
+#pragma clang diagnostic pop
+
+#include "clip_int.h"
 
 namespace acommon {
 
@@ -81,12 +88,12 @@ Token CocoaDocumentChecker::next_misspelling(int * ioWordCount)
 	*ioWordCount	= 0;
 	do {
 		if (!tokenizer_->advance()) {
-			tok.offset = proc_str_.size();
+			tok.offset = CLIP_TO_UINT(proc_str_.size());
 			tok.len = 0;
 			return tok;
 		}
 		++(*ioWordCount);
-		correct = speller_->check(MutableString(tokenizer_->word.data(), tokenizer_->word.size() - 1));
+		correct = speller_->check(MutableString(tokenizer_->word.data(), CLIP_TO_UINT(tokenizer_->word.size()) - 1));
 		tok.len  = tokenizer_->end_pos - tokenizer_->begin_pos;
 		tok.offset = tokenizer_->begin_pos;
 	} while (correct);

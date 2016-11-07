@@ -34,6 +34,7 @@
 #import "MultilingualDictionary.h"
 #import "AspellOptions.h"
 #import "UserDefaults.h"
+#import "clip_int.h"
 
 //#define __debug__
 
@@ -167,11 +168,11 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 // 
 // ----------------------------------------------------------------------------
 
-- (NSRange)spellServer:(NSSpellServer *)sender 
-	findMisspelledWordInString:	(NSString *)stringToCheck 
-	language:					(NSString *)language 
-	wordCount:					(NSInteger *)wordCount 
-	countOnly:					(BOOL)countOnly
+- (NSRange)spellServer:(NSSpellServer *)sender
+findMisspelledWordInString:(NSString *)stringToCheck
+              language:(NSString *)language
+             wordCount:(NSInteger *)wordCount
+             countOnly:(BOOL)countOnly
 {
 #ifdef __debug__
 	NSLog(@"check |%@| for language %@, count only: %d", stringToCheck, language, (int)countOnly);
@@ -181,14 +182,17 @@ static NSString*	kPleaseRegister	= @"Register your cocoAspell";
 	NSRange			result	= NSMakeRange(NSNotFound, 0);
 	BOOL			cs		= dict.caseSensitive;
 
-	NSUInteger				textSize	= sizeof(unichar) * [stringToCheck length];
+	unsigned int		textSize	= CLIP_TO_UINT(sizeof(unichar) * [stringToCheck length]);
 	unichar*				textData	= (unichar*)malloc(textSize);
 	if (textData) {
 		NSUInteger	start	= 0;
 		[stringToCheck getCharacters:textData];
 		while (1) {
 			int			wc;
-			result		= [dict findMisspelledWordInBuffer:textData+start size:textSize-start*sizeof(unichar) wordCount:&wc countOnly:countOnly];
+      result  = [dict findMisspelledWordInBuffer:textData+start
+                                            size:textSize-CLIP_TO_UINT(start*sizeof(unichar))
+                                       wordCount:&wc
+                                       countOnly:countOnly];
 			*wordCount += wc;
 			if (result.location == NSNotFound) 
 				break;
