@@ -5,8 +5,10 @@ this_root=`pwd`
 install_root="$this_root/../../tmp"
 install_root="${HOME}/Documents/Developer/Build/cocoAspell/install"
 aspell_root="$this_root/../../aspell"
+cocoAspell_version="2.5"
+cocoAspell_source="$this_root/../../cocoAspell-2.x"
 
-dmg_name="cocoAspell.2.5"
+dmg_name="cocoAspell.${cocoAspell_version}"
 
 function execute {
 	echo ""
@@ -16,7 +18,6 @@ function execute {
 
 
 
-echo ""
 echo ""
 read -p "build aspell package? [y]" -n 1 configure_aspell
 
@@ -49,11 +50,12 @@ then
 	make DESTDIR="$tmp_aspell_install_dir" install
 	
 	mkdir -p "${tmp_aspell_install_dir}${apsell_install_prefix}/etc/"
-	cp "$this_root/../../cocoAspell-2.x/Sources/aspell.conf" "${tmp_aspell_install_dir}${apsell_install_prefix}/etc/"
+	cp "${cocoAspell_source}/Sources/aspell.conf" "${tmp_aspell_install_dir}${apsell_install_prefix}/etc/"
 
 	popd
 	
-	pkgbuild --root "${tmp_aspell_install_dir}${apsell_install_prefix}" \
+	execute pkgbuild \
+		--root "${tmp_aspell_install_dir}${apsell_install_prefix}" \
 		--identifier "net.leuski.cocoaspell.aspell.pkg" \
 		--version 1 \
 		--install-location "${apsell_install_prefix}" \
@@ -61,23 +63,41 @@ then
 fi
 
 echo ""
-echo ""
 read -p "Compile Spelling prefPane? [y]" -n 1 compile_spelling
 
 
 if [ "$compile_spelling" != "n" ] 
 then
 
-	cd ..
-	execute xcodebuild -target cocoAspell2 -configuration Deployment DSTROOT="$install_root"
-	cd "$this_root"
+	tmp_spelling_install_dir="$install_root/spelling"
+	spelling_install_prefix="/Library"
+
+	pushd ..
+	execute xcodebuild -target cocoAspell2 -configuration Deployment DSTROOT="$tmp_spelling_install_dir"
+	popd
+	
+	execute pkgbuild \
+		--root "${tmp_spelling_install_dir}${spelling_install_prefix}" \
+		--identifier "net.leuski.cocoaspell.spelling.pkg" \
+		--version ${cocoAspell_version} \
+		--scripts "${cocoAspell_source}/Install/Packages/Spelling/rsrc" \
+		--install-location "${spelling_install_prefix}" \
+		"$install_root/spelling.pkg"
+
+	english_install_prefix="/Library"
+
+	execute pkgbuild \
+		--root "${cocoAspell_source}/Install/Packages/English/root${english_install_prefix}" \
+		--identifier "net.leuski.cocoaspell.english.pkg" \
+		--version 1 \
+		--scripts "${cocoAspell_source}/Install/Packages/English/rsrc" \
+		--install-location "${english_install_prefix}" \
+		"$install_root/english.pkg"
 
 fi
 
 echo ""
-echo ""
 read -p "Make package? [y]" -n 1 make_package
-
 
 if [ "$make_package" != "n" ] 
 then
@@ -93,7 +113,6 @@ then
 	cp -R "$install_root/Resources/READ BEFORE you install.rtfd" "$install_root/$dmg_name/"
 fi
 
-echo ""
 echo ""
 
 read -p "Make disk image? [y]" -n 1 make_disk_image
@@ -118,7 +137,6 @@ then
 fi
 
 
-echo ""
 echo ""
 
 

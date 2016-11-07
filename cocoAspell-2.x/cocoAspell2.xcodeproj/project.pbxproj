@@ -665,7 +665,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Sources/Spelling_Prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
-				INSTALL_PATH = /Packages/Spelling/root/Library/PreferencePanes;
+				INSTALL_PATH = /Library/PreferencePanes;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
