@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="11542"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Spelling">
@@ -23,7 +24,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="12" userLabel="PrefPane">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -47,14 +48,14 @@
                                             <rect key="frame" x="20" y="20" width="301" height="385"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="Jqp-FV-bZL">
-                                                <rect key="frame" x="1" y="17" width="284" height="367"/>
+                                                <rect key="frame" x="1" y="0.0" width="284" height="384"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="1524" id="962">
                                                         <rect key="frame" x="0.0" y="0.0" width="284" height="367"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
                                                             <tableColumn identifier="on" editable="NO" width="35" minWidth="35" maxWidth="35" id="961">
@@ -93,7 +94,6 @@
                                                         </tableColumns>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1523">
                                                 <rect key="frame" x="-100" y="-100" width="188" height="15"/>
@@ -117,10 +117,10 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <box title="Title" boxType="oldStyle" borderType="none" titlePosition="noTitle" id="1405">
+                                        <box boxType="oldStyle" borderType="none" title="Title" titlePosition="noTitle" id="1405">
                                             <rect key="frame" x="341" y="20" width="261" height="385"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="Zhs-CO-HbX">
                                                 <rect key="frame" x="0.0" y="0.0" width="261" height="385"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -152,7 +152,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Normal" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="663" id="1444">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="658">
                                                                 <items>
                                                                     <menuItem title="Ultra Fast" id="667"/>
@@ -166,7 +166,7 @@
                                                             <binding destination="972" name="selectedIndex" keyPath="selection.options.suggestionModeAsInt" id="1069"/>
                                                         </connections>
                                                     </popUpButton>
-                                                    <textField verticalHuggingPriority="750" id="707">
+                                                    <textField verticalHuggingPriority="750" misplaced="YES" id="707">
                                                         <rect key="frame" x="0.0" y="279" width="125" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Suggestions mode:" id="1447">
@@ -183,14 +183,14 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <binding destination="972" name="argument" keyPath="selection" id="1335">
-                                                                <dictionary key="options">
-                                                                    <string key="NSSelectorName">displayAboutDictionaryInfo:</string>
-                                                                </dictionary>
-                                                            </binding>
                                                             <binding destination="972" name="enabled" keyPath="selection" id="1333">
                                                                 <dictionary key="options">
                                                                     <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                                </dictionary>
+                                                            </binding>
+                                                            <binding destination="972" name="argument" keyPath="selection" id="1335">
+                                                                <dictionary key="options">
+                                                                    <string key="NSSelectorName">displayAboutDictionaryInfo:</string>
                                                                 </dictionary>
                                                             </binding>
                                                             <binding destination="-2" name="target" keyPath="self" previousBinding="1335" id="1336">
@@ -209,19 +209,13 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="931">
+                                                    <box verticalHuggingPriority="750" boxType="separator" id="931">
                                                         <rect key="frame" x="43" y="208" width="216" height="5"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <font key="titleFont" metaFont="system"/>
                                                     </box>
-                                                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="932">
+                                                    <box verticalHuggingPriority="750" boxType="separator" id="932">
                                                         <rect key="frame" x="186" y="58" width="73" height="5"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <font key="titleFont" metaFont="system"/>
                                                     </box>
                                                     <form verticalHuggingPriority="750" mode="track" allowsEmptySelection="NO" autosizesCells="NO" id="968">
                                                         <rect key="frame" x="2" y="361" width="257" height="22"/>
@@ -367,8 +361,6 @@
                                                     </form>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" size="11" name="LucidaGrande"/>
                                         </box>
                                     </subviews>
@@ -425,14 +417,14 @@
                                                                 <rect key="frame" x="273" y="48" width="283" height="224"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <clipView key="contentView" id="6uK-MT-IRb">
-                                                                    <rect key="frame" x="1" y="17" width="266" height="206"/>
+                                                                    <rect key="frame" x="1" y="0.0" width="266" height="223"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1530" id="1160">
                                                                             <rect key="frame" x="0.0" y="0.0" width="266" height="206"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <size key="intercellSpacing" width="3" height="2"/>
-                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                             <tableColumns>
                                                                                 <tableColumn width="262.947998046875" minWidth="98.947998046875" maxWidth="1000" id="1162">
@@ -459,7 +451,6 @@
                                                                             </tableColumns>
                                                                         </tableView>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </clipView>
                                                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1529">
                                                                     <rect key="frame" x="-100" y="-100" width="183" height="15"/>
@@ -474,10 +465,10 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </tableHeaderView>
                                                             </scrollView>
-                                                            <button id="1215">
-                                                                <rect key="frame" x="273" y="20" width="23" height="20"/>
+                                                            <button verticalHuggingPriority="750" misplaced="YES" id="1215">
+                                                                <rect key="frame" x="273" y="20" width="22" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1465">
+                                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="1465">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -486,10 +477,10 @@
                                                                     <binding destination="1163" name="enabled" keyPath="canAdd" id="1218"/>
                                                                 </connections>
                                                             </button>
-                                                            <button id="1216">
-                                                                <rect key="frame" x="295" y="20" width="23" height="20"/>
+                                                            <button verticalHuggingPriority="750" misplaced="YES" id="1216">
+                                                                <rect key="frame" x="294" y="20" width="22" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1466">
+                                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1466">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -546,14 +537,14 @@
                                                                 <rect key="frame" x="205" y="48" width="351" height="224"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <clipView key="contentView" id="Bhy-l1-BE7">
-                                                                    <rect key="frame" x="1" y="17" width="334" height="206"/>
+                                                                    <rect key="frame" x="1" y="0.0" width="334" height="223"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" autosaveColumns="NO" headerView="1527" id="1034">
                                                                             <rect key="frame" x="0.0" y="0.0" width="334" height="206"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <size key="intercellSpacing" width="3" height="2"/>
-                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="gridColor" white="0.87301587999999997" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <tableColumns>
                                                                                 <tableColumn identifier="command" width="126" minWidth="40" maxWidth="1000" id="1033">
@@ -601,7 +592,6 @@
                                                                             </tableColumns>
                                                                         </tableView>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </clipView>
                                                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1526">
                                                                     <rect key="frame" x="-100" y="-100" width="299" height="15"/>
@@ -627,10 +617,10 @@
                                                                     <binding destination="1166" name="value" keyPath="selection.f_tex_check_comments" id="1186"/>
                                                                 </connections>
                                                             </button>
-                                                            <button id="1213">
-                                                                <rect key="frame" x="227" y="20" width="23" height="20"/>
+                                                            <button verticalHuggingPriority="750" misplaced="YES" id="1213">
+                                                                <rect key="frame" x="226" y="20" width="22" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1462">
+                                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1462">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -639,10 +629,10 @@
                                                                     <binding destination="1152" name="enabled" keyPath="canRemove" id="1228"/>
                                                                 </connections>
                                                             </button>
-                                                            <button id="1214">
-                                                                <rect key="frame" x="205" y="20" width="23" height="20"/>
+                                                            <button verticalHuggingPriority="750" misplaced="YES" id="1214">
+                                                                <rect key="frame" x="205" y="20" width="22" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1463">
+                                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="1463">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -696,14 +686,14 @@
                                                                         <rect key="frame" x="1" y="28" width="257" height="206"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <clipView key="contentView" id="r5i-fQ-hFu">
-                                                                            <rect key="frame" x="1" y="17" width="240" height="188"/>
+                                                                            <rect key="frame" x="1" y="0.0" width="240" height="205"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1533" id="1103">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="188"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                                     <tableColumns>
                                                                                         <tableColumn width="237" minWidth="68.337997436523438" maxWidth="1000" id="1101">
@@ -730,7 +720,6 @@
                                                                                     </tableColumns>
                                                                                 </tableView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </clipView>
                                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1532">
                                                                             <rect key="frame" x="-100" y="-100" width="183" height="15"/>
@@ -745,10 +734,10 @@
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </tableHeaderView>
                                                                     </scrollView>
-                                                                    <button id="1199">
-                                                                        <rect key="frame" x="1" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1199">
+                                                                        <rect key="frame" x="1" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1471">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="1471">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -757,10 +746,10 @@
                                                                             <binding destination="1112" name="enabled" keyPath="canAdd" id="1272"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button id="1200">
-                                                                        <rect key="frame" x="23" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1200">
+                                                                        <rect key="frame" x="22" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1472">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1472">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -788,14 +777,14 @@
                                                                         <rect key="frame" x="1" y="28" width="258" height="206"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <clipView key="contentView" id="1LL-fT-0re">
-                                                                            <rect key="frame" x="1" y="17" width="241" height="188"/>
+                                                                            <rect key="frame" x="1" y="0.0" width="241" height="205"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1536" id="1107">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="241" height="188"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                                     <tableColumns>
                                                                                         <tableColumn width="237.69200134277344" minWidth="80.692001342773438" maxWidth="1000" id="1108">
@@ -822,7 +811,6 @@
                                                                                     </tableColumns>
                                                                                 </tableView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </clipView>
                                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1535">
                                                                             <rect key="frame" x="-100" y="-100" width="183" height="15"/>
@@ -837,10 +825,10 @@
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </tableHeaderView>
                                                                     </scrollView>
-                                                                    <button id="1202">
-                                                                        <rect key="frame" x="1" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1202">
+                                                                        <rect key="frame" x="1" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1474">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="1474">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -849,10 +837,10 @@
                                                                             <binding destination="1113" name="enabled" keyPath="canAdd" id="1268"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button id="1201">
-                                                                        <rect key="frame" x="23" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1201">
+                                                                        <rect key="frame" x="22" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1473">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1473">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -897,14 +885,14 @@
                                                                         <rect key="frame" x="1" y="28" width="257" height="219"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <clipView key="contentView" id="IqB-nd-zly">
-                                                                            <rect key="frame" x="1" y="17" width="240" height="201"/>
+                                                                            <rect key="frame" x="1" y="0.0" width="240" height="218"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1542" id="1121">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="201"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                                     <tableColumns>
                                                                                         <tableColumn width="237.33799743652344" minWidth="61.097999572753906" maxWidth="1000" id="1122">
@@ -931,7 +919,6 @@
                                                                                     </tableColumns>
                                                                                 </tableView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </clipView>
                                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1541">
                                                                             <rect key="frame" x="-100" y="-100" width="183" height="15"/>
@@ -946,10 +933,10 @@
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </tableHeaderView>
                                                                     </scrollView>
-                                                                    <button id="1204">
-                                                                        <rect key="frame" x="1" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1204">
+                                                                        <rect key="frame" x="1" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1479">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="1479">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -958,10 +945,10 @@
                                                                             <binding destination="1128" name="enabled" keyPath="canAdd" id="1264"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button id="1203">
-                                                                        <rect key="frame" x="23" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1203">
+                                                                        <rect key="frame" x="22" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1478">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1478">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -989,14 +976,14 @@
                                                                         <rect key="frame" x="1" y="28" width="257" height="219"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <clipView key="contentView" id="oRF-Jb-GEz">
-                                                                            <rect key="frame" x="1" y="17" width="240" height="201"/>
+                                                                            <rect key="frame" x="1" y="0.0" width="240" height="218"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1539" id="1124">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="201"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                                     <tableColumns>
                                                                                         <tableColumn width="236.69200134277344" minWidth="80.692001342773438" maxWidth="1000" id="1127">
@@ -1023,7 +1010,6 @@
                                                                                     </tableColumns>
                                                                                 </tableView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </clipView>
                                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1538">
                                                                             <rect key="frame" x="-100" y="-100" width="183" height="15"/>
@@ -1038,10 +1024,10 @@
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </tableHeaderView>
                                                                     </scrollView>
-                                                                    <button id="1206">
-                                                                        <rect key="frame" x="1" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1206">
+                                                                        <rect key="frame" x="1" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1481">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="1481">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -1050,10 +1036,10 @@
                                                                             <binding destination="1129" name="enabled" keyPath="canAdd" id="1260"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button id="1205">
-                                                                        <rect key="frame" x="23" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1205">
+                                                                        <rect key="frame" x="22" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1480">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1480">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -1098,14 +1084,14 @@
                                                                         <rect key="frame" x="1" y="28" width="257" height="219"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <clipView key="contentView" id="bY2-Y6-MhA">
-                                                                            <rect key="frame" x="1" y="17" width="240" height="201"/>
+                                                                            <rect key="frame" x="1" y="0.0" width="240" height="218"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1545" id="1136">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="201"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                                     <tableColumns>
                                                                                         <tableColumn width="237.33799743652344" minWidth="61.097999572753906" maxWidth="1000" id="1142">
@@ -1132,7 +1118,6 @@
                                                                                     </tableColumns>
                                                                                 </tableView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </clipView>
                                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1544">
                                                                             <rect key="frame" x="-100" y="-100" width="183" height="15"/>
@@ -1147,10 +1132,10 @@
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </tableHeaderView>
                                                                     </scrollView>
-                                                                    <button id="1208">
-                                                                        <rect key="frame" x="1" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1208">
+                                                                        <rect key="frame" x="1" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1486">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="1486">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -1159,10 +1144,10 @@
                                                                             <binding destination="1144" name="enabled" keyPath="canAdd" id="1256"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button id="1207">
-                                                                        <rect key="frame" x="23" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1207">
+                                                                        <rect key="frame" x="22" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1485">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1485">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -1181,14 +1166,14 @@
                                                                         <rect key="frame" x="1" y="28" width="257" height="219"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <clipView key="contentView" id="8vC-gc-ld6">
-                                                                            <rect key="frame" x="1" y="17" width="240" height="201"/>
+                                                                            <rect key="frame" x="1" y="0.0" width="240" height="218"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1548" id="1137">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="201"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                                     <tableColumns>
                                                                                         <tableColumn width="236.69200134277344" minWidth="80.692001342773438" maxWidth="1000" id="1134">
@@ -1215,7 +1200,6 @@
                                                                                     </tableColumns>
                                                                                 </tableView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </clipView>
                                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1547">
                                                                             <rect key="frame" x="-100" y="-100" width="183" height="15"/>
@@ -1239,10 +1223,10 @@
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
-                                                                    <button id="1210">
-                                                                        <rect key="frame" x="1" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1210">
+                                                                        <rect key="frame" x="1" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1488">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="1488">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -1251,10 +1235,10 @@
                                                                             <binding destination="1145" name="enabled" keyPath="canAdd" id="1252"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button id="1209">
-                                                                        <rect key="frame" x="23" y="0.0" width="23" height="20"/>
+                                                                    <button verticalHuggingPriority="750" misplaced="YES" id="1209">
+                                                                        <rect key="frame" x="22" y="0.0" width="22" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1487">
+                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1487">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
@@ -1270,7 +1254,7 @@
                                                 </tabViewItem>
                                                 <tabViewItem label="Context" identifier="" id="1188">
                                                     <view key="view" id="1189">
-                                                        <rect key="frame" x="10" y="33" width="503" height="338"/>
+                                                        <rect key="frame" x="10" y="33" width="576" height="338"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <button id="1190">
@@ -1285,20 +1269,20 @@
                                                                 </connections>
                                                             </button>
                                                             <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="1192">
-                                                                <rect key="frame" x="273" y="48" width="210" height="170"/>
+                                                                <rect key="frame" x="273" y="48" width="283" height="170"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <clipView key="contentView" id="OUh-ex-MF7">
-                                                                    <rect key="frame" x="1" y="17" width="193" height="152"/>
+                                                                    <rect key="frame" x="1" y="0.0" width="266" height="169"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1551" id="1195">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="193" height="152"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="266" height="152"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <size key="intercellSpacing" width="3" height="2"/>
-                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                             <tableColumns>
-                                                                                <tableColumn width="189.98899841308594" minWidth="106.98899841308594" maxWidth="1000" id="1193">
+                                                                                <tableColumn width="262.98899841308594" minWidth="106.98899841308594" maxWidth="1000" id="1193">
                                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Context delimiters">
                                                                                         <font key="font" metaFont="smallSystem"/>
                                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1322,25 +1306,24 @@
                                                                             </tableColumns>
                                                                         </tableView>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </clipView>
                                                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1550">
                                                                     <rect key="frame" x="-100" y="-100" width="183" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="1552">
-                                                                    <rect key="frame" x="194" y="17" width="15" height="152"/>
+                                                                    <rect key="frame" x="267" y="17" width="15" height="152"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                                 <tableHeaderView key="headerView" id="1551">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="193" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="266" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </tableHeaderView>
                                                             </scrollView>
-                                                            <button id="1211">
-                                                                <rect key="frame" x="295" y="20" width="23" height="20"/>
+                                                            <button verticalHuggingPriority="750" misplaced="YES" id="1211">
+                                                                <rect key="frame" x="294" y="20" width="22" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" enabled="NO" inset="2" id="1491">
+                                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1491">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -1349,10 +1332,10 @@
                                                                     <binding destination="1196" name="enabled" keyPath="canRemove" id="1246"/>
                                                                 </connections>
                                                             </button>
-                                                            <button id="1212">
-                                                                <rect key="frame" x="273" y="20" width="23" height="20"/>
+                                                            <button verticalHuggingPriority="750" misplaced="YES" id="1212">
+                                                                <rect key="frame" x="273" y="20" width="22" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Add" imagePosition="only" alignment="center" inset="2" id="1492">
+                                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="1492">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -1362,7 +1345,7 @@
                                                                 </connections>
                                                             </button>
                                                             <textField verticalHuggingPriority="750" id="1311">
-                                                                <rect key="frame" x="17" y="287" width="469" height="51"/>
+                                                                <rect key="frame" x="17" y="287" width="542" height="51"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="1493">
                                                                     <font key="font" metaFont="system"/>
@@ -1384,7 +1367,7 @@ If checked the initial context is visible while the delimited ones are hidden.</
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="1313">
-                                                                <rect key="frame" x="270" y="226" width="216" height="40"/>
+                                                                <rect key="frame" x="270" y="226" width="289" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="The context delimiters are defined as pairs of character sequences separated by a white space" id="1495">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -1402,11 +1385,11 @@ If checked the initial context is visible while the delimited ones are hidden.</
                             </tabViewItem>
                             <tabViewItem label="Installer" identifier="installer" id="1411">
                                 <view key="view" id="1412">
-                                    <rect key="frame" x="10" y="33" width="549" height="436"/>
+                                    <rect key="frame" x="10" y="33" width="622" height="436"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" id="1413">
-                                            <rect key="frame" x="161" y="332" width="226" height="32"/>
+                                            <rect key="frame" x="197" y="332" width="226" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Install Additional Dictionaries" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1502">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1417,7 +1400,7 @@ If checked the initial context is visible while the delimited ones are hidden.</
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="1414">
-                                            <rect key="frame" x="17" y="372" width="515" height="44"/>
+                                            <rect key="frame" x="17" y="372" width="588" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="cocoAspell can check the aspell dictionary ftp site, download and install additional dictionaries or upgrade the existing ones." id="1503">
                                                 <font key="font" metaFont="system"/>
@@ -1430,7 +1413,7 @@ If checked the initial context is visible while the delimited ones are hidden.</
                             </tabViewItem>
                             <tabViewItem label="Credits" identifier="" id="891">
                                 <view key="view" id="892">
-                                    <rect key="frame" x="10" y="33" width="549" height="436"/>
+                                    <rect key="frame" x="10" y="33" width="622" height="436"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView id="775">
@@ -1439,12 +1422,12 @@ If checked the initial context is visible while the delimited ones are hidden.</
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="Spelling" id="1496"/>
                                         </imageView>
                                         <imageView id="779">
-                                            <rect key="frame" x="156" y="362" width="373" height="71"/>
+                                            <rect key="frame" x="156" y="362" width="446" height="71"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="cocoAspell" id="1497"/>
                                         </imageView>
                                         <textField verticalHuggingPriority="750" id="780">
-                                            <rect key="frame" x="153" y="349" width="379" height="14"/>
+                                            <rect key="frame" x="153" y="349" width="452" height="14"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Mac OS X interface for Aspell" id="1498">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -1453,9 +1436,9 @@ If checked the initial context is visible while the delimited ones are hidden.</
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="1378">
-                                            <rect key="frame" x="153" y="324" width="379" height="17"/>
+                                            <rect key="frame" x="153" y="324" width="452" height="17"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="&lt;&lt;version, do not localize>>" id="1499">
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="&lt;&lt;version, do not localize&gt;&gt;" id="1499">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1465,9 +1448,11 @@ If checked the initial context is visible while the delimited ones are hidden.</
                                             </connections>
                                         </textField>
                                         <webView maintainsBackForwardList="NO" id="1559">
-                                            <rect key="frame" x="156" y="20" width="373" height="274"/>
+                                            <rect key="frame" x="156" y="20" width="446" height="274"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12" plugInsEnabled="NO" javaEnabled="NO" javaScriptEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO"/>
+                                            <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12" plugInsEnabled="NO" javaEnabled="NO" javaScriptEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO">
+                                                <nil key="identifier"/>
+                                            </webPreferences>
                                         </webView>
                                     </subviews>
                                 </view>
@@ -1492,7 +1477,7 @@ If checked the initial context is visible while the delimited ones are hidden.</
                 </textField>
             </subviews>
         </customView>
-        <window title="&lt;&lt;Copyright. Do not localize>>" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="877" userLabel="Copyright" customClass="NSPanel">
+        <window title="&lt;&lt;Copyright. Do not localize&gt;&gt;" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="877" userLabel="Copyright" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="123" y="538" width="499" height="406"/>
@@ -1520,8 +1505,8 @@ DQ
                             </binding>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" id="889">
-                        <rect key="frame" x="17" y="369" width="465" height="17"/>
+                    <textField verticalHuggingPriority="750" misplaced="YES" id="889">
+                        <rect key="frame" x="17" y="369" width="465" height="18"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="1506">
                             <font key="font" metaFont="systemBold"/>
@@ -1554,22 +1539,20 @@ DQ
                             <rect key="frame" x="1" y="1" width="457" height="170"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView editable="NO" importsGraphics="NO" richText="NO" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="1350">
+                                <textView editable="NO" importsGraphics="NO" richText="NO" usesFontPanel="YES" continuousSpellChecking="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="1350">
                                     <rect key="frame" x="0.0" y="0.0" width="457" height="170"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="457" height="170"/>
-                                    <size key="maxSize" width="457" height="10000000"/>
+                                    <size key="maxSize" width="459" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="457" height="170"/>
-                                    <size key="maxSize" width="457" height="10000000"/>
                                     <connections>
+                                        <binding destination="972" name="value" keyPath="selection.copyright" id="1353"/>
                                         <binding destination="972" name="editable" keyPath="selection.copyright" id="1356">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSIsNil</string>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="972" name="value" keyPath="selection.copyright" id="1353"/>
                                     </connections>
                                 </textView>
                             </subviews>
@@ -1600,15 +1583,13 @@ DQ
                             <rect key="frame" x="1" y="1" width="457" height="54"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView editable="NO" importsGraphics="NO" richText="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="1434">
+                                <textView editable="NO" importsGraphics="NO" richText="NO" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="1434">
                                     <rect key="frame" x="0.0" y="0.0" width="457" height="54"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="457" height="54"/>
-                                    <size key="maxSize" width="457" height="10000000"/>
+                                    <size key="maxSize" width="459" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="457" height="54"/>
-                                    <size key="maxSize" width="457" height="10000000"/>
                                     <connections>
                                         <binding destination="972" name="editable" keyPath="selection.dataFiles" id="1440">
                                             <dictionary key="options">
@@ -1632,6 +1613,7 @@ DQ
                     </scrollView>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="131.5" y="712"/>
         </window>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="911" userLabel="build progress" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
@@ -1655,12 +1637,12 @@ DQ
                         <rect key="frame" x="102" y="56" width="338" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                         <connections>
-                            <binding destination="-2" name="animate" keyPath="compiling" id="1330"/>
                             <binding destination="-2" name="hidden" keyPath="compiling" id="1329">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
+                            <binding destination="-2" name="animate" keyPath="compiling" id="1330"/>
                         </connections>
                     </progressIndicator>
                     <button verticalHuggingPriority="750" id="915">
@@ -1885,8 +1867,8 @@ DQ
         </window>
     </objects>
     <resources>
-        <image name="Add" width="23" height="22"/>
-        <image name="Remove" width="22" height="22"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="Spelling" width="128" height="128"/>
         <image name="cocoAspell" width="256" height="64"/>
     </resources>
