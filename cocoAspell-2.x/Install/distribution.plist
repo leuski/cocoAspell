@@ -21,7 +21,10 @@
 				<line choice="net.leuski.cocoaspell.spelling.pkg"/>
     </choices-outline>
     <choice id="default"/>
-    <choice id="net.leuski.cocoaspell.make.pkg" visible="true" 
+    <choice id="net.leuski.cocoaspell.make.pkg" 
+    	visible="true" 
+    	enabled="!system.files.fileExistsAtPath('/usr/bin/make')"
+    	selected="!system.files.fileExistsAtPath('/usr/bin/make')"
     	title="make_title" 
     	description="make_description"
     	>
