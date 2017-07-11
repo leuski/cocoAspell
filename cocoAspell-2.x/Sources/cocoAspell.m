@@ -281,7 +281,7 @@ int main(int argc, char** argv)
 		
 		NSUInteger			nregistered = 0;
 		
-		NSLog(@"Attempting to regirster %lu dictionaries", (unsigned long)[dm.dictionaries count]);
+		NSLog(@"Attempting to register %lu dictionaries", (unsigned long)[dm.dictionaries count]);
 		
 		for (Dictionary* d in [dm dictionaries]) {
 			if (d.enabled) {
